@@ -1,0 +1,91 @@
+<?php
+if (!defined("HOVER_INCLUDED")) {
+	define("HOVER_INCLUDED", 1);
+?>
+<style type="text/css">
+
+	body {
+		behavior:url("class/csshover.htc");
+	}
+	
+#ftopmenu {
+	list-style-type: none;
+	padding: 0px 6px 0px 6px;
+	margin: 0;
+	height: 20px;
+  display: inline;
+
+  /* padding: 3px 8px 0px 8px;*/
+   font-size: 12px;
+	font-family: "Bitstream Vera Sans", sans-serif;
+}
+
+#ftopmenu li {
+  display: inline;
+  padding: 0px;
+  margin: 0%;
+  }
+  
+#ftopmenu li a:link, #ftopmenu li a:visited {
+  text-decoration: none;
+  text-align: right;
+  height: 20px;
+  float: right;
+  	padding: 0px 2px 0px 2px;
+
+/*padding: 3px 3px 0px 3px;*/
+  margin: 0;
+  background-color: transparent;
+ color: #808080;
+  text-decoration: none;
+  
+}
+#ftopmenu li a:hover {
+	background-color: #24a1e1;
+	text-decoration: none;
+	color: #ffffff;
+}
+#ftopmenu li a:active {
+  background-color: transparent;
+  text-decoration: none;
+  color: #000;
+}
+#fdivers{
+	height: 20px;
+width: 75px;
+}
+#mdivers{
+	height: 20px;
+width:30px;
+}
+
+.biguser a:link, .biguser a:visited {
+	color:  #ACACAC;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	text-decoration: none;
+	font-size: 18px;
+}
+.biguser a:hover {
+	color: red;
+
+	text-decoration: none;
+	font-size: 18px;
+
+}
+.biguser a:active {
+	color:  #ACACAC;
+	font-size: 18px;
+
+
+}
+.tborder
+{
+	background: #D1D1E1;
+	color: #000000;
+	border: 1px solid Silver;
+}
+</style>
+<?php
+}
+?>

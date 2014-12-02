@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" >
+<!--
+/**
+*
+* @ Copyright: Copyright (C) Farsus Design. All rights reserved. 
+* @ Package: ScarPoX / shortterm SPX
+* @ Subpackage: RUNCMS 
+* @ License: http://www.gnu.org/copyleft/gpl.html GNU/GPL
+* @ Subpackage: ScarPoX ESeditor
+* @ ESeditor is based on FCKeditor by Frederico Caldeira Knabben
+* @ original authers website http://www.fckeditor.net
+*
+*/
+-->
+<html>
+	<head>
+		<title>Text Area Properties</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta content="noindex, nofollow" name="robots">
+		<script src="common/es_dialog_common.js" type="text/javascript"></script>
+		<script type="text/javascript">
+
+var oEditor = window.parent.InnerDialogLoaded() ;
+
+// Gets the document DOM
+var oDOM = oEditor.ES.EditorDocument ;
+
+var oActiveEl = oEditor.ESSelection.GetSelectedElement() ;
+
+window.onload = function()
+{
+	// First of all, translate the dialog box texts
+	oEditor.ESLanguageManager.TranslatePage(document) ;
+
+	if ( oActiveEl && oActiveEl.tagName == 'TEXTAREA' )
+	{
+		GetE('txtName').value		= oActiveEl.name ;
+		GetE('txtCols').value		= GetAttribute( oActiveEl, 'cols' ) ;
+		GetE('txtRows').value		= GetAttribute( oActiveEl, 'rows' ) ;
+	}
+	else
+		oActiveEl = null ;
+
+	window.parent.SetOkButton( true ) ;
+}
+
+function Ok()
+{
+	if ( !oActiveEl )
+	{
+		oActiveEl = oEditor.ES.EditorDocument.createElement( 'TEXTAREA' ) ;
+		oActiveEl = oEditor.ES.InsertElementAndGetIt( oActiveEl ) ;
+	}
+
+	oActiveEl.name = GetE('txtName').value ;
+	SetAttribute( oActiveEl, 'cols', GetE('txtCols').value ) ;
+	SetAttribute( oActiveEl, 'rows', GetE('txtRows').value ) ;
+
+	return true ;
+}
+
+		</script>
+	</head>
+	<body style='OVERFLOW: hidden' scroll='no'>
+		<table height="100%" width="100%">
+			<tr>
+				<td align="center">
+					<table border="0" cellpadding="0" cellspacing="0" width="80%">
+						<tr>
+							<td>
+								<span esLang="DlgTextareaName">Name</span><br>
+								<input type="text" id="txtName" style="WIDTH: 100%">
+								<span esLang="DlgTextareaCols">Collumns</span><br>
+								<input id="txtCols" type="text" size="5">
+								<br>
+								<span esLang="DlgTextareaRows">Rows</span><br>
+								<input id="txtRows" type="text" size="5">
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>

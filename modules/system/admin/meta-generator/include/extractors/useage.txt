@@ -1,0 +1,47 @@
+So how's this work :o)
+
+Any part of the cms can be configured to be extracted by simply dropping
+a file named appropriately and with the right filename of its folder.
+
+
+When the extractor sees a variable like storyid=2 in the url, and is
+currently in the /news module directory, it checks to see if a file
+called storyid.php is in the extractor extensions folder,
+and if it is, it loads the file.
+
+Each file like storyid.php contain 1 simple function get_meta(),
+which in turn is just a simple mysql query that returns various
+extracted data in whatever way you like.
+
+The function get_meta() gets 2 variables passed:
+$id: The reference to the resource (storyid=2, $id=2)
+$limit: How deep to dig into the database (is auto-set by Max. Depth)
+
+So now we just build a query and return $meta, which is then processed
+normally by the rest of the program.
+
+
+You actually only change everything between:
+
+$SQL =  "SELECT
+
+<change all this>
+
+return $meta;
+
+
+Most sections in the cms are already covered for extraction, but if you
+wanna extend or personalize some queries, feel free todo so, and if
+you come up with something more interesting, send it to me so i can
+eventually add it ;-]
+
+-------------
+You don't have to, but using queries with the join syntax usually
+makes it quicker and saves you from doing extra queries to build your
+$meta string.
+
+Personally i suck at them too still, so ya might wanna check this page:
+http://www.w3schools.com/sql/sql_join.asp
+
+Note: You don't have to use JOIN queries, it's just more efficient,
+      than doing multiple single queries.

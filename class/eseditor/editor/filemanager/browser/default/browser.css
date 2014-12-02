@@ -1,0 +1,66 @@
+
+body
+{
+	background-color: #FFF6C1;;
+}
+
+form
+{
+	margin: 0px 0px 0px 0px ;
+	padding: 0px 0px 0px 0px ;
+}
+
+.Frame
+{
+	background-color: #f1f1e3;
+	border-color: #f1f1e3;
+	border-right: thin inset;
+	border-top: thin inset;
+	border-left: thin inset;
+	border-bottom: thin inset;
+}
+
+body.FileArea
+{
+
+	background-color: #ffffff;
+}
+
+body, td, input, select
+{
+	font-size: 11px;
+	font-family: 'Microsoft Sans Serif' , Arial, Helvetica, Verdana;
+}
+
+.ActualFolder
+{
+	font-weight: bold;
+	font-size: 14px;
+}
+
+.PopupButtons
+{
+	border-top: #FFF6C1 1px solid;
+	background-color:#FFF6C1;
+	padding: 7px 10px 7px 10px;
+}
+
+.Button, button
+{
+	border-right: #FF9900 1px solid;
+	border-top: #FF9900 1px solid;
+	border-left: #FF9900 1px solid;
+	color:#1E90FF;
+	border-bottom: #FF9900 1px solid;
+	background-color: #FFF6C1;
+}
+
+.FolderListCurrentFolder img
+{
+	background-image: url(images/FolderOpened.gif);
+}
+
+.FolderListFolder img
+{
+	background-image: url(images/Folder.gif);
+}

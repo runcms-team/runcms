@@ -1,0 +1,137 @@
+a:link, a:visited, a:active,  a:hover{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: normal;
+	color: Black;
+	text-decoration: none;
+	}
+a:hover{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: normal;
+	color: red;
+	text-decoration: none;
+	}
+.installtext {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: normal;
+	color: Black;
+	text-decoration: none;
+	text-align: justify;
+	background-image: url(../images/midt.jpg);
+	border: 0px;
+}
+input {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: normal;
+	color: Black;
+	text-decoration: none;
+	background-color: #FAFAFA;
+	border: 1px solid Black;
+}
+input:focus {
+	background: #FFFFFF;
+	border: 1px solid #000000;
+}
+
+body {
+	background-image: url(../images/bg.jpg);
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: xx-small;
+	color: black;
+	text-decoration: none;
+   margin-left: 10px;
+	margin-top: 10px;
+	margin-right: 10px;
+	margin-bottom: 10px;
+}
+
+form, td {
+	font-size: x-small;
+}
+
+hr {
+	color: #306898;
+	filter: Alpha(Opacity=80,FinishOpacity=0,Style=2);
+	height: 2px;
+	width: 95%;
+}
+
+img {
+	border: 0px;
+	
+}
+.button {
+	/*border: 1px solid #666666;*/
+
+	background-image: url(../images/knap.jpg);
+
+	width: 100px;
+	height: 21px;
+}
+.bg1 {
+	background-color: #F0F5FF;
+}
+
+.bg2, .bg4 {
+	background-color: #F0FFFF;
+
+	width: 100%;
+}
+
+.bg3 {
+	background-color: #F4FAFF;
+}
+
+.footer {
+	background-color: #ECECEC;
+	border-bottom: 1pt solid #000000;
+	border-top: 1pt solid #000000;
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: x-small;
+	font-weight: bold;
+	text-align: center;
+}
+
+.redirect {
+	background: #F5F5F5;
+	border: 3px double #ECECEC;
+	color: #000000;
+}
+
+.select {
+	background: #ECECEC top;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: x-small;
+}
+
+.textarea, .text, .file {
+	background: #F8F8FF top;
+	border: 1px solid #C0C0C0;
+	font-family: Tahoma, Verdana, "MS Sans Serif";
+	font-size: x-small;
+}
+
+.waitbox {
+	background: #F5F5F5;
+	border: 1px solid #ECECEC;
+}
+
+.infa{
+	color: black;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: small;
+	font-weight: bold;
+	text-decoration: none;
+	text-align: justify;
+	border: 0px;
+	
+}
+.select {
+
+		color: Red;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: small;
+}

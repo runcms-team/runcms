@@ -1,0 +1,56 @@
+<!--
+/**
+*
+* @ Copyright: Copyright (C) Farsus Design. All rights reserved. 
+* @ Package: ScarPoX / shortterm SPX
+* @ Subpackage: RUNCMS 
+* @ License: http://www.gnu.org/copyleft/gpl.html GNU/GPL
+* @ Subpackage: ScarPoX ESeditor
+* @ ESeditor is based on FCKeditor by Frederico Caldeira Knabben
+* @ original authers website http://www.fckeditor.net
+*
+*/
+-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" >
+<html>
+	<head>
+		<title>Source</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="robots" content="noindex, nofollow">
+		<link href="common/es_dialog_common.css" rel="stylesheet" type="text/css" />
+		<script language="javascript">
+		
+var oEditor		= window.parent.InnerDialogLoaded() ;
+var ES			= oEditor.ES ;
+var ESConfig	= oEditor.ESConfig ;
+
+window.onload = function()
+{
+	// EnableXHTML and EnableSourceXHTML has been deprecated
+//	document.getElementById('txtSource').value = ( ESConfig.EnableXHTML && ESConfig.EnableSourceXHTML ? ES.GetXHTML( ESConfig.FormatSource ) : ES.GetHTML( ESConfig.FormatSource ) ) ;
+	document.getElementById('txtSource').value = ES.GetXHTML( ESConfig.FormatSource ) ;
+
+	// Activate the "OK" button.
+	window.parent.SetOkButton( true ) ;
+}
+
+//#### The OK button was hit.
+function Ok()
+{
+	if ( oEditor.ESBrowserInfo.IsIE )
+		oEditor.ESUndo.SaveUndoStep() ;
+			
+	ES.SetHTML( document.getElementById('txtSource').value, false ) ;
+	
+	return true ;
+}
+		</script>
+	</head>
+	<body scroll="no" style="OVERFLOW: hidden">
+		<table width="100%" height="100%">
+			<tr>
+				<td height="100%"><textarea id="txtSource" dir="ltr" style="PADDING-RIGHT: 5px; PADDING-LEFT: 5px; FONT-SIZE: 14px; PADDING-BOTTOM: 5px; WIDTH: 100%; PADDING-TOP: 5px; FONT-FAMILY: Monospace; HEIGHT: 100%">Loading. Please wait...</textarea></td>
+			</tr>
+		</table>
+	</body>
+</html>

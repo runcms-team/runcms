@@ -1,0 +1,1 @@
+<meta name="revisit-after" content="7 days" />

@@ -1,0 +1,57 @@
+<!--
+/**
+*
+* @ Copyright: Copyright (C) Farsus Design. All rights reserved. 
+* @ Package: ScarPoX / shortterm SPX
+* @ Subpackage: RUNCMS 
+* @ License: http://www.gnu.org/copyleft/gpl.html GNU/GPL
+* @ Subpackage: ScarPoX ESeditor
+* @ ESeditor is based on FCKeditor by Frederico Caldeira Knabben
+* @ original authers website http://www.fckeditor.net
+*
+*/
+-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<link href="browser.css" type="text/css" rel="stylesheet">
+		<script type="text/javascript" src="js/common.js"></script>
+		<script language="javascript">
+
+function SetResourceType( type )
+{
+	window.parent.frames["frmFolders"].SetResourceType( type ) ;
+}
+
+var aTypes = [
+	['File','File'],
+	['Image','Image'],
+	['library','Image'],
+	['Flash','Flash'],
+	['Media','Media']
+] ;
+
+window.onload = function()
+{
+	for ( var i = 0 ; i < aTypes.length ; i++ )
+	{
+		if ( oConnector.ShowAllTypes || aTypes[i][0] == oConnector.ResourceType )
+			AddSelectOption( document.getElementById('cmbType'), aTypes[i][1], aTypes[i][0] ) ;
+	}
+}
+
+		</script>
+	</head>
+	<body bottomMargin="0" topMargin="0">
+		<table height="100%" cellSpacing="0" cellPadding="0" width="100%" border="0">
+			<tr>
+				<td nowrap>
+					Resource Type<BR>
+					<select id="cmbType" style="WIDTH: 100%" onchange="SetResourceType(this.value);">
+					</select>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>

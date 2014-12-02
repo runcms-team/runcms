@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<rss version='0.92'>
+<channel>
+<title>Scarpox</title>
+<link>http://www.scarpox.org</link>
+<description>Scarpox</description>
+<image>
+<title>Scarpox</title>
+<url>http://www.scarpox.org/images/button.gif</url>
+<link>http://www.scarpox.org</link>
+<description>Scarpox</description>
+<width>100</width>
+<height>21</height>
+</image>
+</channel>
+</rss>

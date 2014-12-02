@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<rss version='2.0'>
+<channel>
+<title>Mysite :: Web Links</title>
+<link>http://localhost/nystart/</link>
+<description>Enter your site description here</description>
+<language>en</language> 
+<copyright>Copyright 2009, Yourname</copyright> 
+<webMaster>admin@runcms.org</webMaster> 
+<managingEditor>admin@runcms.org</managingEditor> 
+<pubDate>Thu, 23 Jul 2009 08:53:27 +0000</pubDate> 
+<generator>RUNCMS 200709</generator> 
+<ttl>120</ttl> 
+<docs>http://blogs.law.harvard.edu/tech/rss</docs> 
+<image>
+<title>Mysite :: Web Links</title>
+<url>http://localhost/nystart/images/button.gif</url>
+<link>http://localhost/nystart/</link>
+<description>Welcome to mysite</description>
+<width>88</width>
+<height>31</height>
+</image>
+<item>
+<title>scarpox</title>
+<link>http://localhost/nystart/modules/links/singlelink.php?lid=1</link>
+<guid isPermaLink='true'>http://localhost/nystart/modules/links/singlelink.php?lid=1</guid>
+<description>scarpox...</description>
+</item>
+</channel>
+</rss>

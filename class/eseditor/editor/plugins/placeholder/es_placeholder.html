@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!--
+/**
+*
+* @ Copyright: Copyright (C) Farsus Design. All rights reserved. 
+* @ Package: ScarPoX / shortterm SPX
+* @ Subpackage: RUNCMS 
+* @ License: http://www.gnu.org/copyleft/gpl.html GNU/GPL
+* @ Subpackage: ScarPoX ESeditor
+* @ ESeditor is based on FCKeditor by Frederico Caldeira Knabben
+* @ original authers website http://www.fckeditor.net
+*
+*/
+-->
+<html>
+	<head>
+		<title>Placeholder Properties</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta content="noindex, nofollow" name="robots">
+		<script language="javascript">
+
+var oEditor = window.parent.InnerDialogLoaded() ;
+var ESLang = oEditor.ESLang ;
+var ESPlaceholders = oEditor.ESPlaceholders ;
+
+window.onload = function ()
+{
+	// First of all, translate the dialog box texts
+	oEditor.ESLanguageManager.TranslatePage( document ) ;
+	
+	LoadSelected() ;
+	
+	// Show the "Ok" button.
+	window.parent.SetOkButton( true ) ;	
+}
+
+var eSelected = oEditor.ESSelection.GetSelectedElement() ;
+
+function LoadSelected()
+{
+	if ( !eSelected )
+		return ;
+
+	if ( eSelected.tagName == 'SPAN' && eSelected._esplaceholder )
+		document.getElementById('txtName').value = eSelected._esplaceholder ;
+	else
+		eSelected == null ;
+}
+
+function Ok()
+{
+	var sValue = document.getElementById('txtName').value ;
+	
+	if ( eSelected && eSelected._esplaceholder == sValue )
+		return true ;
+
+	if ( sValue.length == 0 )
+	{
+		alert( ESLang.PlaceholderErrNoName ) ;
+		return false ;
+	}
+	
+	if ( ESPlaceholders.Exist( sValue ) )
+	{
+		alert( ESLang.PlaceholderErrNameInUse ) ;
+		return false ;
+	}
+
+	ESPlaceholders.Add( sValue ) ;
+	return true ;
+}
+
+		</script>
+	</head>
+	<body scroll="no" style="OVERFLOW: hidden">
+		<table height="100%" cellSpacing="0" cellPadding="0" width="100%" border="0">
+			<tr>
+				<td>
+					<table cellSpacing="0" cellPadding="0" align="center" border="0">
+						<tr>
+							<td>
+								<span esLang="PlaceholderDlgName">Placeholder Name</span><br>
+								<input id="txtName" type="text">
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>

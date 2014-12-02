@@ -1,0 +1,299 @@
+/* jsmenu_Menu Style Sheet */
+
+.jsmenu_Menu,.jsmenu_SubMenuTable
+{
+	font-family:	verdana, arial, sans-serif;
+	font-size:	13px;
+
+	/*padding:	0;*/
+
+	white-space:	nowrap;
+	cursor:		default;
+}
+
+.jsmenu_SubMenu
+{
+	position:	absolute;
+	visibility:	hidden;
+
+	/*
+	   Netscape/Mozilla renders borders by increasing
+	   their z-index.  The following line is necessary
+	   to cover any borders underneath
+	*/
+	z-index:	100;
+	border:		0;
+	padding:	0;
+
+	overflow:	visible;
+	border:		1px solid #8C867B;
+
+	filter:progid:DXImageTransform.Microsoft.Shadow(color=#BDC3BD, Direction=135, Strength=4);
+}
+
+.jsmenu_SubMenuTable
+{
+	overflow:	visible;
+	background-color: #FFFFFF;
+}
+
+.jsmenu_MainItem,.jsmenu_MainItemHover,.jsmenu_MainItemActive,
+.jsmenu_MenuItem,.jsmenu_MenuItemHover,.jsmenu_MenuItemActive
+{
+	border:		0;
+	cursor:		default;
+	white-space:	nowrap;
+}
+
+.jsmenu_MainItem
+{
+	/*background-color:	#EFEBDE;*/
+	
+	padding: 5px;
+}
+
+.jsmenu_MainItemHover,.jsmenu_MainItemActive
+{
+	/*background-color:	#C6D3EF;*/
+	background-color:	#CCCCCC;
+	padding: 5px;
+}
+
+.jsmenu_MenuItem
+{
+	/*background-color:	WHITE;*/
+
+	
+}
+
+.jsmenu_MenuItemHover,.jsmenu_MenuItemActive
+{
+	/*background-color:	#C6D3EF;*/
+		background-color:	#CCCCCC;
+}
+
+
+/* horizontal main menu */
+
+.jsmenu_MainItem
+{
+	/*padding:	1px;*/
+	/*border:		0;*/
+}
+
+td.jsmenu_MainItemHover,td.jsmenu_MainItemActive
+{
+	/*padding:	0px;*/
+	/*border:		1px solid #222222;*/
+
+}
+
+.jsmenu_MainFolderLeft,.jsmenu_MainItemLeft,
+.jsmenu_MainFolderText,.jsmenu_MainItemText,
+.jsmenu_MainFolderRight,.jsmenu_MainItemRight
+{
+	
+}
+
+/* vertical main menu sub components */
+
+td.jsmenu_MainFolderLeft,td.jsmenu_MainItemLeft
+{
+	padding-top:	2px;
+	padding-bottom:	2px;
+	padding-left:	0px;
+	padding-right:	2px;
+
+	border-top:	1px solid #222222;
+	border-bottom:	1px solid #222222;
+   border-left:	1px solid #222222;
+
+	
+}
+
+td.jsmenu_MainFolderText,td.jsmenu_MainItemText
+{
+	padding-top:	2px;
+	padding-bottom:	2px;
+	padding-left:	5px;
+	padding-right:	5px;
+
+	border-top:	1px solid #222222;
+	border-bottom:	1px solid #222222;
+
+
+	white-space:	nowrap;
+}
+
+td.jsmenu_MainFolderRight,td.jsmenu_MainItemRight
+{
+	padding-top:	2px;
+	padding-bottom:	2px;
+	padding-left:	0px;
+	padding-right:	0px;
+
+	border-top:	1px solid #222222;
+	border-bottom:	1px solid #222222;
+	border-right:	1px solid #222222;
+
+	background-color:	inherit;
+}
+
+tr.jsmenu_MainItem td.jsmenu_MainFolderLeft,
+tr.jsmenu_MainItem td.jsmenu_MainItemLeft
+{
+	padding-top:	3px;
+	padding-bottom:	3px;
+	padding-left:	1px;
+	padding-right:	2px;
+
+	white-space:	nowrap;
+
+	border:		0;
+
+}
+
+tr.jsmenu_MainItem td.jsmenu_MainFolderText,
+tr.jsmenu_MainItem td.jsmenu_MainItemText
+{
+	padding-top:	3px;
+	padding-bottom:	3px;
+	padding-left:	5px;
+	padding-right:	5px;
+
+	border:		0;
+	background-color:	inherit;
+}
+
+tr.jsmenu_MainItem td.jsmenu_MainItemRight,
+tr.jsmenu_MainItem td.jsmenu_MainFolderRight
+{
+	padding-top:	3px;
+	padding-bottom:	3px;
+	padding-left:	0px;
+	padding-right:	1px;
+
+	border:		0;
+	background-color:	inherit;
+}
+
+/* sub menu sub components */
+
+.jsmenu_MenuFolderLeft,.jsmenu_MenuItemLeft
+{
+	padding-top:	2px;
+	padding-bottom:	2px;
+	padding-left:	1px;
+	padding-right:	3px;
+/*
+	border-top:	1px solid #222222;
+	border-bottom:	1px solid #222222;
+	border-left:	1px solid #222222;
+*/
+		background-color:	#CCCCCC;
+	white-space:	nowrap;
+}
+
+.jsmenu_MenuFolderText,.jsmenu_MenuItemText
+{
+	padding-top:	2px;
+	padding-bottom:	2px;
+	padding-left:	5px;
+	padding-right:	5px;
+/*
+	border-top:	1px solid #222222;
+	border-bottom:	1px solid #222222;
+*/
+	
+	white-space:	nowrap;
+}
+
+.jsmenu_MenuFolderRight,.jsmenu_MenuItemRight
+{
+	padding-top:	2px;
+	padding-bottom:	2px;
+	padding-left:	0px;
+	padding-right:	0px;
+/*
+	border-top:	1px solid #222222;
+	border-bottom:	1px solid #222222;
+	border-right:	1px solid #222222;
+*/
+	background-color:	inherit;
+	white-space:	nowrap;
+}
+
+.jsmenu_MenuItem .jsmenu_MenuFolderLeft,
+.jsmenu_MenuItem .jsmenu_MenuItemLeft
+{
+	padding-top:	3px;
+	padding-bottom:	3px;
+	padding-left:	2px;
+	padding-right:	3px;
+
+	white-space:	nowrap;
+
+	/*border:		0;*/
+	/*background-color:	#EFEFDE;*/
+}
+
+.jsmenu_MenuItem .jsmenu_MenuFolderText,
+.jsmenu_MenuItem .jsmenu_MenuItemText
+{
+	
+	/*border:		0;*/
+	
+}
+
+.jsmenu_MenuItem .jsmenu_MenuFolderRight,
+.jsmenu_MenuItem .jsmenu_MenuItemRight
+{
+	padding-top:	3px;
+	padding-bottom:	3px;
+	padding-left:	0px;
+	padding-right:	1px;
+
+	/*border:		0;*/
+	background-color:	inherit;
+}
+
+/* menu splits */
+
+.jsmenu_MenuSplit
+{
+	margin:		2px;
+	height:		1px;
+	overflow:	hidden;
+	border-top:	1px solid #C6C3BD;
+	
+}
+
+/* image shadow animation */
+
+/*
+	seq1:	image for normal
+	seq2:	image for hover and active
+
+	To use, in the icon field, input the following:
+	<img class="seq1" src="normal.gif" /><img class="seq2" src="hover.gif" />
+*/
+
+.jsmenu_MenuItem img.seq1
+{
+	display:	inline;
+}
+
+.jsmenu_MenuItemHover seq2,
+.jsmenu_MenuItemActive seq2
+{
+	display:	inline;
+	
+}
+
+.jsmenu_MenuItem .seq2,
+.jsmenu_MenuItemHover .seq1,
+.jsmenu_MenuItemActive .seq1
+{
+	display:	none;
+	
+}

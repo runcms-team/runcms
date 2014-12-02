@@ -1,0 +1,12 @@
+# robots.txt
+User-agent: *
+Disallow: /cache/
+Disallow: /admin/
+Disallow: /class/
+Disallow: /include/
+Disallow: /themes/
+Disallow: /images/
+Disallow: /language/
+Disallow: /_install/
+Disallow: /system/
+Disallow: /manual/

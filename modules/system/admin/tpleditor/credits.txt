@@ -1,0 +1,8 @@
+PhpConcept Library - Zip Module 2.3
+http://www.phpconcept.net
+==========================================================
+Text_Highlighter
+copyright 2004 Andrey Demenev 
+http://pear.php.net/package/Text_Highlighter 
+==========================================================
+-----------------------------------------------

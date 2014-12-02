@@ -1,0 +1,158 @@
+--------------------------------------------------------------------------------
+           RUNCMS Russian Support Modules License (ver. 1.1-eng)
+ Copyright (c) 2005, Ruscms.RU development group. All rights reserved.
+--------------------------------------------------------------------------------
+
+NOTE: If you use this module you agree also to the Russian version 
+of the licence agreement. 
+
+Reception of the distribution kit of this module and further job 
+with it means your knowledge and complete agree with license, in other 
+case you can not use this module.
+
+Definitions:
+-----------
+Here and after "authors" and "site" are understood words accordingly:
+Group of the developers Ruscms.RU and web-resource http://www.ruscms.ru
+
+The license agreement:
+-----------
+This license can be edited or changed at any time, 
+or fully stopped (with a complete interdiction on use of the new versions of
+this module - the old versions will be accessible under the old license). 
+
+The license is distributed to all versions of this module, behind exception 
+the obvious instructions. 
+
+All rights not mentioned in the license obvious or are indirectly saved behind 
+the authors. Any multisignificant interpretation of the described rights can 
+not restrain the rights of the authors also is always treated in their benefit.
+
+The license is based on (includes) the licenses BSD, 
+exception items /amendments: 4, 5 and 6 conditions of use of this license.
+
+Conditions of use:
+-----------
+Using this module its repeated distribution and updating (changing) 
+is authorized only at observance of the following conditions:
+
+   1. At repeated distribution of an initial code of this module 
+      it is necessary to save the mentioned above notice on the copyright, 
+      this list of conditions and below-mentioned refusal of guarantees. 
+
+   2. At repeated distribution of a binary code it is necessary 
+      to reproduce the mentioned above notice on the copyright,
+      the list of conditions and below-mentioned refusal of guarantees in 
+      the documentation and - or in others materials, that having at distribution.
+
+   3. Name « group of the developers Ruscms.RU », address of web-resources: 
+      «http://www.ruscms.ru», «http://www.runcms.ru» and «http://www.e-xoops.ru»
+      The names and "nicks" of the developers included in this group can not be 
+      used for support or progress of products based or including in this module, 
+      without the preliminary written sanction. 
+
+   4. This module or its any part, except for specified in a file 
+      credits.txt in the distribution kit of this module, 
+      can not be used outside of portal systems RUNCMS (http://www.runcms.org)
+
+   5. You have no rights to making the new versions of this module, 
+      and in any form distributing the changed initial code. Any modified(Changed) 
+      variant of this module with the changed initial code, should be used only by 
+      author / authors of updating (changing).
+
+   6. You must save the active reference to a site ruscms.ru approximately 
+      the following contents: < "the Name of the module" for RUNCMS: by RusCms.ru >, 
+      In a readable place of a web-resource using this module.
+
+Refusal of guarantees:
+-----------
+The module is distributed " as is', that means complete absence 
+any obligations and guarantees on the part of the authors. 
+The authors not carrying any responsibility for consequences of use 
+this product. 
+
+--------------------------------------------------------------------------------
+
+Modules from ruscms.ru – this is a product of group of the people calling 
+"Group of the developers ruscms.ru".
+
+If you need an additional information address it to  http: // www.ruscms.ru
+
+This license text translated by Vanysha (ram_pass@rambler.ru)
+
+--------------------------------------------------------------------------------
+           RUNCMS Russian Support Modules License (ver. 1.1-rus)
+ Copyright (c) 2005, Ruscms.RU development group. Все права защищены.
+--------------------------------------------------------------------------------
+
+Получение дистрибутива данного модуля и дальнейшая работа с ним 
+подразумевают ваше знание и полное согласие с данной лицензией, в 
+ином случае вы не можете использовать данный модуль.
+
+Определения:
+-----------
+Здесь и далее под словами "авторы" и "сайт" понимаются соответственно:
+группа разработчиков Ruscms.RU и web-ресурс http://www.ruscms.ru
+
+Соглашение о лицензии:
+-----------
+Лицензия может быть в любое время отредактирована или изменена, 
+либо вовсе остановлена (с полным запретом на использование новых версий 
+данного модуля - старые версии будут доступны по старой лицензии). 
+
+Лицензия распространяется на все версии данного модуля, за исключением 
+явных указаний. 
+
+Все права, неупомянутые в лицензии явно или косвенно сохраняются за авторами.
+Любое многозначительное толкование описанных прав не может ущемлять прав
+авторов и всегда трактуется в их пользу.
+
+Лицензия основывается на (включает в себя) лицензии BSD, за исключением 
+пунктов / поправок: 4, 5 и 6 условий использования данной лицензии.
+
+Условия использования:
+-----------
+Использование данного модуля его повторное распространение и модификация 
+(изменение) разрешается только при соблюдении следующих условий:
+
+   1. При повторном распространении исходного кода данного модуля 
+      необходимо сохранить указанное выше уведомление об авторском праве, 
+      данный список условий и нижеследующий отказ от гарантий. 
+
+   2. При повторном распространении двоичного (бинарного) кода необходимо 
+      воспроизвести указанное выше уведомление об авторском праве, данный 
+      список условий и нижеследующий отказ от гарантий в документации и/или в других 
+      материалах, поставляемых при распространении.
+
+   3. Ни название «группа разработчиков Ruscms.RU» ни адреса web-ресурсов: 
+      «http://www.ruscms.ru», «http://www.runcms.ru» и «http://www.e-xoops.ru»
+      ни имена и «ники» разработчиков входящих в данную группу не могут быть 
+      использованы для поддержки или продвижения продуктов, основанных или 
+      включающих в себя данный модуль, без предварительного письменного разрешения. 
+
+   4. Данный модуль или любая его часть, за исключением указанных в файле 
+      credits.txt дистрибутива модуля, не могут использоваться вне портальной 
+      системы RUNCMS (http://www.runcms.org)
+
+   5. Вы не имеете права выпускать новые версии данного модуля, и в любой 
+      форме распространять изменённый исходный код. Любой модифицированный 
+      (измененный) вариант данного модуля с изменённым исходным кодом, должен быть 
+      использован только автором/авторами модификации (изменения).
+
+   6. Вы обязаны сохранить активную ссылку на сайт ruscms.ru примерно 
+      следующего содержания: < "Название модуля" for RUNCMS: by RusCms.ru >, 
+      в читабельном месте web-ресурса, использующего данный модуль.
+
+Отказ от гарантий:
+-----------
+Модуль распространяется `as is', что подразумевает полное отсутствие 
+каких-либо обязательств и гарантий со стороны авторов. 
+Авторы не несут никакой ответственности за последствия использования 
+предоставленного продукта. 
+
+--------------------------------------------------------------------------------
+
+Модули от ruscms.ru - плод труда группы людей, именующих себя 
+"группа разработчиков ruscms.ru".
+
+За дополнительной информацией обращайтесь по адресу http://www.ruscms.ru

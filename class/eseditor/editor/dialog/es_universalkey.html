@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" >
+<!--
+/**
+*
+* @ Copyright: Copyright (C) Farsus Design. All rights reserved. 
+* @ Package: ScarPoX / shortterm SPX
+* @ Subpackage: RUNCMS 
+* @ License: http://www.gnu.org/copyleft/gpl.html GNU/GPL
+* @ Subpackage: ScarPoX ESeditor
+* @ ESeditor is based on FCKeditor by Frederico Caldeira Knabben
+* @ original authers website http://www.fckeditor.net
+*
+*/
+-->
+<html>
+	<head>
+		<title>Universal Keyboard</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta content="noindex, nofollow" name="robots">
+		<link rel="stylesheet" type="text/css" href="es_universalkey/es_universalkey.css" />
+		<script type="text/javascript">
+
+var oEditor = window.parent.InnerDialogLoaded() ;
+
+window.onload = function()
+{
+	document.body.style.padding = '0px' ;
+
+	// First of all, translate the dialog box texts
+	oEditor.ESLanguageManager.TranslatePage(document) ;
+
+	window.parent.SetOkButton( true ) ;
+	window.parent.SetAutoSize( true ) ;	
+}
+
+function Ok()
+{
+	var oArea = document.getElementById( 'uni_area' ) ;
+
+	if ( oArea.value.length > 0 )
+		oEditor.ES.InsertHtml( oArea.value ) ;
+
+	return true ;
+}
+
+		</script>
+	</head>
+	<body style="OVERFLOW: hidden" scroll="no">
+		<textarea id="uni_area" cols="40" rows="4" style="width:100%;height:60px;"></textarea>
+		<script type="text/javascript" src="es_universalkey/data.js"></script>
+		<script type="text/javascript" src="es_universalkey/diacritic.js"></script>
+		<script type="text/javascript" src="es_universalkey/dialogue.js"></script>
+		<script type="text/javascript" src="es_universalkey/multihexa.js"></script>
+	</body>
+</html>

@@ -1,0 +1,54 @@
+/**
+*
+* @ Copyright: Copyright (C) 2007 ScarPoX . All rights reserved. 
+* @ Package: ScarPoX / shortterm RCX
+* @ Subpackage: ScarPoX ESeditor
+* @ ESeditor is based on FCKeditor by Frederico Caldeira Knabben
+* @ original authers website http://www.fckeditor.net
+* @ License: http://www.gnu.org/copyleft/gpl.html GNU/GPL
+* @ ScarPoX CMS is a Free Software in Danish only
+* @ all original source code avaible www.scarpox.org
+*
+*/
+
+BODY, TEXTAREA, INPUT, TD, SELECT
+{
+	font-family: Tahoma,verdana,arial,sans-serif;
+}
+DIV
+{
+	position: absolute;
+}
+.simple
+{
+	font-size: 11pt;
+}
+.double
+{
+	font-size: 9pt;
+}
+.simpledia
+{
+	color: red;
+	font-size: 11pt;
+}
+.doubledia
+{
+	color: red;
+	font-size: 9pt;
+}
+.action
+{
+	color: white;
+	font-size: 7pt;
+}
+.clavier
+{
+	color: blue;
+	font-size: 7pt;
+}
+.sign
+{
+	color: gray;
+	font-size: 7pt;
+}

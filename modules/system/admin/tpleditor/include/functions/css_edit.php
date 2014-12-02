@@ -1,0 +1,179 @@
+<?php 
+/**
+*
+* @ Copyright: Copyright (C) Farsus Design. All rights reserved. 
+* @ Package: ScarPoX / shortterm SPX
+* @ Subpackage: RUNCMS 
+* @ License: http://www.gnu.org/copyleft/gpl.html GNU/GPL
+*
+* converted to Runcms2 serie by Farsus Design www.farsus.dk
+*
+* Original Author: LARK (balnov@kaluga.net)
+* Support of the module : http://www.runcms.ru
+* License Type : ATTENTION! See /LICENSE.txt
+* Copyright: (C) 2005 Vladislav Balnov. All rights reserved
+*
+*/ 
+defined( 'RCX_ROOT_PATH' ) or exit( '<h1>Forbidden</h1> You don\'t have permission to access' );
+
+function css_edit()
+{
+    global $db;
+
+    $module = $_GET['module'];
+    $file_id = !empty($_GET['file']) ? $_GET['file'] : $_POST['file'];
+    $tpl = !empty($_GET['tpl']) ? $_GET['tpl'] : $_POST['tpl'];
+
+    if (check_theme($tpl) == false) {
+        redirect_header('admin.php?fct=tpleditor', 3, _NOPERM);
+        exit();
+    }
+
+    if (!empty($module)) {
+
+        if (check_module($module) == false) {
+            redirect_header('admin.php?fct=tpleditor&op=tpl_edit&tpl=' . $tpl, 3, _MODULENOEXIST);
+            exit();
+        }
+
+        include_once(RCX_ROOT_PATH . "/modules/" . $module . "/rcxv.php");
+        if (empty($modversion['tpl'])) {
+            redirect_header('admin.php?fct=tpleditor&op=tpl_edit&tpl=' . $tpl, 3, sprintf(_TE_NO_DATA_ON_TPL, $module));
+            exit();
+        }
+        $tpl_files['tpl'] = $modversion['tpl'];
+        $tpl_files['css'] = $modversion['css'];
+        unset($modversion);
+    } else {
+        include_once(RCX_ROOT_PATH . "/modules/system/admin/tpleditor/include/tpl_files_config.php");
+    }
+
+    $file = $tpl_files['css'][$file_id]['name'];
+    $css_path = RCX_ROOT_PATH . '/themes/' . $tpl . '/' . $file;
+
+    if (!empty($_POST['submit'])) {
+        $css = '';
+
+        $rcx_token = & RcxToken::getInstance();
+
+        if ( !$rcx_token->check() ) {
+            redirect_header('admin.php?fct=tpleditor&op=tpl_edit&tpl=' . $tpl, 3, $rcx_token->getErrors(true));
+            exit();
+        }
+
+        if (!empty($_POST['import'])) {
+            foreach($_POST['import'] as $filename) {
+                $css .= '@import url(' . $filename . ');' . "\r\n";
+            }
+        }
+        $css .= "\r\n";
+        foreach($_POST['css'] as $name => $selectors) {
+            $css .= $name . ' {' . "\r\n";
+            foreach($selectors as $property => $value) {
+                $css .= "\t" . $property . ": " . $value . ';' . "\r\n";
+            }
+            $css .= '}' . "\r\n\r\n";
+        }
+        $f_open = fopen($css_path, "w");
+        fwrite($f_open, $css);
+        fclose($f_open);
+        redirect_header("admin.php?fct=tpleditor&op=tpl_edit&tpl=" . $tpl, 3, sprintf(_TE_WRITTEN_FILE, basename($file)));
+        exit();
+    } else {
+        include_once(RCX_ROOT_PATH . "/modules/system/admin/tpleditor/include/formloader.inc.php");
+
+        rcx_cp_header();
+        OpenTable();
+
+        $formname = get_main_link() . get_tpl_link($tpl);
+        if (!empty($module)) $formname .= get_tpl_mod_link($tpl, $module);
+        $formname .= sprintf(_TE_CLASSES_MANAGER2, basename($file));
+
+        $form = new ThemeForm($formname , "themeform", "admin.php?fct=tpleditor", true, "post", true);
+
+        $css_content = file_get_contents($css_path);
+
+        preg_match_all("/import url\((.+?)\)/i", $css_content, $matches);
+        if ($matches[1]) {
+            $form->addElement(new FormHeadingRow("<font color='#339933'>"._TE_IMPORT_CSS."</font>"));
+            foreach($matches[1] as $k => $import) {
+                $import_element = new RcxFormElementTray("import url", "&nbsp;");
+                $element_value = new RcxFormText("", "import[]", 35, 255, $import);
+                $import_element->addElement($element_value);
+                $form->addElement($import_element);
+            }
+            unset($matches);
+        }
+
+        $css_content = preg_replace("#/\*.+?\*/#s", "", $css_content);
+        preg_match_all("/([\:\.\#\w\s,]+)\{(.+?)\}/s", $css_content, $selectors);
+        $s_count = count($selectors[0]);
+
+        for ($i = 0; $i < $s_count; $i++) {
+            $selector_name = trim($selectors[1][$i]);
+            $properties = explode(';', trim($selectors[2][$i]));
+
+            $form->addElement(new FormHeadingRow("<font color='#339933'>" . $selector_name . "</font>"));
+
+            if (count($properties) > 0) {
+                foreach($properties as $property) {
+                    $property = trim($property);
+                    if ($property != "") {
+                        list($p_name, $p_value) = explode(":", $property, 2);
+                        $p_name = trim($p_name);
+                        $p_value = trim($p_value);
+                        $element_name = 'css[' . $selector_name . '][' . $p_name . ']';
+
+                        if (eregi("text-align", $p_name)) {
+                            $text_align = new RcxFormSelect($p_name, $element_name, $p_value);
+                            $text_align->addOptionArray(array("left" => "left", "center" => "center", "right" => "right", "justify" => "justify"));
+                            $form->addElement($text_align);
+                        } elseif (eregi("font-size", $p_name)) {
+                            $font_size = new RcxFormSelect($p_name, $element_name, $p_value);
+                            $font_arr = array("xx-small" => "xx-small", "x-small" => "x-small", "small" => "small", "medium" => "medium", "large" => "large", "x-large" => "x-large", "xx-large" => "xx-large", "9px" => "9px", "11px" => "11px", "13px" => "13px", "15px" => "15px", "17px" => "17px", "8pt" => "8pt", "10pt" => "10pt", "12pt" => "12pt", "14pt" => "14pt", "16pt" => "16pt", "18pt" => "18pt");
+                            if (!array_key_exists($p_value, $font_arr)) {
+                                $font_arr[$p_value] = $p_value;
+                            }
+                            $font_size->addOptionArray($font_arr);
+                            $form->addElement($font_size);
+                        } elseif (eregi("font-weight", $p_name)) {
+                            $font_weight = new RcxFormSelect($p_name, $element_name, $p_value);
+                            $font_weight->addOptionArray(array("normal" => "normal", "bold" => "bold", "bolder" => "bolder", "lighter" => "lighter"));
+                            $form->addElement($font_weight);
+                        } elseif (eregi("text-decoration", $p_name)) {
+                            $text_decoration = new RcxFormSelect($p_name, $element_name, $p_value);
+                            $text_decoration->addOptionArray(array("none" => "none", "underline" => "underline ", "overline" => "overline", "line-through" => "line-through"));
+                            $form->addElement($text_decoration);
+                        } elseif (eregi("color|background", $p_name)) {
+                            $id = $i . '.' . $p_name;
+                            $form->addElement(new FormColorTray($p_name, $element_name, 10, 7, $p_value, $id));
+                        } else {
+                            $class_element = new RcxFormElementTray($p_name, "&nbsp;");
+                            $element_value = new RcxFormText("", $element_name, 35, 255, $p_value);
+                            $class_element->addElement($element_value);
+                            $form->addElement($class_element);
+                        }
+                    }
+                }
+            }
+        }
+
+        $form->addElement(new FormHeadingRow("&nbsp;"));
+        $form_buttons = new RcxFormElementTray(_ACTION, "&nbsp;");
+        $submit_button = new RcxFormButton("", "submit", _TE_EDIT, "submit");
+        $form_buttons->addElement($submit_button);
+        $cancel_button = new RcxFormButton("", "cancel", _CANCEL, "button");
+        $cancel_button->setExtra("onclick='javascript:history.go(-1)'");
+        $form_buttons->addElement($cancel_button);
+        $form->addElement($form_buttons);
+        $form->addElement(new RcxFormHidden("op", "css_edit"));
+        $form->addElement(new RcxFormHidden("file", $file_id));
+        $form->addElement(new RcxFormHidden("tpl", $tpl));
+        $form->display();
+        CloseTable();
+        inc_function('show_copyright');
+        rcx_cp_footer();
+    }
+}
+
+?>
