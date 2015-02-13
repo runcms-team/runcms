@@ -126,7 +126,12 @@ if ( $op == 'editprofile' ) {
   $occupation_text = new RcxFormText(_US_OCCUPATION, "user_occ", 30, 100, $rcxUser->getVar("user_occ", "E"));
   $interest_text   = new RcxFormText(_US_INTEREST, "user_intrest", 30, 100, $rcxUser->getVar("user_intrest", "E"));
   $sig_tray        = new RcxFormElementTray(_US_SIGNATURE, "<br />");
-  $sig_tarea       = new RcxFormDhtmlTextArea('', 'user_sig', $rcxUser->getVar('user_sig', 'E'));
+   if ($rcxConfig['no_bbcode_user_sig']) {
+       $sig_tarea          = new RcxFormTextArea('', "user_sig", $rcxUser->getVar("user_sig", "E"));
+   } else {
+   	   $sig_tarea       = new RcxFormDhtmlTextArea('', 'user_sig', $rcxUser->getVar('user_sig', 'E'));
+   }
+  
   $sig_tray->addElement($sig_tarea);
   $sig_cbox_value = $rcxUser->getVar("attachsig") ? 1 : 0;
   $sig_cbox       = new RcxFormCheckBox("", "attachsig", $sig_cbox_value);
@@ -411,7 +416,7 @@ if ( ($op == 'avatarupload') && ($rcxConfig['avatar_allow_upload'] == 1) ) {
   $result = $upload->upload();
   if ($result['avatarfile']['filename']) {
     $db->query("UPDATE ".RC_USERS_TBL." SET user_avatar='".avatarExists($rcxUser->getVar('uid'))."' WHERE uid=".$rcxUser->getVar("uid")."");
-    redirect_header('user.php', 0);
+    redirect_header('user.php', 2, _UPDATED);
     } else {
       include_once('header.php');
       OpenTable();
