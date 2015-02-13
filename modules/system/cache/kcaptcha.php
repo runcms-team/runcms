@@ -1,27 +1,32 @@
 <?php
 /*********************************************************************
-Remember to chmod 666 this file in order to let the system write to it properly.
-If you can't change the permissions you can edit the rest of this file by hand.
+Установите chmod 666 для этого файла, чтобы разрешить запись в этот файл.
+Если не можете изменить права доступа, отредактируйте файл вручную.
 *********************************************************************/
 
 # KCAPTCHA configuration file
 $alphabet = "0123456789abcdefghijklmnopqrstuvwxyz"; # do not change without changing font files!
 
 # symbols used to draw CAPTCHA
-$allowed_symbols = "0123456789"; #digits
+$allowed_symbols = "23456789abcdefghkmnpqrstuvxyz"; #alphanumeric without similar symbols (o=0, 1=l, i=j)
 
 # folder with fonts
-$fontsdir = 'fonts';
+$fontsdir = 'fonts2';
 
 # CAPTCHA string length
-$length = 6;
+$length = mt_rand(5,6);
+$captionmask = 56;
 
 # CAPTCHA image size (you do not need to change it, whis parameters is optimal)
 $width = 120;
 $height = 50;
 
 # symbol's vertical fluctuation amplitude divided by 2
-$fluctuation_amplitude = 3;
+$fluctuation_amplitude = 8;
+
+#noise
+$white_noise_density = 1/6;
+$black_noise_density = 1/30;
 
 # increase safety by prevention of spaces between symbols
 $no_spaces = true;
