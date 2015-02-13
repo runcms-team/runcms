@@ -1,16 +1,24 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<rss version='0.92'>
+<?xml version="1.0" encoding="Windows-1251"?>
+<rss version='2.0'>
 <channel>
-<title>Scarpox</title>
-<link>http://www.scarpox.org</link>
-<description>Scarpox</description>
+<title>My Runcms Site :: Íîâîñòè</title>
+<link>http://cms/runcms_2_2_3/</link>
+<description>RunCms is Ease Of Use for webmasters</description>
+<language>ru</language> 
+<copyright>Copyright 2015, Farsus Design</copyright> 
+<webMaster>admin@mysite.com</webMaster> 
+<managingEditor>admin@mysite.com</managingEditor> 
+<pubDate>Thu, 12 Feb 2015 20:19:36 +0400</pubDate> 
+<generator>RUNCMS 2.2.3 (build 20150210)</generator> 
+<ttl>120</ttl> 
+<docs>http://blogs.law.harvard.edu/tech/rss</docs> 
 <image>
-<title>Scarpox</title>
-<url>http://www.scarpox.org/images/button.gif</url>
-<link>http://www.scarpox.org</link>
-<description>Scarpox</description>
-<width>100</width>
-<height>21</height>
+<title>My Runcms Site :: Íîâîñòè</title>
+<url>http://cms/runcms_2_2_3/images/button.gif</url>
+<link>http://cms/runcms_2_2_3/</link>
+<description>Simplicity and ease of use</description>
+<width>88</width>
+<height>31</height>
 </image>
 </channel>
 </rss>
