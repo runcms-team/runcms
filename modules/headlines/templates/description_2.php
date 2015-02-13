@@ -10,17 +10,17 @@ function description_2 ($rss, $num_items = 0)
 	$content .= '<tr><td>';
 	$content .= '<div class="indextitle">';
 
-	if (!empty($image['url']))
+	if ($rss->get_image_url())
 	{
 		$content .= '<table width="100%" border="0" cellpadding="0" cellspacing="0"><tr><td>';
-		$content .= '<img src="'.$image['url'].'">';
-		$content .= '</td><td valign=top>';
-		$content .= '<a href="'.$link.'" target="_blank"><b>'.$title.'</b></a><br />'.$image['description'];
+		$content .= '<img src="'.$rss->get_image_url().'" alt="" />';
+		$content .= '</td><td style="vertical-align: top;">';
+		$content .= '<a href="'.$rss->get_permalink().'" target="_blank"><b>'.$rss->get_title().'</b></a><br />'.$rss->get_image_title();
 		$content .= '</td></tr></table>';
 	}
 	else
 	{
-		$content .= '  <a href="'.$link.'" target="_blank">'.$title.'</a>';
+		$content .= '  <a href="'.$rss->get_permalink().'" target="_blank">'.$rss->get_title().'</a>';
 	}
 
 	$content .= '</div>';
@@ -28,13 +28,12 @@ function description_2 ($rss, $num_items = 0)
 
 	$content .= '<tr><td class="more">';
 	$content .= '<div class="indextext">';
-	$items = ($num_items > 0) ? array_slice($rss->items, 0, $num_items) : $rss->items;
-	foreach ($items as $item ) {
-		$href = $item['link'];
-		$title = $item['title'];	
-		$desc = $item['description'];	
-		$content .= '<a href="'.$href.'" target="_blank"><b>'.$title.'</b></a><br />';
-		$content .= $desc.'<br /><br />';
+	
+	$items = $rss->get_items( 0, $rss->get_item_quantity($num_items) );
+	
+	foreach ($items as $item ) {	
+		$content .= '<a href="'.$item->get_permalink().'" target="_blank"><b>'.$item->get_title().'</b></a><br />';
+		$content .= $item->get_description().'<br /><br />';
 	}
 
 	$content .= '</div>';
