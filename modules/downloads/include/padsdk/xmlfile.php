@@ -216,7 +216,7 @@ class XMLNode
   // Dumps the XML text to HTML
   function Dump()
   {
-    echo "<pre>" . htmlspecialchars($this->ToString()) . "</pre>";
+    echo "<pre>" . htmlspecialchars($this->ToString(), RCX_ENT_FLAGS, RCX_ENT_ENCODING) . "</pre>";
   }
 
   // Returns the node according to the name

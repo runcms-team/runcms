@@ -573,7 +573,7 @@ function build_rss()
   global $db, $newsConfig;
   if ($newsConfig['rss_enable'] == 1)
   {
-    $SQL = "SELECT title, storyid, hometext FROM ".$db->prefix("stories")." WHERE published>0 AND published<".(time()+10)." ORDER BY published DESC";
+    $SQL = "SELECT title, storyid, hometext, created FROM ".$db->prefix("stories")." WHERE published>0 AND published<".(time()+10)." ORDER BY published DESC";
     $query = $db->query($SQL, $newsConfig['rss_maxitems']);
     if ($query)
     {
@@ -583,8 +583,9 @@ function build_rss()
       $rss->image_title   .= " :: "._MI_NEWS_NAME;
       $rss->max_items            = $newsConfig['rss_maxitems'];
       $rss->max_item_description = $newsConfig['rss_maxdescription'];
-      while (list($title, $link, $description) = $db->fetch_row($query))
+      while (list($title, $link, $description, $created) = $db->fetch_row($query))
       {
+        $rss->setItemDate($created);
         $link = RCX_URL . '/modules/news/article.php?storyid=' . $link;
         $rss->build($title, $link, $description);
       }
@@ -611,8 +612,8 @@ switch($op)
     //editor integration
     if ($editorConfig["displayeditor"] == 1)
     {
-      $hometext      = $runESeditor->Value = $story->hometext("Preview");
-      $bodytext      = $runESeditor->Value = $story->bodytext("Preview");
+      $hometext      = $story->hometext("Preview");
+      $bodytext      = $story->bodytext("Preview");
     }
     else
     {

@@ -55,7 +55,7 @@ function SendError( $number, $text )
 	// Create the XML document header
 	echo '<?xml version="1.0" encoding="utf-8" ?>' ;
 	
-	echo '<Connector><Error number="' . $number . '" text="' . htmlspecialchars( $text ) . '" /></Connector>' ;
+	echo '<Connector><Error number="' . $number . '" text="' . htmlspecialchars( $text , RCX_ENT_FLAGS, RCX_ENT_ENCODING) . '" /></Connector>' ;
 	
 	exit ;
 }

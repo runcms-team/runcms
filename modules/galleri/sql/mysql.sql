@@ -9,7 +9,7 @@ CREATE TABLE galli_category (
   img varchar(40) NOT NULL default '',
   coment varchar(50) NOT NULL default '',
   button varchar(40) NOT NULL default '',
-  date timestamp NOT NULL,
+  date timestamp(14) NOT NULL,
   PRIMARY KEY  (cid),
   KEY scid (scid),
   KEY cname (cname)

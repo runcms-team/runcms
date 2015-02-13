@@ -56,7 +56,13 @@ if ( !defined("SQL_LAYER") )
     */
     function select_db($db)
     {
-      return mysql_select_db($db, $this->db_connect);
+        global $rcxConfig, $myts;
+        
+        if ($rcxConfig['bd_set_names'] == 1 && !empty($rcxConfig['bd_charset_name'])) {
+            mysql_query ("SET NAMES '" . $myts->makeTboxData4Save($rcxConfig['bd_charset_name']) . "'");
+        }
+
+        return mysql_select_db($db, $this->db_connect);
     }
     /**
     * Close MySQL connection
@@ -75,7 +81,7 @@ if ( !defined("SQL_LAYER") )
     * perform a query on the MySQL database with debug info if set
     * also perform sql cache
     */
-    function query($sql, $limit=0, $start=0, $cache = false)
+    function query($sql, $limit=0, $start=0, $cache = false, $time_to_cache = false)
     {
       // Remove any pre-existing queries
       unset($this->query_result);
@@ -91,6 +97,11 @@ if ( !defined("SQL_LAYER") )
           $hash = $cache . $hash;
         }
         $filename = RCX_ROOT_PATH.'/cache/sql/sql_'.$hash.'.php';
+        
+        if ($time_to_cache && @file_exists($filename) && ((@filemtime($filename) + $time_to_cache) < time())) {
+            $this->clear_cache($hash);
+        }        
+        
         if(@file_exists($filename))
         {
           $set = array();
@@ -105,7 +116,7 @@ if ( !defined("SQL_LAYER") )
         $this->caching = $hash;
       }
       // not cached
-//      echo 'sql: ', htmlspecialchars($sql), '<br />';
+//      echo 'sql: ', htmlspecialchars($sql, RCX_ENT_FLAGS, RCX_ENT_ENCODING), '<br />';
       if (($this->debug & 8) || ($this->debug & 16))
       {
         $this->query_log[] = $sql;
