@@ -10,7 +10,7 @@ CREATE TABLE cpsession (
 ) ENGINE=MyISAM;
 
 CREATE TABLE login_log (
-  `id` mediumint(8) unsigned NOT NULL,
+  `id` mediumint(8) unsigned NOT NULL auto_increment,
   `uname` varchar(30) NOT NULL,
   `uid` mediumint(8) unsigned NOT NULL DEFAULT '0',
   `date` datetime DEFAULT '0000-00-00 00:00:00',
