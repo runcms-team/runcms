@@ -12,10 +12,13 @@
 	$galltree = new GallTree($db->prefix("galli_category"),"cid","scid");
     include_once(GALLI_PATH."/class/gall_cat.php");
     include_once(GALLI_PATH."/class/gall_img.php");
+    
+    $orderby = $myts->makeTboxData4Save($_GET['orderby']);
+    
 	if ($op == "top_ten"){
-		$orderby = isset($_GET['orderby']) ? gall_function("convertorderbyin", array($_GET['orderby'])) : "clic DESC";
+		$orderby = isset($orderby) ? gall_function("convertorderbyin", array($orderby)) : "clic DESC";
 	}else{
-		$orderby = isset($_GET['orderby']) ? gall_function("convertorderbyin", array($_GET['orderby'])) : $galerieConfig['newimg_sort'];
+		$orderby = isset($orderby) ? gall_function("convertorderbyin", array($orderby)) : $galerieConfig['newimg_sort'];
 	}
 	if($rcxConfig['startpage'] == "galleri"){
 		$rcxOption['show_rblock'] = $galerieConfig['show_rblock'];

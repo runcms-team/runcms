@@ -11,7 +11,7 @@
 
 // Info
 $modversion['name']        = _MI_HEADLINES_NAME;
-$modversion['version']     = 2;
+$modversion['version']     = '2.1';
 $modversion['description'] = _MI_HEADLINES_DESC;
 $modversion['author']      = '';
 $modversion['credits']     = '';

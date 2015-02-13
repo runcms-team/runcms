@@ -4,14 +4,9 @@ function slashbox ($rss, $num_items = 0)
 {
 	$content  = '';
 	$content .= "<table cellpadding=2 cellspacing=0><tr>";
-	$content .= "<td bgcolor=#006666>";
+	$content .= "<td bgcolor='#006666'>";
 	
-	# get the channel title and link properties off of the rss object
-	#
-	$title = $rss->channel['title'];
-	$link = $rss->channel['link'];
-	
-	$content .= "<a href=$link><font color=#FFFFFF><b>$title</b></font></a>";
+	$content .= "<a href={$rss->get_permalink()}><font color=#FFFFFF><b>{$rss->get_title()}</b></font></a>";
 	$content .= "</td></tr>";
 	
 	# foreach over each item in the array.
@@ -21,12 +16,12 @@ function slashbox ($rss, $num_items = 0)
 	# info, or the event info, or what not, but keeping it simple for now.
 	#
 
-	$items = ($num_items > 0) ? array_slice($rss->items, 0, $num_items) : $rss->items;
+	$items = $rss->get_items( 0, $rss->get_item_quantity($num_items) );
 
 	foreach ($items as $item ) {
 		$content .= "<tr><td bgcolor=#cccccc>";
-		$content .= "<a href=$item[link]>";
-		$content .= $item['title'];
+		$content .= "<a href={$item->get_permalink()}>";
+		$content .= $item->get_title();
 		$content .= "</a></td></tr>";
 	}		
 	

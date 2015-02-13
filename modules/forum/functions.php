@@ -109,7 +109,7 @@ return($val);
 function is_moderator($forum_id, $user_id) {
 global $db, $bbTable;
 
-$sql = "SELECT user_id FROM ".$bbTable['forum_mods']." WHERE forum_id = '$forum_id' AND user_id = '$user_id'";
+$sql = "SELECT user_id FROM ".$bbTable['forum_mods']." WHERE forum_id = " . intval($forum_id) . " AND user_id = " . intval($user_id);
 
 if (!$result = $db->query($sql)) {
         return("0");
