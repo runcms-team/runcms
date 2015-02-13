@@ -7,6 +7,9 @@
 * @ License: http://www.gnu.org/copyleft/gpl.html GNU/GPL
 *
 */
+
+defined('RCX_ROOT_PATH') or die('Restricted access');
+
 include_once(RCX_ROOT_PATH."/class/rcxlists.php");
 include_once(RCX_ROOT_PATH."/class/rcxformloader.php");
 // initialize form vars
@@ -80,7 +83,7 @@ $op_hidden     = new RcxFormHidden("op", "newuser");
 $zonetext = new RcxFormTextArea(_US_USERDISC,"zonetext","$zonetexta2",30,80);
 /* slut */
 $submit_button = new RcxFormButton(_US_AGREE, "submit", _SUBMIT, "submit");
-$reg_form      = new RcxThemeForm(_US_USERREG, "userinfo", "register.php");
+$reg_form      = new RcxThemeForm(_US_USERREG, "userinfo", "register.php", "POST", true);
 $reg_form->addElement($nickname_text);
 $reg_form->addElement($name_text);
 $reg_form->addElement($address_text);
@@ -110,6 +113,26 @@ if ((int)$rcxConfig['img_verify'] == 1 && !$rcxUser)
   $reg_form->addElement($captcha);
 }
 // end hack
+
+// start tcaptcha hack by LARK (http://www.runcms.ru)
+
+if ($tcaptcha['use_tc'] == 1 && !$rcxUser) {
+
+    $qq = preg_split('/[\n\r]+/', trim(stripslashes($tcaptcha['tc_qq'])));
+    $q_id = array_rand($qq);
+    $question = array_shift(explode('|', $qq[$q_id]));
+    
+    $tcaptcha_tray  = new RcxFormElementTray(_US_ANSWERTHEQUESTION, "<br /><br />");
+    $tcaptcha_tray->addElement(new RcxFormLabel($question));
+    $tcaptcha_tray->addElement(new RcxFormText('', 'tc_ans', 30, 60, ''));
+
+    $reg_form->addElement($tcaptcha_tray);
+    $reg_form->addElement(new RcxFormHidden("q_id", $q_id));
+
+}
+
+// end tcaptcha hack
+
 $required = array("uname", "email", "passw", "vpassw");
 $reg_form->addElement($op_hidden);
 $reg_form->addElement($submit_button);

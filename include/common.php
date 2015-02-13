@@ -11,6 +11,15 @@ if (!defined('RCX_MAINFILE_INCLUDED')) {
   die('Sorry, but this file cannot be requested directly');
 } else {
   error_reporting(2039); // 2047 for debug also setup in /class/database.php for other way set 2039
+  
+  define('RCX_ENT_ENCODING', 'ISO-8859-1'); // Encoding htmlspecialchars() and htmlentities() in PHP 5.4
+  
+  if (version_compare(PHP_VERSION, "5.4.0", ">=")) {
+      define('RCX_ENT_FLAGS', ENT_COMPAT | ENT_HTML401); // Flags  htmlspecialchars() and htmlentities() in PHP 5.4
+  } else {
+      define('RCX_ENT_FLAGS', ENT_COMPAT);
+  }
+  
   function rc_stripslashes_deep($value)
   { // function renamed for conflict prevention
     return (is_array($value) ? array_map('rc_stripslashes_deep', $value) : stripslashes($value));
@@ -28,9 +37,9 @@ if (!defined('RCX_MAINFILE_INCLUDED')) {
   }
   if (get_magic_quotes_gpc())
   {
-    $_REQUEST = array_map('rc_stripslashes_deep', $_REQUEST);
+    //$_REQUEST = array_map('rc_stripslashes_deep', $_REQUEST);
   }
-  set_magic_quotes_runtime(0);
+  ini_set('magic_quotes_runtime', 0);
 if (!ini_get('register_long_arrays'))
 {
  $HTTP_POST_VARS =& $_POST;
@@ -139,8 +148,12 @@ if ($abuse){
     fwrite($file, $content);
     fclose($file);
   } 
+  
+  ob_end_clean();
+  header("Content-Encoding: identity");
   header('Status: 302 Found');
   header("Location: ".RCX_URL."/abuse.php");
+  exit();
 }
 // abuse hack 
 // Some backwards compatibility settings
@@ -210,6 +223,14 @@ if (hasMatch($rcxBadIps, _REMOTE_ADDR) || hasMatch($rcxBadAgents, _HTTP_USER_AGE
 include_once(RCX_ROOT_PATH.'/modules/system/cache/meta.php');
 // #################### Include rcx check ##################
 include_once(RCX_ROOT_PATH.'/include/rcxcheck.php');
+
+// #################### Include text sanitizer ##################
+include_once(RCX_ROOT_PATH.'/class/module.textsanitizer.php');
+$myts = new MyTextSanitizer();
+$myts->setClickable($rcxConfig['clickable']);
+$myts->setAllowImage($rcxConfig['allow_image']);
+$myts->setAllowLibrary($rcxConfig['allow_library']);
+
 // #################### Connect to DB ##################
 if ($rcxConfig['prefix'] && $rcxConfig['dbhost'] && $rcxConfig['dbname'] && $rcxConfig['database']) {
   include_once(RCX_ROOT_PATH.'/class/database/'.$rcxConfig['database'].'.php');
@@ -232,7 +253,7 @@ if ($rcxConfig['prefix'] && $rcxConfig['dbhost'] && $rcxConfig['dbname'] && $rcx
 define('RC_PREFIX',$rcxConfig['prefix'].'_');
 define('RC_USERS_TBL', RC_PREFIX.'users');
 define('RC_RANKS_TBL',RC_PREFIX.'ranks');
-define('RC_SESS_TBL',RC_PREFIX.'session');
+//define('RC_SESS_TBL',RC_PREFIX.'session');
 define('RC_GROUP_TBL',RC_PREFIX.'groups');
 define('RC_SMILES_TBL',RC_PREFIX.'smiles');
 define('RC_MODULES_TBL',RC_PREFIX.'modules');
@@ -240,11 +261,24 @@ define('RC_NEWBLOCKS_TBL',RC_PREFIX.'newblocks');
 define('RC_GRP_MOD_LINK_TBL',RC_PREFIX.'groups_modules_link');
 define('RC_GRP_USERS_LINK_TBL',RC_PREFIX.'groups_users_link');
 define('RC_GRP_BLOCK_LINK_TBL',RC_PREFIX.'groups_blocks_link');
-// #################### Include text sanitizer ##################
-include_once(RCX_ROOT_PATH.'/class/module.textsanitizer.php');
-$myts = new MyTextSanitizer();
-$myts->setAllowImage($rcxConfig['allow_image']);
-$myts->setAllowLibrary($rcxConfig['allow_library']);
+
+$url_arr = explode('/', strstr(_PHP_SELF, '/modules/'));
+
+$rcxConfig['real_use_sessions'] = $rcxConfig['use_sessions'];
+$rcxConfig['real_session_name'] = $rcxConfig['session_name'];
+$rcxConfig['real_session_expire'] = $rcxConfig['session_expire'];
+
+if ($rcxConfig['use_auth_admin'] && ($url_arr[2] == 'system' || ($url_arr[3] && $url_arr[3] == 'admin') || basename(_PHP_SELF) == 'admin.php')) {
+    $rcxConfig['use_sessions'] = 1;
+    $rcxConfig['session_name'] = 'cpsess';
+    $rcxConfig['session_expire'] = 1200; // 20 Min.
+    define('RC_SESS_TBL', RC_PREFIX.'cpsession');
+    $unique_session_hash = true;
+} else {
+    define('RC_SESS_TBL',RC_PREFIX.'session');
+    $unique_session_hash = false;
+}
+
 // ############## Login a user if there is a valid session ###########
 if (intval($rcxConfig['use_sessions']) == 1)
 {
@@ -277,7 +311,56 @@ if (intval($rcxConfig['use_sessions']) == 1)
   // End auto-login hack for PHP sessions /by LARK 22.06.2010/
   
   session_name($rcxConfig['session_name']);
+  
+  if($rcxConfig['cookie_httponly'] && version_compare(PHP_VERSION, '5.2.0', '>=')) {
+      ini_set('session.cookie_httponly', 1);
+  }
+  
+  if($rcxConfig['use_only_cookies'] && version_compare(PHP_VERSION, '4.3.0', '>=')) {
+      ini_set('session.use_only_cookies', 1);
+  }
+  
   session_start();
+
+  if($rcxConfig['use_session_regenerate_id'] && $rcxConfig['session_regenerate_id_lifetime'] > 0 && version_compare(PHP_VERSION, '4.3.2', '>=')) {
+      
+      if (empty($_SESSION['session_start_time'])) {
+          
+      	$_SESSION['session_start_time'] = time();
+      	
+      } else {
+          
+          if ($_SESSION['session_start_time'] + $rcxConfig['session_regenerate_id_lifetime'] < time()) {
+              
+              if (version_compare(PHP_VERSION, "5.1.0", ">=")) { 
+                  session_regenerate_id(true);
+              } else {
+                  $old_session_id = session_id();
+                  
+                  session_regenerate_id();
+                  
+                  $new_session_id = session_id();
+                  
+                  // >>> buraks78 at gmail dot com (http://www.php.net/manual/en/function.session-regenerate-id.php#68969)
+                  
+                  if(version_compare(PHP_VERSION, '4.3.3', '<')) {
+                      setcookie(session_name(), session_id(), ini_get("session.cookie_lifetime"), '/');
+                  }
+                  
+                  session_write_close();
+                  session_id($old_session_id);
+                  session_start();
+                  session_destroy();
+                  session_write_close();
+                  session_id($new_session_id);
+                  session_start();
+              }
+              
+              $_SESSION['session_start_time'] = time();
+          }
+      } 
+  }
+  
   // fix troubles with IE 6 - lost session after clicking on a link
   // uncomment or insert in meta
   //  header('P3P: CP="NOI ADM DEV PSAi COM NAV OUR OTRo STP IND DEM"');
@@ -295,7 +378,7 @@ $clearsess = false;
 if (!empty($session_var))
 {
   include(RCX_ROOT_PATH.'/class/sessions.class.php');
-  $session = new RcxUserSession($session_var);
+  $session = new RcxUserSession($session_var, $unique_session_hash);
   if ($session->isValid())
   {
     $rcxUser = new RcxUser($session->uid());
@@ -323,7 +406,8 @@ if ($clearsess)
   define('RC_ULANG', $rcxConfig['language']);
   unset($rcxUser);
   unset($_COOKIE[$rcxConfig['session_name']]);
-  @session_destroy();
+  unset($_SESSION[$rcxConfig['session_name']]);
+  //@session_destroy();
   // ########## Get modules info if module active ##################
   $url_arr = explode('/', strstr(_PHP_SELF, '/modules/')); // Fix by HDMan /http://MoscowVolvoClub.ru/)
   $module_dir = $url_arr[2];

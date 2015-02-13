@@ -98,7 +98,9 @@ if ($rcxModule) {
             $j++;
         }
     }
-    array_unshift($tree, array('image' => '&nbsp;&nbsp;&nbsp;<img src="'.RCX_URL.'/modules/system/images/arrow.png">', 'link' => RCX_URL.'/user.php?op=logout', 'name' => _LOGOUT));
+    $_logout = $rcxConfig['use_auth_admin'] ? 'admin.php' : 'user.php';
+
+    array_unshift($tree, array('image' => '&nbsp;&nbsp;&nbsp;<img src="'.RCX_URL.'/modules/system/images/arrow.png">', 'link' => RCX_URL.'/' . $_logout . '?op=logout', 'name' => _LOGOUT));
     array_push($tree, array('image' => '&nbsp;&nbsp;&nbsp;<img src="'.RCX_URL.'/modules/system/images/arrow.png">', 'link' => RCX_URL.'/', 'name' => _YOURHOME));
     include_once(RCX_ROOT_PATH.'/class/jsmenu/jstree.class.php');
     $adminmenu = New jstree('adminmenu', $tree, 'horizontal_bottom_right');
@@ -108,7 +110,7 @@ if ($rcxModule) {
 <center>
 	<table width="100%" border="0" cellspacing="0" cellpadding="0">
 		<tr align="center" id="admintop">
-			<td><a href="http://www.scarpox.dk" ><img src="<?php echo RCX_URL;?>/images/system/adminlogo.png" alt="Scarpox"/></a>
+			<td><a href="http://www.runcms.ru" ><img src="<?php echo RCX_URL;?>/images/system/adminlogo.png" alt="RUNCMS"/></a>
 <table width="100%" border="0" cellspacing="1" cellpadding="2">
 	<tr class="sysbg1a">
 		<td style="text-align: left;"><?php echo "".$adminmenu->render().""; ?> </td>
@@ -127,17 +129,13 @@ echo "<td style='text-align: center;'>" . $modinfo . "</td>";
 	<td style='border: 1px solid #4671a4;text-align:left; vertical-align:top; width: 150px;'>
 
 <div style="text-align: center;"><a
- href="http://www.scarpox.dk"><img
+ href="http://www.runcms.ru"><img
  style="border: 0px solid ; width: 142px; height: 139px;"
- alt="ScarPoX Dansk Cmssystem"
+ alt="RUNCMS"
  src="<?php echo RCX_URL;?>/images/promo.jpg" /></a><br />
 
 <div style='text-align:center;'><?php echo _AM_YOUR_VERSION;?> :<br /><br />
 <b><?php echo RCX_VERSION;?></b><br /><br />
-
-</div>
-<div style='text-align:center;'><?php echo _AM_LATEST_VERSION;?> :<br /><br />
-<b><a href="http://www.runcms.org" ><img src="http://www.scarpox.dk/latest/runcmslatest.gif" alt="RunCms Latest"/></b>
 
 </div>
 </div>
@@ -160,7 +158,7 @@ global $rcxConfig;
 </tr><tr>
 <td colspan="2">
 <!--- you are not allowed to remove or changes this copyright and link in this footer --->
-<div align="center"><a href="http://www.runcms.org/" target='_blank'> Powered by <?php echo RCX_VERSION;?> &copy; 2002-<?php echo date('Y');?></a> :: <a href="http://www.runcms.ru/" target="_blank">Localization &copy; 2010 RUNCMS.RU</a></div>
+<div align="center"><a href="http://www.runcms.ru/" target='_blank'> Powered by <?php echo RCX_VERSION;?> &copy; 2002-<?php echo date('Y');?></a> :: <a href="http://www.runcms.ru/" target="_blank">Localization &copy; 2010 RUNCMS.RU</a></div>
 </td>
 </tr></table></center>
 <?php

@@ -39,6 +39,19 @@ if ($meta['extractor']) {
       include_once(RCX_ROOT_PATH . "/modules/system/admin/meta-generator/include/functions.php");
     }
 }
+
+if (!empty($rcxConfig['x_frame_options'])) {
+    header("X-Frame-Options: SAMEORIGIN");
+}
+
+if (!empty($rcxConfig['x_xss_protection'])) {
+    header("X-XSS-Protection: 1; mode=block");
+}
+
+if (!empty($rcxConfig['x_content_typ_options_nosniff'])) {
+    header("X-Content-Type-Options: nosniff");
+}
+
 ?>
 <?php echo "<?xml version=\"1.0\" encoding=\""._CHARSET."\"?>\n";?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -465,7 +478,7 @@ if ($rcxUser) {
       $html = $rcxConfig['user_html'];
     }
   $allowed = str_replace("|", "> <", "<".$html.">");
-  $allowed = htmlspecialchars($allowed);
+  $allowed = htmlspecialchars($allowed, RCX_ENT_FLAGS, RCX_ENT_ENCODING);
 }
 
 return $allowed;
@@ -1030,5 +1043,78 @@ function rc_shatool($vara='', $varb='', $varc='') {
 
 return $shatool($vara.$varb.$varc);
 }
+
+/**
+ * Enter description here...
+ *
+ * @param unknown_type $reason
+ * @param unknown_type $uname
+ * @param unknown_type $uid
+ * @param unknown_type $status
+ * @param unknown_type $type
+ * @return unknown
+ */
+function rcx_set_login_log($reason, $uname, $uid = 0, $status = 'fail', $type = 'admin')
+{
+    global $myts, $db;
+
+    switch ($type) {
+        case 'admin':
+            $date = 'DATE_SUB(NOW(), INTERVAL 3 MONTH)';
+            break;
+        default:
+            $date = 'DATE_SUB(NOW(), INTERVAL 3 DAY)';
+            break;
+    }
+
+    $sql = "DELETE FROM " . $db->prefix('login_log') . " WHERE date < " . $date . ")";
+
+    $result = $db->query($sql);
+
+    $sql = "
+    INSERT INTO " . $db->prefix('login_log') . " SET 
+    uname='" . $myts->makeTboxData4Save($uname) . "',
+    uid=" . (int)$uid . ",
+    date='" . date('Y-m-d H:i:s') . "',
+    ip='" . _REMOTE_ADDR . "',
+    status='" . $status . "', 
+    type='" . $type . "',
+    reason='" . strip_tags($myts->makeTboxData4Save($reason)) . "'";
+
+    if (!$result = $db->query($sql)) {
+        return false;
+    }
+
+    return true;
+}
+
+/**
+ * Enter description here...
+ *
+ * @param unknown_type $type
+ * @return unknown
+ */
+function rcx_check_bruteforce_login()
+{
+    global $db, $rcxConfig;
+    
+    $failed_lock_time = !empty($rcxConfig['failed_lock_time']) ? $rcxConfig['failed_lock_time'] : 15;
+
+    $sql = "SELECT COUNT(*)
+    FROM " . $db->prefix('login_log') . " 
+    WHERE date > DATE_SUB(NOW(), INTERVAL " . $failed_lock_time . " MINUTE) 
+    AND ip = '" . _REMOTE_ADDR . "' 
+    AND status = 'fail'";
+
+    if (!$result = $db->query($sql)) {
+        return 0;
+    }
+
+    list($count) = $db->fetch_row($result);
+
+    return $count;
+
+}
+
 }
 ?>

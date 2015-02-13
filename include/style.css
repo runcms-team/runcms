@@ -1,3 +1,7 @@
+table.rcxformdhtmltextarea a {
+    padding: 0px;
+}
+
 .rcxcode {
 	border-style : dashed;
 	border-width : 1px;
@@ -221,3 +225,39 @@ div.kpicon a:hover{
 	margin: 0px;
 	font-size: 11px;
 }
+
+/**
+*10 CSS Notifications
+*Author:http://www.paulund.co.uk/
+*Created:30/05/11
+*/
+
+/*Boxes*/
+
+/*Setup all boxes*/
+.info,.success,.error,.warning,.tip,.secure,.message,.download,.purchase,.print{
+margin:20px 50px; 
+padding:10px;
+-webkit-border-radius: 3px;
+-moz-border-radius: 3px;
+border-radius: 3px;
+/*-moz-box-shadow: 4px 4px #dfe1d8;
+-webkit-box-shadow: 4px 4px #dfe1d8;
+box-shadow: 4px 4px #dfe1d8;*/
+}
+
+/*Styling for text inside boxes*/
+h4 { margin:5px 5px 5px 80px;padding:0; font-size:16px; }
+p { font-size:10px; color:#000; margin:5px 5px 5px 80px; }
+
+.info{border:1px solid #0e7fad;color:#0e7fad;background:#c0e9fa url('../images/notification/info.png') no-repeat; background-position:30px 20px;}
+.success{border:1px solid #4f8746;color:#4f8746;background:#d4ffcd url('../images/notification/success.png') no-repeat; background-position:30px 20px;}
+.error{border:1px solid #641f1a;color:#641f1a;background:#ffd2d4 url('../images/notification/error.png') no-repeat; background-position:30px 20px;}
+.warning{border:1px solid #9d9c49;color:#9d9c49;background:#fdfdcb url('../images/notification/warning.png') no-repeat; background-position:30px 20px;}
+.tip{border:1px solid #c77d10;color:#c77d10;background:#f9d69e url('../images/notification/tip.png') no-repeat; background-position:30px 20px;}
+.secure{border:1px solid #9638f1;color:#9638f1;background:#e5cefc url('../images/notification/secure.png') no-repeat; background-position:30px 20px;}
+.message{border:1px solid #000;color:#000;background:#efefef url('../images/notification/message.png') no-repeat; background-position:30px 20px;}
+.download{border:1px solid #04b5eb;color:#04b5eb;background:#f7f7f7 url('../images/notification/download.png') no-repeat; background-position:30px 20px;}
+.purchase{border:1px solid #426164;color:#426164;background:#c2e1e3 url('../images/notification/purchase.png') no-repeat; background-position:30px 20px;}
+.print{border:1px solid #3c4b5e;color:#3c4b5e;background:#c8d9e3 url('../images/notification/print.png') no-repeat; background-position:30px 20px;}
+
