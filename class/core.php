@@ -10,7 +10,7 @@
 
 if (!defined('RCX_ROOT_PATH'))  exit();
 
-define('RCX_VERSION','RUNCMS 2.2.2 (build 20121224)');
+include_once(RCX_ROOT_PATH.'/include/version.php');
 
 // ############# Include basic constructor classes ##############
 unset($rcxUser);
