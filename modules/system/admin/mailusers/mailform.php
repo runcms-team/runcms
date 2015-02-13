@@ -80,7 +80,7 @@ if ($editorConfig['displayformailusers'] == 1)
     $runESeditor->BasePath = RCX_URL."/class/eseditor/";
 
     ob_start(); 
-    $runESeditor->Config['FullPage'] = true;
+    //$runESeditor->Config['FullPage'] = true;
     $runESeditor->Create();
     $body_caption    = _AM_MAILBODY."<br /><span style='font-size:x-small;font-weight:bold;'>"._AM_MAILTAGS."</span><br /><span style='font-size:x-small;font-weight:normal;'>"._AM_MAILTAGS1."<br />"._AM_MAILTAGS2."<br />"._AM_MAILTAGS3."<br />"._AM_MAILTAGS4."</span>";
     $body_cap        = new RcxFormLabel('', $body_caption);

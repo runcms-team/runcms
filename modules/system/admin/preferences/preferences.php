@@ -54,8 +54,8 @@ if ( $rcxUser->isAdmin($rcxModule->mid()) ) {
 
     $libuse_radio    = new RcxFormRadioYN(_MD_AM_LIBUSE, "allow_library", $rcxConfig['allow_library'], _YES,_NO);
     $libupload_radio = new RcxFormRadioYN(_MD_AM_LIBUPLOAD, "lib_allow_upload", $rcxConfig['lib_allow_upload'], _YES, _NO);
-    $libwidth_text   = new RcxFormText(_MD_AM_LIBW, "lib_width", 4, 4, $rcxConfig['lib_width']);
-    $libheight_text  = new RcxFormText(_MD_AM_LIBH, "lib_height", 4, 4, $rcxConfig['lib_height']);
+    $libwidth_text   = new RcxFormText(_MD_AM_LIBW, "lib_width", 5, 5, $rcxConfig['lib_width']);
+    $libheight_text  = new RcxFormText(_MD_AM_LIBH, "lib_height", 5, 5, $rcxConfig['lib_height']);
     $libsize_text    = new RcxFormText(_MD_AM_LIBMAX, "lib_maxsize", 7, 7, $rcxConfig['lib_maxsize']);
     $lib_tray        = new RcxFormElementTray(_MD_AM_LIBCONF, "<br />");
     $lib_tray->addElement($libuse_radio);
@@ -77,11 +77,11 @@ if ( $rcxUser->isAdmin($rcxModule->mid()) ) {
     $unamelv_select->addOptionArray(array(0=>_MD_AM_STRICT,1=>_MD_AM_MEDIUM,2=>_MD_AM_LIGHT));
 
     $ucookie_text      = new RcxFormText(_MD_AM_USERCOOKIE, "cookie_name", 50, 100, $rcxConfig['cookie_name']);
-    $scookie_text      = new RcxFormText(_MD_AM_SESSCOOKIE, "session_name", 50, 100, $rcxConfig['session_name']);
-    $scookieold_hidden = new RcxFormHidden("old_session_name", $rcxConfig['session_name']);
-    $sexpire_text      = new RcxFormText(_MD_AM_SESSEXPIRE, "session_expire", 15, 8, $rcxConfig['session_expire']);
-    $suse_sessions     = new RcxFormRadioYN(_MD_AM_SESSUSE, "use_sessions", $rcxConfig['use_sessions'], _YES, _NO);
-    $suse_old_hidden   = new RcxFormHidden("old_session_use", $rcxConfig['use_sessions']);
+    $scookie_text      = new RcxFormText(_MD_AM_SESSCOOKIE, "session_name", 50, 100, $rcxConfig['real_session_name']);
+    $scookieold_hidden = new RcxFormHidden("old_session_name", $rcxConfig['real_session_name']);
+    $sexpire_text      = new RcxFormText(_MD_AM_SESSEXPIRE, "session_expire", 15, 8, $rcxConfig['real_session_expire']);
+    $suse_sessions     = new RcxFormRadioYN(_MD_AM_SESSUSE, "use_sessions", $rcxConfig['real_use_sessions'], _YES, _NO);
+    $suse_old_hidden   = new RcxFormHidden("old_session_use", $rcxConfig['real_use_sessions']);
 
     $banner_radio      = new RcxFormRadioYN(_MD_AM_BANNERS, "banners", $rcxConfig['banners'], _YES, _NO);
 
@@ -130,60 +130,182 @@ if ( $rcxUser->isAdmin($rcxModule->mid()) ) {
     $submit_button = new RcxFormButton("", "button", _UPDATE, "submit");
     $maintenance     = new RcxFormRadioYN(_MD_AM_MAINTENANCE, "maintenance", $rcxConfig['maintenance'], _YES, _NO);
 
-    $form = new RcxThemeForm(_MD_AM_SITEPREF, "pref_form", "admin.php?fct=preferences", "post", true);
-    $form->addElement($adminmail_text);
-    $form->addElement($mail_function);
-// SMTP addon by SVL
-    $form->addElement($pm_atonce_txt);
-    $form->addElement($mail_atonce_txt);
-    $form->addElement($send_pause_txt);
-    $form->addElement($smtp_host_txt);
-    $form->addElement($smtp_uname_txt);
-    $form->addElement($smtp_pass_txt);
-// sprogvalg
-    $form->addElement($lang_select);
-    $form->addElement($mod_select);
-    $form->addElement($defaulttz_select);
-    $form->addElement($theme_tray);
-    $form->addElement($allowtheme_radio);
-    $form->addElement($anon_text);
-    $form->addElement($minnpass_text);
-    $form->addElement($anonpost_radio);
-    $form->addElement($max_pms);
-    $form->addElement($allowhtml_radio);
-    $form->addElement($allowimage_radio);
-    $form->addElement($lib_tray);
-    $form->addElement($allow_register);
-    $form->addElement($img_verify);
-    $form->addElement($auto_register);
-    $form->addElement($newuser_tray);
-    $form->addElement($sdelete_radio);
-    $form->addElement($loading_radio);
-    $form->addElement($gzip_radio);
-    $form->addElement($unamelv_select);
-    $form->addElement($ucookie_text);
-    $form->addElement($scookie_text);
-    $form->addElement($scookieold_hidden);
-    $form->addElement($sexpire_text);
-    $form->addElement($suse_sessions);
-    $form->addElement($suse_old_hidden);
-    $form->addElement($banner_radio);
-    $form->addElement($debug_radio);
-    $form->addElement($cache_text);
-    $form->addElement($cmode_select);
-    $form->addElement($corder_select);
-    $form->addElement($av_tray);
-    $form->addElement($html_tray);
-    $form->addElement($maintenance);
-    $form->addElement($op_hidden);
-    $form->addElement($submit_button);
 
-    OpenTable();
-    $form->display();
-    CloseTable();
-  }
+        $form = new RcxThemeForm(_MD_AM_SITEPREF, "pref_form", "admin.php?fct=preferences", "post", true);
+        
+        /** FormHeadingRow **/
+        $form->addElement(new FormHeadingRow(_MD_AM_MAINTENANCE, 'center', 'bg4'));        
+        
+        $form->addElement($maintenance);
+ 
+        /** FormHeadingRow **/
+        $form->addElement(new FormHeadingRow(_MD_AM_MAIL_SETTINGS, 'center', 'bg4'));
+        
+        $form->addElement($adminmail_text);
+        $form->addElement($mail_function);
+        // SMTP addon by SVL
+        $form->addElement($pm_atonce_txt);
+        $form->addElement($mail_atonce_txt);
+        $form->addElement($send_pause_txt);
+        $form->addElement($smtp_host_txt);
+        $form->addElement($smtp_uname_txt);
+        $form->addElement($smtp_pass_txt);
+        // sprogvalg
+        
+        
+        /** FormHeadingRow **/
+        $form->addElement(new FormHeadingRow(_MD_AM_SITE_SETTINGS, 'center', 'bg4'));
 
-/**
+        $form->addElement($mod_select);
+        $form->addElement($lang_select);
+        $form->addElement($theme_tray);
+        $form->addElement($defaulttz_select);
+
+        $form->addElement($gzip_radio);
+        $form->addElement($loading_radio);
+        $form->addElement($banner_radio);
+        $form->addElement($debug_radio);
+        $form->addElement($cache_text);
+        
+        $charset_arr = array('big5' => 'big5',
+            'dec8' => 'dec8',
+            'cp850' => 'cp850',
+            'hp8' => 'hp8',
+            'koi8r' => 'koi8r',
+            'latin1' => 'latin1',
+            'latin2' => 'latin2',
+            'swe7' => 'swe7',
+            'ascii' => 'ascii',
+            'ujis' => 'ujis',
+            'sjis' => 'sjis',
+            'hebrew' => 'hebrew',
+            'tis620' => 'tis620',
+            'euckr' => 'euckr',
+            'koi8u' => 'koi8u',
+            'gb2312' => 'gb2312',
+            'greek' => 'greek',
+            'cp1250' => 'cp1250',
+            'gbk' => 'gbk',
+            'latin5' => 'latin5',
+            'armscii8' => 'armscii8',
+            'utf8' => 'utf8',
+            'ucs2' => 'ucs2',
+            'cp866' => 'cp866',
+            'keybcs2' => 'keybcs2',
+            'macce' => 'macce',
+            'macroman' => 'macroman',
+            'cp852' => 'cp852',
+            'latin7' => 'latin7',
+            'cp1251' => 'cp1251',
+            'cp1256' => 'cp1256',
+            'cp1257' => 'cp1257',
+            'binary' => 'binary',
+            'geostd8' => 'geostd8',
+            'cp932' => 'cp932',
+            'eucjpms' => 'eucjpms');
+        
+        
+        $form->addElement(new RcxFormRadioYN(_MD_AM_BD_SET_NAMES, "bd_set_names", $rcxConfig['bd_set_names'], _YES, _NO));
+        
+        $bd_charset_name = new RcxFormSelect(_MD_AM_BD_CHARSET_NAME, "bd_charset_name", $rcxConfig['bd_charset_name']);
+        $bd_charset_name->addOptionArray($charset_arr);
+        $form->addElement($bd_charset_name);
+        
+
+        /** FormHeadingRow **/
+        $form->addElement(new FormHeadingRow(_MD_AM_REGISTER_SETTING, 'center', 'bg4'));
+        
+        $form->addElement($allow_register);
+        $form->addElement($auto_register);
+        $form->addElement($newuser_tray);
+        $form->addElement($minnpass_text);
+        $form->addElement($unamelv_select);
+        $form->addElement($img_verify);
+
+        /** FormHeadingRow **/
+        $form->addElement(new FormHeadingRow(_MD_AM_AUTH_SETTINGS, 'center', 'bg4'));
+
+        $form->addElement(new RcxFormRadioYN(_MD_AM_COOKIE_HTTPONLY, "cookie_httponly", $rcxConfig['cookie_httponly'], _YES, _NO));
+
+        $form->addElement($ucookie_text);
+        $form->addElement($scookie_text);
+        $form->addElement($scookieold_hidden);
+        $form->addElement($sexpire_text);
+        $form->addElement($suse_sessions);
+        $form->addElement(new RcxFormRadioYN(_MD_AM_USE_ONLY_COOKIES, "use_only_cookies", $rcxConfig['use_only_cookies'], _YES, _NO));
+        $form->addElement($suse_old_hidden);
+
+        $form->addElement(new RcxFormRadioYN(_MD_AM_USE_SESSION_REGENERATE_ID, "use_session_regenerate_id", $rcxConfig['use_session_regenerate_id'], _YES, _NO));
+        $form->addElement(new RcxFormText(_MD_AM_SESSION_REGENERATE_ID_LIFETIME, "session_regenerate_id_lifetime", 4, 4, $rcxConfig['session_regenerate_id_lifetime']));
+
+        $form->addElement(new RcxFormRadioYN(_MD_AM_USE_AUTH_ADMIN, "use_auth_admin", $rcxConfig['use_auth_admin'], _YES, _NO));
+        $form->addElement(new RcxFormRadioYN(_MD_USE_CAPTCHA_FOR_ADMIN, "use_captcha_for_admin", $rcxConfig['use_captcha_for_admin'], _YES, _NO));
+        $form->addElement(new RcxFormRadioYN(_MD_ADMIN_LOGIN_NOTIFY, "admin_login_notify", $rcxConfig['admin_login_notify'], _YES, _NO));
+
+        $form->addElement(new RcxFormRadioYN(_MD_CHECK_BRUTEFORCE_LOGIN, "check_bruteforce_login", $rcxConfig['check_bruteforce_login'], _YES, _NO));
+        $form->addElement(new RcxFormText(_MD_COUNT_FAILED_AUTH, "count_failed_auth", 4, 4, $rcxConfig['count_failed_auth']));
+        $form->addElement(new RcxFormText(_MD_FAILED_LOCK_TIME, "failed_lock_time", 4, 4, $rcxConfig['failed_lock_time']));
+        
+        $form->addElement(new RcxFormRadioYN(_MD_ADMIN_BRUTEFORCE_NOTIFY, "admin_bruteforce_notify", $rcxConfig['admin_bruteforce_notify'], _YES, _NO));
+
+        /** FormHeadingRow **/
+        $form->addElement(new FormHeadingRow(_MD_AM_USER_SETTINGS, 'center', 'bg4'));
+
+        $form->addElement($sdelete_radio);
+
+        $form->addElement($allowtheme_radio);
+        $form->addElement($anon_text);
+
+        $form->addElement($av_tray);
+
+        $form->addElement(new RcxFormRadioYN(_MD_AM_BAN_PROFILE_VIEWER, "ban_profile_viewer", $rcxConfig['ban_profile_viewer'], _YES, _NO));
+
+        $form->addElement(new RcxFormRadioYN(_MD_AM_NOBBCODE_USERSIG, "no_bbcode_user_sig", $rcxConfig['no_bbcode_user_sig'], _YES, _NO));
+
+        $form->addElement($max_pms);
+
+        /** FormHeadingRow **/
+        $form->addElement(new FormHeadingRow(_MD_AM_LIB_SETTINGS, 'center', 'bg4'));
+        
+        $form->addElement($lib_tray);
+
+        /** FormHeadingRow **/
+        $form->addElement(new FormHeadingRow(_MD_AM_COMMENT_SETTINGS, 'center', 'bg4'));
+        
+        $form->addElement($anonpost_radio);
+        $form->addElement($allowhtml_radio);
+        $form->addElement($cmode_select);
+        $form->addElement($corder_select);
+        
+        /** FormHeadingRow **/
+        $form->addElement(new FormHeadingRow(_MD_AM_TEXT_PROCESSING, 'center', 'bg4'));
+
+        $form->addElement(new RcxFormRadioYN(_MD_AM_CLICKABLE, "clickable", $rcxConfig['clickable'], _YES,_NO));
+        $form->addElement($allowimage_radio);
+
+        $form->addElement(new RcxFormRadioYN(_MD_AM_HIDE_EXTERNAL_LINKS, "hide_external_links", $rcxConfig['hide_external_links'], _YES, _NO));
+
+        $form->addElement(new RcxFormRadioYN(_MD_AM_NO_SMILE, "no_smile", $rcxConfig['no_smile'], _YES, _NO));
+
+        $form->addElement($html_tray);
+        
+        /** FormHeadingRow **/
+        $form->addElement(new FormHeadingRow(_MD_AM_SECURITY_SETTINGS, 'center', 'bg4'));        
+        
+        $form->addElement(new RcxFormRadioYN(_MD_AM_X_FRAME_OPTIONS, "x_frame_options", $rcxConfig['x_frame_options'], _YES,_NO));
+        $form->addElement(new RcxFormRadioYN(_MD_AM_X_XSS_PROTECTION, "x_xss_protection", $rcxConfig['x_xss_protection'], _YES,_NO));
+        $form->addElement(new RcxFormRadioYN(_MD_AM_X_CONTENT_TYP_OPTIONS_NOSNIFF, "x_content_typ_options_nosniff", $rcxConfig['x_content_typ_options_nosniff'], _YES,_NO));
+
+        $form->addElement($op_hidden);
+        $form->addElement($submit_button);
+       
+        OpenTable();
+        $form->display();
+        CloseTable();
+
+    }
+
+    /**
 * Description
 *
 * @param type $var description
@@ -232,6 +354,7 @@ function save_pref(
     $utags,
     $user_html,
     $allow_html,
+    $clickable,
     $allow_image,
     $allow_library,
     $lib_allow_upload,
@@ -244,8 +367,28 @@ function save_pref(
     $avatar_width,
     $avatar_height,
     $avatar_maxsize,
-    $maintenance) {
-    global $rcxConfig, $myts, $_COOKIE;
+    $maintenance,
+    $use_auth_admin,
+    $hide_external_links,
+    $cookie_httponly,
+    $use_only_cookies,
+    $ban_profile_viewer,
+    $no_smile,
+    $no_bbcode_user_sig,
+    $use_captcha_for_admin,
+    $admin_login_notify,
+    $check_bruteforce_login,
+    $count_failed_auth,
+    $failed_lock_time,
+    $admin_bruteforce_notify,
+    $use_session_regenerate_id,
+    $session_regenerate_id_lifetime,
+    $x_frame_options,
+    $x_xss_protection,
+    $x_content_typ_options_nosniff,
+    $bd_set_names,
+    $bd_charset_name ) {
+    global $rcxConfig, $myts;
 
     $error = "";
 // SMTP addon by SVL
@@ -304,6 +447,15 @@ $config = "<"."?php
 "._MD_AM_IFUCANT."
 *********************************************************************/
 
+// "._MD_AM_X_FRAME_OPTIONS." (1="._YES." 0="._NO.")
+\$rcxConfig['x_frame_options'] = ".intval($x_frame_options).";
+    
+// "._MD_AM_X_XSS_PROTECTION." (1="._YES." 0="._NO.")
+\$rcxConfig['x_xss_protection'] = ".intval($x_xss_protection).";
+    
+// "._MD_AM_X_CONTENT_TYP_OPTIONS_NOSNIFF." (1="._YES." 0="._NO.")
+\$rcxConfig['x_content_typ_options_nosniff'] = ".intval($x_content_typ_options_nosniff).";
+
 // "._MD_AM_ADMINML."
 \$rcxConfig['adminmail'] = \"".$myts->makeTboxData4PreviewInForm($adminmail)."\";
 
@@ -351,6 +503,9 @@ $config = "<"."?php
 
 // "._MD_AM_MAXPMS."
 \$rcxConfig['max_pms'] = ".intval($max_pms).";
+
+// "._MD_AM_CLICKABLE." (1="._YES." 0="._NO.")
+\$rcxConfig['clickable'] = ".intval($clickable).";
 
 // "._MD_AM_ALLOWHTML." (1="._YES." 0="._NO.")
 \$rcxConfig['allow_html'] = ".intval($allow_html).";
@@ -454,21 +609,72 @@ $config = "<"."?php
 // "._MD_AM_MAINTENANCE."
 \$rcxConfig['maintenance'] = ".intval($maintenance).";
 
+// "._MD_AM_USE_AUTH_ADMIN." (1="._YES." 0="._NO.")
+\$rcxConfig['use_auth_admin'] = ".intval($use_auth_admin).";
+
+// "._MD_AM_USE_SESSION_REGENERATE_ID." (1="._YES." 0="._NO.")
+\$rcxConfig['use_session_regenerate_id'] = ".intval($use_session_regenerate_id).";
+
+// "._MD_AM_SESSION_REGENERATE_ID_LIFETIME." (1="._YES." 0="._NO.")
+\$rcxConfig['session_regenerate_id_lifetime'] = ".intval($session_regenerate_id_lifetime).";
+
+// "._MD_USE_CAPTCHA_FOR_ADMIN." (1="._YES." 0="._NO.")
+\$rcxConfig['use_captcha_for_admin'] = ".intval($use_captcha_for_admin).";
+
+// "._MD_ADMIN_LOGIN_NOTIFY." (1="._YES." 0="._NO.")
+\$rcxConfig['admin_login_notify'] = ".intval($admin_login_notify).";
+
+// "._MD_CHECK_BRUTEFORCE_LOGIN." (1="._YES." 0="._NO.")
+\$rcxConfig['check_bruteforce_login'] = ".intval($check_bruteforce_login).";
+
+// "._MD_COUNT_FAILED_AUTH."
+\$rcxConfig['count_failed_auth'] = \"".intval($count_failed_auth)."\";
+
+// "._MD_FAILED_LOCK_TIME."
+\$rcxConfig['failed_lock_time'] = \"".intval($failed_lock_time)."\";
+
+// "._MD_ADMIN_BRUTEFORCE_NOTIFY." (1="._YES." 0="._NO.")
+\$rcxConfig['admin_bruteforce_notify'] = ".intval($admin_bruteforce_notify).";
+
+// "._MD_AM_HIDE_EXTERNAL_LINKS." (1="._YES." 0="._NO.")
+\$rcxConfig['hide_external_links'] = ".intval($hide_external_links).";
+
+// "._MD_AM_COOKIE_HTTPONLY." (1="._YES." 0="._NO.")
+\$rcxConfig['cookie_httponly'] = ".intval($cookie_httponly).";
+
+// "._MD_AM_USE_ONLY_COOKIES." (1="._YES." 0="._NO.")
+\$rcxConfig['use_only_cookies'] = ".intval($use_only_cookies).";
+
+// "._MD_AM_BAN_PROFILE_VIEWER." (1="._YES." 0="._NO.")
+\$rcxConfig['ban_profile_viewer'] = ".intval($ban_profile_viewer).";
+
+// "._MD_AM_NO_SMILE." (1="._YES." 0="._NO.")
+\$rcxConfig['no_smile'] = ".intval($no_smile).";
+
+// "._MD_AM_NOBBCODE_USERSIG." (1="._YES." 0="._NO.")
+\$rcxConfig['no_bbcode_user_sig'] = ".intval($no_bbcode_user_sig).";
+    
+// "._MD_AM_BD_SET_NAMES." (1="._YES." 0="._NO.")
+\$rcxConfig['bd_set_names'] = ".intval($bd_set_names).";
+    
+// "._MD_AM_BD_CHARSET_NAME."
+\$rcxConfig['bd_charset_name'] = \"".$myts->makeTboxData4PreviewInForm($bd_charset_name)."\";
+
 ?".">";
     $file = fopen(RCX_ROOT_PATH."/modules/system/cache/config.php", "w");
   if ( -1 != fwrite($file, $config) ) {
     if ( ( $session_name != $old_session_name) || ($use_sessions !=  $old_session_use) ) {
         global $_SESSION, $_COOKIE;
         if ($use_sessions == 1) {
-          if (session_is_registered($old_session_name)) {
+          if (isset($_SESSION[$old_session_name])) {
             $_SESSION[$session_name] = $_SESSION[$old_session_name];
-            session_unregister($old_session_name);
+            unset($_SESSION[$old_session_name]); 
             } else {
               session_start();
               $_SESSION[$session_name] = $_COOKIE[$old_session_name];
             }
           } else {
-            if (session_is_registered($old_session_name)) {
+            if (isset($_SESSION[$old_session_name])) {
               cookie($session_name, $_SESSION[$old_session_name], 360000);
               } else {
                 cookie($session_name, $_COOKIE[$old_session_name], 360000);

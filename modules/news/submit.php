@@ -21,6 +21,14 @@ if ($rcxUser) {
 		}
 switch($_POST['op']) {
 case "preview":
+    
+    $rcx_token = & RcxToken::getInstance();
+    
+    if ( !$rcx_token->check() ) {
+        redirect_header('index.php', 3, $rcx_token->getErrors(true));
+        exit();
+    }
+    
 	$xt = new RcxTopic($db->prefix("topics"), $_POST['topic_id']);
 	include_once(RCX_ROOT_PATH."/header.php");
 	OpenTable();
@@ -80,6 +88,14 @@ case "preview":
 	include_once(RCX_ROOT_PATH."/footer.php");
 	break;
 case "post":
+    
+    $rcx_token = & RcxToken::getInstance();
+    
+    if ( !$rcx_token->check() ) {
+        redirect_header('index.php', 3, $rcx_token->getErrors(true));
+        exit();
+    }    
+    
 	$story = new NewsStory();
 	$story->setTitle($_POST['subject']);
 	$story->setHometext($_POST['hometext']);
@@ -122,4 +138,5 @@ default:
 	include_once(RCX_ROOT_PATH."/footer.php");
 	break;
 }
+
 ?>

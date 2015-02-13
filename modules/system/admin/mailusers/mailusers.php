@@ -146,13 +146,27 @@ if ( $rcxUser->isAdmin($rcxModule->mid()) ) {
 			$rcxMailer->setFromName($_POST['mail_fromname']);
 			$rcxMailer->setFromEmail($_POST['mail_fromemail']);
 			$rcxMailer->setSubject($_POST['mail_subject']);
-			$rcxMailer->setBody($_POST['mail_body']);
+
 			if ( $_POST['mail_send_to'] == "mail" ) {
+			    
+			    if ($editorConfig['displayformailusers'] == 1 || $_POST['mail_type'] == 'text/html') {
+			        $_POST['mail_body'] = '<html><head><title></title></head><body>' . $_POST['mail_body'] . '</body></html>';
+			    }
+			    
 				$rcxMailer->useMail();
 			}
+			
 			if ( $_POST['mail_send_to'] == "pm") {
-				$rcxMailer->usePM();
+			    
+			    if ($editorConfig['displayformailusers'] == 1) {
+			        $rcxMailer->usePM('admin');
+			    } else {
+			    	$rcxMailer->usePM();
+			    }
 			}
+			
+			$rcxMailer->setBody($_POST['mail_body']);
+			
 			if ( !empty($_POST['mail_reciept']) ) {
 				$rcxMailer->setReciept($_POST['mail_fromemail']);
 			}

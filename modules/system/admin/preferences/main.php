@@ -89,6 +89,7 @@ case "save":
     $utags,
     $user_html,
     $allow_html,
+    $clickable,
     $allow_image,
     $allow_library,
     $lib_allow_upload,
@@ -101,7 +102,27 @@ case "save":
     $avatar_width,
     $avatar_height,
     $avatar_maxsize,
-    $maintenance);
+    $maintenance,
+    $use_auth_admin,
+    $hide_external_links,
+    $cookie_httponly,
+    $use_only_cookies,
+    $ban_profile_viewer,
+    $no_smile,
+    $no_bbcode_user_sig,
+    $use_captcha_for_admin,
+    $admin_login_notify,
+    $check_bruteforce_login,
+    $count_failed_auth,
+    $failed_lock_time,
+    $admin_bruteforce_notify,
+    $use_session_regenerate_id,
+    $session_regenerate_id_lifetime,
+    $x_frame_options,
+    $x_xss_protection,
+    $x_content_typ_options_nosniff,
+    $bd_set_names,
+    $bd_charset_name );
     break;
 
 default:

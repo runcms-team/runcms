@@ -422,17 +422,22 @@ function write_words($words, $which) {
 global $myts;
 
 $content  = "<?php\n";
-$Acontent = "\${$which} = array(\n";
-while (list($key, $value) = @each($words)) {
 
-if ($value) {
-  $value = clean_text($value);
-  $Acontent .= "\"".strtolower($value)."\",\n";
+if (count($words) == 0) {
+    $content .= "\${$which} = array();\n";
+} else {
+    $Acontent = "\${$which} = array(\n";
+    while (list($key, $value) = @each($words)) {
+        if ($value) {
+            $value = clean_text($value);
+            $Acontent .= "\"".strtolower($value)."\",\n";
+        }
+    } // END WHILE
+    
+    $content .= substr($Acontent, 0, -2);
+    $content .= "\n);\n";
 }
-} // END WHILE
 
-$content .= substr($Acontent, 0, -2);
-$content .= "\n);\n";
 $content .= "?>";
 
 write_file($which, $content, "w");

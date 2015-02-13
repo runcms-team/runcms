@@ -1,5 +1,5 @@
 <?php
-
+/*
  * @package     systemhooks
  * @subpackage  disclaimer
  */

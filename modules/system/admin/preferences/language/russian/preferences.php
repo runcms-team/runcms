@@ -115,4 +115,52 @@ define("_MD_AM_SMTPH","SMTP Хост:");
 define("_MD_AM_SMTPU","SMTP Логин:");
 define("_MD_AM_SMTPP","SMTP Пароль:");
 
+define("_MD_AM_CLICKABLE","Включить автоматическое преобразование URL в HTML ссылку: <br /><br /><span style='font-size:x-small;font-weight:normal;'><i>Только для текста где разрешен HTML (в текстах с запрещенным HTML преобразование не делается по умолчанию)</i><br /><br />Текст вида <br /><br />http://ссылка.ru <br /><br />будет преобразован в HTML код <br /><br />&lt;a href=\"http://ссылка.ru\" target=\"_blank\"&gt;</span>");
+
+define("_MD_AM_SITE_SETTINGS","Настройки сайта");
+define("_MD_AM_MAIL_SETTINGS","Настройки почты");
+define("_MD_AM_USER_SETTINGS","Настройки пользователей");
+define("_MD_AM_REGISTER_SETTING","Настройки регистрации");
+define("_MD_AM_AUTH_SETTINGS","Настройки аутентификации");
+define("_MD_AM_COMMENT_SETTINGS","Настройки комметариев");
+define("_MD_AM_LIB_SETTINGS","Настройки библиотеки изображений");
+
+define("_MD_AM_TEXT_PROCESSING","Обработка текста");
+
+define("_MD_AM_USE_AUTH_ADMIN","Включить отдельную авторизацию для администратора");
+define("_MD_AM_HIDE_EXTERNAL_LINKS","Скрывать внешние ссылки (через редирект)<br /><br /><span style='font-size:x-small;font-weight:normal;'><i>Ссылки размещенные посредством BB-кода</i><br /><br />В комментариях, в профиле пользователя, ссылки на сайт пользователя и т.д.</span>");
+
+define("_MD_AM_COOKIE_HTTPONLY","Установить доступ к cookies <u>аутентификации</u> только через HTTP протокол (на другие cookies это не будет действовать)<br /><br /><span style='font-size:x-small;font-weight:normal;'>Это означает, что cookies не будет доступна через скриптовые языки, такие как JavaScript. Данная настройка позволяет эффективно защитить от XSS атак (эта функция поддерживается не всеми старыми версиями браузеров)</span>");
+define("_MD_AM_USE_ONLY_COOKIES","Запретить использовать идентификатор сессии в URL<br /><br /><span style='font-size:x-small;font-weight:normal;'>Определяет, будет ли PHP использовать только cookies для хранения идентификатора сессии на стороне клиента. Включение этого параметра предотвращает атаки с использованием идентификатора сессии, размещенного в URL.</span>");
+
+define("_MD_AM_BAN_PROFILE_VIEWER","Запретить доступ незарегистрированным посетителям к профилям пользователей");
+
+define("_MD_AM_NO_SMILE","Отключить смайлики<br /><br /><span style='font-size:x-small;font-weight:normal;'>Коды смайликов не будут преобразовываться в соответсвующие иконки и будут отключены в DHTML редакторе. Глобальная опция, для всего сайта. </span>");
+
+define("_MD_AM_NOBBCODE_USERSIG","Отключить BB-код в подписи пользователя");
+
+
+define("_MD_USE_CAPTCHA_FOR_ADMIN","Включить капчу при входе в панель администрирования<br /><br /><span style='font-size:x-small;font-weight:normal;'>Только если включена <u>отдельная авторизация для администратора</u></span>");
+define("_MD_ADMIN_LOGIN_NOTIFY","Отсылать на e-mail администратора оповещения о входах в панель администрирования<br /><br /><span style='font-size:x-small;font-weight:normal;'>Только если включена <u>отдельная авторизация для администратора</u></span>");
+
+define("_MD_CHECK_BRUTEFORCE_LOGIN","Включить защиту от подбора пароля при авторизации<br /><br /><span style='font-size:x-small;font-weight:normal;'>После N (устанавливается ниже) неудачных попыток ввода пароля, IP посетителя блокируется на X (устанавливается ниже) минут.</span>");
+define("_MD_COUNT_FAILED_AUTH", "Количество неудачных попыток входа.<br /><br /><span style='font-size:x-small;font-weight:normal;'>После превышения этого числа, IP посетителя будет заблокирован на установленное время.<br /><br /><u>Должна быть включена защита от подбора пароля.</u></span>");
+define("_MD_FAILED_LOCK_TIME", "Время (в мин.), на которое, будет заблокирован IP посетителя.<br /><br /><span style='font-size:x-small;font-weight:normal;'>После превышения установленного количества неудачных попыток входа.<br /><br /><u>Должна быть включена защита от подбора пароля.</u></span>");
+define("_MD_ADMIN_BRUTEFORCE_NOTIFY", "Отсылать на e-mail администратора оповещения о попытке подбора пароля.<br /><br /><span style='font-size:x-small;font-weight:normal;'>При достижении установленного количества неудачных попыток входа.<br /><br /><u>Должна быть включена защита от подбора пароля.</u></span>");
+
+define("_MD_AM_USE_SESSION_REGENERATE_ID", "Включить смену идентификатора сессии.<br /><br /><span style='font-size:x-small;font-weight:normal;'>Идентификатор сесии меняется через указанный ниже интервал времени. Усложняет и делает малоэффективным его перехват.</span>");
+define("_MD_AM_SESSION_REGENERATE_ID_LIFETIME", "Время жизни идентификатора сесии (в секундах)<br /><br /><span style='font-size:x-small;font-weight:normal;'>Промежуток времени, через который идентификатор сессии будет обновлен.<br /><br /><u>Должна быть включена смена идентификатора сессии.</u></span>");
+
+define("_MD_AM_SECURITY_SETTINGS","Настройки безопасности");
+
+define("_MD_AM_X_FRAME_OPTIONS", "Защита от кликджекинга - запретить загрузку страниц вашего сайта во фрейм (HTML-элемент FRAME или IFRAME) на другом сайте.<br /><br /><span style='font-size:x-small;font-weight:normal;'>Загрузка страницы во фрейм разрешена только в том случае, если фрейм расположен на странице того же сайта, что и загружаемая в него страница.<br /><br /><u>ВНИМАНИЕ! При включении этой опции могут перестать работать некоторые счетчики и рекламные скрипты подгружающие контент через фреймы.</u></span>");
+
+define("_MD_AM_X_XSS_PROTECTION", "Включить встроенную в браузер защиту от XSS-атак (только для Internet Explorer 8 и выше).");
+
+define("_MD_AM_X_CONTENT_TYP_OPTIONS_NOSNIFF", "Отключить MIME сниффинг в браузере (только для Internet Explorer 8 и выше).");
+
+
+define("_MD_AM_BD_SET_NAMES", "Установить свою кодировку соединения с сервером базы данных<br /><br /><span style='font-size:x-small;font-weight:normal;'>Например, если страницы сайта некорректно отображаются (\"крякозябры\", знаки вопроса вместо символов и т.д.).</span>");
+define("_MD_AM_BD_CHARSET_NAME", "Кодировка для соединения с сервером базы данных");
+
 ?>

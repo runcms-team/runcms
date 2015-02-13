@@ -41,8 +41,8 @@ while ( $myrow = $db->fetch_array($result) ) {
 include_once('../../header.php');
 
 if ( isset($_GET['sort']) ) {
-  $sort = $_GET['sort'];
-  $by = $_GET['by'];
+  $sort = $myts->makeTboxData4Save($_GET['sort']);
+  $by = $myts->makeTboxData4Save($_GET['by']);
   } else {
     $sort = "msg_time";
     $by = "ASC";

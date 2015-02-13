@@ -20,6 +20,7 @@ $modversion['dirname']     = 'system';
 // Admin
 $modversion['hasAdmin']   = 1;
 $modversion['adminindex'] = 'admin.php';
+$modversion['adminmenu']  = 'menu.php';
 // Blocks
 $modversion['blocks'][1]['file']        = 'system_user.php';
 $modversion['blocks'][1]['name']        = _MI_SYSTEM_BNAME2;

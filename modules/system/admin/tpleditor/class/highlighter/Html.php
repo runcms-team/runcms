@@ -146,7 +146,7 @@ class Text_Highlighter_Renderer_Html extends Text_Highlighter_Renderer
     function acceptToken($class, $content)
     {
         $iswhitespace = ctype_space($content);
-        $content = htmlspecialchars($content);
+        $content = htmlspecialchars($content, RCX_ENT_FLAGS, RCX_ENT_ENCODING);
         if ((!$this->_output || $class != $this->_lastClass)  && !$iswhitespace) {
             $tag = '';
             if ($this->_output) {

@@ -121,6 +121,13 @@ if ($rcxUser) {
 <option value="preview" selected="selected"><?php echo _NW_PREVIEW;?></option>
 <option value="post"><?php echo _NW_POST;?></option>
 </select>
+<?php 
+
+$rcx_token = & RcxToken::getInstance();
+
+echo $rcx_token->getTokenHTML();
+
+?>
 <input type="submit" class="button" value="<?php echo _GO;?>" name="news_submit" id="news_submit" />
 </form>
 </td></tr></table>

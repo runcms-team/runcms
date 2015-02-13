@@ -17,7 +17,7 @@ include_once("../../mainfile.php");
 * @return type description
 */
 function partners_main() {
-global $db, $myts, $meta, $rcxUser, $rcxModule, $rcxConfig, $_GET;
+global $db, $myts, $meta, $rcxUser, $rcxModule, $rcxConfig;
 
 if ( $rcxConfig['startpage'] == "partners" ) {
   $rcxOption['show_rblock'] = 1;
@@ -127,9 +127,11 @@ include_once("../../footer.php");
 * @return type description
 */
 function visit_partner($id) {
-global $db, $_COOKIE;
+global $db;
 
-if ( empty($id) || !is_numeric($id) ) {
+$id = intval($id);
+
+if ( !is_numeric($id) || empty($id) ) {
   redirect_header("index.php", 1, _MD_NOSUCH);
   exit();
   }

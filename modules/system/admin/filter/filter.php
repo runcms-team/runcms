@@ -17,7 +17,6 @@ if ( $rcxUser->isAdmin($rcxModule->mid()) ) {
 * @return type description
 */
 function filterMain($type='menu') {
-global $_POST, $_GET;
 
 if ($_POST['submit'] == _SUBMIT) {
 	filterSave($type);
@@ -31,7 +30,7 @@ include_once(RCX_ROOT_PATH."/class/rcxformloader.php");
 $form = new RcxThemeForm('', "filterform", "admin.php?fct=filter", "post", true);
 
 switch ($type) {
-	case 'unames':
+	case 'badunames':
 		$badentries = file(RCX_ROOT_PATH.'/modules/system/cache/badunames.php');
 		if ( !empty($badentries) ) {
 			$value = '';
@@ -50,7 +49,7 @@ switch ($type) {
 		$form->display();
 		break;
 
-	case 'emails':
+	case 'bademails':
 		$badentries = file(RCX_ROOT_PATH.'/modules/system/cache/bademails.php');
 		if ( !empty($badentries) ) {
 			$value = '';
@@ -69,7 +68,7 @@ switch ($type) {
 		$form->display();
 		break;
 
-	case 'words':
+	case 'badwords':
 		$badentries = file(RCX_ROOT_PATH.'/modules/system/cache/badwords.php');
 		if ( !empty($badentries) ) {
 			$value = '';
@@ -88,7 +87,7 @@ switch ($type) {
 		$form->display();
 		break;
 
-	case 'ips':
+	case 'badips':
 		$value      = '';
 		$badentries = file(RCX_ROOT_PATH.'/modules/system/cache/badips.php');
 
@@ -114,7 +113,7 @@ switch ($type) {
 		$form->display();
 		break;
 
-	case 'agents':
+	case 'badagents':
 		$badentries = file(RCX_ROOT_PATH.'/modules/system/cache/badagents.php');
 		if ( !empty($badentries) ) {
 			$value = '';
@@ -132,13 +131,27 @@ switch ($type) {
 		$form->addElement($op);
 		$form->display();
 		break;
+		
+	case 'goodurl':
+		$goodurl = file_get_contents(RCX_ROOT_PATH . '/modules/system/cache/goodurl.php');
+
+		$goodurl_tarea = new RcxFormTextArea(_AM_GOODURL."</b><br /><br />"._AM_GOODURL_DESC."</div>", "goodurl", $goodurl, 10);
+		$form->addElement($goodurl_tarea);
+		$submit_button = new RcxFormButton("", "submit", _SUBMIT, "submit");
+		$form->addElement($submit_button);
+
+		$op   = new RcxFormHidden('op', 'goodurl');
+		$form->addElement($op);
+		$form->display();
+		break;		
 
 	default:
 	echo '<ul><li><a href="admin.php?fct=filter&op=unames">'._AM_BADUNAMES.'</a></li>';
 	echo '<li><a href="admin.php?fct=filter&op=emails">'._AM_BADEMAILS.'</a></li>';
 	echo '<li><a href="admin.php?fct=filter&op=words">'._AM_BADWORDS.'</a></li>';
 	echo '<li><a href="admin.php?fct=filter&op=ips">'._AM_BADIPS.'</a></li>';
-	echo '<li><a href="admin.php?fct=filter&op=agents">'._AM_BADAGENTS.'</a></li></ul>';
+	echo '<li><a href="admin.php?fct=filter&op=agents">'._AM_BADAGENTS.'</a></li>';
+	echo '<li><a href="admin.php?fct=filter&op=goodurl">'._AM_GOODURL.'</a></li></ul>';
 	break;
 }
 }
@@ -160,8 +173,8 @@ if ( !$rcx_token->check() ) {
     exit();
 }
 
-if (!@is_writable(RCX_ROOT_PATH."/modules/system/cache/bad".$name.".php")) {
-	$errors[] = sprintf(_MUSTWABLE, RCX_ROOT_PATH."/modules/system/cache/bad$name.php");
+if (!@is_writable(RCX_ROOT_PATH."/modules/system/cache/".$name.".php")) {
+	$errors[] = sprintf(_MUSTWABLE, RCX_ROOT_PATH."/modules/system/cache/$name.php");
 	return false;
 }
 
@@ -170,15 +183,15 @@ $filter   = array();
 $filtered = $myts->oopsNl2Br($myts->oopsStripSlashesGPC(trim($myts->stripPHP($_POST[$name]))));
 $filter   = explode("<br />", $filtered);
 
-if (!$file = @fopen(RCX_ROOT_PATH."/modules/system/cache/bad$name.php", "w")) {
-	$errors[] = sprintf(_MUSTWABLE, RCX_ROOT_PATH."/modules/system/cache/bad$name.php");
+if (!$file = @fopen(RCX_ROOT_PATH."/modules/system/cache/$name.php", "w")) {
+	$errors[] = sprintf(_MUSTWABLE, RCX_ROOT_PATH."/modules/system/cache/$name.php");
 	} else {
 		$output = "";
 		foreach ($filter as $entry) {
 			$output .= $entry."\n";
 		}
 		if (fwrite($file, $output) == -1) {
-			$errors[] = sprintf(_NGWRITE, RCX_ROOT_PATH."/modules/system/cache/bad$name.php");
+			$errors[] = sprintf(_NGWRITE, RCX_ROOT_PATH."/modules/system/cache/$name.php");
 		}
 		fclose($file);
 	}
@@ -209,24 +222,28 @@ $op = !empty($_POST['op']) ? $_POST['op'] : $_GET['op'];
 switch($op) {
 
 case 'words':
-	filterMain('words');
+	filterMain('badwords');
 	break;
 
 case 'ips':
 case 'add_ip':
-	filterMain('ips');
+	filterMain('badips');
 	break;
 
 case 'unames':
-	filterMain('unames');
+	filterMain('badunames');
 	break;
 
 case 'emails':
-	filterMain('emails');
+	filterMain('bademails');
 	break;
 
 case 'agents':
-	filterMain('agents');
+	filterMain('badagents');
+	break;
+	
+case 'goodurl':
+	filterMain('goodurl');
 	break;
 
 default:

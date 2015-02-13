@@ -33,10 +33,10 @@
 define("_AM_BADMIN","Управление блоками");
 define("_AM_ADDBLOCK","Добавить новый блок");
 define("_AM_LISTBLOCK","Список всех блоков");
-define("_AM_LSIDEBADMIN"  ,"Администрирование левых блоков:");
-define("_AM_RSIDEBADMIN"  ,"Администрирование правых блоков:");
-define("_AM_TCENTERBADMIN","Администрирование верхних центральных блоков:");
-define("_AM_BCENTERBADMIN","Администрирование нижних центральных блоков:");
+define("_AM_LSIDEBADMIN"  ,"Левые блоки");
+define("_AM_RSIDEBADMIN"  ,"Правые блоки");
+define("_AM_TCENTERBADMIN","Верхние центральные блоки");
+define("_AM_BCENTERBADMIN","Нижние центральные блоки");
 define("_AM_SBLEFT" ,"Боковой блок - слева");
 define("_AM_SBRIGHT","Боковой блок - справа");
 define("_AM_TCBLEFT"  ,"Центральный верхний блок - слева");
