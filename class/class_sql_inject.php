@@ -112,7 +112,7 @@ class sql_inject
         '[\s\+\n\r\t\)`]+where[\s\+\n\r\t\(`]*',
         '[\s\+\n\r\t\)\'"`]+(from|regexp|rlike|delete|update|insert|truncate|drop|create|rename)[\s\+\n\r\t\(`]+',
         'exec',
-        'cmd',
+        //'cmd',
         'xp_',
         'information_schema\.',
         '[\s\+\n\r\t\)\'"`]*(or|and)[\s\+\n\r\t\(\'"]+(.*?)[\s\+\n\r\t\'"]*[=<>]+[\s\+\n\r\t\'"]*(.*?)',
@@ -225,7 +225,12 @@ class sql_inject
         if ($this->bdestroy_session) session_destroy();
         // redirect?
         if ($this->urlRedirect!=''){
-             if (!headers_sent())  header("location: $this->urlRedirect");
+             if (!headers_sent())  {
+                 ob_end_clean();
+                 header("Content-Encoding: identity");
+                 header("location: $this->urlRedirect");
+                 exit();
+             }
         }
         return TRUE;
     }
