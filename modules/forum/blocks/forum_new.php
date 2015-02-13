@@ -140,7 +140,7 @@ if ( $db->num_rows($query) > 0 ) {
                 $block['content'] .= '<td><a href="'.$bbPath['url'].'viewforum.php?forum='.$forumid.'">'.$forumname.'</a></td>';
         }
 
-        $block['content'] .= '<td><a href="'.$bbPath['url'].'viewtopic.php?topic_id='.$topicid.'&amp;forum='.$forumid.'" title="'.htmlentities($full_title).'">'.$title.'</a></td>';
+        $block['content'] .= '<td><a href="'.$bbPath['url'].'viewtopic.php?topic_id='.$topicid.'&amp;forum='.$forumid.'" title="'.htmlentities($full_title, RCX_ENT_FLAGS, RCX_ENT_ENCODING).'">'.$title.'</a></td>';
 
         // Show Replies?
         if ( $options[2] == 1 ) {
