@@ -16,6 +16,8 @@
 */ 
 defined( 'RCX_ROOT_PATH' ) or exit( '<h1>Forbidden</h1> You don\'t have permission to access' );
 
+include_once(RCX_ROOT_PATH . '/modules/system/admin/tpleditor/class/csshandler.php');
+
 function css_edit()
 {
     global $db;
@@ -66,14 +68,26 @@ function css_edit()
                 $css .= '@import url(' . $filename . ');' . "\r\n";
             }
         }
+
+
         $css .= "\r\n";
         foreach($_POST['css'] as $name => $selectors) {
             $css .= $name . ' {' . "\r\n";
-            foreach($selectors as $property => $value) {
-                $css .= "\t" . $property . ": " . $value . ';' . "\r\n";
+
+            if (is_array($selectors)) {
+                foreach($selectors as $property => $value) {
+
+                    if (is_array($value)) {
+                        $value = implode(' ', $value);
+                    }
+
+                    $css .= "\t" . $property . ": " . $value . ';' . "\r\n";
+                }
             }
+
             $css .= '}' . "\r\n\r\n";
         }
+
         $f_open = fopen($css_path, "w");
         fwrite($f_open, $css);
         fclose($f_open);
@@ -106,17 +120,24 @@ function css_edit()
         }
 
         $css_content = preg_replace("#/\*.+?\*/#s", "", $css_content);
-        preg_match_all("/([\:\.\#\w\s,]+)\{(.+?)\}/s", $css_content, $selectors);
+        preg_match_all("/([\:\.\#\w\s,]+)\{(.*?)\}/s", $css_content, $selectors);
         $s_count = count($selectors[0]);
 
         for ($i = 0; $i < $s_count; $i++) {
             $selector_name = trim($selectors[1][$i]);
-            $properties = explode(';', trim($selectors[2][$i]));
+
+            $properties = trim($selectors[2][$i]);
+            $properties_arr = array();
+
+            if (!empty($properties)) {
+                $properties_arr = explode(';', trim($selectors[2][$i]));
+            }
 
             $form->addElement(new FormHeadingRow("<font color='#339933'>" . $selector_name . "</font>"));
 
-            if (count($properties) > 0) {
-                foreach($properties as $property) {
+            if (!empty($properties_arr) && count($properties_arr) > 0) {
+
+                foreach($properties_arr as $property) {
                     $property = trim($property);
                     if ($property != "") {
                         list($p_name, $p_value) = explode(":", $property, 2);
@@ -124,37 +145,24 @@ function css_edit()
                         $p_value = trim($p_value);
                         $element_name = 'css[' . $selector_name . '][' . $p_name . ']';
 
-                        if (eregi("text-align", $p_name)) {
-                            $text_align = new RcxFormSelect($p_name, $element_name, $p_value);
-                            $text_align->addOptionArray(array("left" => "left", "center" => "center", "right" => "right", "justify" => "justify"));
-                            $form->addElement($text_align);
-                        } elseif (eregi("font-size", $p_name)) {
-                            $font_size = new RcxFormSelect($p_name, $element_name, $p_value);
-                            $font_arr = array("xx-small" => "xx-small", "x-small" => "x-small", "small" => "small", "medium" => "medium", "large" => "large", "x-large" => "x-large", "xx-large" => "xx-large", "9px" => "9px", "11px" => "11px", "13px" => "13px", "15px" => "15px", "17px" => "17px", "8pt" => "8pt", "10pt" => "10pt", "12pt" => "12pt", "14pt" => "14pt", "16pt" => "16pt", "18pt" => "18pt");
-                            if (!array_key_exists($p_value, $font_arr)) {
-                                $font_arr[$p_value] = $p_value;
-                            }
-                            $font_size->addOptionArray($font_arr);
-                            $form->addElement($font_size);
-                        } elseif (eregi("font-weight", $p_name)) {
-                            $font_weight = new RcxFormSelect($p_name, $element_name, $p_value);
-                            $font_weight->addOptionArray(array("normal" => "normal", "bold" => "bold", "bolder" => "bolder", "lighter" => "lighter"));
-                            $form->addElement($font_weight);
-                        } elseif (eregi("text-decoration", $p_name)) {
-                            $text_decoration = new RcxFormSelect($p_name, $element_name, $p_value);
-                            $text_decoration->addOptionArray(array("none" => "none", "underline" => "underline ", "overline" => "overline", "line-through" => "line-through"));
-                            $form->addElement($text_decoration);
-                        } elseif (eregi("color|background", $p_name)) {
-                            $id = $i . '.' . $p_name;
-                            $form->addElement(new FormColorTray($p_name, $element_name, 10, 7, $p_value, $id));
+                        $class_name = 'Rcx' . preg_replace('/(([a-z]+)-*)/e', "ucfirst('$2');", $p_name) . 'Css';
+                        $class_file_path = RCX_ROOT_PATH . '/modules/system/admin/tpleditor/class/csshandlers/' . $p_name . '.php';
+
+                        if (file_exists($class_file_path)) {
+                            include_once($class_file_path);
+                            $css_obj = new $class_name($p_name, $p_value, $element_name);
                         } else {
-                            $class_element = new RcxFormElementTray($p_name, "&nbsp;");
-                            $element_value = new RcxFormText("", $element_name, 35, 255, $p_value);
-                            $class_element->addElement($element_value);
-                            $form->addElement($class_element);
+                            $css_obj = new RcxCssHandler($p_name, $p_value, $element_name);
                         }
+
+                        $form = $css_obj->getFormEle($form);
+
                     }
                 }
+            } else {
+
+                $form->addElement(new FormHeadingRow('<div align="center"> --- </div>', 'center', 'bg3'));
+                $form->addElement(new RcxFormHidden('css[' . $selector_name . ']', ''));
             }
         }
 

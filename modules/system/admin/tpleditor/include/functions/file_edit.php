@@ -86,7 +86,7 @@ function file_edit()
         include_once(RCX_ROOT_PATH . "/modules/system/admin/tpleditor/include/formloader.inc.php");
 
         $contents = file_get_contents($file_path);
-        $filectime = date("m.d.y, H:i:s", filemtime($file_path));
+        $filectime = date("Y-m-d H:i:s", filemtime($file_path));
         clearstatcache();
         rcx_cp_header();
         OpenTable();

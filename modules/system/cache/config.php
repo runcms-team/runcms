@@ -1,157 +1,220 @@
 <?php
 /*********************************************************************
-Remember to chmod 666 this file in order to let the system write to it properly.
-If you can't change the permissions you can edit the rest of this file by hand.
+Запомните chmod 666 этого файла для разрешения записи.
+Если не можете изменить права доступа, отредактируйте файл вручную.
 *********************************************************************/
 
-// Admin mail address
+// Защита от кликджекинга - запретить загрузку страниц вашего сайта во фрейм (HTML-элемент FRAME или IFRAME) на другом сайте.<br /><br /><span style='font-size:x-small;font-weight:normal;'>Загрузка страницы во фрейм разрешена только в том случае, если фрейм расположен на странице того же сайта, что и загружаемая в него страница.<br /><br /><u>ВНИМАНИЕ! При включении этой опции могут перестать работать некоторые счетчики и рекламные скрипты подгружающие контент через фреймы.</u></span> (1=Да 0=Нет)
+$rcxConfig['x_frame_options'] = 0;
+    
+// Включить встроенную в браузер защиту от XSS-атак (только для Internet Explorer 8 и выше). (1=Да 0=Нет)
+$rcxConfig['x_xss_protection'] = 0;
+    
+// Отключить MIME сниффинг в браузере (только для Internet Explorer 8 и выше). (1=Да 0=Нет)
+$rcxConfig['x_content_typ_options_nosniff'] = 0;
+
+// E-Mail администратора
 $rcxConfig['adminmail'] = "admin@mysite.com";
 
-// Default mail function
+// Почтовая функция
 $rcxConfig['mail_function'] = "mail";
 
-// How Much PM's Send At Once Before Pause:
+// Количество приватных сообщений посылаемых в одном пакете (до паузы):
 $rcxConfig['pm_atonce'] = "300";
 
-// How Much Email's Send At Once Before Pause:
+// Количество E-mail сообщений посылаемых в одном пакете (до паузы):
 $rcxConfig['ml_atonce'] = "20";
 
-// Pause After Mail's/PM's Packet Will Be Send (sec.):
+// Пауза (в сек.) между пакетами сообщений (приватных или E-mail):
 $rcxConfig['send_pause'] = "1";
 
-// SMTP Host:
+// SMTP Хост:
 $rcxConfig['smtp_host'] = "localhost";
 
-// SMTP User Name:
+// SMTP Логин:
 $rcxConfig['smtp_uname'] = "";
 
-// SMTP Password:
+// SMTP Пароль:
 $rcxConfig['smtp_pass'] = "";
 
-// Default language
+// Язык по умолчанию
 $rcxConfig['language'] = "russian";
 
-// Module for your start page
+// Модуль стартовой страницы
 $rcxConfig['startpage'] = "news";
 
-// Default theme
+// Скин по умолчанию
 $rcxConfig['default_theme'] = "runcms2";
 
-// Allow users to select theme? (1=Yes 0=No)
+// Позволить пользователям менять скины? (1=Да 0=Нет)
 $rcxConfig['allow_theme'] = 0;
 
-// Username for anonymous users
+// Ник для анонимных гостей
 $rcxConfig['anonymous'] = "Anonyme";
 
-// Minimum length of password required
+// Минимальная длина пароля
 $rcxConfig['minpass'] = 5;
 
-// Allow anonymous users to post comments? (1=Yes 0=No)
+// Позволить анонимам оставлять комментарии? (1=Да 0=Нет)
 $rcxConfig['anonpost'] = 0;
 
-// Maximum inbox pm per/user. 0=No Limit
+// Максимум входящих сообщений для пользователя. 0=неограниченно
 $rcxConfig['max_pms'] = 100;
 
-// Allow HTML tags in user comments? (1=Yes 0=No)
+// Включить автоматическое преобразование URL в HTML ссылку: <br /><br /><span style='font-size:x-small;font-weight:normal;'><i>Только для текста где разрешен HTML (в текстах с запрещенным HTML преобразование не делается по умолчанию)</i><br /><br />Текст вида <br /><br />http://ссылка.ru <br /><br />будет преобразован в HTML код <br /><br />&lt;a href="http://ссылка.ru" target="_blank"&gt;</span> (1=Да 0=Нет)
+$rcxConfig['clickable'] = 0;
+
+// Разрешить HTML-теги в комментариях? (1=Да 0=Нет)
 $rcxConfig['allow_html'] = 0;
 
-// Allow users to use library images in posts? (1=Yes 0=No)
+// Разрешить использование библиотеки изображений? (1=Да 0=Нет)
 $rcxConfig['allow_library'] = 0;
 
-// Allow users to upload images to the library? (1=Yes 0=No)
+// Разрешить участникам закачивать изображения в библиотеку? (1=Да 0=Нет)
 $rcxConfig['lib_allow_upload'] = 0;
 
-// Library image max width
+// Ширина закачиваемой картинки
 $rcxConfig['lib_width'] = 140;
 
-// Library image max height
+// Высота закачиваемой картинки
 $rcxConfig['lib_height'] = 140;
 
-// Library image max filesize (bytes)
+// Размер элемента библиотеки (байт)
 $rcxConfig['lib_maxsize'] = 3072;
 
-// Allow users to display external images in posts, comments, & signatures? (1=Yes 0=No)
+// Показывать внешние картинки в сообщениях, комментариях и подписях? (1=Да 0=Нет)
 $rcxConfig['allow_image'] = 0;
 
-// Allow new users to register on your site? (1=Yes 0=No)
+// Разрешить регистрацию на сайте? (1=Да 0=Нет)
 $rcxConfig['allow_register'] = 1;
 
-// Verify for manual signups? Requires GD! (1=Yes 0=No)
+// Включить защиту от спама? Нужно будет вводить дополнительный графический код. Требуется GD! (1=Да 0=Нет)
 $rcxConfig['img_verify'] = 1;
 
-// Automaticly activate new users on signup? (1=Yes 0=No)
+// Автоматически активировать новых пользователей при регистрации? (1=Да 0=Нет)
 $rcxConfig['auto_register'] = 0;
 
-// Notify by mail when a new user is registered? (1=Yes 0=No)
+// Уведомлять о новой регистрации? (1=Да 0=Нет)
 $rcxConfig['new_user_notify'] = 1;
 
-// Notify to group:
+// Уведомить группу:
 $rcxConfig['new_user_notify_group'] = 1;
 
-// Allow users to delete own account? (1=Yes 0=No)
+// Позволить пользователям удалять аккаунт? (1=Да 0=Нет)
 $rcxConfig['self_delete'] = 0;
 
-// Display loading.. image? (1=Yes 0=No)
+// Показывать картинку загрузки? (1=Да 0=Нет)
 $rcxConfig['display_loading_img'] = 0;
 
-// Use gzip compression? PHP version 4.0.5 or higher recommended. Your server version is 5.2.9 (1=Yes 0=No)
+// Использовать gzip-сжатие? Для PHP версии 4.0.5 или выше. У Вас установлена версия 5.4.29 (1=Да 0=Нет)
 $rcxConfig['gzip_compression'] = 1;
 
-// How strict should the allowed chars for username be?  (Strict (only alphabets and numbers)=0 Medium=1 Light (recommended for multi-byte chars)=2)
+// Как строго отслеживать разрешенные символы в никах?  (Строго (только буквы и цифры)=0 Средне=1 Легко (рекомендуется для многобайтных символов)=2)
 $rcxConfig['uname_test_level'] = 0;
 
-// Name for user cookies. This cookie contains only a user name and is saved in a user pc for a year (if the user wishes). If a user have this cookie, username will be automatically inserted in the login box.
+// Имя для cookies, в котором будет сохраняется ник пользователя в течение года. Если cookie есть, ник будет автоматически подставлен в поле логина.
 $rcxConfig['cookie_name'] = "rc2_user";
 
-// Name for sessions. Enables a user to stay logged in untill the session expires or the user logs out.
+// Имя сессии/cookies. Дает пользователю возможность остаться в системе, пока время сессии/cookies не истекло.
 $rcxConfig['session_name'] = "rc2_sess";
 
-// Maximum duration of session idle time in seconds before user gets logged out automaticly.
+// Время нахождения на сайте (в секундах) перед автоматическим исключением пользователя из системы.
 $rcxConfig['session_expire'] = 2678400;
 
-// Use php sessions instead of cookie sessions for logging in?
+// Использовать для авторизации сессии вместо cookies?
 $rcxConfig['use_sessions'] = 0;
 
-// Server timezone
-$rcxConfig['server_TZ'] = "2";
+// Часовой пояс сервера
+$rcxConfig['server_TZ'] = "4";
 
-// Default timezone
+// Часовой пояс по умолчанию
 $rcxConfig['default_TZ'] = "1";
 
-// Activate banner ads? (1=Yes 0=No)
+// Активировать баннерную систему на сайте? (1=Да 0=Нет)
 $rcxConfig['banners'] = 1;
 
-// Debug Level: Sets verbose level of debug mode.
+// Уровень отладки: многоуровневый режим.
 $rcxConfig['debug_mode'] = 1;
 
-// Time in minutes that site pages are cached, if at all.
+// Время кеширования страниц, мин.
 $rcxConfig['cache_time'] = 0;
 
-// Default Comment Display Mode (0=No Comments flat=Flat thread=Threaded)
+// Способ отображения комментариев по умолчанию (0=Нет комментариев flat=В виде ленты thread=В виде дерева)
 $rcxConfig['com_mode'] = "flat";
 
-// Default Comments Display Order (0=Oldest First 1=Newest First)
+// Порядок отображения комментариев по умолчанию (0=Старые первыми 1=Новые первыми)
 $rcxConfig['com_order'] = 0;
 
-// Allow custom avatar upload? (1=Yes 0=No)
+// Разрешить загрузку своих аватаров? (1=Да 0=Нет)
 $rcxConfig['avatar_allow_upload'] = 0;
 
-// Avatar image max width
+// Ширина аватара
 $rcxConfig['avatar_width'] = 75;
 
-// Avatar image max height
+// Высота аватара
 $rcxConfig['avatar_height'] = 100;
 
-// Avatar image max filesize (bytes)
+// Размер аватара (байт)
 $rcxConfig['avatar_maxsize'] = 4000;
 
-// HTML tags which admins are allowed to use in posts (where applies).
+// HTML-теги, которые админы могут использовать в сообщениях (где разрешено)
 $rcxConfig['admin_html'] = "a|abbr|acronym|address|applet|area|b|bdo|big|blockquote|br|button|caption|center|cite|code|col|colgroup|dd|del|dfn|dir|div|dl|dt|em|embed|fieldset|font|form|frameset|h1|h2|h3|h4|h5|h6|hr|i|iframe|img|input|ins|kbd|label|legend|li|map|menu|noscript|object|ol|optgroup|option|p|param|pre|q|s|samp|script|select|small|span|strike|strong|sub|sup|table|tbody|td|textarea|tfoot|th|thead|tr|tt|u|ul|var";
 
-// HTML tags which users are allowed to use in posts (where applies).
+// HTML-теги, которые пользователи могут использовать в сообщениях (где разрешено)
 $rcxConfig['user_html'] = "br";
 
-// Maintenance Mode
+// Закрыть/Открыть сайт
 $rcxConfig['maintenance'] = 0;
+
+// Включить отдельную авторизацию для администратора (1=Да 0=Нет)
+$rcxConfig['use_auth_admin'] = 1;
+
+// Включить смену идентификатора сессии.<br /><br /><span style='font-size:x-small;font-weight:normal;'>Идентификатор сесии меняется через указанный ниже интервал времени. Усложняет и делает малоэффективным его перехват.</span> (1=Да 0=Нет)
+$rcxConfig['use_session_regenerate_id'] = 0;
+
+// Время жизни идентификатора сесии (в секундах)<br /><br /><span style='font-size:x-small;font-weight:normal;'>Промежуток времени, через который идентификатор сессии будет обновлен.<br /><br /><u>Должна быть включена смена идентификатора сессии.</u></span> (1=Да 0=Нет)
+$rcxConfig['session_regenerate_id_lifetime'] = 60;
+
+// Включить капчу при входе в панель администрирования<br /><br /><span style='font-size:x-small;font-weight:normal;'>Только если включена <u>отдельная авторизация для администратора</u></span> (1=Да 0=Нет)
+$rcxConfig['use_captcha_for_admin'] = 0;
+
+// Отсылать на e-mail администратора оповещения о входах в панель администрирования<br /><br /><span style='font-size:x-small;font-weight:normal;'>Только если включена <u>отдельная авторизация для администратора</u></span> (1=Да 0=Нет)
+$rcxConfig['admin_login_notify'] = 0;
+
+// Включить защиту от подбора пароля при авторизации<br /><br /><span style='font-size:x-small;font-weight:normal;'>После N (устанавливается ниже) неудачных попыток ввода пароля, IP посетителя блокируется на X (устанавливается ниже) минут.</span> (1=Да 0=Нет)
+$rcxConfig['check_bruteforce_login'] = 1;
+
+// Количество неудачных попыток входа.<br /><br /><span style='font-size:x-small;font-weight:normal;'>После превышения этого числа, IP посетителя будет заблокирован на установленное время.<br /><br /><u>Должна быть включена защита от подбора пароля.</u></span>
+$rcxConfig['count_failed_auth'] = "5";
+
+// Время (в мин.), на которое, будет заблокирован IP посетителя.<br /><br /><span style='font-size:x-small;font-weight:normal;'>После превышения установленного количества неудачных попыток входа.<br /><br /><u>Должна быть включена защита от подбора пароля.</u></span>
+$rcxConfig['failed_lock_time'] = "15";
+
+// Отсылать на e-mail администратора оповещения о попытке подбора пароля.<br /><br /><span style='font-size:x-small;font-weight:normal;'>При достижении установленного количества неудачных попыток входа.<br /><br /><u>Должна быть включена защита от подбора пароля.</u></span> (1=Да 0=Нет)
+$rcxConfig['admin_bruteforce_notify'] = 0;
+
+// Скрывать внешние ссылки (через редирект)<br /><br /><span style='font-size:x-small;font-weight:normal;'><i>Ссылки размещенные посредством BB-кода</i><br /><br />В комментариях, в профиле пользователя, ссылки на сайт пользователя и т.д.</span> (1=Да 0=Нет)
+$rcxConfig['hide_external_links'] = 0;
+
+// Установить доступ к cookies <u>аутентификации</u> только через HTTP протокол (на другие cookies это не будет действовать)<br /><br /><span style='font-size:x-small;font-weight:normal;'>Это означает, что cookies не будет доступна через скриптовые языки, такие как JavaScript. Данная настройка позволяет эффективно защитить от XSS атак (эта функция поддерживается не всеми старыми версиями браузеров)</span> (1=Да 0=Нет)
+$rcxConfig['cookie_httponly'] = 0;
+
+// Запретить использовать идентификатор сессии в URL<br /><br /><span style='font-size:x-small;font-weight:normal;'>Определяет, будет ли PHP использовать только cookies для хранения идентификатора сессии на стороне клиента. Включение этого параметра предотвращает атаки с использованием идентификатора сессии, размещенного в URL.</span> (1=Да 0=Нет)
+$rcxConfig['use_only_cookies'] = 0;
+
+// Запретить доступ незарегистрированным посетителям к профилям пользователей (1=Да 0=Нет)
+$rcxConfig['ban_profile_viewer'] = 0;
+
+// Отключить смайлики<br /><br /><span style='font-size:x-small;font-weight:normal;'>Коды смайликов не будут преобразовываться в соответсвующие иконки и будут отключены в DHTML редакторе. Глобальная опция, для всего сайта. </span> (1=Да 0=Нет)
+$rcxConfig['no_smile'] = 0;
+
+// Отключить BB-код в подписи пользователя (1=Да 0=Нет)
+$rcxConfig['no_bbcode_user_sig'] = 0;
+    
+// Установить свою кодировку соединения с базой данных<br /><br /><span style='font-size:x-small;font-weight:normal;'>Например, если страницы сайта некорректно отображаются.</span> (1=Да 0=Нет)
+$rcxConfig['bd_set_names'] = 0;
+    
+// Кодировка для соединения с базой данных
+$rcxConfig['bd_charset_name'] = "cp1251";
 
 ?>
