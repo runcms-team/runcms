@@ -415,4 +415,9 @@ define("_INTERCAPKEY","Перед тем как отправить сообщение введите текст изображен
 define("_LAST", "Последняя");
 define("_START", "Первая");
 
+define("_REDIRECT_LINK_ATTENTION", "Внимание! Вы перенаправляетесь на другой сайт.");
+
+define("_NOTIFY_WARNING", "Предупреждение");
+define("_NOTIFY_ERROR", "Ошибка");
+define("_NOTIFY_INFO", "Информация");
 ?>
