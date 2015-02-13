@@ -1,20 +1,20 @@
 <?php
 function simple ($rss, $num_items = 0)
 {
-	$title = $rss->channel['title'];
-	$link = $rss->channel['link'];
-	
+
 	$content = '';
-	$content .= "<a href=$link><b>$title</b></a><p>";
-	$content .= "<ul>";
-	$items = ($num_items > 0) ? array_slice($rss->items, 0, $num_items) : $rss->items;
+	$content .= "<p><a href={$rss->get_permalink()}><b>{$rss->get_title()}</b></a></p>";
+        
+        $content .= "<ul>";
+	
+	$items = $rss->get_items( 0, $rss->get_item_quantity($num_items) );
+	
 	foreach ($items as $item ) {
-		$href = $item['link'];
-		$title = $item['title'];	
-		$content .= "<li><a href=$href>$title</a></li>";
+		$content .= "<li><a href={$item->get_permalink()}>{$item->get_title()}</a></li>";
 	}
 	$content .= "</ul>";
 
 	return $content;
 }
+
 ?>
