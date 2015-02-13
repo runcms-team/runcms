@@ -19,6 +19,7 @@
     $key = !empty($_POST['key']) ? $_POST['key'] : $_GET['key'];
     $id = !empty($_POST['id']) ? $_POST['id'] : $_GET['id'];
     $id = intval ($id);
+    $key = $myts->makeTboxData4Save($key);
 
     switch($op) {
     
