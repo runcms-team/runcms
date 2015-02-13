@@ -213,6 +213,14 @@ $_chmod[$i]['base']    = 'modules/system/cache/editor.php';
 $_chmod[$i]['baseval'] = 0666;
 
 $i++;
+$_chmod[$i]['base']    = 'modules/system/cache/tcaptcha.php';
+$_chmod[$i]['baseval'] = 0666;
+
+$i++;
+$_chmod[$i]['base']    = 'modules/system/cache/goodurl.php';
+$_chmod[$i]['baseval'] = 0666;
+
+$i++;
 $_chmod[$i]['base']    = 'modules/rcxfaq/cache';
 $_chmod[$i]['baseval'] = 0777;
 

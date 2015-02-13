@@ -59,6 +59,8 @@ modules/system/cache/meta.php 666
 modules/system/cache/pm.php 666
 modules/system/cache/unwanted.php 666
 modules/system/cache/wanted.php 666
+modules/system/cache/tcaptcha.php 666
+modules/system/cache/goodurl.php 666
 modules/news/cache 777
 modules/news/cache/config.php 666
 modules/news/cache/news.xml 666

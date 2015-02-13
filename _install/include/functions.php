@@ -9,7 +9,7 @@
 */
 
 error_reporting(2039);
-set_magic_quotes_runtime(0);
+ini_set('magic_quotes_runtime', 0);
 init_wiz();
 
 include_once("../include/functions.php");
@@ -25,6 +25,14 @@ include_once("../class/core.php");
 */
 function init_wiz() {
 global $_COOKIE, $_POST, $_GET, $_SERVER, $_ENV;
+
+  define('RCX_ENT_ENCODING', 'ISO-8859-1'); // Encoding htmlspecialchars() and htmlentities() in PHP 5.4
+  
+  if (version_compare(PHP_VERSION, "5.4.0", ">=")) {
+      define('RCX_ENT_FLAGS', ENT_COMPAT | ENT_HTML401); // Flags  htmlspecialchars() and htmlentities() in PHP 5.4
+  } else {
+      define('RCX_ENT_FLAGS', ENT_COMPAT);
+  }
 
 $globals_test = @ini_get('register_globals');
 if ( isset($globals_test) && empty($globals_test) ) {
@@ -158,7 +166,7 @@ function wiz_footer() {
 </table>
 <p align="center">
 	<!--- you are not allowed to remove the copyright and link in this footer --->
-<a href='http://www.scarpox.dk/' target='_blank'><font color="red"><?php echo RCX_VERSION;?> &copy; 2002-2009</font></a>
+<a href='http://www.runcms.ru' target='_blank'><font color="red"><?php echo RCX_VERSION;?> &copy; 2002-2015</font></a>
 </p>
 </body>
 </html>

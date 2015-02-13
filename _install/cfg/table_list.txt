@@ -8,3 +8,10 @@ smiles
 stories
 topics
 comments
+cpsession
+session
+login_log
+users
+newblocks
+lastseen
+contact
