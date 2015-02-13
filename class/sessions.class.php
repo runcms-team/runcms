@@ -28,9 +28,10 @@ class RcxUserSession {
   var $cookie;
   var $expiretime;
   var $sessionID;
+  var $use_unique_hash = false;
 
 
-  function RcxUserSession($sessionID='') {
+  function RcxUserSession($sessionID='', $use_unique_hash = false) {
     global $rcxConfig;
 
     $this->cookie     = $rcxConfig['session_name'];
@@ -39,6 +40,36 @@ class RcxUserSession {
     if (!empty($sessionID)) {
       $this->sessionID = $sessionID;
     }
+    
+    $this->useUniqueHash($use_unique_hash);
+  }
+  
+  /**
+   * Enter description here...
+   *
+   * @return unknown
+   */
+  function getHash() {
+      
+      global $rcxConfig;
+      
+      $hash_str = $this->pass . $this->salt . rc_shatool($rcxConfig['dbhost'] . $rcxConfig['dbuname'] . $rcxConfig['dbpass'] . $rcxConfig['dbname']);
+      
+      if ($this->use_unique_hash == true) {
+      	$hash_str .=  _HTTP_USER_AGENT . _REMOTE_ADDR;
+      }
+      
+      return rc_shatool($hash_str);
+  }
+  
+  /**
+   * Enter description here...
+   *
+   * @param unknown_type $use_unique_hash
+   */
+  function useUniqueHash($unique_hash = true)
+  {
+  	$this->use_unique_hash = $unique_hash;
   }
 
 /**
@@ -57,7 +88,7 @@ if ($rcxModule)
 
 $db->query("DELETE FROM ".RC_SESS_TBL." WHERE uid=".$this->uid);
 
-$this->hash = rc_shatool($this->pass . $this->salt . rc_shatool($rcxConfig['dbhost'] . $rcxConfig['dbuname'] . $rcxConfig['dbpass'] . $rcxConfig['dbname']));
+$this->hash = $this->getHash();
 
   if ($db->query("INSERT INTO ".RC_SESS_TBL." SET uid=".$this->uid.", uname='".$this->uname."', time=".time().", ip='"._REMOTE_ADDR."',".$mid_sql." hash='".$this->hash."'"))
   {
@@ -189,17 +220,25 @@ return false;
 function setCook() {
 global $rcxConfig;
 
-  $hash = rc_shatool($this->pass . $this->salt . rc_shatool($rcxConfig['dbhost'] . $rcxConfig['dbuname'] . $rcxConfig['dbpass'] . $rcxConfig['dbname']));
+  $hash = $this->getHash();
   $data = serialize(array($this->uid, $hash, time()+$this->expiretime));
   
   if ($rcxConfig['use_sessions']==1)
   {
-    session_register($rcxConfig['session_name']);
     $_SESSION[$rcxConfig['session_name']] = $data;
   }
   else
   {
-    setcookie($this->cookie, $data, time()+$this->expiretime, '/', '', 0);
+    
+      if ($rcxConfig['cookie_httponly']) {
+          if(version_compare(PHP_VERSION, '5.2.0', '>=')) {
+              setcookie($this->cookie, $data, time()+$this->expiretime, '/', '', 0, 1);
+          } else {
+              header("Set-Cookie: " . rawurlencode($this->cookie) . "=" . rawurlencode($data) . "; expires=" . gmdate('D, d-M-Y H:i:s', time()+$this->expiretime) . " GMT; path=/; httponly");
+          }
+      } else {
+      	setcookie($this->cookie, $data, time()+$this->expiretime, '/', '', 0);
+      }
   }
 
 return true;

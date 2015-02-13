@@ -34,6 +34,7 @@ class RcxMailer {
   var $templatedir;
   var $useToggle;
   var $type;
+  var $pmUserType;
 
   function RcxMailer() {
     $this->reset();
@@ -61,6 +62,7 @@ function reset() {
   $this->isToggle     = false;
   $this->type         = 'plain';
   $this->boundary     = '----'.md5(uniqid(mt_rand(), TRUE));
+  $this->pmUserType   = 'user';
 }
 
 /**
@@ -231,8 +233,9 @@ function useMail() {
 * @param type $var description
 * @return type description
 */
-function usePM() {
+function usePM($type = 'user') {
   $this->isPM = true;
+  $this->pmUserType = $type;
 }
 
 /**
@@ -281,7 +284,7 @@ function setToUsers($user) {
 
 if ( !is_array($user) ) {
 //  if ( get_class($user) == 'rcxuser' ) {
-  if ( strtolower(get_class($user)) == 'rcxuser' ) {
+  if ( is_object($user) && strtolower(get_class($user)) == 'rcxuser' ) {
     array_push($this->toUsers, $user->getVar('uid'));
     } elseif ( RcxUser::getUnameFromId($user) ) {
       array_push($this->toUsers, $user);
@@ -304,7 +307,7 @@ $this->toUsers = array_unique($this->toUsers);
 function setToGroups($group) {
 
 if ( !is_array($group) ) {
-  if ( get_class($group) != 'rcxgroup' ) {
+  if ( !is_object($group) || strtolower(get_class($group)) != 'rcxgroup' ) {
     $group = new RcxGroup($group);
   }
   $this->setToUsers($group->getMembers());
@@ -538,7 +541,7 @@ exit();
 
 $pmatonce  = !empty($rcxConfig['pm_atonce']) ? intval($rcxConfig['pm_atonce']) : 300;
 $mlatonce  = !empty($rcxConfig['ml_atonce']) ? intval($rcxConfig['ml_atonce']) : 25;
-$sleeptime = !empty($rcxConfig['sleeptime']) ? intval($rcxConfig['sleeptime']) : 2;
+$sleeptime = !empty($rcxConfig['send_pause']) ? intval($rcxConfig['send_pause']) : 2; // fix by ZlydenGL
 
 // send mail to specified mail addresses, if any
 $letters=0;
@@ -661,6 +664,12 @@ $pm->setVar("subject"    , $subject);
 $pm->setVar("msg_text"   , $body);
 $pm->setVar("to_userid"  , $uid);
 $pm->setVar("from_userid", $rcxUser->getVar("uid"));
+$pm->setVar('msg_folders', 1);
+
+if ($this->pmUserType == 'admin') {
+	$pm->setVar('type', 'admin');
+	$pm->setVar('allow_html', 1);
+}
 
 if (!$pm->store())
   return false;

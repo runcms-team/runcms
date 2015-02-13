@@ -383,8 +383,13 @@ if ($poster) {
   }
 
   if ($poster->getVar("url") != "") {
-    $www_image = "<a href='".$poster->getVar("url")."'><img src='".RCX_URL."/images/icons/www.gif' alt='"._VISITWEBSITE."' target='_blank' /></a>";
-  }
+      
+      if ($rcxConfig['hide_external_links']) {
+         $www_image = $myts->checkGoodUrl($poster->getVar("url"), "<img src='".RCX_URL."/images/icons/www.gif' alt='"._VISITWEBSITE."' target='_blank' />", false); 
+      } else {
+      	 $www_image = "<a href='".$poster->getVar("url")."'><img src='".RCX_URL."/images/icons/www.gif' alt='"._VISITWEBSITE."' target='_blank' /></a>";
+      }
+   }
 
   if ( $rcxUser && ($poster->getVar("user_icq") != "") ) {
     $icq_image = "<a href='http://wwp.icq.com/scripts/search.dll?to=".$poster->getVar("user_icq")."'><img src='".RCX_URL."/images/icons/icq_add.gif' alt='"._ADDTOLIST."' /></a>";

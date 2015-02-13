@@ -131,7 +131,7 @@ if (!defined("ERCX_XML_RSS_INCLUDED")) {
                 } 
 
                 if (!empty($desc)) {
-                    $this->buffer .= "<description>" . $this->cleanup($description) . "...</description>\n";
+                    $this->buffer .= "<description>" . $description . "...</description>\n";
                 } 
 
                 if (!empty($this->enclosure)) {
@@ -157,10 +157,11 @@ if (!defined("ERCX_XML_RSS_INCLUDED")) {
             global $myts;
 
             $clean = stripslashes($text);
-            $clean = $myts->sanitizeForDisplay($clean, 1, 0, 1);
+            //$clean = $myts->sanitizeForDisplay($clean, 1, 0, 1);
+            $clean = $myts->undoHtmlSpecialChars($clean);
             $clean = strip_tags($clean);
             $clean = substr($clean, 0, $trim);
-            $clean = htmlspecialchars($clean, ENT_QUOTES);
+            $clean = htmlspecialchars($clean, ENT_QUOTES, RCX_ENT_ENCODING);
 
             return $clean;
         } 

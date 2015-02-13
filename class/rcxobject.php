@@ -153,6 +153,15 @@ if ( $this->vars[$key]['type'] == "textbox" ) {
         return $this->vars[$key]['value'];
         break;
     }
+    
+  } elseif ( $this->vars[$key]['type'] == "array" ) {  
+       
+      if (!is_array($this->vars[$key]['value'])) {
+          if ($this->vars[$key]['value'] != '') {
+              $ret = unserialize($this->vars[$key]['value']);
+          }
+          return is_array($ret) ? $ret : array();
+      }
 
   } else {
     return $this->vars[$key]['value'];
@@ -172,7 +181,9 @@ global $myts;
     if ( !$v['changed'] ) {
       $cleanv = addslashes($v['value']);
       } else {
-        $v['value'] = trim($v['value']);
+          
+        $v['value'] = is_string($v['value']) ? trim($v['value']) : $v['value'];
+        
         if ( isset($v['required']) && $v['required'] == true && empty($v['value']) ) {
           $this->setErrors("$k is required.");
           continue;
@@ -201,6 +212,10 @@ global $myts;
 
           case "int":
             $cleanv = intval($v['value']);
+            break;
+            
+          case "array":
+            $cleanv = serialize($v['value']);
             break;
 
           default:

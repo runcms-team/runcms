@@ -536,11 +536,11 @@ function &getAllBlocksByGroup(
 
   if (!$asobject)
   {
-    $sql = "SELECT b.bid ";
+    $sql = "SELECT DISTINCT b.bid ";
   }
   else
   {
-    $sql = "SELECT b.* ";
+    $sql = "SELECT DISTINCT b.* ";
   }
   $sql .= "FROM ".RC_NEWBLOCKS_TBL." b LEFT JOIN ".RC_GRP_BLOCK_LINK_TBL." l ON l.block_id=b.bid";
 
