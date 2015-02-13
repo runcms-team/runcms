@@ -28,7 +28,7 @@ echo "
 <td>"._US_NICKNAMECOLON."</td>
 <td><input type='text' class='text' name='uname' size='21' maxlength='30'";
 if ( isset($_COOKIE[$rcxConfig['cookie_name']]) && empty($rcxConfig['cache_time']) ) {
-  echo " value='".$_COOKIE[$rcxConfig['cookie_name']]."'";
+  echo " value='".$myts->makeTboxData4Save($_COOKIE[$rcxConfig['cookie_name']])."'";
 }
 echo " /></td>
 </tr><tr>
@@ -89,19 +89,40 @@ function logout() {
 * @return type description
 */
 function login() {
+  
+  global $rcxConfig;  
+    
   sleep(1);
   $uname = !isset($_POST['uname']) ? '' : trim($_POST['uname']);
   $pass = !isset($_POST['pass']) ? '' : trim($_POST['pass']);
+  
+  $count = 0;
+  
+  
   if ($uname == '' || $pass == '')
   {
     redirect_header("user.php", 1, _US_INCORRECTLOGIN);
     exit();
   }
+  
+  
+        if ($rcxConfig['check_bruteforce_login'] == 1) {
+
+            $count = rcx_check_bruteforce_login();
+
+            if ($count >= $rcxConfig['count_failed_auth']) {
+                redirect_header("admin.php", 4, _US_DETECT_BRUTEFORCE);
+                exit();
+            }
+
+        }  
+  
   $user = RcxUser::login($uname, $pass);
   if (false != $user)
   {
     if ( 0 == $user->getVar('level') )
     {
+      rcx_set_login_log(_AD_NOACTTPADM, $user->getVar('uname'), $user->getVar('uid'), 'fail', 'user');
       redirect_header("index.php", 5, _US_NOACTTPADM);
       exit();
     }
@@ -113,6 +134,7 @@ function login() {
     $session->setSalt($user->getVar('pwdsalt'));
     if (!$session->store())
     {
+      rcx_set_login_log(_NOTUPDATED, $user->getVar('uname'), $user->getVar('uid'), 'fail', 'user');
       redirect_header("index.php", 1, _NOTUPDATED);
       exit();
     }
@@ -123,12 +145,45 @@ function login() {
                           /* slut */
     // If caching probs persist, turn this hack on
     $url .= preg_match('/\&/', $url) ? '&'.time() : '?'.time();
+    rcx_set_login_log('', $user->getVar('uname'), $user->getVar('uid'), 'success', 'user');
     redirect_header($url, 1, sprintf(_US_LOGGINGU, $user->getVar('uname')));
     exit();
   }
   else
   {
-    redirect_header("user.php", 1, _US_INCORRECTLOGIN);
+    rcx_set_login_log(_AD_INCORRECTLOGIN, $uname, 0, 'fail', 'user');
+    
+    if ($count > 0) {
+        
+                if ($rcxConfig['check_bruteforce_login'] == 1 && $rcxConfig['admin_bruteforce_notify'] == 1 && (($count + 1) == $rcxConfig['count_failed_auth'])) {
+                    
+                    $rcxMailer =& getMailer();
+                    $rcxMailer->useMail();
+                    $rcxMailer->setTemplate("bruteforce.tpl");
+
+                    $rcxMailer->assign("IP", _REMOTE_ADDR);
+                    $rcxMailer->assign("UNAME", $uname);
+                    $rcxMailer->assign("DATE", date('Y-m-d H:i:s'));
+                    
+                    $rcxMailer->assign("COUNT_FAILED", $rcxConfig['count_failed_auth']);
+                    $rcxMailer->assign("LOCK_TIME", $rcxConfig['failed_lock_time']);
+
+                    $rcxMailer->setPriority(2);
+
+                    $rcxMailer->setToEmails($rcxConfig['adminmail']);
+
+                    $rcxMailer->setFromEmail($rcxConfig['adminmail']);
+                    $rcxMailer->setFromName($meta['title']);
+                    $rcxMailer->setSubject(sprintf(_US_BRUTEFORCE_NOTIFY, $meta['title']));
+                    $rcxMailer->send();
+
+                }        
+        
+        redirect_header("user.php", 4, _US_INCORRECTLOGIN . sprintf(_US_INCORRECTLOGIN2, $count + 1));
+    } else {
+        redirect_header("user.php", 2, _US_INCORRECTLOGIN);
+    }    
+    
     exit();
   }
 }

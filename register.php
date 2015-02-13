@@ -14,9 +14,20 @@ $rcxOption['nocache']    = 1;
 
 include_once("./mainfile.php");
 
+// start tcaptcha hack by LARK (http://www.runcms.ru)
+
+include_once(RCX_ROOT_PATH."/modules/system/cache/tcaptcha.php");
+
+// end tcaptcha hack
+
 if ( empty($rcxConfig['allow_register']) ) {
   redirect_header('index.php', 1, _US_NOREG);
   exit();
+}
+
+if($rcxUser){
+    header("Location: userinfo.php?uid=".$rcxUser->getVar("uid")."");
+    exit();;
 }
 /**
 * Description
@@ -109,6 +120,30 @@ if ( (isset($passw)) && ($passw != $vpassw) ) {
 return $stop;
 }
 
+// start tcaptcha hack by LARK (http://www.runcms.ru)
+
+function checkTCaptcha($tcaptcha)
+{
+	$stop = '';
+	
+	if ($tcaptcha['use_tc'] == 1) {
+
+        $qq_arr = preg_split('/[\n\r]+/', trim(stripslashes($tcaptcha['tc_qq'])));
+        $ans_arr = explode("|", strtolower($qq_arr[intval($_POST['q_id'])]));
+        array_shift($ans_arr);
+
+        array_walk($ans_arr, create_function('&$val', '$val = trim($val);'));
+
+        if (!in_array(strtolower(trim($_POST['tc_ans'])), $ans_arr)) {
+            $stop .= _US_WRONGTCANSWER . '<br />';
+        }
+    }
+    
+    return $stop;
+}
+
+// end tcaptcha hack
+
 //---//
 $op = "register";
 foreach ($_POST as $k => $v) {
@@ -127,7 +162,15 @@ case "register":
   break;
 
 case "newuser":
-  include_once("header.php");
+    
+  $stop = '';
+    
+  $rcx_token = & RcxToken::getInstance();
+  
+  if ( !$rcx_token->check() ) {
+      $stop .= $rcx_token->getErrors(true);
+  }     
+  
   $uname       = trim($uname);
   $email       = trim($email);
   
@@ -144,7 +187,18 @@ case "newuser":
   $language    = trim($language);
   $verify_text = trim($verify_text);
   $verify_crc  = trim($verify_crc);
-  $stop        = userCheck($uname, $email, $passw, $vpassw);
+  
+  $stop        .= userCheck($uname, $email, $passw, $vpassw);
+  
+  
+  
+  // start tcaptcha hack by LARK (http://www.runcms.ru)
+
+  $stop        .= checkTCaptcha($tcaptcha);
+
+  // end tcaptcha hack
+  
+  
     // begin captcha
     if ((int)$rcxConfig['img_verify'] == 1)
     {
@@ -160,6 +214,9 @@ case "newuser":
       // unset($_SESSION['captcha_keystring']);
     }
     // end captcha
+    
+  include_once("header.php"); 
+    
   if ( empty($stop) ) {
     OpenTable();
   $f_timezone = ($timezone_offset < 0) ? "GMT ".$timezone_offset : "GMT +".$timezone_offset;
@@ -245,6 +302,10 @@ case "newuser":
     <input type='hidden' name='verify_text' value='".$myts->makeTboxData4PreviewInForm($verify_text)."' />
     <input type='hidden' name='verify_crc' value='".$myts->makeTboxData4PreviewInForm($verify_crc)."' />
     <input type='hidden' name='keystring' value='".$myts->makeTboxData4PreviewInForm($_REQUEST['keystring'])."' />
+    " . $rcx_token->getTokenHTML() . "
+    <input type='hidden' name='tc_ans' value='".$myts->makeTboxData4PreviewInForm($tc_ans)."' />
+    <input type='hidden' name='q_id' value='" . intval($q_id) . "' />
+    
     <br /><br /><center><input type='hidden' name='op' value='finish' /><input type='submit' class='button' value='". _US_FINISH ."' />
     </center></form>";
     CloseTable();
@@ -258,7 +319,14 @@ case "newuser":
   break;
 
 case "finish":
-  include_once("header.php");
+    
+  $stop = '';
+    
+  $rcx_token = & RcxToken::getInstance();
+  
+  if ( !$rcx_token->check() ) {
+      $stop .= $rcx_token->getErrors(true);
+  }     
   
   // Fix by HDMan /http://MoscowVolvoClub.ru/)
   
@@ -277,6 +345,8 @@ case "finish":
   }
   
   // Fix by HDMan /http://MoscowVolvoClub.ru/)
+  
+  include_once("header.php");
 
   $uname       = trim($uname);
   $email       = trim($email);
@@ -291,7 +361,14 @@ case "finish":
   $vpassw      = trim($vpassw);
  
   $language    = trim($language);
-  $stop        = userCheck($uname, $email, $passw, $vpassw);
+  $stop        .= userCheck($uname, $email, $passw, $vpassw);
+  
+  // start tcaptcha hack by LARK (http://www.runcms.ru)
+
+  $stop        .= checkTCaptcha($tcaptcha);
+
+  // end tcaptcha hack  
+  
 /* other options which can be add are - > $name, $adress, $zip_code, $town, $user_form, $phone */
   if ( empty($stop) ) {
     $newuser = new RcxUser();
@@ -319,7 +396,7 @@ case "finish":
     $newuser->setVar("user_avatar", $user_avatar);
     $newuser->setVar("actkey", substr(md5(makepass()), 0, 8));
     $newuser->setVar("pass", md5($passw));
-    $newuser->setVar("timezone_offset", $timezone_offset);
+    $newuser->setVar("timezone_offset", (float)$timezone_offset);
     $newuser->setVar("user_regdate", time());
     $newuser->setVar("uorder", $rcxConfig['com_order']);
     $newuser->setVar("umode", $rcxConfig['com_mode']);

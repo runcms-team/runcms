@@ -13,6 +13,11 @@ $rcxOption['page_style'] = 8;
 
 include_once("./mainfile.php");
 
+if ($rcxConfig['ban_profile_viewer']) {
+    redirect_header("whyregister.php", 2, _NOPERM);
+    exit();
+}
+
 $uid = intval($_GET['uid']);
 $module = RcxModule::getByDirname('pm');
 if ( empty($uid) ) {
@@ -123,7 +128,13 @@ if ( $thisUser->isActive() ) {
 
   if ($thisUser->getVar("url") != "") {
     echo "<tr valign='top' class='bg3'><td><b>"._US_WEBSITE.":</b></td><td>";
-    echo "<a href='".$thisUser->getVar("url", "E")."' target='_blank'>".$thisUser->getVar("url")."</a>\n";
+    
+    if ($rcxConfig['hide_external_links']) {
+        echo $myts->checkGoodUrl($thisUser->getVar("url"), "<img src='".RCX_URL."/images/icons/www.gif' alt='" . _US_WEBSITE . "' />", false) . "\n";
+    } else {
+    	echo "<a href='".$thisUser->getVar("url", "E")."' target='_blank'>".$thisUser->getVar("url")."</a>\n";
+    }
+    
     echo "</td></tr>";
   }
 
@@ -172,7 +183,7 @@ if ( $thisUser->isActive() ) {
 
   if ($thisUser->getVar("bio") != '') {
     echo "<tr valign='top' class='bg3'><td><b>"._US_EXTRAINFO.":</b></td><td>";
-    echo $myts->makeTareaData4Show($thisUser->getVar("bio", "N"), 0, 1, 1);
+    echo $myts->makeTboxData4Show($thisUser->getVar("bio"));
     echo "</td></tr>";
   }
 
@@ -199,7 +210,12 @@ if ( $thisUser->isActive() ) {
     <tr><td class='bg2'>
     <table border='0' cellpadding='4' cellspacing='1' width='100%'><tr valign='top' class='bg1'>
     <td colspan='2' align='center'><b>"._US_SIGNATURE."</b></td></tr><tr valign='top' class='bg3'><td>";
-    echo $myts->makeTareaData4Show($thisUser->getVar("user_sig", "N"), 0, 1, 1);
+    if ($rcxConfig['no_bbcode_user_sig']) {
+    	echo $myts->makeTboxData4Show($thisUser->getVar("user_sig", "N"));
+    } else {
+    	echo $myts->makeTareaData4Show($thisUser->getVar("user_sig", "N"), 0, 1, 1);
+    }
+    
     echo "</td></tr></table></td></tr></table>";
   }
   echo "</td></tr></table>";

@@ -1,5 +1,6 @@
 # robots.txt
 User-agent: *
+Disallow: /go.php
 Disallow: /cache/
 Disallow: /admin/
 Disallow: /class/
