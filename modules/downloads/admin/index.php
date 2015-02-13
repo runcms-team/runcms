@@ -811,7 +811,7 @@ function modCatS()
          exit();
       }
    }
-   $db->query("UPDATE ".$db->prefix("downloads_cat")." SET title='$title', imgurl='$imgurl', pid='$pid', description='$description)' WHERE cid=$cid");
+   $db->query("UPDATE ".$db->prefix("downloads_cat")." SET title='$title', imgurl='$imgurl', pid='$pid', description='$description' WHERE cid=$cid");
    build_rss();
    redirect_header("index.php?op=modCat&cid=$cid", 1, _UPDATED);
    exit();
@@ -1364,7 +1364,7 @@ $description = $myts->makeTboxData4Save($_POST["filedesc"]);
   cid=$cid,
   title='$title',
   groups='$groups',
-  description='$description)',
+  description='$description',
   url='$url',
   homepage='$homepage',
   version='$version',
@@ -1630,7 +1630,7 @@ rcx_cp_footer();
 */
 function downloadsConfigChange()
 {
-   global  $_POST, $myts;
+   global  $myts;
    $content  = "<?php\n";
    $content .= "\$downloadsConfig['popular']            = ".intval($_POST['popular']).";\n";
    $content .= "\$downloadsConfig['newdownloads']       = ".intval($_POST['newdownloads']).";\n";
@@ -1643,12 +1643,12 @@ function downloadsConfigChange()
    $content .= "\$downloadsConfig['rss_maxitems']       = ".intval($_POST['rss_maxitems']).";\n";
    $content .= "\$downloadsConfig['rss_maxdescription'] = ".intval($_POST['rss_maxdescription']).";\n";
    $content .= "\$downloadsConfig['allow_upload']       = ".intval($_POST['allow_upload']).";\n";
-   $content .= "\$downloadsConfig['accepted_files']     = '".$_POST['accepted_files']."';\n";
+   $content .= "\$downloadsConfig['accepted_files']     = '".$myts->stripPHP($myts->oopsStripSlashesGPC($_POST['accepted_files']))."';\n";
    $content .= "\$downloadsConfig['upload_limit']       = ".(intval($_POST['upload_limit'])*1024).";\n";
    $content .= "\$downloadsConfig['pad_file_prefilling']     = ".intval($_POST['pad_file_prefilling']).";\n";
    $content .= "\$downloadsConfig['validate_pad_file']     = ".intval($_POST['validate_pad_file']).";\n";
    $content .= "\$downloadsConfig['shot_upload_limit']     = ".intval($_POST['shot_upload_limit']).";\n";
-   $content .= "\$downloadsConfig['shot_accepted_files']     = '".$_POST['shot_accepted_files']."';\n";
+   $content .= "\$downloadsConfig['shot_accepted_files']     = '".$myts->stripPHP($myts->oopsStripSlashesGPC($_POST['shot_accepted_files']))."';\n";
    $content .= "?>";
    $filename = "../cache/config.php";
    if ( $file = fopen($filename, "w") ) {

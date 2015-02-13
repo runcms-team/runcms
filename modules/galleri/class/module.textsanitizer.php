@@ -199,7 +199,7 @@ class GallTextSanitizer {
   *  so i made this function.
   */
   function oopsHtmlSpecialChars($text) {
-    $text = htmlspecialchars($text);
+    $text = htmlspecialchars($text, RCX_ENT_FLAGS, RCX_ENT_ENCODING);
     $text = str_replace("'","&#039;",$text);
     $text = preg_replace("/&amp;/i", "&", $text);
     return $text;

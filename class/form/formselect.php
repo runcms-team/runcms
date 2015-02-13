@@ -22,6 +22,7 @@ class RcxFormSelect extends RcxFormElement {
 	var $value    = array();
 	var $options  = array();
 	var $multiple = false;
+	var $disabled = array();
 
 	function RcxFormSelect($caption, $name, $value="", $size=1, $multiple=false) {
 		$this->setCaption($caption);
@@ -39,6 +40,33 @@ class RcxFormSelect extends RcxFormElement {
 */
 function isMultiple() {
 	return $this->multiple;
+}
+
+/**
+ * Enter description here...
+ *
+ * @param unknown_type $value
+ */
+function setDisabled($value)
+{
+    if ($value != "") {
+        if (is_array($value)) {
+            foreach ( $value as $v ) {
+                $this->disabled[] = $v;
+            }
+        } else {
+        	$this->disabled[] = $value;
+        }
+    }
+}
+
+/**
+ * Enter description here...
+ *
+ * @return unknown
+ */
+function getDisabled() {
+	return $this->disabled;
 }
 
 /**
@@ -145,6 +173,11 @@ foreach ( $this->getOptions() as $value => $name ) {
 	if ( $count > 0 && in_array($value, $this->getValue()) ) {
 		$ret .= " selected='selected'";
 	}
+	
+	if (in_array($value, $this->getDisabled())) {
+		$ret .= " disabled";
+	}
+	
 	$ret .= ">".$name."</option>";
 }
 $ret .= "</select>";

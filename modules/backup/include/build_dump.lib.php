@@ -48,7 +48,7 @@ if (!defined('PMA_BUILD_DUMP_LIB_INCLUDED')){
         // respond, do not show the query that would reveal the
         // username/password
         if (!empty($the_query) && !strstr($the_query, 'connect')) {
-            $query_base = htmlspecialchars($the_query);
+            $query_base = htmlspecialchars($the_query, RCX_ENT_FLAGS, RCX_ENT_ENCODING);
             $query_base = ereg_replace("((\015\012)|(\015)|(\012)){3,}", "\n\n", $query_base);
             echo '<p>' . "\n";
             echo '    ' . $GLOBALS['strSQLQuery'] . '&nbsp;:&nbsp;' . "\n";
@@ -61,7 +61,7 @@ if (!defined('PMA_BUILD_DUMP_LIB_INCLUDED')){
             echo '</p>' . "\n";
         } // end if
         if (!empty($error_message)) {
-            $error_message = htmlspecialchars($error_message);
+            $error_message = htmlspecialchars($error_message, RCX_ENT_FLAGS, RCX_ENT_ENCODING);
             $error_message = ereg_replace("((\015\012)|(\015)|(\012)){3,}", "\n\n", $error_message);
         }
         echo '<p>' . "\n";
