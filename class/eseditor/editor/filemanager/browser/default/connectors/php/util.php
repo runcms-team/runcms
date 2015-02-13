@@ -26,6 +26,6 @@ function RemoveFromEnd( $sourceString, $charToRemove )
 
 function ConvertToXmlAttribute( $value )
 {
-	return utf8_encode( htmlspecialchars( $value ) ) ;
+	return utf8_encode( htmlspecialchars( $value , RCX_ENT_FLAGS, RCX_ENT_ENCODING) ) ;
 }
 ?>
