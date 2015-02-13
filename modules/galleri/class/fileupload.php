@@ -489,7 +489,7 @@ if ( !empty($this->file[$filename]['max_filesize']) && ($this->file[$filename]['
 if ( preg_match("'^image/'i", $this->file[$filename]['type']) ) {
     if (!$image = @getimagesize($this->file[$filename]['tmp_name'])) {
       array_push($this->errors, _ULC_NIMG);
-      //return(FALSE);
+      return(FALSE);
     }
 
     if ( ($this->file[$filename]['max_image_width'] && ($image[0] > $this->file[$filename]['max_image_width'])) || ($this->file[$filename]['max_image_height']  && ($image[1] > $this->file[$filename]['max_image_height'])) ) {

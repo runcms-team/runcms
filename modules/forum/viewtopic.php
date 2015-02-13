@@ -399,7 +399,7 @@ echo "</tr></table>";
 
 // Prev/Next Topic
 $topic_link = "viewtopic.php?topic_id=$topic_id&amp;forum=$forum";
-echo "<div align='center'><b>&laquo;&nbsp;&nbsp;<a href='$topic_link&amp;goto=prev'>"._MD_PREV_TOPIC."</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href='$topic_link&amp;goto=next'>"._MD_NEXT_TOPIC."</a>&nbsp;&nbsp;&raquo;</b></div>";
+echo "<div align='center'><b>&laquo;&nbsp;&nbsp;<a href='$topic_link&amp;goto=prev'>"._MD_PREV_TOPIC."</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href='$topic_link&amp;goto=next'>"._MD_NEXT_TOPIC."</a>&nbsp;&nbsp;&raquo;</b></div><br />";
 
 // Similar Threads
 if($forumConfig['similar_threads'])
@@ -432,7 +432,8 @@ if ($forumdata['topic_status']!=1 && $permissions->can_reply )
         $qrform->addElement(new RcxFormHidden('allow_bbcode', 1));
         $qrform->addElement(new RcxFormHidden('viewmode', $viewmode));
         $qrform->addElement(new RcxFormText(_MD_SUBJECT, 'subject', 60, 60, $new_subject));
-        $qrform->addElement(new RcxFormDHTMLTextArea(_MD_MESSAGEC, 'message', $message, 4, 88));
+        //$qrform->addElement(new RcxFormDHTMLTextArea(_MD_MESSAGEC, 'message', $message, 4, 88));
+        $qrform->addElement(new RcxFormDHTMLTextArea(_MD_MESSAGEC, 'message', $message));
         $qrform->addElement(new RcxFormButton('', 'contents_submit', _REPLY, "submit"));
         ToggleBlockRenderer::render('quick_reply', _MD_QUICK_REPLY, '', $qrform->render());
 }

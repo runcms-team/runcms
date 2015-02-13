@@ -72,6 +72,7 @@
       exit();
     }else{
         include(RCX_ROOT_PATH."/header.php");
+        $id = (int)$_GET['id'];
       $vote_img = new GallImg($id);
         OpenTable();
         gall_function("mainheader", array("thumbnails/".$vote_img->img())); 

@@ -38,14 +38,14 @@
                         if ($result[$userfile]['filename']) {
                             $store_img = new GallImg();
                         $store_img->setVar("cid", $cid);
-                        $store_img->setVar("nom", $myts->makeTboxData4Save($_POST['nom']));
-                        $store_img->setVar("email", $myts->makeTboxData4Save($_POST['email']));
+                        $store_img->setVar("nom", $_POST['nom']);
+                        $store_img->setVar("email", $_POST['email']);
                         $store_img->setVar("cname", $cat_name->cname());
-                        $store_img->setVar("titre", $myts->makeTboxData4Save($_POST['titre']));
+                        $store_img->setVar("titre", $_POST['titre']);
                         $store_img->setVar("img", $result[$userfile]['filename']);
-                        $store_img->setVar("coment", $myts->makeTboxData4Save($_POST['coment']));
+                        $store_img->setVar("coment", $_POST['coment']);
 // ALT tag
-                        $store_img->setVar("alt", $myts->makeTboxData4Save($_POST['alt']));
+                        $store_img->setVar("alt", $_POST['alt']);
                             if ($galerieConfig['imgfree'] == 1){
                                 $free = 1;
                             }else{
@@ -109,7 +109,7 @@
                     $mail->setBody($text);
                   $mail->send();                
                 }              
-                redirect_header("viewcat.php?cid=".$cid, 1, _AD_MA_DBUPDATED);
+                redirect_header("viewcat.php?cid=".$cid, 3, _AD_MA_DBUPDATED);
 
           break;
     

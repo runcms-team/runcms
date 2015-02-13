@@ -10,7 +10,8 @@
 
 include_once("../../mainfile.php");
 include_once("../../header.php");
-include_once("magpierss/rss_fetch.inc");
+
+include_once("simplepie/autoloader.php");
 
 $rcxOption['show_rblock'] = 1;
 
@@ -23,7 +24,7 @@ if ($rcxConfig['startpage'] == "headlines") {
 		echo "<h4>"._MI_HEADLINES_NAME."<hr /></h4>";
 }
 
-//$rss       = new cafeRSS();
+
 $cache_dir = RCX_ROOT_PATH."/modules/headlines/cache";
 
 $result = $db->query("SELECT id, headlineurl, template, cache, items FROM ".$db->prefix("headlines")." WHERE (type='main' OR type='both') AND status=1 ORDER BY weight ASC");
@@ -34,15 +35,21 @@ while ( list($id, $headlineurl, $template, $cache, $num_items) = $db->fetch_row(
 		$template = substr($template, 0, -4);
 	}
 
-	define('MAGPIE_CACHE_ON', 1);
-	define('MAGPIE_CACHE_AGE', (intval($cache) * 60));
-
-	$rss = @fetch_rss( $headlineurl );
-	if($rss)
+	$rss = new SimplePie();
+	$rss->set_cache_location($cache_dir);
+	$rss->set_cache_duration((intval($cache) * 60));
+	$rss->set_output_encoding(_CHARSET);
+	$rss->set_feed_url($headlineurl); 
+	$rss->init();
+        
+	if(!$rss->error)
 	{
 		include_once 'templates/'.$template.'.php';
 		echo call_user_func ($template, $rss, $num_items);
 	}
+        
+	$rss->__destruct(); 
+	unset($rss);         
 }
 
 CloseTable();

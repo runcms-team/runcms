@@ -19,12 +19,12 @@
                 include_once(GALLI_PATH."/class/gall_img.php"); 
             $img_id =  $_POST['img_id'];
               $new_cid =  $_POST['cid'];
-            $new_nom = $gallts->makeTboxData4Save($_POST['nom']);
-            $new_email = $gallts->makeTboxData4Save($_POST['email']);
+            $new_nom = $_POST['nom'];
+            $new_email = $_POST['email'];
             $old_cname = $gallts->makeTboxData4Save($_POST['cname']);
             $cname = $old_cname;
-            $new_titre = $gallts->makeTboxData4Save($_POST['titre']);
-            $new_image = $gallts->makeTboxData4Save($_POST['img']);
+            $new_titre = $_POST['titre'];
+            $new_image = $_POST['img'];
                 $new_image = gall_function("entfern_sonder", array ($new_image));
               $new_coment = $_POST['coment'];
 
