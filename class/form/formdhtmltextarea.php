@@ -18,9 +18,12 @@ include_once(RCX_ROOT_PATH."/class/form/formtextarea.php");
 class RcxFormDhtmlTextArea extends RcxFormTextArea
 {
 
-  function RcxFormDhtmlTextArea($caption, $name, $value="", $rows=10, $cols=80)
+  var $no_smile = false;
+    
+  function RcxFormDhtmlTextArea($caption, $name, $value="", $rows=10, $cols=80, $no_smile = false)
   {
-    $this->RcxFormTextArea($caption, $name, $value, $rows, $cols);
+      $this->no_smile = $no_smile;
+      $this->RcxFormTextArea($caption, $name, $value, $rows, $cols);
   }
 
   /**
@@ -42,12 +45,13 @@ class RcxFormDhtmlTextArea extends RcxFormTextArea
     }
 
     $ret  = "
-      <table width='100%' border='0' cellspacing='1' cellpadding='0'>
+  <div class='controlbar'>
+      <table width='100%' border='0' cellspacing='1' cellpadding='0' class='rcxformdhtmltextarea'>
         <tr class='bg2'>
                 <td style='vertical-align: top;'>
-            <table width='100%' border='0' cellspacing='1' cellpadding='8'>
+            <table width='100%' border='0' cellspacing='1' cellpadding='1'>
               <tr class='bg1'>
-                <td style='vertical-align: top;'>
+                <td style='vertical-align: top;' colspan='2' class='bg3'>
                   <a href='javascript:justReturn();'><img src='".RCX_URL."/images/editor/bold.gif' alt='"._BOLD."' title='"._BOLD."' onclick='rcxCodeBold(\"".$this->getName()."\");'  /></a>
                   <a href='javascript:justReturn();'><img src='".RCX_URL."/images/editor/italic.gif' alt='"._ITALIC."' title='"._ITALIC."' onclick='rcxCodeItalic(\"".$this->getName()."\");'  /></a>
                   <a href='javascript:justReturn();'><img src='".RCX_URL."/images/editor/underline.gif' alt='"._UNDERLINE."' title='"._UNDERLINE."' onclick='rcxCodeUnderline(\"".$this->getName()."\");' /></a>
@@ -58,7 +62,7 @@ class RcxFormDhtmlTextArea extends RcxFormTextArea
                   <a href='javascript:justReturn();'><img src='".RCX_URL."/images/editor/left.gif' alt='"._LEFT."' title='"._LEFT."' onclick='rcxCodeLeft(\"".$this->getName()."\");' /></a>
                   <a href='javascript:justReturn();'><img src='".RCX_URL."/images/editor/justify.gif' alt='"._JUSTIFY."' title='"._JUSTIFY."' onclick='rcxCodeJustify(\"".$this->getName()."\");' /></a>
                   
-                  <a href='javascript:justReturn();'><img src='".RCX_URL."/images/editor/list.gif' alt='"._LIST."' title='"._LIST."' onclick='rcxCodeList(\"".$this->getName()."\");' /></a><br />
+                  <a href='javascript:justReturn();'><img src='".RCX_URL."/images/editor/list.gif' alt='"._LIST."' title='"._LIST."' onclick='rcxCodeList(\"".$this->getName()."\");' /></a>
                   <a href='javascript:justReturn();'><img src='".RCX_URL."/images/editor/hr.gif' alt='"._HLINE."' title='"._HLINE."' onclick='rcxCodeHr(\"".$this->getName()."\");' /></a>
                   <a href='javascript:justReturn();'><img src='".RCX_URL."/images/editor/marqd.gif' alt='"._MARQD."' title='"._MARQD."' onclick='rcxCodeMarqd(\"".$this->getName()."\");' /></a>
                   <a href='javascript:justReturn();'><img src='".RCX_URL."/images/editor/marqu.gif' alt='"._MARQU."' title='"._MARQU."' onclick='rcxCodeMarqu(\"".$this->getName()."\");' /></a>
@@ -66,19 +70,27 @@ class RcxFormDhtmlTextArea extends RcxFormTextArea
                   <a href='javascript:justReturn();'><img src='".RCX_URL."/images/editor/marqr.gif' alt='"._MARQR."' title='"._MARQR."' onclick='rcxCodeMarqr(\"".$this->getName()."\");' /></a>
                   <a href='javascript:justReturn();'><img src='".RCX_URL."/images/editor/marqh.gif' alt='"._MARQH."' title='"._MARQH."' onclick='rcxCodeMarqh(\"".$this->getName()."\");' /></a>
                   <a href='javascript:justReturn();'><img src='".RCX_URL."/images/editor/marqv.gif' alt='"._MARQV."' title='"._MARQV."' onclick='rcxCodeMarqv(\"".$this->getName()."\");' /></a>
+                  
+                  </td>
+              </tr>
+              <tr class='bg3'>
+                  <td style='vertical-align: top;' width='140px'>
                  
                   <a href='javascript:justReturn();'><img src='".RCX_URL."/images/editor/link.gif' alt='"._URL."' title='"._URL."' onclick='rcxCodeUrl(\"".$this->getName()."\");' /></a>
                   <a href='javascript:justReturn();'><img src='".RCX_URL."/images/editor/image.gif' alt='"._IMG."' title='"._IMG."' onclick='rcxCodeImg(\"".$this->getName()."\");' /></a>";
     if ($admin || $myts->allowLibrary == 1)
     {
       $ret .= "
-                  <a href='javascript:justReturn();'><img src='".RCX_URL."/images/editor/image-m.gif' alt='"._LIB."' title='"._LIB."' onclick='openWithSelfMain(\"".RCX_URL."/misc.php?action=showpopups&type=images&target=".$this->getName()."\", \"images\", 350, 450);' /></a><br />";
+                  <a href='javascript:justReturn();'><img src='".RCX_URL."/images/editor/image-m.gif' alt='"._LIB."' title='"._LIB."' onclick='openWithSelfMain(\"".RCX_URL."/misc.php?action=showpopups&type=images&target=".$this->getName()."\", \"images\", 350, 450);' /></a>";
     }
     $ret .= "
                   <a href='javascript:justReturn();'><img src='".RCX_URL."/images/editor/email.gif' alt='"._EMAIL."' title='"._EMAIL."' onclick='rcxCodeEmail(\"".$this->getName()."\");' /></a>
                   <a href='javascript:justReturn();'><img src='".RCX_URL."/images/editor/quote.gif' alt='"._QUOTE."' title='"._QUOTE."' onclick='rcxCodeQuote(\"".$this->getName()."\");' /></a>
-                  <a href='javascript:justReturn();'><img src='".RCX_URL."/images/editor/code.gif' alt='"._CODE."' title='"._CODE."' onclick='rcxCodeCode(\"".$this->getName()."\");' /></a> <br /><br />
-                  &nbsp;&nbsp;
+                  <a href='javascript:justReturn();'><img src='".RCX_URL."/images/editor/code.gif' alt='"._CODE."' title='"._CODE."' onclick='rcxCodeCode(\"".$this->getName()."\");' /></a>
+                  
+                  </td>
+                  <td style='vertical-align: top;'>
+                  
                   <select class='select' id='".$this->getName()."Size' onchange='rcxCodeSize(\"".$this->getName()."\");'></a>
                     <option value='SIZE'>"._SIZE."</option>";
     $sizearray = array("xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large");
@@ -129,6 +141,8 @@ class RcxFormDhtmlTextArea extends RcxFormTextArea
       <br />";
     $ret .= $this->renderSmileys();
     
+    $ret .= "</div>";
+    
     return $ret;
   }
 
@@ -140,7 +154,15 @@ class RcxFormDhtmlTextArea extends RcxFormTextArea
   */
   function renderSmileys()
   {
-//    $smileyPath = "images/smilies";
+
+      global $rcxConfig;
+      
+      //    $smileyPath = "images/smilies";
+
+    if ($rcxConfig['no_smile'] || $this->no_smile == true) {
+	    return '';
+    }
+
     $ret  = "
       <a href='javascript:justReturn()' onclick='rcxCodeSmilie(\"".$this->getName()."\", \" :-) \");'><img width='25' height='25' src='".RCX_URL."/images/smilies/icon_smile.gif' border='0' alt=':-)' title=':-)' /></a>
       <a href='javascript:justReturn()' onclick='rcxCodeSmilie(\"".$this->getName()."\", \" :-( \");'><img width='25' height='25' src='".RCX_URL."/images/smilies/icon_frown.gif' border='0' alt=':-(' title=':-(' /></a>

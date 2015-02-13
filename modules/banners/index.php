@@ -197,6 +197,9 @@ while ( list($bid, $impmade, $clicks, $date, $dateend) = $db->fetch_row($result)
 function EmailStats($login, $cid, $bid, $pass) {
 global $db, $rcxConfig, $meta;
 
+$cid = intval($cid);
+$bid = intval($bid);
+
 $result2 = $db->query("SELECT name, email FROM ".$db->prefix("banner_clients")." WHERE cid=$cid");
 list($name, $email) = $db->fetch_row($result2);
 
@@ -265,11 +268,15 @@ if ( !checkEmail($email) ) {
 function change_banner_url_by_client($login, $pass, $cid, $bid, $url, $alt) {
 global $db, $myts;
 
+$cid = intval($cid);
+$bid = intval($bid);
+$url = $myts->makeTboxData4Save($url);
+$alt = $myts->makeTboxData4Save($alt);
+
 $result = $db->query("SELECT passwd FROM ".$db->prefix("banner_clients")." WHERE cid=$cid");
 list($passwd) = $db->fetch_row($result);
 
 if (md5($pass) == $passwd) {
-	$alt    = $myts->makeTboxData4Save($alt);
 	$update = $db->query("UPDATE ".$db->prefix("banner_items")." SET clickurl='$url', imagealt='$alt' WHERE bid=$bid");
 }
 
@@ -290,6 +297,8 @@ exit();
 */
 function clickbanner($bid) {
 global $db;
+
+$bid = intval($bid);
 
 $bresult = $db->query("SELECT clickurl FROM ".$db->prefix("banner_items")." WHERE bid=$bid");
 

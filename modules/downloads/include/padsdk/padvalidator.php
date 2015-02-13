@@ -100,11 +100,11 @@ class PADValidationError
   // IN: $Value - the corresponding value
   function DumpValue($Name, $Value)
   {
-    echo "<pre><b>" . htmlspecialchars($Name . ":") . "</b> ";
+    echo "<pre><b>" . htmlspecialchars($Name . ":", RCX_ENT_FLAGS, RCX_ENT_ENCODING) . "</b> ";
     if ( $Value == "" )
       echo "<i>(empty)</i>";
     else
-      echo htmlspecialchars($Value);
+      echo htmlspecialchars($Value, RCX_ENT_FLAGS, RCX_ENT_ENCODING);
     echo "</pre>";
   }
 
@@ -114,9 +114,9 @@ class PADValidationError
   // IN: $Descr - the error description
   function DumpError($Title, $Text, $Descr)
   {
-    echo "<b>" . htmlspecialchars($Title) . "</b> " .
-         htmlspecialchars($Text) . " " .
-         "<i>" . htmlspecialchars($Descr) . "</i>";
+    echo "<b>" . htmlspecialchars($Title, RCX_ENT_FLAGS, RCX_ENT_ENCODING) . "</b> " .
+         htmlspecialchars($Text, RCX_ENT_FLAGS, RCX_ENT_ENCODING) . " " .
+         "<i>" . htmlspecialchars($Descr, RCX_ENT_FLAGS, RCX_ENT_ENCODING) . "</i>";
   }
 }
 

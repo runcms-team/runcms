@@ -240,7 +240,7 @@ if (!isset($_COOKIE["FORumLastVisitTemp"]))
 {
         if(isset($_COOKIE["FORumLastVisit"]))
         {
-                $temptime = $_COOKIE["FORumLastVisit"];
+                $temptime = intval($_COOKIE["FORumLastVisit"]);
         }
         else
         {
@@ -249,7 +249,7 @@ if (!isset($_COOKIE["FORumLastVisitTemp"]))
 }
 else
 {
-        $temptime = $_COOKIE["FORumLastVisitTemp"];
+        $temptime = intval($_COOKIE["FORumLastVisitTemp"]);
 }
 
 // set cookie.

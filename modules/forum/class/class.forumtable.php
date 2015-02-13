@@ -286,7 +286,7 @@ class ForumTable
 		$sql = "SELECT t.forum_id, t.topic_id, p.post_time 
 				FROM " . $bbTable['topics'] . " t, " . $bbTable['posts'] . " p 
 				WHERE p.post_id = t.topic_last_post_id 
-					AND p.post_time > " . $last_visit;
+					AND p.post_time > " . intval($last_visit);
 		if ( !($result = $db->query($sql)) )
 		{
 			echo $sql."<br>".$db->error();

@@ -66,7 +66,7 @@ else {
 			$forumpost = new ForumPosts($_POST['post_id']);
 			if ( $rcxUser ) {
 				if ( !$rcxUser->isAdmin($rcxModule->mid()) ) {
-					if ( $forumpost->uid() != $rcxUser->getVar("uid") && !is_moderator($_POST['forum'], $rcxUser->getVar("uid")) ) {
+					if ( $forumpost->uid() != $rcxUser->getVar("uid") && !is_moderator(intval($_POST['forum']), $rcxUser->getVar("uid")) ) {
 						$editerror = 1;
 					}
 				}
@@ -149,7 +149,7 @@ else {
 		$postid = $forumpost->store();
 
 		if ($isreply == 1) {
-			$sql = "SELECT t.topic_notify, u.email, u.uname, u.uid FROM ".$bbTable['topics']." t, ".$db->prefix("users")." u WHERE t.topic_id = ".$_POST['topic_id']." AND t.topic_poster = u.uid";
+			$sql = "SELECT t.topic_notify, u.email, u.uname, u.uid FROM ".$bbTable['topics']." t, ".$db->prefix("users")." u WHERE t.topic_id = ".intval($_POST['topic_id'])." AND t.topic_poster = u.uid";
 			if (!$result = $db->query($sql)) {
 				echo _MD_COULDNOTQUERY;
 			}

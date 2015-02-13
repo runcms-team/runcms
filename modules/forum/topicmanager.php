@@ -11,6 +11,13 @@
 include_once("header.php");
 $accesserror = 0;
 
+$topic_id = intval($_REQUEST['topic_id']);
+$forum = intval($_REQUEST['forum']);
+$post_id = intval($_REQUEST['post_id']);
+
+$newforum = intval($_REQUEST['newforum']);
+
+
 if ( $rcxUser ) {
 	if ( !$rcxUser->isAdmin($rcxModule->mid()) ) {
 		if ( !is_moderator($forum, $rcxUser->uid()) ) {
@@ -317,4 +324,5 @@ switch($mode) {
 
 CloseTable();
 include_once(RCX_ROOT_PATH."/footer.php");
+
 ?>

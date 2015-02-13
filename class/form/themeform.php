@@ -31,8 +31,13 @@ class RcxThemeForm extends RcxForm {
 function render($value="") {
 
 $required = $this->getRequired();
-$ret = "
-  <h4 style='text-align:left;'>".$this->getTitle()."</h4>
+
+if ($this->getTitle()) {
+	$ret = "
+  <h4 style='text-align:left;'>".$this->getTitle()."</h4>";
+}
+
+$ret .= "
   <form name='".$this->getName()."' id='".$this->getName()."' action='".$this->getAction()."' method='".$this->getMethod()."'".$this->getExtra().">
   <table border='0' cellpadding='0' cellspacing='0' width='100%'><tr>
   <td class='bg2'><table width='100%' border='0' cellpadding='4' cellspacing='1'>";
