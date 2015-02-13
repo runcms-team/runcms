@@ -98,7 +98,7 @@ if ((int)$contactConfig['use_captcha'] == 1 && !$rcxUser)
   session_start();
   $capexplain = new RcxFormLabel('', _INTERCAPKEY);
   $capexplain->setColspan();
-  $captcha = new RcxFormLabel('<img src="'.RCX_URL.'/class/kcaptcha/kcaptcha.php?'.session_name().'='.session_id().'">', '<input type="text" name="keystring">');
+  $captcha = new RcxFormLabel('<img src="'.RCX_URL.'/class/kcaptcha/kcaptcha.php?'.session_name().'='.session_id().'">', '<input type="text" class="text" name="keystring">');
 
   $contact_form->addElement($capexplain);
   $contact_form->addElement($captcha);

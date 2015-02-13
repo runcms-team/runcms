@@ -69,7 +69,11 @@ function setType($value='user') {
 * @return type description
 */
 function smiley($message) {
-global $db;
+global $db, $rcxConfig;
+
+if ($rcxConfig['no_smile']) {
+	return $message;
+}
 
 if (count($this->smileys) == 0) {
         if ( $getsmiles = $db->query("SELECT code, smile_url FROM ".$db->prefix("smiles")) ) {
@@ -149,6 +153,8 @@ return trim($text);
 */
 function rcxCodeDecode($text, $allow_html=0) {
 
+global $rcxConfig;
+    
 $patterns     = array();
 $replacements = array();
 
@@ -173,11 +179,19 @@ $replacements[] = '<b>'._QUOTEC.'</b><div class="rcxQuote"><br>';
 $patterns[]     = "/\[\/quote\]/sU";
 $replacements[] = '<br></div>';
 
-$patterns[]     = "/\[url=(['\"]?)(http[s]?:\/\/[^\"']*)\\1](.*)\[\/url\]/sU";
-$replacements[] = '<a href="\\2" target="_blank">\\3</a>';
+if ($rcxConfig['hide_external_links']) {
+	$patterns[]     = "/\[url=(['\"]?)(http[s]?:\/\/[^\"']*)\\1](.*)\[\/url\]/esU";
+	$replacements[] = "\$this->checkGoodUrl('$2', '$3')";
+	
+    $patterns[]     = "/\[url=(['\"]?)([^\"']*)\\1](.*)\[\/url\]/esU";
+    $replacements[] = "\$this->checkGoodUrl('http://$2', '$3')";
+} else {
+	$patterns[]     = "/\[url=(['\"]?)(http[s]?:\/\/[^\"']*)\\1](.*)\[\/url\]/sU";
+	$replacements[] = '<a href="\\2" target="_blank">\\3</a>';
 
-$patterns[]     = "/\[url=(['\"]?)([^\"']*)\\1](.*)\[\/url\]/sU";
-$replacements[] = '<a href="http://\\2" target="_blank">\\3</a>';
+	$patterns[]     = "/\[url=(['\"]?)([^\"']*)\\1](.*)\[\/url\]/sU";
+	$replacements[] = '<a href="http://\\2" target="_blank">\\3</a>';
+}
 
 $patterns[]     = "/\[color=(['\"]?)([^\"']*)\\1](.*)\[\/color\]/sU";
 $replacements[] = '<span style="color: #\\2;">\\3</span>';
@@ -253,10 +267,20 @@ if ( $this->allowImage == true || ($this->type == 'admin') ) {
         $replacements[] = '<img src="\\1" alt="" />';
         } else {
                 $patterns[]     = "/\[img align=(['\"]?)(left|right)\\1]([^\"\(\)\?\&']*)\[\/img\]/esU";
-                $replacements[] = "'<a href=\"\\3\" target=\"_blank\">'.basename('\\3').'</a>'";
+                
+                if ($rcxConfig['hide_external_links']) {
+                    $replacements[] = "\$this->checkGoodUrl('$3', basename('$3'))";
+                } else {
+                	$replacements[] = "'<a href=\"\\3\" target=\"_blank\">'.basename('\\3').'</a>'";
+                }
 
                 $patterns[]     = "/\[img]([^\"\(\)\?\&']*)\[\/img\]/esU";
-                $replacements[] = "'<a href=\"\\1\" target=\"_blank\">'.basename('\\1').'</a>'";
+                
+                if ($rcxConfig['hide_external_links']) {
+                    $replacements[] = "\$this->checkGoodUrl('$1', basename('$1'))";
+                } else {
+                	$replacements[] = "'<a href=\"\\1\" target=\"_blank\">'.basename('\\1').'</a>'";
+                }            
         }
 
 if ( ($this->allowLibrary == true) || ($this->type == 'admin') ) {
@@ -270,6 +294,29 @@ if ( ($this->allowLibrary == true) || ($this->type == 'admin') ) {
 $text = preg_replace($patterns, $replacements, $text);
 
 return $text;
+}
+
+/**
+ * Enter description here...
+ *
+ */
+function checkGoodUrl($url, $text, $clean_text = true)
+{
+	$url = strip_tags($url);
+	if ($clean_text) $text = strip_tags($text);
+	
+	$good_url = file_get_contents(RCX_ROOT_PATH . '/modules/system/cache/goodurl.php');
+    
+    $rcx_parsed_url = parse_url(RCX_URL);
+    $parsed_link = parse_url($url);
+    
+    if (preg_match('/' . preg_quote($rcx_parsed_url['host']) . '/is', $url) || preg_match('/' . preg_quote($parsed_link['host']) . '/is', $good_url)) {
+    	$link_html = "<a href=\"" . $url . "\" target=\"_blank\">" . $text . "</a>";
+    } else {
+    	$link_html = "<noindex><a rel=\"nofollow\" href=\"" . RCX_URL . "/go.php?url=" . base64_encode($url) . "\" target=\"_blank\">" . $text . "</a></noindex>";
+    }
+    
+	return $link_html;
 }
 
 /**
@@ -326,7 +373,7 @@ if ($allow_html == 0) {
                 $text = $this->escapeTags($text, $this->type);
         }
 
-if ($this->clickable) {
+if ($allow_html != 0 && $this->clickable) {
         $text = $this->makeClickable($text);
 }
 
@@ -375,7 +422,7 @@ if ($allow_html == 0) {
                 $text      = $this->escapeTags($text, $this->type);
         }
 
-if ($this->clickable) {
+if ($allow_html != 0 && $this->clickable) {
         $text = $this->makeClickable($text);
 }
 
@@ -407,11 +454,7 @@ return $text;
 *  Smilies can also be used.
 */
 function makeTboxData4Show($text, $allow_smileys=0) {
-
-$this->setClickable(false);
 $text = $this->sanitizeForDisplay($text, 0, $allow_smileys, 0);
-$this->setClickable(true);
-
 return $text;
 }
 
@@ -429,11 +472,7 @@ return $text;
 *  Use makeTboxData4PreviewInForm when textbox data is to be previewed in textbox again
 */
 function makeTboxData4Preview($text, $allow_smileys=0) {
-
-$this->setClickable(false);
 $text = $this->sanitizeForPreview($text, 0, $allow_smileys, 0);
-$this->setClickable(true);
-
 return $text;
 }
 
@@ -602,7 +641,7 @@ return $text;
 *  so i made this function.
 */
 function oopsHtmlSpecialChars($text) {
-$text = htmlspecialchars($text, ENT_QUOTES);
+$text = htmlspecialchars($text, ENT_QUOTES, RCX_ENT_ENCODING);
 return $text;
 }
 

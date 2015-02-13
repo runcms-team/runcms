@@ -17,7 +17,7 @@ include_once(RCX_ROOT_PATH."/class/form/formselect.php");
 
 class RcxFormSelectUser extends RcxFormSelect {
 
-	function RcxFormSelectUSER($caption, $name, $include_anon=false, $value="", $size=1, $multiple=false) {
+	function RcxFormSelectUser($caption, $name, $include_anon=false, $value="", $size=1, $multiple=false) {
 		$this->RcxFormSelect($caption, $name, $value, $size, $multiple);
 		if ($include_anon) {
 			global $rcxConfig;

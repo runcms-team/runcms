@@ -41,7 +41,7 @@ class ESeditor
 	}
 		function CreateHtml()
 	{
-		$HtmlValue = htmlspecialchars( $this->Value ) ;
+		$HtmlValue = htmlspecialchars( $this->Value , RCX_ENT_FLAGS, RCX_ENT_ENCODING) ;
 		$Html = '<div>' ;
 				if ( $this->IsCompatible() )
 		{
