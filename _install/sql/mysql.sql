@@ -1,3 +1,25 @@
+CREATE TABLE cpsession (
+  `uid` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `uname` varchar(30) NOT NULL DEFAULT '',
+  `time` int(10) unsigned NOT NULL DEFAULT '0',
+  `ip` varchar(15) NOT NULL DEFAULT '',
+  `mid` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `hash` varchar(40) NOT NULL DEFAULT '',
+  PRIMARY KEY (`time`),
+  KEY `idx` (`uid`,`hash`)
+) ENGINE=MyISAM;
+
+CREATE TABLE login_log (
+  `id` mediumint(8) unsigned NOT NULL,
+  `uname` varchar(30) NOT NULL,
+  `uid` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `date` datetime DEFAULT '0000-00-00 00:00:00',
+  `ip` varchar(15) NOT NULL,
+  `status` enum('success','fail') NOT NULL DEFAULT 'fail',
+  `type` enum('admin','user') NOT NULL DEFAULT 'admin',
+  `reason` text NOT NULL,
+  PRIMARY KEY  (`id`),
+) ENGINE=MyISAM;
 
 CREATE TABLE comments (
   comment_id mediumint(8) unsigned NOT NULL auto_increment,
