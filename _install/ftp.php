@@ -144,7 +144,7 @@ if ((!$conn_id) || (!$login_result)) {
 		$changedok = ftp_chdir($conn_id, "/".$folder);
 		if ($changedok == FALSE) {unset($folder);}
 	}
-	$dircontent = ftp_rawlist($conn_id, './');
+	$dircontent = ftp_rawlist($conn_id, '.');
 	 
 
 	foreach ($dircontent as $row) { 

@@ -18,7 +18,7 @@ CREATE TABLE login_log (
   `status` enum('success','fail') NOT NULL DEFAULT 'fail',
   `type` enum('admin','user') NOT NULL DEFAULT 'admin',
   `reason` text NOT NULL,
-  PRIMARY KEY  (`id`),
+  PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM;
 
 CREATE TABLE comments (
