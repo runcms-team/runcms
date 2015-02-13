@@ -26,7 +26,7 @@ class RcxHtmlForm {
 		/**  wrap="virtual" is not part of any W3C HTML standard; at least 
 		**  up to 4.01, but nearly any decent browser knows it, and if 
 		**  it doesn't oh well.   It is too nice to not include here. **/
-		$buf = "<textarea wrap='virtual' name='". htmlspecialchars($name). "' id='". htmlspecialchars($name) ."' rows='". $rows ."' cols='". $cols ."' $extraArgs>$value</textarea>";
+		$buf = "<textarea wrap='virtual' name='". htmlspecialchars($name, RCX_ENT_FLAGS, RCX_ENT_ENCODING). "' id='". htmlspecialchars($name, RCX_ENT_FLAGS, RCX_ENT_ENCODING) ."' rows='". $rows ."' cols='". $cols ."' $extraArgs>$value</textarea>";
 		return $buf;
 	}
 
@@ -39,7 +39,7 @@ class RcxHtmlForm {
 	 * @returns string
 	*/
 	function input_hidden($name, $value, $extraArgs = '') {
-		$buf = "<input type='hidden' name='". htmlspecialchars($name) ."' id='". htmlspecialchars($name) ."' value='". htmlspecialchars($value) ."' $extraArgs />";
+		$buf = "<input type='hidden' name='". htmlspecialchars($name, RCX_ENT_FLAGS, RCX_ENT_ENCODING) ."' id='". htmlspecialchars($name, RCX_ENT_FLAGS, RCX_ENT_ENCODING) ."' value='". htmlspecialchars($value, RCX_ENT_FLAGS, RCX_ENT_ENCODING) ."' $extraArgs />";
 		return $buf;
 	}
 
@@ -71,7 +71,7 @@ class RcxHtmlForm {
 			$$state = TRUE;
 			$tmp = " checked='checked'";
 		}
-		$buf = "<input type='radio' name='". htmlspecialchars($name) ."' id='". htmlspecialchars($name) ."' value='". htmlspecialchars($value) ."' $tmp $extraArgs />";
+		$buf = "<input type='radio' name='". htmlspecialchars($name, RCX_ENT_FLAGS, RCX_ENT_ENCODING) ."' id='". htmlspecialchars($name, RCX_ENT_FLAGS, RCX_ENT_ENCODING) ."' value='". htmlspecialchars($value, RCX_ENT_FLAGS, RCX_ENT_ENCODING) ."' $tmp $extraArgs />";
 		unset($tmp);
 		unset($state);
 		return $buf;
@@ -93,7 +93,7 @@ class RcxHtmlForm {
 		if ( $checked == $value ) {
 			$tmp = "checked='checked'";
 		}      
-		$buf = "<input type='checkbox' name='". htmlspecialchars($name) ."' id='". htmlspecialchars($name) ."' value='". htmlspecialchars($value) ."' $tmp $extraArgs />";
+		$buf = "<input type='checkbox' name='". htmlspecialchars($name, RCX_ENT_FLAGS, RCX_ENT_ENCODING) ."' id='". htmlspecialchars($name, RCX_ENT_FLAGS, RCX_ENT_ENCODING) ."' value='". htmlspecialchars($value, RCX_ENT_FLAGS, RCX_ENT_ENCODING) ."' $tmp $extraArgs />";
 		return $buf;
 	}
 
@@ -114,7 +114,7 @@ class RcxHtmlForm {
 		if ( strlen($value) > $maxlength ) {
 			$value = substr($value, 0, $maxlength);
 		}
-		$buf = "<input type='text' name='". htmlspecialchars($name) ."' value='$value' id='". htmlspecialchars($name) ."' size='$size' maxlength='$maxlength' $extraArgs />";
+		$buf = "<input type='text' name='". htmlspecialchars($name, RCX_ENT_FLAGS, RCX_ENT_ENCODING) ."' value='$value' id='". htmlspecialchars($name, RCX_ENT_FLAGS, RCX_ENT_ENCODING) ."' size='$size' maxlength='$maxlength' $extraArgs />";
 		return $buf;
 	}
 
@@ -135,7 +135,7 @@ class RcxHtmlForm {
 		if ( strlen($value) > $maxlength ) {
 			$value = substr($value, 0, $maxlength);
 		}
-		$buf = "<input type='file' name='". htmlspecialchars($name) ."' value='". htmlspecialchars($value) ."' size='$size' maxlength='$maxlength' $extraArgs />";
+		$buf = "<input type='file' name='". htmlspecialchars($name, RCX_ENT_FLAGS, RCX_ENT_ENCODING) ."' value='". htmlspecialchars($value, RCX_ENT_FLAGS, RCX_ENT_ENCODING) ."' size='$size' maxlength='$maxlength' $extraArgs />";
 		return $buf;
 	}
 
@@ -156,7 +156,7 @@ class RcxHtmlForm {
 		if ( strlen($value) > $maxlength ) {
 			$value = substr($value, 0, $maxlength);
 		}
-		$buf = "<input type='password' name='". htmlspecialchars($name) ."' value='". htmlspecialchars($value) ."' size='$size' maxlength='$maxlength' $extraArgs />";
+		$buf = "<input type='password' name='". htmlspecialchars($name, RCX_ENT_FLAGS, RCX_ENT_ENCODING) ."' value='". htmlspecialchars($value, RCX_ENT_FLAGS, RCX_ENT_ENCODING) ."' size='$size' maxlength='$maxlength' $extraArgs />";
 		return $buf;
 	}
 
@@ -169,7 +169,7 @@ class RcxHtmlForm {
 	 * @returns string
 	 */
 	function input_submit( $value=' GO ', $name='button', $extraArgs = '') {
-		$buf = "<input type='submit' name='". htmlspecialchars($name) ."' value='". htmlspecialchars($value) ."' $extraArgs />";
+		$buf = "<input type='submit' name='". htmlspecialchars($name, RCX_ENT_FLAGS, RCX_ENT_ENCODING) ."' value='". htmlspecialchars($value, RCX_ENT_FLAGS, RCX_ENT_ENCODING) ."' $extraArgs />";
 		return $buf;
 	}
 
@@ -182,7 +182,7 @@ class RcxHtmlForm {
 	 * @returns string
 	 */
 	function input_reset($value=' CANCEL ', $extraArgs = '') {
-		$buf = "<input type='reset' value='". htmlspecialchars($value) ."' $extraArgs />";
+		$buf = "<input type='reset' value='". htmlspecialchars($value, RCX_ENT_FLAGS, RCX_ENT_ENCODING) ."' $extraArgs />";
 		return $buf;
 	}
 
@@ -217,7 +217,7 @@ class RcxHtmlForm {
 			} 
 			$multi_array = "[]";
 		}
-		$buf = "<select id='". htmlspecialchars($name)."' name='". htmlspecialchars($name).$multi_array. 
+		$buf = "<select id='". htmlspecialchars($name, RCX_ENT_FLAGS, RCX_ENT_ENCODING)."' name='". htmlspecialchars($name, RCX_ENT_FLAGS, RCX_ENT_ENCODING).$multi_array. 
              "' size='$size' $mul $extraArgs>\n";
 		while ( list($key, $val) = each($valueDescription_array) ) {
 			$selected = "";
@@ -227,7 +227,7 @@ class RcxHtmlForm {
 					break;
 				}
 			}
-			$buf .= "<option value='". htmlspecialchars($key) ."' $selected>$val</option>\n";
+			$buf .= "<option value='". htmlspecialchars($key, RCX_ENT_FLAGS, RCX_ENT_ENCODING) ."' $selected>$val</option>\n";
 			reset($selected_array);
 		}
 		unset($mul);
@@ -246,14 +246,14 @@ class RcxHtmlForm {
 	 * @returns string
 	 */
 	function input_radio_YN($name,$yes="Yes",$no="No",$checked=1,$extraArgs="") {
-		$buf = "<input type='radio' id='". htmlspecialchars($name) ."' name='" .htmlspecialchars($name). "' value='1'";
+		$buf = "<input type='radio' id='". htmlspecialchars($name, RCX_ENT_FLAGS, RCX_ENT_ENCODING) ."' name='" .htmlspecialchars($name, RCX_ENT_FLAGS, RCX_ENT_ENCODING). "' value='1'";
 		if ( $checked == 1 ) {
 			$buf .= " checked='checked'";
 		}
 		if ( $extraArgs != "" ) {
 			$buf .= " ".$extraArgs;
 		}
-		$buf .= " />&nbsp;".$yes."<input type='radio' id='". htmlspecialchars($name) ."' name='" .htmlspecialchars($name)."' value='0'";
+		$buf .= " />&nbsp;".$yes."<input type='radio' id='". htmlspecialchars($name, RCX_ENT_FLAGS, RCX_ENT_ENCODING) ."' name='" .htmlspecialchars($name)."' value='0'";
 		if ( $checked == 0 ) {
 			$buf .= " checked='checked'";
 		}
@@ -311,7 +311,7 @@ class RcxHtmlForm {
 					}
 				}
        			}
-       			$buf .= "<input type='".$type."' name='".htmlspecialchars($name).$multi_array."' id='". htmlspecialchars($name) ."' value='". htmlspecialchars($key). "'".$checked." />" .$val. "\n";
+       			$buf .= "<input type='".$type."' name='".htmlspecialchars($name, RCX_ENT_FLAGS, RCX_ENT_ENCODING).$multi_array."' id='". htmlspecialchars($name, RCX_ENT_FLAGS, RCX_ENT_ENCODING) ."' value='". htmlspecialchars($key, RCX_ENT_FLAGS, RCX_ENT_ENCODING). "'".$checked." />" .$val. "\n";
 			$count++;
 			if ( $size == $count ) {
 				$buf .= "<br />";

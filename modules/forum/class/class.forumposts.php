@@ -1052,7 +1052,11 @@ if ($poster) {
 			if($this->attachsig == 1 || $poster->attachsig() == 1)
 			{
                 $text .= "<br /><br />--<br />";
-                $text .= $myts->makeTareaData4Show($poster->getVar("user_sig", "N"), 0, 1, 1);
+                if ($rcxConfig['no_bbcode_user_sig']) {
+                    $text .= $myts->makeTboxData4Show($poster->getVar("user_sig", "N"));
+                } else {
+                	$text .= $myts->makeTareaData4Show($poster->getVar("user_sig", "N"), 0, 1, 1);
+                }
 			}
         }
         $reg_date   = _JOINED;
@@ -1088,27 +1092,13 @@ if ($poster) {
                 <td><img src="images/spacer.gif" alt="#" width="31" height="49" /></td>
                 <td width="100%">
                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                <tr>
-                <td><img src="images/spacer.gif" alt="#" width="20" height="6" /></td>
-                </tr>
-                <tr>
-                <td><img src="'.$bbPath['images_levels'].'lm_hp_bar.gif" alt="'.$level['HP'].'" title="'.$level['HP'].'" width="'.$level['HP_WIDTH'].'" height="9" /><img src="'.$bbPath['images_levels'].'lm_hp_bar_end.gif" alt="#" width="4" height="9" /></td>
-                </tr>
-                <tr>
-                <td><img src="images/spacer.gif" alt="#" width="20" height="4" /></td>
-                </tr>
-                <tr>
-                <td><img src="'.$bbPath['images_levels'].'lm_mp_bar.gif" alt="'.$level['MP'].'" title="'.$level['MP'].'" width="'.$level['MP_WIDTH'].'" height="9" /><img src="'.$bbPath['images_levels'].'lm_mp_bar_end.gif" alt="#" width="4" height="9" /></td>
-                </tr>
-                <tr>
-                <td><img src="images/spacer.gif" alt="#" width="20" height="4" /></td>
-                </tr>
-                <tr>
-                <td><img src="'.$bbPath['images_levels'].'lm_exp_bar.gif" alt="'.$level['EXP'].'" title="'.$level['EXP'].'" width="'.$level['EXP_WIDTH'].'" height="9" /><img src="'.$bbPath['images_levels'].'lm_exp_bar_end.gif" alt="#" width="4" height="9" /></td>
-                </tr>
-                <tr>
-                <td><img src="'.$bbPath['images'].'spacer.gif" alt="#" width="20" height="8" /></td>
-                </tr>
+                <tr><td><img src="images/spacer.gif" alt="#" width="20" height="6" /></td></tr>
+                <tr><td align="left"><img src="'.$bbPath['images_levels'].'lm_hp_bar.gif" alt="'.$level['HP'].'" title="'.$level['HP'].'" width="'.$level['HP_WIDTH'].'" height="9" /><img src="'.$bbPath['images_levels'].'lm_hp_bar_end.gif" alt="#" width="4" height="9" /></td></tr>
+                <tr><td><img src="images/spacer.gif" alt="#" width="20" height="4" /></td></tr>
+                <tr><td align="left"><img src="'.$bbPath['images_levels'].'lm_mp_bar.gif" alt="'.$level['MP'].'" title="'.$level['MP'].'" width="'.$level['MP_WIDTH'].'" height="9" /><img src="'.$bbPath['images_levels'].'lm_mp_bar_end.gif" alt="#" width="4" height="9" /></td></tr>
+                <tr><td><img src="images/spacer.gif" alt="#" width="20" height="4" /></td></tr>
+                <tr><td align="left"><img src="'.$bbPath['images_levels'].'lm_exp_bar.gif" alt="'.$level['EXP'].'" title="'.$level['EXP'].'" width="'.$level['EXP_WIDTH'].'" height="9" /><img src="'.$bbPath['images_levels'].'lm_exp_bar_end.gif" alt="#" width="4" height="9" /></td></tr>
+                <tr><td><img src="images/spacer.gif" alt="#" width="20" height="8" /></td></tr>
                 </table>
                 </td>
                 </tr>
@@ -1132,7 +1122,11 @@ if ($poster) {
         }
 
        if ($poster->url() != '') {
-                $www_image = "<a href='".$poster->url()."' target='_blank'><img src='".$bbImage['www']."' alt='"._VISITWEBSITE."' target='_blank' /></a>";
+                if ($rcxConfig['hide_external_links']) {
+                    $www_image = $myts->checkGoodUrl($poster->url(), "<img src='".$bbImage['www']."' alt='"._VISITWEBSITE."' target='_blank' />", false);
+                } else {
+                    $www_image = "<a href='".$poster->url()."' target='_blank'><img src='".$bbImage['www']."' alt='"._VISITWEBSITE."' target='_blank' /></a>";
+                }
         }
 
         if ( $rcxUser && ($poster->user_icq() != '') ) {

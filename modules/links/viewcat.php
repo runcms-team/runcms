@@ -42,8 +42,10 @@ if ( !isset($max) ) {
 	$max = $min + $show;
 	}
 
-if ( isset($_GET['orderby']) ) {
-	$orderby = convertorderbyin($_GET['orderby']);
+$orderby = $myts->makeTboxData4Save($_GET['orderby']);	
+	
+if ( isset($orderby) ) {
+	$orderby = convertorderbyin($orderby);
 	} else {
 		$orderby = "title ASC";
 	}

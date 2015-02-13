@@ -30,7 +30,7 @@ if ($_POST['submit']) {
 
 $term            = $_POST['term'];
 $addterms        = $_POST['addterms'];
-$forum           = $_POST['forum'];
+$forum           = intval($_POST['forum']);
 $search_username = $_POST['search_username'];
 $sortby          = $_POST['sortby'];
 $searchboth      = $_POST['searchboth'];
