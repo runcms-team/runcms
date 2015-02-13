@@ -32,7 +32,7 @@ echo "<h4 style='text-align:left;'>"._AM_BADMIN."</h4>";
 global $modules;
 $modules->setValue($mid);
 ?>
-<div align="right">
+<br /><div align="right">
 <form action='admin.php' name='blockadmin' id='blockadmin' method='post' style='position:relative;z-index:3'>
 <?php echo _AM_SHOWOMB;?>
 <?php echo $modules->render();?>
@@ -530,10 +530,27 @@ if ($op == 'preview') {
     $myblock->setVar("page_style", $sum);
   }
 
-  if ( isset($_POST['options']) && (count($_POST['options']) > 0) ) {
-    $options = implode("|", $_POST['options']);
+  if (isset($_POST['options'])) {
+    
+    $options_count = count($_POST['options']);
+    
+    if ($options_count > 0) {
+
+        // Start support multiple options
+
+        for ( $i = 0; $i < $options_count; $i++ ) {
+            if (is_array($_POST['options'][$i])) {
+                $_POST['options'][$i] = implode(',', $_POST['options'][$i]);
+            }
+        }
+
+        // End support multiple options  
+    
+        $options = implode('|', $_POST['options']);
     $myblock->setVar("options", $options);
   }
+}
+
     global $modules;
     $modules->setValue($_POST['bcmodule']);
     } else {
@@ -850,9 +867,26 @@ if (!empty($_POST['page_style'])) {
   $myblock->setVar("page_style", $sum);
 
 }
-if ( isset($options) && (count($options) > 0) ) {
+
+if (isset($options)) {
+    
+    $options_count = count($options);
+    
+    if ($options_count > 0) {
+
+        // Start support multiple options
+
+        for ( $i = 0; $i < $options_count; $i++ ) {
+            if (is_array($options[$i])) {
+                $options[$i] = implode(',', $options[$i]);
+            }
+        }
+
+        // End support multiple options
+    
   $options = implode('|', $options);
   $myblock->setVar("options", $options);
+}
 }
 
 $myblock->setVar("c_type", $bctype);
@@ -1006,10 +1040,26 @@ $myblock->setVar("position", $bposition);
 $myblock->setVar("show_template", $bshow_template);
 $myblock->setVar("show_mid", 0);
 
-if ( isset($options) && (count($options) > 0) ) {
-  $options = implode("|", $options);
+if (isset($options)) {
+    
+    $options_count = count($options);
+    
+    if ($options_count > 0) {
+
+        // Start support multiple options
+
+        for ( $i = 0; $i < $options_count; $i++ ) {
+            if (is_array($options[$i])) {
+                $options[$i] = implode(',', $options[$i]);
+            }
+        }
+
+        // End support multiple options
+    
+        $options = implode('|', $options);
   $myblock->setVar("options", $options);
   }
+}  
 
 $block = $myblock->buildBlock($myblock);
 

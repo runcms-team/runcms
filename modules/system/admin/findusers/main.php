@@ -468,6 +468,8 @@ if ( $op == "submit" ) {
     echo "</select>&nbsp;";
     if ( $group > 0 ) {
       echo "<input type='hidden' name='groupid' value='".$group."' />";
+      $rcx_token = & RcxToken::getInstance();
+      echo $rcx_token->getTokenHTML();
     }
     echo "
     <input type='submit' class='button' value='"._SUBMIT."' />
@@ -478,7 +480,13 @@ if ( $op == "submit" ) {
     if ( $totalpages > 1 ) {
       $hiddenform = "<form name='findnext' action='admin.php' method='post'><input type='hidden' name='op' value='findusers' />";
       foreach ( $_POST as $k => $v ) {
-        $hiddenform .= "<input type='hidden' name='$k' value='".$myts->oopsStripSlashesGPC($v)."' />\n";
+          if ($k == 'RCX_TOKEN_REQUEST') {
+              // regenerate token value
+              $rcx_token = & RcxToken::getInstance();
+              $hiddenform .= $rcx_token->getTokenHTML()."\n";
+          } else {
+              $hiddenform .= "<input type='hidden' name='$k' value='".$myts->oopsStripSlashesGPC($v)."' />\n";
+          }
       }
       if (!isset($_POST['limit'])) {
         $hiddenform .= "<input type='hidden' name='limit' value='".$limit."' />\n";

@@ -182,12 +182,15 @@ while ( $myrow = $db->fetch_array($result) ) {
 $nav = new RcxPageNav($admincount, 1000, $adminstart, "adminstart", "fct=groups&op=modify&g_id=".$g_id);
 echo $nav->renderNav(4);
 
+$rcx_token = & RcxToken::getInstance();
+
 ?>
 </td>
 </tr><tr>
 <td align="center">
 <input type="hidden" name="op" value="delUser" />
 <input type="hidden" name="fct" value="groups" />
+<?php echo $rcx_token->getTokenHTML();?>
 <input type="hidden" name="groupid" value="<?php echo $thisgroup->getVar("groupid");?>" />
 <input type="hidden" name="adminstart" value="<?php echo $adminstart;?>" />
 <select class="select" name="uids[]" size="10" multiple="multiple">

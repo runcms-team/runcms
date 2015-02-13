@@ -535,7 +535,7 @@ $form_buttons->addElement($submit_button);
 $form_buttons->addElement($cancel_button);
 $form->addElement($form_buttons);
 
-$form->addElement(new RcxFormHidden("name[]", htmlspecialchars($module->name())));
+$form->addElement(new RcxFormHidden("name[]", htmlspecialchars($module->name(), RCX_ENT_FLAGS, RCX_ENT_ENCODING)));
 $form->addElement(new RcxFormHidden("oldstatus[]", "1"));
 $form->addElement(new RcxFormHidden("module[]", $module->dirname()));
 $form->addElement(new RcxFormHidden("edit", "1"));

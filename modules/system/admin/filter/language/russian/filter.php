@@ -50,4 +50,7 @@ define("_AM_ENTERAGENTS","Агенты, которым будет запрещен доступ к сайту, наприме
 define("_AM_BADAGENTSSTART","^aaa\.bbb\.ccc соответствует агенту, начинающемуся на aaa.bbb.ccc");
 define("_AM_BADAGENTSEND","aaa\.bbb\.ccc$ соответствует агенту, оканчивающемуся на aaa.bbb.ccc");
 define("_AM_BADAGENTSCONTAIN","aaa\.bbb\.ccc соответствует агенту, содержащему aaa.bbb.ccc");
+
+define("_AM_GOODURL","Дружественные URL");
+define("_AM_GOODURL_DESC","Cайты-исключения (дружественные сайты) на которые не ставиться редирект при преобразовании BB-кода [url][/url] в HTML ссылку");
 ?>
