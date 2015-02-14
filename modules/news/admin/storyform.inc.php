@@ -26,7 +26,7 @@ if ( is_object($story) && is_numeric($story->uid) ) {
 <?php echo _AM_POSTER;?>: <a href="<?php echo RCX_URL;?>/userinfo.php?uid=<?php echo $uid;?>" target="_blank"><?php echo $author;?></a>
 <form action="./index.php" method="post">
 <b><?php echo _AM_TITLE;?></b><br />
-<input type="text" class="text" name="title" id="title" value="<?php echo $title;?>" size="70" maxlength="80" />
+<input type="text" class="text" name="title" id="title" value="<?php echo $title;?>" size="70" maxlength="255" />
 &nbsp;&nbsp;&nbsp;&nbsp;<b><?php echo _AM_TOPIC;?></b>&nbsp;
 <?php
 $xt = new RcxTopic($db->prefix("topics"));

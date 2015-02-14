@@ -26,7 +26,7 @@ if ($rcxUser) {
 ?>
 <br /><br />
 <b><?php echo _NW_TITLE;?></b>&nbsp;(<?php echo _NW_BECLEAR;?>)<br />
-<input type="text" class="text" name="subject" id="subject" value="<?php echo $_POST['subject'];?>" size="50" maxlength="80" />
+<input type="text" class="text" name="subject" id="subject" value="<?php echo $_POST['subject'];?>" size="50" maxlength="255" />
 &nbsp;&nbsp;&nbsp;&nbsp;<b><?php echo _NW_TOPIC;?></b>&nbsp;<?php $xt->makeTopicSelBox(0); ?>
 <br />(<?php echo _NW_BADTITLES;?>)<br />
 <?php

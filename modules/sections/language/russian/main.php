@@ -48,7 +48,7 @@ define("_MD_LAST20ART","Последние 20 статей");
 define("_MD_EDITARTID","Редактировать статью по ID:");
 define("_MD_ADDNEWSEC","Добавить новый раздел");
 define("_MD_SECNAMEC","Название раздела:");
-define("_MD_MAXCHAR","(40 знаков максимум.)");
+define("_MD_MAXCHAR","(255 знаков максимум.)");
 define("_MD_SECIMAGEC","Изображение раздела:");
 define("_MD_EXIMAGE","(Пример) Изображение (например: shot.gif) в папке:<br /><b>%s</b> или <b>полный URL</b> к изображению.");
 define("_MD_GOADDSECTION","Добавить раздел!");

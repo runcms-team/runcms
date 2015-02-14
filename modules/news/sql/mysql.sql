@@ -7,7 +7,7 @@
 CREATE TABLE stories (
   storyid mediumint(8) unsigned NOT NULL auto_increment,
   uid mediumint(8) unsigned NOT NULL default '0',
-  title varchar(60) NOT NULL default '',
+  title varchar(255) NOT NULL default '',
   created int(10) unsigned NOT NULL default '0',
   published int(10) unsigned NOT NULL default '0',
   hostname varchar(15) NOT NULL default '',
@@ -38,7 +38,7 @@ CREATE TABLE topics (
   topic_id mediumint(8) unsigned NOT NULL auto_increment,
   topic_pid mediumint(8) unsigned NOT NULL default '0',
   topic_imgurl varchar(255) NOT NULL default '',
-  topic_title varchar(60) NOT NULL default '',
+  topic_title varchar(255) NOT NULL default '',
   PRIMARY KEY  (topic_id),
   KEY idx (topic_pid)
 ) ENGINE=MyISAM;

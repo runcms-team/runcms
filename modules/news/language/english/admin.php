@@ -37,7 +37,7 @@ define("_AM_PUBINHOME","Publish in Home?");
 define("_AM_CATEGORY","Category");
 define("_AM_ADDMTOPIC","Add a MAIN Topic");
 define("_AM_TOPICNAME","Topic Name");
-define("_AM_MAX40CHAR","(max: 40 characters)");
+define("_AM_MAX40CHAR","(max: 255 characters)");
 define("_AM_TOPICIMG","Topic Image");
 define("_AM_IMGLOCATION","(Optional) Is a valid image (ex. topic.gif) under:<br /><b>%s</b> or the <b>full URL</b> to the image.");
 define("_AM_RELLINKCAT","Related Links Category: ");

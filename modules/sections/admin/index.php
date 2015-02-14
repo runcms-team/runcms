@@ -228,7 +228,7 @@ echo $sectionAccess->listGroups();
 echo "
 <br /><br />
 <b>"._MD_SECNAMEC."</b>  "._MD_MAXCHAR."<br />
-<input type='text' class='text' name='secname' size='35' maxlength='60' /><br /><br />
+<input type='text' class='text' name='secname' size='35' maxlength='255' /><br /><br />
 <b>"._MD_SECIMAGEC."</b><br />
 <input type='text' class='text' name='image' size='35' maxlength='255' /> :: <input type='file' class='file' name='image1' /><br />".sprintf(_MD_EXIMAGE, "modules/".$rcxModule->dirname()."/cache/images/")."
 <br /><br />
@@ -308,7 +308,7 @@ if ($preview) {
   {
     $myts->setType('admin');
     $contents_ed = $myts->makeTareaData4Preview($content,  $allow_html, $allow_smileys, $allow_bbcode);
-    $content    = $runESeditor->Value = $contents_ed;
+    $content    = $contents_ed;
   }else{
   $content  = $myts->makeTboxData4PreviewInForm($content);
   }
@@ -335,7 +335,7 @@ if ($editorConfig["displayeditor"] == 1)
   {
     $myts->setType('admin');
     $contents_ed = $myts->makeTareaData4Preview($content,  $allow_html, $allow_smileys, $allow_bbcode);
-    $content    = $runESeditor->Value = $contents_ed;
+    $content    = $contents_ed;
   }else{
   $content = $myts->makeTboxData4Edit($content);
 }
@@ -549,7 +549,7 @@ echo $access->listGroups();
 echo "
 <br /><br />
 <b>"._MD_SECNAMEC."</b> "._MD_MAXCHAR."<br />
-<input type='text' class='text' name='secname' size='35' maxlength='60' value='$secname' />
+<input type='text' class='text' name='secname' size='35' maxlength='255' value='$secname' />
 <br /><br />
 <b>"._MD_SECIMAGEC."</b><br />
 <input type='text' class='text' name='image' size='35' maxlength='255' value='$image' /> :: <input type='file' class='file' name='image1' /><br />".sprintf(_MD_EXIMAGE, "modules/sections/cache/images/")."

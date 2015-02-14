@@ -20,7 +20,7 @@ define("_MD_LAST20ART","Last 20 Articles");
 define("_MD_EDITARTID","Edit Article ID:");
 define("_MD_ADDNEWSEC","Add a New Section");
 define("_MD_SECNAMEC","Section Name:");
-define("_MD_MAXCHAR","(40 characters Max.)");
+define("_MD_MAXCHAR","(255 characters Max.)");
 define("_MD_SECIMAGEC","Section Image:");
 define("_MD_EXIMAGE","(Optional) Is a valid image (ex. shot.gif) under:<br /><b>%s</b> or the <b>full URL</b> to the image.");
 define("_MD_GOADDSECTION","Add Section!");

@@ -162,7 +162,7 @@ function topicsmanager()
       <br />
       <b>"._AM_TOPICNAME."</b> "._AM_MAX40CHAR."
       <br />
-      <input type='text' class='text' name='topic_title' size='20' maxlength='20' />
+      <input type='text' class='text' name='topic_title' size='20' maxlength='255' />
       <br />
       <br />
       <input type='hidden' name='topic_pid' value='0' />
@@ -182,7 +182,7 @@ function topicsmanager()
       <br />
       <b>"._AM_TOPICNAME."</b> "._AM_MAX40CHAR."
       <br />
-      <input type='text' class='text' name='topic_title' size='20' maxlength='40' /> &nbsp;"._AM_IN." &nbsp;";
+      <input type='text' class='text' name='topic_title' size='20' maxlength='255' /> &nbsp;"._AM_IN." &nbsp;";
     $xt->makeTopicSelBox(0, 0, 'topic_pid');
     echo "
       <br />
@@ -237,7 +237,7 @@ function modTopic()
     <form action="index.php" method="post" enctype="multipart/form-data">
       <b><?php echo _AM_TOPICNAME;?></b> <?php echo _AM_MAX40CHAR;?>
       <br />
-      <input type="text" class="text" name="topic_title" size="30" maxlength="40" value="<?php echo $xt->topic_title();?>" />
+      <input type="text" class="text" name="topic_title" size="30" maxlength="255" value="<?php echo $xt->topic_title();?>" />
       <br />
       <br />
       <b><?php echo _AM_TOPICIMG;?></b>

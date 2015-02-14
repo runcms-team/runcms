@@ -65,7 +65,7 @@ define("_AM_PUBINHOME","Опубликовать на заглавной странице?");
 define("_AM_CATEGORY","Категория");
 define("_AM_ADDMTOPIC","Добавить основной раздел");
 define("_AM_TOPICNAME","Название раздела");
-define("_AM_MAX40CHAR","(максимум: 40 символов)");
+define("_AM_MAX40CHAR","(максимум: 255 символов)");
 define("_AM_TOPICIMG","Рисунок раздела");
 define("_AM_IMGLOCATION","Или уже существующее изображение (например topic.gif) в папке:<br /><b>%s</b> или <b>полный URL</b> к рисунку.");
 define("_AM_RELLINKCAT","Категория родственных ссылок: ");
