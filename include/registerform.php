@@ -39,7 +39,7 @@ $email_option->addOption(1, _US_ALLOWVIEWEMAIL);
 $email_tray->addElement($email_text);
 $email_tray->addElement($email_option);
 $url_text = new RcxFormText(_US_WEBSITE, "url", 26, 255, $url);
-$selected = ($timezone_offset != "") ? $timezone_offset : $rcxConfig['default_TZ'];
+$selected = ($timezone_offset != "") ? (float)$timezone_offset : $rcxConfig['default_TZ'];
 $timezone_select = new RcxFormSelectTimezone(_US_TIMEZONE, "timezone_offset", $selected);
 $lang_select     = new RcxFormSelectLang(_US_LNG, "language", $rcxConfig['language']);
 $avatar_select   = new RcxFormSelect("", "user_avatar", $user_avatar);

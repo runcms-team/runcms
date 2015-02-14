@@ -325,7 +325,7 @@ $usecookie = $_POST['usecookie'];
         }
 
         $edituser->setVar('attachsig', $attachsig);
-        $edituser->setVar('timezone_offset', $timezone_offset);
+        $edituser->setVar('timezone_offset', (float)$timezone_offset);
 
         if (!empty($theme) && $rcxConfig['allow_theme'] == 1) {
           $edituser->setVar('theme', $theme);
