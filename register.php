@@ -44,7 +44,7 @@ if ( !checkEmail($email) ) {
   $stop .= _US_INVALIDMAIL."<br />";
 }
 
-if ( strrpos($uname,' ') > 0 ) {
+if ( strrpos($email,' ') > 0 ) {
   $stop .= _US_EMAILNOSPACES."<br />";
 }
 
