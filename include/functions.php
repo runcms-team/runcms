@@ -20,16 +20,62 @@ if (!defined("ERCX_FUNCTIONS_INCLUDED")) {
 function rcx_header($closehead=true) {
 global $db, $meta, $rcxUser, $rcxConfig;
 
+$http_cached = 0;
+
 if ( !headers_sent() ) {
-  if ( !empty($meta['p3p']) ) {
-    header("P3P: CP='".$meta['p3p']."'");
-  }
-  if ( $rcxUser || ($meta['pragma'] == 1) ) {
-    header('Expires: Sat, 18 Aug 2002 05:30:00 GMT');
-    header('Last-Modified: '.gmdate('D, d M Y H:i:s').' GMT');
-    header('Cache-Control: no-store, no-cache, max-age=1, s-maxage=1, must-revalidate, post-check=0, pre-check=0');
-  }
+    
+    header('Content-Type: text/html; charset='._CHARSET);
+    header('Content-language: ' . _LANGCODE );
+    
+    if ( !empty($meta['p3p']) ) {
+        header("P3P: CP='".$meta['p3p']."'");
+    }
+    
+    if (!empty($rcxConfig['x_frame_options'])) {
+        header("X-Frame-Options: SAMEORIGIN");
+    }
+
+    if (!empty($rcxConfig['x_xss_protection'])) {
+        header("X-XSS-Protection: 1; mode=block");
+    }
+
+    if (!empty($rcxConfig['x_content_typ_options_nosniff'])) {
+        header("X-Content-Type-Options: nosniff");
+    }    
+    
+    if ($rcxConfig['use_http_caching'] == 1 && !empty($rcxConfig['http_cache_time']) && !empty($rcxConfig['http_caching_user_agent']) && isset($_SERVER["HTTP_USER_AGENT"]) && preg_match("/" . $rcxConfig['http_caching_user_agent'] . "/i", $_SERVER["HTTP_USER_AGENT"])){
+        
+        $ctime = $rcxConfig['http_cache_time'] * 60;
+        
+        if (isset($_SERVER["HTTP_IF_MODIFIED_SINCE"])) {
+            
+            list($since) = explode(';', $_SERVER['HTTP_IF_MODIFIED_SINCE'], 2); // IE fix
+            $since = substr($since, 5); // To avoid potential ambiguity
+            
+            if (strtotime($since) >=  (time() - $ctime)){
+                ob_end_clean();
+                header("HTTP/1.1 304 Not Modified");
+                header("Content-Encoding: identity");
+                exit();
+            } else {
+                header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
+                header("Expires: ".gmdate("D, d M Y H:i:s", time() + $ctime)." GMT");
+                $http_cached = 1;
+            }
+        } else {
+            header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
+            header("Expires: ".gmdate("D, d M Y H:i:s", time() + $ctime)." GMT");
+            $http_cached = 1;
+        }
+
+    } elseif ( $rcxUser || ($meta['pragma'] == 1) ) {
+        header('Expires: Sat, 18 Aug 2002 05:30:00 GMT');
+        header('Last-Modified: '.gmdate('D, d M Y H:i:s').' GMT');
+        header('Pragma: no-cache');
+        header('Cache-Control: no-store, no-cache, max-age=1, s-maxage=1, must-revalidate, post-check=0, pre-check=0');
+    }
 }
+
 
 // We only generate keywords if in debug mode, or if it's really a search engine.
 if ($meta['extractor']) {
@@ -40,18 +86,6 @@ if ($meta['extractor']) {
     }
 }
 
-if (!empty($rcxConfig['x_frame_options'])) {
-    header("X-Frame-Options: SAMEORIGIN");
-}
-
-if (!empty($rcxConfig['x_xss_protection'])) {
-    header("X-XSS-Protection: 1; mode=block");
-}
-
-if (!empty($rcxConfig['x_content_typ_options_nosniff'])) {
-    header("X-Content-Type-Options: nosniff");
-}
-
 ?>
 <?php echo "<?xml version=\"1.0\" encoding=\""._CHARSET."\"?>\n";?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -60,6 +94,10 @@ if (!empty($rcxConfig['x_content_typ_options_nosniff'])) {
 <title><?php echo $meta['title'];?></title>
 <meta http-equiv="content-type" content="text/html; charset=<?php echo _CHARSET;?>" />
 <meta http-equiv="content-language" content="<?php echo _LANGCODE;?>" />
+<?php if ($meta['pragma'] == 1 && empty($http_cached)) { ?>
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="expires" content="0" />
+<?php } ?>
 <meta name="rating" content="<?php echo $meta['rating'];?>" />
 <meta name="robots" content="<?php echo $meta['index'];?>, <?php echo $meta['follow'];?>" />
 <meta name="generator" content="<?php echo RCX_VERSION;?>" />

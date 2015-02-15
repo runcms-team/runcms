@@ -80,17 +80,17 @@ class RcxUserSession {
 * @return type description
 */
 function store() {
-global $db, $rcxModule, $rcxConfig;
+global $db, $rcxModule, $rcxConfig, $myts;
 
 $mid_sql = '';
 if ($rcxModule)
    $mid_sql = " mid=$rcxModule->mid,";
 
-$db->query("DELETE FROM ".RC_SESS_TBL." WHERE uid=".$this->uid);
+$db->query("DELETE FROM ".RC_SESS_TBL." WHERE uid=".(int) $this->uid);
 
 $this->hash = $this->getHash();
 
-  if ($db->query("INSERT INTO ".RC_SESS_TBL." SET uid=".$this->uid.", uname='".$this->uname."', time=".time().", ip='"._REMOTE_ADDR."',".$mid_sql." hash='".$this->hash."'"))
+  if ($db->query("INSERT INTO ".RC_SESS_TBL." SET uid=".(int) $this->uid.", uname='".$myts->makeTboxData4Save($this->uname)."', time=".time().", ip='"._REMOTE_ADDR."',".$mid_sql." hash='".$this->hash."'"))
   {
     $this->setCook();
     return true;
@@ -155,7 +155,7 @@ function uid() {
 * @return type description
 */
 function isValid() {
-global $db;
+global $db, $myts;
 
   $this->sessionID = stripslashes($this->sessionID);
   // Fix a security hole in PHP 4.3.9 and below...
@@ -167,6 +167,9 @@ global $db;
   else
     return false;
 
+  
+$uhash = $myts->oopsAddSlashesGPC($uhash);
+        
 $mintime = (time()-$this->expiretime);
 $db->query("DELETE FROM ".RC_SESS_TBL." WHERE time<$mintime");
 
@@ -203,7 +206,7 @@ global $db, $rcxConfig, $rcxModule;
   if ($rcxModule)
     $mid_sql = ", mid=$rcxModule->mid";
 
-  if ($db->query("UPDATE ".RC_SESS_TBL." SET time=".time()."$mid_sql WHERE uid=".$this->uid))
+  if ($db->query("UPDATE ".RC_SESS_TBL." SET time=".time()."$mid_sql WHERE uid=".(int) $this->uid))
   {
     $this->setCook();
     return true;

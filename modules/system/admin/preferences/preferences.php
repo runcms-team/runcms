@@ -165,7 +165,6 @@ if ( $rcxUser->isAdmin($rcxModule->mid()) ) {
         $form->addElement($loading_radio);
         $form->addElement($banner_radio);
         $form->addElement($debug_radio);
-        $form->addElement($cache_text);
         
         $charset_arr = array('big5' => 'big5',
             'dec8' => 'dec8',
@@ -210,6 +209,14 @@ if ( $rcxUser->isAdmin($rcxModule->mid()) ) {
         $bd_charset_name = new RcxFormSelect(_MD_AM_BD_CHARSET_NAME, "bd_charset_name", $rcxConfig['bd_charset_name']);
         $bd_charset_name->addOptionArray($charset_arr);
         $form->addElement($bd_charset_name);
+        
+        /** FormHeadingRow **/
+        $form->addElement(new FormHeadingRow(_MD_AM_CACHE_SETTINGS, 'center', 'bg4'));
+        
+        $form->addElement($cache_text);
+        $form->addElement(new RcxFormRadioYN(_MD_AM_USE_HTTP_CACHING, "use_http_caching", $rcxConfig['use_http_caching'], _YES, _NO));
+        $form->addElement(new RcxFormText(_MD_AM_HTTP_CACHING_USER_AGENT, "http_caching_user_agent", 50, 100, $rcxConfig['http_caching_user_agent']));
+        $form->addElement(new RcxFormText(_MD_AM_HTTP_CACHE_TIME, "http_cache_time", 7, 7, $rcxConfig['http_cache_time']));
         
 
         /** FormHeadingRow **/
@@ -387,7 +394,10 @@ function save_pref(
     $x_xss_protection,
     $x_content_typ_options_nosniff,
     $bd_set_names,
-    $bd_charset_name ) {
+    $bd_charset_name,
+    $use_http_caching,
+    $http_caching_user_agent,
+    $http_cache_time ) {
     global $rcxConfig, $myts;
 
     $error = "";
@@ -659,6 +669,15 @@ $config = "<"."?php
     
 // "._MD_AM_BD_CHARSET_NAME."
 \$rcxConfig['bd_charset_name'] = \"".$myts->makeTboxData4PreviewInForm($bd_charset_name)."\";
+    
+// "._MD_AM_USE_HTTP_CACHING." (1="._YES." 0="._NO.")
+\$rcxConfig['use_http_caching'] = ".intval($use_http_caching).";
+    
+// "._MD_AM_HTTP_CACHE_TIME."
+\$rcxConfig['http_cache_time'] = \"".intval($http_cache_time)."\";
+    
+// "._MD_AM_HTTP_CACHING_USER_AGENT."
+\$rcxConfig['http_caching_user_agent'] = \"".  trim(str_replace('"', "", $myts->oopsStripSlashesGPC(strip_tags($http_caching_user_agent))))."\";
 
 ?".">";
     $file = fopen(RCX_ROOT_PATH."/modules/system/cache/config.php", "w");

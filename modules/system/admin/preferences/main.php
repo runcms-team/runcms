@@ -122,7 +122,10 @@ case "save":
     $x_xss_protection,
     $x_content_typ_options_nosniff,
     $bd_set_names,
-    $bd_charset_name );
+    $bd_charset_name,
+    $use_http_caching,
+    $http_caching_user_agent,
+    $http_cache_time );
     break;
 
 default:

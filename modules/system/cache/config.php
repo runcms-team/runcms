@@ -136,7 +136,7 @@ $rcxConfig['banners'] = 1;
 // Уровень отладки: многоуровневый режим.
 $rcxConfig['debug_mode'] = 1;
 
-// Время кеширования страниц, мин.
+// Время HTML кэширования страниц, мин.
 $rcxConfig['cache_time'] = 0;
 
 // Способ отображения комментариев по умолчанию (0=Нет комментариев flat=В виде ленты thread=В виде дерева)
@@ -211,10 +211,19 @@ $rcxConfig['no_smile'] = 0;
 // Отключить BB-код в подписи пользователя (1=Да 0=Нет)
 $rcxConfig['no_bbcode_user_sig'] = 0;
     
-// Установить свою кодировку соединения с базой данных<br /><br /><span style='font-size:x-small;font-weight:normal;'>Например, если страницы сайта некорректно отображаются.</span> (1=Да 0=Нет)
+// Установить свою кодировку соединения с сервером базы данных<br /><br /><span style='font-size:x-small;font-weight:normal;'>Например, если страницы сайта некорректно отображаются ("крякозябры", знаки вопроса вместо символов и т.д.).</span> (1=Да 0=Нет)
 $rcxConfig['bd_set_names'] = 0;
     
-// Кодировка для соединения с базой данных
+// Кодировка для соединения с сервером базы данных
 $rcxConfig['bd_charset_name'] = "cp1251";
+    
+// Включить HTTP кэширование (1=Да 0=Нет)
+$rcxConfig['use_http_caching'] = 0;
+    
+// Время HTTP кеширования страниц, мин.
+$rcxConfig['http_cache_time'] = "10080";
+    
+// USER AGENTS для которых включено HTTP кэширование<br /><br /><span style='font-size:x-small;font-weight:normal;'>Используйте регулярные выражения и не забывайте экранировать служебные символы, иначе это может привести к ошибке<br /><br />В частности не забывайте экренировать точку, должно быть: <b>\.</b></span>
+$rcxConfig['http_caching_user_agent'] = "Yandex|Googlebot|Yahoo|msnbot|StackRambler|WebAlta Crawler|aport|Mail\.Ru";
 
 ?>

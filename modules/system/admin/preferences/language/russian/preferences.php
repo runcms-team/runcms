@@ -88,7 +88,7 @@ define("_MD_AM_DBGINFO","Инфо");
 define("_MD_AM_DBGLOG","Инфо & Лог");
 define("_MD_AM_DBGVIS","Визуальные данные");
 
-define("_MD_AM_CACHETIME","Время кеширования страниц, мин.");
+define("_MD_AM_CACHETIME","Время HTML кэширования страниц, мин.");
 define("_MD_AM_INVLDMAILFUNC","Внимание, %s() не существует!");
 define("_MD_AM_AVATARALLOW","Разрешить загрузку своих аватаров?");
 define("_MD_AM_AVATARW","Ширина аватара");
@@ -162,5 +162,11 @@ define("_MD_AM_X_CONTENT_TYP_OPTIONS_NOSNIFF", "Отключить MIME сниффинг в браузе
 
 define("_MD_AM_BD_SET_NAMES", "Установить свою кодировку соединения с сервером базы данных<br /><br /><span style='font-size:x-small;font-weight:normal;'>Например, если страницы сайта некорректно отображаются (\"крякозябры\", знаки вопроса вместо символов и т.д.).</span>");
 define("_MD_AM_BD_CHARSET_NAME", "Кодировка для соединения с сервером базы данных");
+
+
+define("_MD_AM_CACHE_SETTINGS", "Настройки кэширования");
+define("_MD_AM_USE_HTTP_CACHING", "Включить HTTP кэширование<br /><br /><span style='font-size:x-small;font-weight:normal;'>Использование HTTP заголовка If-Modified-Since</span>");
+define("_MD_AM_HTTP_CACHING_USER_AGENT", "USER AGENT для которых включено HTTP кэширование<br /><br /><span style='font-size:x-small;font-weight:normal;'>Используйте регулярные выражения и не забывайте экранировать служебные символы, иначе это может привести к ошибке<br /><br />В частности не забывайте экренировать точку, должно быть: <b>\.</b></span>");
+define("_MD_AM_HTTP_CACHE_TIME", "Время HTTP кеширования страниц, мин.");
 
 ?>
