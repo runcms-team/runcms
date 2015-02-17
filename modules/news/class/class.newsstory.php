@@ -123,12 +123,25 @@ return $ret;
 * @param type $var description
 * @return type description
 */
-function countByTopic($topicid=0) {
+function countByTopic($topicid=0, $published = true) {
 global $db;
+
 $sql = "SELECT COUNT(*) FROM ".$db->prefix("stories")."";
-if ( $topicid != 0 ) {
-	$sql .= " WHERE topicid=".intval($topicid);
+
+$sql_where = array();
+
+if ( $published == true ) {
+    $sql_where[] = "published>0";
 }
+
+if ( $topicid != 0 ) {
+    $sql_where[] = "topicid=".intval($topicid);
+}
+
+if (!empty($sql_where)) {
+    $sql .= " WHERE ". implode(' AND ', $sql_where);
+}
+
 $result = $db->query($sql);
 list($count) = $db->fetch_row($result);
 return $count;
