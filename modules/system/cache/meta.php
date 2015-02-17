@@ -1,9 +1,9 @@
 <?php
 $meta['title'] = "My Runcms Site";
-$meta['author'] = "Farsus Design";
-$meta['copyright'] = "© 2009 www.farsus.dk";
+$meta['author'] = "Runcms Team";
+$meta['copyright'] = "© 2002-2015 Runcms Team";
 $meta['slogan'] = "Simplicity and ease of use";
-$meta['keywords'] = "runcms,scarpox,e-xoops";
+$meta['keywords'] = "runcms,e-xoops";
 $meta['rating'] = "general";
 $meta['p3p'] = "";
 $meta['index'] = "index";
