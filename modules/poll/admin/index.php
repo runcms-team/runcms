@@ -469,7 +469,7 @@ if ( $op == "log" ) {
   $orderby = (!empty($_GET['orderby'])) ? $_GET['orderby'] : "time";
   $orderdir = (!empty($_GET['orderdir'])) ? $_GET['orderdir'] : "ASC";
 
-  $poll =& new RcxPoll($poll_id);
+  $poll = new RcxPoll($poll_id);
 
   rcx_cp_header();
   echo "<h4 style='text-align:left;'>"._AM_LOGSLIST."</h4>";
