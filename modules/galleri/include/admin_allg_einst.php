@@ -24,6 +24,9 @@
                 $upd_conf->setVar("parm2",$_POST['coment_anon']);
                 $upd_conf->setVar("parm3",$_POST['img_back']);
                 $upd_conf->store();
+                $upd_conf = new GalliConf(2);
+                $upd_conf->setVar("parm17",$_POST['anon_votum']);
+                $upd_conf->store();                
                 redirect_header("index.php?op=allg_einst",1,_AD_MA_DBUPDATED);
           break;
     
@@ -45,6 +48,8 @@
                 $form->addElement($mailmusik_radio);*/
                 $votum_radio = new RcxFormRadioYN(_AD_MA_VOTUM, "votum", $galerieConfig['votum'], _AD_MA_YES, _AD_MA_NO);
                 $form->addElement($votum_radio);
+                $anon_votum_radio = new RcxFormRadioYN(_AD_MA_ANON_VOTUM, "anon_votum", $galerieConfig['anon_votum'], _AD_MA_YES, _AD_MA_NO);
+                $form->addElement($anon_votum_radio);
                 $coment_radio = new RcxFormRadioYN(_AD_MA_COMENT, "coment", $galerieConfig['coment'], _AD_MA_YES, _AD_MA_NO);
                 $form->addElement($coment_radio);
                 $coment_anon_radio = new RcxFormRadioYN(_AD_MA_COMENT_ANON, "coment_anon", $galerieConfig['coment_anon'], _AD_MA_YES, _AD_MA_NO);

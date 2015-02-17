@@ -56,6 +56,8 @@ if ( !defined('GALLI_ACCESS') ) {?>  <script>history.go(-1);</script> <?php }
       $galerieConfig['imgcat_sort'] = $parm_conf->parm15();
         $galerieConfig['temp_haupt_width'] = $parm_conf->parm16();
         $galerieConfig['old_Vers'] = $parm_conf->parm19();
+        
+        $galerieConfig['anon_votum'] = intval($parm_conf->parm17());
       
       $parm_conf = new GalliConf(3);
       $galerieConfig['user_autoupload'] = intval($parm_conf->parm1());

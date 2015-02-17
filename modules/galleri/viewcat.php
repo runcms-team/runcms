@@ -145,17 +145,17 @@ if ($id > 0)
    echo "</td></tr></table>";
    echo "</center>";
 
-   if ($galerieConfig['votum'] == 1 || $galerieConfig['link_yn'] == 1)
+   if ((($rcxUser && $galerieConfig['votum'] == 1) || $galerieConfig['anon_votum'] == 1) || $galerieConfig['link_yn'] == 1)
    {
       echo "<br><table width='80%' border='0' cellspacing='0' cellpadding='2' align='center' class='bg2'>";
       echo "<tr><td bgcolor='#".$galerieConfig['tb_view2_bgcol']."' align='center'>";
 
-      if ($galerieConfig['votum'] == 1)
+      if (($rcxUser && $galerieConfig['votum'] == 1) || $galerieConfig['anon_votum'] == 1)
       {
          echo "<a href='rateimg.php?id=".$img_Dat->id()."&image=".$image."&cid=".$cid."&min=".$prev."&orderby=".$orderby."&show=".$show."'>"._MD_VOTE."</a>";
       }
 
-      if ($galerieConfig['votum'] == 1 && $galerieConfig['link_yn'] == 1)
+      if ((($rcxUser && $galerieConfig['votum'] == 1) || $galerieConfig['anon_votum'] == 1) && $galerieConfig['link_yn'] == 1)
       {
          echo "&nbsp;&nbsp;|&nbsp;&nbsp;";
       }
@@ -224,7 +224,7 @@ if ($id > 0)
       echo "<tr><td align='right'><b>"._ECARDTRANS.":</b></td><td><a href='carte.php?id=".$img_Dat->id()."'><img src='images/friend.gif' border='0' alt='"._ECARDTRANS."'></a></td></tr>";
    }*/
 
-   if ($galerieConfig['votum'] == 1)
+   if (($rcxUser && $galerieConfig['votum'] == 1) || $galerieConfig['anon_votum'] == 1)
    {
       echo "<tr><td align='right'><b>"._CLICS.":</b></td><td>".$img_Dat->clic()."</td></tr>";
       echo "<tr><td align='right'><b>"._RATING.":</b></td><td>".$img_Dat->rating()."&nbsp;&nbsp;( ".$img_Dat->vote()." ";

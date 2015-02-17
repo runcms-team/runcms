@@ -8,6 +8,13 @@
 *
 */
     include("header.php");
+    
+    if (($rcxUser && $galerieConfig['votum'] == 0) || (!$rcxUser && $galerieConfig['anon_votum'] == 0)) {
+        redirect_header("index.php", 2, _NOPERM);
+        include(RCX_ROOT_PATH."/footer.php");
+        exit();
+    }    
+    
     include_once(RCX_ROOT_PATH."/class/module.textsanitizer.php");
     $myts = new MyTextSanitizer; 
     include_once(GALLI_PATH."/include/user.errorhandler.php");
