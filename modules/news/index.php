@@ -8,6 +8,19 @@
 *
 */
 include_once('header.php');
+
+if (!empty($_GET['storytopic'])) {
+    $sql = "SELECT COUNT(*) FROM " . $db->prefix("topics") . " WHERE topic_id=" . intval($_GET['storytopic']);
+
+    $result = $db->query($sql);
+
+    list($count) = $db->fetch_row($result);
+
+    if ( !$count ) {
+        rcx_404_error();
+    }
+}
+
   if ($rcxConfig['startpage'] == "news")
   {
     $rcxOption['show_rblock'] = 1;

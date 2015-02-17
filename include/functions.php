@@ -1154,5 +1154,48 @@ function rcx_check_bruteforce_login()
 
 }
 
+/**
+ * Enter description here...
+ *
+ * @param unknown_type $type
+ * @return unknown
+ */
+function rcx_404_error()
+{
+    global $meta, $rcxOption;
+
+    ob_end_clean();
+
+    header("Content-Encoding: identity");
+
+    if (strncasecmp(PHP_SAPI, 'cgi', 3)) { 
+        header("HTTP/1.1 404 Not Found");
+    } else { 
+        header("Status: 404 Not Found");
+    }
+    
+    $meta['title'] = _404_PAGE_TITLE;
+
+    include (RCX_ROOT_PATH . '/header.php');
+
+    $rcxOption['show_rblock'] = 1;
+
+    OpenTable();
+
+    echo '<div class="error">';
+
+    echo '<h4>' . _404_PAGE_H1 . '</h4>';
+
+    echo '<p>' . _404_PAGE_DESCRIPTION . '</p>';
+
+    echo '</div>';
+
+    CloseTable();
+
+    include (RCX_ROOT_PATH . '/footer.php');    
+    
+    exit();
+}
+
 }
 ?>

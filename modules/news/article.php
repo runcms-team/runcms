@@ -18,8 +18,7 @@ $storyid = (!empty($storyid)) ? intval($storyid) : 0;
 
 if (empty($storyid) && empty($item_id))
 {
-  redirect_header("index.php", 2, _NW_NOSTORY);
-  exit();
+  rcx_404_error();
 }
 
 
@@ -66,8 +65,7 @@ $artcomment->setVar("item_id", $item_id);
 if ( $artcomment->getVar("pid") == 0 ) {
   $story = new NewsStory($item_id);
   if ( $story->published() == 0 || $story->published() > time() ) {
-    redirect_header("index.php", 2, _NW_NOSTORY);
-    exit();
+    rcx_404_error();
   }
   include_once(RCX_ROOT_PATH."/header.php");
   $datetime  = formatTimestamp($story->published());
