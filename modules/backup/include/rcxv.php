@@ -20,6 +20,7 @@ $modversion['dirname'] = "backup";
 // Admin things
 $modversion['hasAdmin'] = 1;
 $modversion['adminindex'] = "admin/index.php";
+$modversion['adminmenu']  = 'admin/menu.php';
 
 // Menu
 $modversion['hasMain'] = 0;

@@ -34,6 +34,7 @@ $modversion['tables'][4] = 'links_votedata';
 // Admin
 $modversion['hasAdmin']   = 1;
 $modversion['adminindex'] = 'admin/index.php';
+$modversion['adminmenu']  = 'admin/menu.php';
 
 
 // Blocks

@@ -28,6 +28,7 @@ $modversion['tables'][0] = 'partners';
 // Admin
 $modversion['hasAdmin']   = 1;
 $modversion['adminindex'] = 'admin/index.php';
+$modversion['adminmenu']  = 'admin/menu.php';
 
 // Blocks
 $modversion['blocks'][1]['file']        = 'partners.php';

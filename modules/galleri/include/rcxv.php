@@ -30,6 +30,7 @@ $modversion['tables'][7] = "galli_comments";
 
 $modversion['hasAdmin'] = 1;
 $modversion['adminindex'] = "admin/index.php";
+$modversion['adminmenu']  = 'admin/menu.php';
 
 $modversion['blocks'][1]['file'] = "block.php";
 $modversion['blocks'][1]['name'] = "Billeder";

@@ -36,6 +36,7 @@ $modversion['blocks'][1]['options']     = '0|19|5';
 // Admin
 $modversion['hasAdmin']   = 1;
 $modversion['adminindex'] = 'admin/index.php';
+$modversion['adminmenu']  = 'admin/menu.php';
 
 // Main contents
 $modversion['hasMain'] = 1;

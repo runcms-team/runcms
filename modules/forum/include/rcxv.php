@@ -41,6 +41,7 @@ $modversion['tables'][12] = 'forum_attachments';
 // Admin
 $modversion['hasAdmin']   = 1;
 $modversion['adminindex'] = 'admin/index.php';
+$modversion['adminmenu']  = 'admin/menu.php';
 
 // Menu
 $modversion['hasMain'] = 1;
