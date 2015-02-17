@@ -24,7 +24,6 @@ include_once("../class/core.php");
 * @return type description
 */
 function init_wiz() {
-global $_COOKIE, $_POST, $_GET, $_SERVER, $_ENV;
 
   define('RCX_ENT_ENCODING', 'ISO-8859-1'); // Encoding htmlspecialchars() and htmlentities() in PHP 5.4
   
@@ -125,6 +124,12 @@ if ( @file_exists("../language/".$lang."/user.php") ) {
 * @return type description
 */
 function wiz_header($title=_INSTALL_G_TITLE) {
+    
+if ( !headers_sent() ) {
+    header('Content-Type: text/html; charset='._CHARSET);
+    header('Content-language: ' . _LANGCODE );
+}
+    
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
