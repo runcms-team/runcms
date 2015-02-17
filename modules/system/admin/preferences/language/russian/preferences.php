@@ -169,4 +169,6 @@ define("_MD_AM_USE_HTTP_CACHING", "Включить HTTP кэширование<br /><br /><span st
 define("_MD_AM_HTTP_CACHING_USER_AGENT", "USER AGENT для которых включено HTTP кэширование<br /><br /><span style='font-size:x-small;font-weight:normal;'>Используйте регулярные выражения и не забывайте экранировать служебные символы, иначе это может привести к ошибке<br /><br />В частности не забывайте экренировать точку, должно быть: <b>\.</b></span>");
 define("_MD_AM_HTTP_CACHE_TIME", "Время HTTP кеширования страниц, мин.");
 
+define("_MD_AM_NO_REDIRECT", "Отключить редирект с главной страницы");
+
 ?>

@@ -92,6 +92,9 @@ if ($meta['extractor']) {
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo _LANGCODE;?>" lang="<?php echo _LANGCODE;?>">
 <head>
 <title><?php echo $meta['title'];?></title>
+<?php if ($rcxConfig['no_redirect'] == 1 && defined("RCX_STARTPAGE_REDIRECTED")): ?>
+<base href="<?php echo RCX_URL;?>/modules/<?php echo $rcxConfig['startpage'];?>/" />
+<?php endif;?> 
 <meta http-equiv="content-type" content="text/html; charset=<?php echo _CHARSET;?>" />
 <meta http-equiv="content-language" content="<?php echo _LANGCODE;?>" />
 <?php if ($meta['pragma'] == 1 && empty($http_cached)) { ?>

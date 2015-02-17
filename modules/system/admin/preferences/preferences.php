@@ -160,6 +160,8 @@ if ( $rcxUser->isAdmin($rcxModule->mid()) ) {
         $form->addElement($lang_select);
         $form->addElement($theme_tray);
         $form->addElement($defaulttz_select);
+        
+        $form->addElement(new RcxFormRadioYN(_MD_AM_NO_REDIRECT, "no_redirect", $rcxConfig['no_redirect'], _YES, _NO));
 
         $form->addElement($gzip_radio);
         $form->addElement($loading_radio);
@@ -397,7 +399,8 @@ function save_pref(
     $bd_charset_name,
     $use_http_caching,
     $http_caching_user_agent,
-    $http_cache_time ) {
+    $http_cache_time,
+    $no_redirect ) {
     global $rcxConfig, $myts;
 
     $error = "";
@@ -678,6 +681,9 @@ $config = "<"."?php
     
 // "._MD_AM_HTTP_CACHING_USER_AGENT."
 \$rcxConfig['http_caching_user_agent'] = \"".  trim(str_replace('"', "", $myts->oopsStripSlashesGPC(strip_tags($http_caching_user_agent))))."\";
+    
+// "._MD_AM_NO_REDIRECT." (1="._YES." 0="._NO.")
+\$rcxConfig['no_redirect'] = ".intval($no_redirect).";
 
 ?".">";
     $file = fopen(RCX_ROOT_PATH."/modules/system/cache/config.php", "w");

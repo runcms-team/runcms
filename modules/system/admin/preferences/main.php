@@ -125,7 +125,8 @@ case "save":
     $bd_charset_name,
     $use_http_caching,
     $http_caching_user_agent,
-    $http_cache_time );
+    $http_cache_time,
+    $no_redirect );
     break;
 
 default:

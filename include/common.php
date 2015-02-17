@@ -57,6 +57,28 @@ if (!ini_get('register_long_arrays'))
 // #################### Include global config files ###############
   include_once(RCX_ROOT_PATH.'/modules/system/cache/config.php');
   include_once(RCX_ROOT_PATH.'/modules/system/cache/editor.php');
+  
+  // hack set Module for your start page to index.php
+ 
+  if (defined("RCX_INDEX") && $rcxConfig['no_redirect'] == 1) {
+      
+      chdir('modules/'.$rcxConfig['startpage'].'/');
+      $parsed = parse_url(RCX_URL);
+      $url = isset($parsed['scheme']) ? $parsed['scheme'].'://' : 'http://';
+      if (isset( $parsed['host'])) {
+          $url .= $parsed['host'];
+          if (isset( $parsed['port'])) {
+              $url .= ':' . $parsed['port'];
+          }
+      } else {
+          $url .= $_SERVER['HTTP_HOST'];
+      }
+      $_SERVER['REQUEST_URI'] = substr(RCX_URL, strlen($url)) . '/modules/' . $rcxConfig['startpage'] . '/index.php';
+      $_SERVER['PHP_SELF'] = '/modules/' . $rcxConfig['startpage'] . '/index.php';
+  }
+    
+  // end hack set Module for your start page to index.php  
+  
   if (intval($rcxConfig['gzip_compression']) == 1)
   {
     if (extension_loaded('zlib') && !headers_sent())

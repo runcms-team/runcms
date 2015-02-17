@@ -217,13 +217,16 @@ $rcxConfig['bd_set_names'] = 0;
 // Кодировка для соединения с сервером базы данных
 $rcxConfig['bd_charset_name'] = "cp1251";
     
-// Включить HTTP кэширование (1=Да 0=Нет)
+// Включить HTTP кэширование<br /><br /><span style='font-size:x-small;font-weight:normal;'>Использование HTTP заголовка If-Modified-Since</span> (1=Да 0=Нет)
 $rcxConfig['use_http_caching'] = 0;
     
 // Время HTTP кеширования страниц, мин.
 $rcxConfig['http_cache_time'] = "10080";
     
-// USER AGENTS для которых включено HTTP кэширование<br /><br /><span style='font-size:x-small;font-weight:normal;'>Используйте регулярные выражения и не забывайте экранировать служебные символы, иначе это может привести к ошибке<br /><br />В частности не забывайте экренировать точку, должно быть: <b>\.</b></span>
+// USER AGENT для которых включено HTTP кэширование<br /><br /><span style='font-size:x-small;font-weight:normal;'>Используйте регулярные выражения и не забывайте экранировать служебные символы, иначе это может привести к ошибке<br /><br />В частности не забывайте экренировать точку, должно быть: <b>\.</b></span>
 $rcxConfig['http_caching_user_agent'] = "Yandex|Googlebot|Yahoo|msnbot|StackRambler|WebAlta Crawler|aport|Mail\.Ru";
+    
+// Отключить редирект с главной страницы (1=Да 0=Нет)
+$rcxConfig['no_redirect'] = 0;
 
 ?>
