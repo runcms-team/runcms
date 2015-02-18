@@ -126,20 +126,7 @@ echo "<td style='text-align: center;'>" . $modinfo . "</td>";
 	</tr>
 </table>
 <table  style="border: 1px solid #4671a4; align: center; width:100%;"><tr class="sysbg1">
-	<td style='border: 1px solid #4671a4;text-align:left; vertical-align:top; width: 150px;'>
-
-<div style="text-align: center;"><a
- href="http://www.runcms.ru"><img
- style="border: 0px solid ; width: 142px; height: 139px;"
- alt="RUNCMS"
- src="<?php echo RCX_URL;?>/images/promo.jpg" /></a><br />
-
-<div style='text-align:center;'><?php echo _AM_YOUR_VERSION;?> :<br /><br />
-<b><?php echo RCX_VERSION;?></b><br /><br />
-
-</div>
-</div>
-</td><td class='bg1'>
+<td class='bg1'>
 
 
 
@@ -158,7 +145,7 @@ global $rcxConfig;
 </tr><tr>
 <td colspan="2">
 <!--- you are not allowed to remove or changes this copyright and link in this footer --->
-<div align="center"><a href="http://www.runcms.ru/" target='_blank'> Powered by <?php echo RCX_VERSION;?> &copy; 2002-<?php echo date('Y');?></a> :: <a href="http://www.runcms.ru/" target="_blank">Localization &copy; 2010 RUNCMS.RU</a></div>
+<div align="center"><a href="http://www.runcms.ru/" target='_blank'> Powered by <?php echo RCX_VERSION;?> &copy; 2002-<?php echo date('Y');?> The RUNCMS Team</a></div>
 </td>
 </tr></table></center>
 <?php
