@@ -150,6 +150,7 @@ if ( $rcxUser->isAdmin($rcxModule->mid()) ) {
         $form->addElement($smtp_host_txt);
         $form->addElement($smtp_uname_txt);
         $form->addElement($smtp_pass_txt);
+        $form->addElement(new RcxFormText(_MD_AM_SMTPPORT, "smtp_port", 5, 5, $rcxConfig['smtp_port']));
         // sprogvalg
         
         
@@ -414,7 +415,8 @@ function save_pref(
     $use_http_caching,
     $http_caching_user_agent,
     $http_cache_time,
-    $no_redirect ) {
+    $no_redirect,
+    $smtp_port ) {
     global $rcxConfig, $myts;
 
     $error = "";
@@ -506,6 +508,9 @@ $config = "<"."?php
 
 // "._MD_AM_SMTPP."
 \$rcxConfig['smtp_pass'] = \"".$myts->makeTboxData4PreviewInForm($smtp_pass)."\";
+    
+// "._MD_AM_SMTPPORT."
+\$rcxConfig['smtp_port'] = \"".intval($smtp_port)."\";
 
 // "._MD_AM_LANGUAGE."
 \$rcxConfig['language'] = \"".$myts->makeTboxData4PreviewInForm($language)."\";

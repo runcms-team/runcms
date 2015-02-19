@@ -11,7 +11,6 @@
 ob_start();
 include_once('include/functions.php');
 function welcome() {
-global $_COOKIE;
 
 $lang = $_COOKIE['lang'] ? $_COOKIE['lang'] : 'russian';
 ?>

@@ -171,4 +171,6 @@ define("_MD_AM_HTTP_CACHE_TIME", "Время HTTP кеширования страниц, мин.");
 
 define("_MD_AM_NO_REDIRECT", "Отключить редирект с главной страницы");
 
+define("_MD_AM_SMTPPORT","SMTP Порт:");
+
 ?>

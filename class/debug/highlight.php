@@ -11,6 +11,11 @@
 $rcxOption['nocache'] = 1;
 include_once('../../mainfile.php');
 
+if (!empty($_GET['file']) && preg_match('/mainfile/i', $_GET['file'])) {
+    redirect_header(XOOPS_URL . '/', 3, _NOPERM);
+    exit();
+}
+
 if ($rcxUser) {
 	$rcxModule = RcxModule::getByDirname('system');
 	if ( !$rcxUser->isAdmin($rcxModule->mid()) ) {

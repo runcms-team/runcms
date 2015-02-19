@@ -126,7 +126,8 @@ case "save":
     $use_http_caching,
     $http_caching_user_agent,
     $http_cache_time,
-    $no_redirect );
+    $no_redirect,
+    $smtp_port );
     break;
 
 default:

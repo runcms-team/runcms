@@ -849,7 +849,10 @@ function smtpmail($mail_to, $subject, $message, $headers = '') {
 
   // Ok we have error checked as much as we can to this point let's get on
   // it already.
-  if( !$socket = @fsockopen($rcxConfig['smtp_host'], 25, $errno, $errstr, 30) )
+  
+  $smtp_port = $rcxConfig['smtp_port'] ? $rcxConfig['smtp_port'] : 25;
+  
+  if( !$socket = @fsockopen($rcxConfig['smtp_host'], $smtp_port, $errno, $errstr, 30) )
   {
     return $this->errors[] = sprintf(_XM_SMTPCONT, $errno, $errstr);
 //    message_die "Could not connect to smtp host : $errno : $errstr"
