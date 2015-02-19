@@ -20,11 +20,18 @@ if ( $rcxUser->isAdmin($rcxModule->mid()) ) {
 function module_list() {
 global $rcxConfig, $rcxUser, $db, $rcxModule;
 rcx_cp_header();
+
+echo '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbund">
+    <tr>
+        <td class="KPindex">
+            <div class="KPstor" >'._MD_AM_MODADMIN.'</div>
+            <br />
+            <br />';
+
 OpenTable();
 
-echo "
-<h4 style='text-align:left'>"._MD_AM_MODADMIN."</h4>
-<form action='admin.php' method='post' name='moduleadmin' id='moduleadmin'>
+//echo "<h4 style='text-align:left'>"._MD_AM_MODADMIN."</h4>";
+echo "<form action='admin.php' method='post' name='moduleadmin' id='moduleadmin'>
 <table border='0' cellpadding='0' cellspacing='0' valign='top' width='100%'><tr>
 <td class='sysbg2'>
 <table width='100%' border='0' cellpadding='4' cellspacing='1'><tr valign='middle' class='sysbg3' align='center'>
@@ -45,13 +52,13 @@ foreach ( $installed_mods as $module ) {
   echo "<tr align='center' valign='middle' class='sysbg1'><td valign='bottom'>";
 
 if ( $module->hasAdmin() && $module->isActivated() ) {
-  echo "<a href='".RCX_URL."/modules/".$module->dirname()."/".$module->adminindex()."'><img src='".RCX_URL."/modules/".$module->dirname()."/".$module->image()."' alt='".htmlspecialchars($module->name())."' border='0'><br /><b>" .trim($module->name())."</b></a>";
+  echo "<a href='".RCX_URL."/modules/".$module->dirname()."/".$module->adminindex()."'><img src='".RCX_URL."/modules/".$module->dirname()."/".$module->image()."' alt='".htmlspecialchars($module->name(), RCX_ENT_FLAGS, RCX_ENT_ENCODING)."' border='0'><br /><b>" .trim($module->name())."</b></a>";
   } else {
-    echo "<img src='".RCX_URL."/modules/".$module->dirname()."/".$module->image()."' alt='".htmlspecialchars($module->name())."' border='0'><br /><b>" .trim($module->name())."</b>";
+    echo "<img src='".RCX_URL."/modules/".$module->dirname()."/".$module->image()."' alt='".htmlspecialchars($module->name(), RCX_ENT_FLAGS, RCX_ENT_ENCODING)."' border='0'><br /><b>" .trim($module->name())."</b>";
   }
 
 echo "
-<input type='hidden' name='name[]' value='" .htmlspecialchars($module->name())."' />
+<input type='hidden' name='name[]' value='" .htmlspecialchars($module->name(), RCX_ENT_FLAGS, RCX_ENT_ENCODING)."' />
 <input type='hidden' name='oldstatus[]' value='1' /></td>
 <td align='center'>".$module->name(1)."</td>
 <td align='center'>".$module->currentVersion()."</td>
@@ -158,9 +165,9 @@ echo "
 <tr align='center' valign='middle' class='sysbg1'>
 
 <td align='center' valign='bottom'>
-<img src='".RCX_URL."/modules/".$module->dirname()."/".$module->image()."' alt='".htmlspecialchars($module->name())."' border='0'>
+<img src='".RCX_URL."/modules/".$module->dirname()."/".$module->image()."' alt='".htmlspecialchars($module->name(), RCX_ENT_FLAGS, RCX_ENT_ENCODING)."' border='0'>
 <br /><b>" .trim($module->name())."</b>
-<input type='hidden' name='name[]' value='" .htmlspecialchars($module->name())."' />
+<input type='hidden' name='name[]' value='" .htmlspecialchars($module->name(), RCX_ENT_FLAGS, RCX_ENT_ENCODING)."' />
 </td>
 
 <td align='center'>".$module->currentVersion()."</td>
@@ -206,6 +213,12 @@ echo "
 </form><br /><br />";
 
 CloseTable();
+
+echo "                        
+        </td>
+    </tr>
+</table>";
+
 rcx_cp_footer();
 }
 
@@ -456,7 +469,7 @@ global $db;
 $module =& new RcxModule($mid);
 
 include_once(RCX_ROOT_PATH . "/class/rcxformloader.php");
-$form = new RcxThemeForm("<a href='admin.php?fct=modulesadmin'>"._MAIN."</a>: ". _MD_AM_EDITMOD." \"".$module->name()."\"", "moduleedit", "admin.php", "post", true);
+$form = new RcxThemeForm("", "moduleedit", "admin.php", "post", true);
 $form->addElement(new FormHeadingRow("<b><a href=\"javascript:openWithSelfMain('".RCX_URL."/modules/system/admin.php?fct=version&mid=".$mid."', 'Info', 300, 230);\">"._MD_AM_INFO."</a></b>"));
 $form->addElement(new RcxFormLabel(_MD_AM_VERSION, $module->currentVersion()));
 
@@ -542,7 +555,19 @@ $form->addElement(new RcxFormHidden("edit", "1"));
 $form->addElement(new RcxFormHidden("fct", "modulesadmin"));
 $form->addElement(new RcxFormHidden("op", "confirm"));
 
+echo '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbund">
+    <tr>
+        <td class="KPindex">
+            <div class="KPstor" >'. _MD_AM_EDITMOD.' "'.$module->name().'"</div>
+            <br />
+            <br />';
+
 $form->display();
+
+echo "                        
+        </td>
+    </tr>
+</table>";
 
 }
 

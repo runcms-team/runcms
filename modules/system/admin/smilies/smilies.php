@@ -25,8 +25,16 @@ $rcx_token = & RcxToken::getInstance();
 $url_smiles = RCX_URL."/images/smilies";
 
 rcx_cp_header();
+
+echo '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbund">
+    <tr>
+        <td class="KPindex">
+            <div class="KPstor" >'._AM_CURRENTSMILE.'</div>
+            <br />
+            <br />';
+
 OpenTable();
-echo "<h4 style='text-align:left;'>"._AM_CURRENTSMILE."</h4>";
+//echo "<h4 style='text-align:left;'>"._AM_CURRENTSMILE."</h4>";
 
 if ($getsmiles = $db->query("SELECT * FROM ".$db->prefix("smiles"))) {
 	if ($db->num_rows($getsmiles) > 0) {
@@ -55,10 +63,14 @@ if ($getsmiles = $db->query("SELECT * FROM ".$db->prefix("smiles"))) {
 	} else {
 		echo _AM_CNRFTSD;
 	}
+        
+        
+echo '<br /><br /><div class="KPstor" >'._AM_ADDSMILE.'</div>
+            <br />
+            <br />';
 
 ?>
-<br /><br />
-<h4 style="text-align:left;"><?php echo _AM_ADDSMILE;?></h4>
+
 <form action="admin.php" method="post" enctype="multipart/form-data">
 <table border="0" cellpadding="0" cellspacing="0" align="center"  width="100%"><tr>
 <td class="sysbg2">
@@ -87,6 +99,12 @@ if ($getsmiles = $db->query("SELECT * FROM ".$db->prefix("smiles"))) {
 <?php
 
 CloseTable();
+
+echo "                        
+        </td>
+    </tr>
+</table>";
+
 rcx_cp_footer();
 }
 
@@ -102,8 +120,16 @@ global $db, $myts, $rcxModule;
 $rcx_token = & RcxToken::getInstance();
 
 rcx_cp_header();
+
+echo '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbund">
+    <tr>
+        <td class="KPindex">
+            <div class="KPstor" >'._AM_EDITSMILE.'</div>
+            <br />
+            <br />';
+
 OpenTable();
-echo "<h4 style='text-align:left;'>"._AM_EDITSMILE."</h4>";
+//echo "<h4 style='text-align:left;'>"._AM_EDITSMILE."</h4>";
 
 if ($getsmiles = $db->query("SELECT * FROM ".$db->prefix("smiles")." WHERE id = $id")) {
 	if ($smiles = $db->fetch_array($getsmiles)) {
@@ -141,6 +167,12 @@ if ($getsmiles = $db->query("SELECT * FROM ".$db->prefix("smiles")." WHERE id = 
 	}
 
 CloseTable();
+
+echo "                        
+        </td>
+    </tr>
+</table>";
+
 rcx_cp_footer();
 }
 
@@ -242,15 +274,28 @@ if ($ok==1) {
 	exit();
 	} else {
 		rcx_cp_header();
+                
+                echo '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbund">
+    <tr>
+        <td class="KPindex">
+            <div class="KPattention" >'._AM_WAYSYWTDTS.'</div>
+            <br />
+            <br />';
+                
 		OpenTable();
 		echo "
-		<br /><font color='#ff0000'><b>"._AM_WAYSYWTDTS."</b>
-		<br /><br /></font><table><tr><td>";
+		<table><tr><td>";
 		echo myTextForm("admin.php?fct=smilies&op=SmilesDel&id=$id&ok=1", _YES, true);
 		echo "</td><td>";
 		echo myTextForm("admin.php?fct=smilies&op=SmileAdmin", _NO);
 		echo "</td></tr></table><br /><br />";
 		CloseTable();
+                
+                echo "                        
+        </td>
+    </tr>
+</table>";
+                
 		rcx_cp_footer();
 	}
 }

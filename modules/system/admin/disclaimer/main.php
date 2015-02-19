@@ -20,13 +20,18 @@ global $myts;
 $rcx_token = & RcxToken::getInstance();
 
 rcx_cp_header();
+
+echo '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbund">
+    <tr>
+        <td class="KPindex">
+            <div class="KPstor" >'._MI_DIS_NAME.'</div>
+            <br />
+            <br />';
+
 OpenTable();
 ?>
 <table align="center">
-<div align="center">
-<h3><u><?php echo _MI_DIS_NAME;?></u></h3>
-<hr size="1" noshade="noshade" />
-</div>
+
 <form name="settings" action="./admin.php?fct=disclaimer" method="post">
 <div align="center">
 <textarea class="textarea" name="disclaimer" rows="30" cols="80">
@@ -40,6 +45,12 @@ OpenTable();
 <br /><br />
 <?php
 CloseTable();
+
+echo "                        
+        </td>
+    </tr>
+</table>";
+
 rcx_cp_footer();
 }
 

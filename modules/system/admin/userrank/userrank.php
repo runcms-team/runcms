@@ -21,10 +21,18 @@ global $db, $rcxModule;
 $rcx_token = & RcxToken::getInstance();
 
 rcx_cp_header();
+
+echo '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbund">
+    <tr>
+        <td class="KPindex">
+            <div class="KPstor" >'._AM_RANKSSETTINGS.'</div>
+            <br />
+            <br />';
+
 OpenTable();
 
 ?>
-<h4 style="text-align:left;"><?php echo _AM_RANKSSETTINGS;?></h4>
+
 <table border="0" cellpadding="0" cellspacing="0" width="100%"><tr>
 <td class="sysbg2">
 
@@ -68,7 +76,12 @@ echo"<td><a href='admin.php?fct=userrank&amp;op=RankForumEdit&amp;rank_id=".$ran
 </tr></table>
 
 <br /><br />
-<h4 style="text-align:left;"><?php echo _AM_ADDNEWRANK;?></h4>
+
+
+<div class='KPstor' ><?php echo _AM_ADDNEWRANK;?></div>
+                <br />
+            <br />
+
 <form action="admin.php" method="post" enctype="multipart/form-data">
 
 <table border="0" cellpadding="0" cellspacing="0" width="100%"><tr>
@@ -116,6 +129,13 @@ echo"<td><a href='admin.php?fct=userrank&amp;op=RankForumEdit&amp;rank_id=".$ran
 <?php
 
 CloseTable();
+
+
+echo "                        
+        </td>
+    </tr>
+</table>";
+
 rcx_cp_footer();
 }
 
@@ -174,10 +194,17 @@ rcx_cp_header();
 
 $result = $db->query("SELECT * FROM ".$db->prefix("ranks")." WHERE rank_id=".$rank_id."");
 $rank   = $db->fetch_array($result);
+
+echo '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbund">
+    <tr>
+        <td class="KPindex">
+            <div class="KPstor" >'._AM_EDITRANK.'</div>
+            <br />
+            <br />';
+
 OpenTable();
 
 ?>
-<h4 style="text-align:left;"><?php echo _AM_EDITRANK;?></h4>
 <form action="admin.php" method="post" enctype="multipart/form-data">
 
 <table border="0" cellpadding="0" cellspacing="0" align="center"  width="100%"><tr>
@@ -231,6 +258,13 @@ OpenTable();
 <?php
 
 CloseTable();
+
+echo "                        
+        </td>
+    </tr>
+</table>";
+
+
 rcx_cp_footer();
 }
 
@@ -300,13 +334,29 @@ if ($ok == 1) {
 	exit();
 	} else {
 		rcx_cp_header();
+                
+                
+                echo '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbund">
+    <tr>
+        <td class="KPindex">
+            <div class="KPattention" >'._AM_WAYSYWTDTR.'</div>
+            <br />
+            <br />';
+                
 		OpenTable();
-		echo "<br /><h4 style='color:#ff0000'>"._AM_WAYSYWTDTR."</h4><br /><table><tr><td>";
+		//echo "<br /><h4 style='color:#ff0000'>"._AM_WAYSYWTDTR."</h4><br /><table><tr><td>";
+                echo "<br /><table><tr><td>";
 		echo myTextForm("admin.php?fct=userrank&amp;op=RankForumDel&amp;rank_id=$rank_id&amp;ok=1", _YES, true);
 		echo "</td><td>";
 		echo myTextForm("admin.php?fct=userrank&amp;op=RankForumAdmin", _NO);
 		echo "</td></tr></table>";
 		CloseTable();
+                
+                
+                echo "                        
+        </td>
+    </tr>
+</table>";
 	}
 
 rcx_cp_footer();

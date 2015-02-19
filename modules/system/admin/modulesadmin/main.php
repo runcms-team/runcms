@@ -35,7 +35,7 @@ if ( $op == "list" ) {
 
 if ( $op == "confirm" ) {
   rcx_cp_header();
-  OpenTable();
+  
   $error = array();
   if ( @!is_writable(RCX_ROOT_PATH."/modules/system/cache/adminmenu.php") ) {
     if ( @!chmod(RCX_ROOT_PATH."/modules/system/cache/adminmenu.php", 0666) ) {
@@ -43,6 +43,9 @@ if ( $op == "confirm" ) {
     }
   }
   if ( count($error) > 0 ) {
+      
+    OpenTable();   
+      
     foreach ( $error as $er ) {
       echo $er."<br />";
     }
@@ -51,11 +54,21 @@ if ( $op == "confirm" ) {
     rcx_cp_footer();
     exit();
   }
-  echo "<h4 style='text-align:center;'>"._MD_AM_PCMFM."</h4>
-  <form action='admin.php' method='post'>
+  
+echo '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbund">
+    <tr>
+        <td class="KPindex">
+            <div class="KPstor" >'._MD_AM_PCMFM.'</div>
+            <br />
+            <br />';  
+
+OpenTable();
+  
+  //echo "<h4 style='text-align:center;'>"._MD_AM_PCMFM."</h4>";
+  echo "<form action='admin.php' method='post'>
   <input type='hidden' name='fct' value='modulesadmin' />
   <input type='hidden' name='op' value='submit' />
-  <table align='center' border='0' cellpadding='0' cellspacing='0' width='50%'><tr><td class='sysbg2'>
+  <table align='center' border='0' cellpadding='0' cellspacing='0' width='100%'><tr><td class='sysbg2'>
   <table width='100%' border='0' cellpadding='4' cellspacing='1'>
   <tr valign='middle' class='sysbg3' align='center'><td><b>"._MD_AM_MODULE."</b></td><td><b>"._MD_AM_ACTION."</b></td><td><b>"._MD_AM_ORDER."</b></td><td><b>"._MD_AM_SIDEBAR."</b></td></tr>";
   $size = count($module);
@@ -145,6 +158,13 @@ if ( $op == "confirm" ) {
   </td></tr></table>
   </form>";
   CloseTable();
+  
+  
+echo "                        
+        </td>
+    </tr>
+</table>";
+  
   rcx_cp_footer();
 }
 

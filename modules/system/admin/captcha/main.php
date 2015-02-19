@@ -24,6 +24,14 @@ if ($rcxUser->isAdmin($rcxModule->mid()))
     include_once(RCX_ROOT_PATH."/class/rcxformloader.php"); 
 
     rcx_cp_header();
+    
+echo '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbund">
+    <tr>
+        <td class="KPindex">
+            <div class="KPstor" >'._AM_CAPTCHACONF.'</div>
+            <br />
+            <br />';
+
     OpenTable();
     include("./cache/kcaptcha.php");
     
@@ -78,14 +86,14 @@ if ($rcxUser->isAdmin($rcxModule->mid()))
     $jpeg_quality = new RcxFormSelect(_AM_JPGQUALITY, "jpeg_quality", $jpeg_quality);
     $jpeg_quality->addOptionArray(array(60 => '60', 65 => '65', 70 => '70', 75 => '75', 80 => '80',
                                   85 => '85', 90 => '90', 95 => '95', 100 => '100'));
-    $copy= new RcxFormLabel('', '<a hr'.'ef="ht'.'tp://ww'.'w.cap'.'tcha.ru/" tar'.'get="_bla'.'nk">KCAP'.'TCHA</a> by <a href="htt'.'p://w'.'ww.prop'.'an-soc'.'hi.ru/" tar'.'get="_bla'.'nk">S'.'V'.'L</a> &copy; 2006 <a hr'.'ef="ht'.'tp://w'.'ww.run'.'cm'.'s.o'.'rg/" tar'.'get="_bla'.'nk">ww'.'w.ru'.'ncm'.'s.or'.'g</a> and Text Captcha hack by LARK (<a href="http://www.runcms.ru/" target="_blank">http://www.runcms.ru</a>)');
+    $copy= new RcxFormLabel('', '<a hr'.'ef="ht'.'tp://ww'.'w.cap'.'tcha.ru/" tar'.'get="_bla'.'nk">KCAP'.'TCHA</a> by <a href="htt'.'p://w'.'ww.prop'.'an-soc'.'hi.ru/" tar'.'get="_bla'.'nk">S'.'V'.'L</a> and Text Captcha hack by <a href="http://www.runcms.ru/" target="_blank">LARK</a>');
     $copy->setColspan();
 //    $blnk= new RcxFormLabel('', _AM_CAPTCHA);
 //    $blnk->setColspan();
     $op_hidden     = new RcxFormHidden("op", "save");
     $submit_button = new RcxFormButton("", "button", _UPDATE, "submit");
 
-    $form = new RcxThemeForm(_AM_CAPTCHACONF, "editor_form", "admin.php?fct=captcha", "post", true);
+    $form = new RcxThemeForm("", "editor_form", "admin.php?fct=captcha", "post", true);
     $form->addElement($example);
     $form->addElement($symbols);
     $form->addElement($caplen);
@@ -116,6 +124,13 @@ if ($rcxUser->isAdmin($rcxModule->mid()))
 
     CloseTable();
     unset($_SESSION['captcha_keystring']);
+    
+    
+echo "                        
+        </td>
+    </tr>
+</table>";    
+    
     rcx_cp_footer();
   }
   // ----------------------------------------------------------------------------------------//

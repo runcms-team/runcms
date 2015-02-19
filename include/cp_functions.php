@@ -49,6 +49,14 @@ if ($rcxModule) {
 
 //include_once(RCX_ROOT_PATH .'/include/rcxjs.php');
 
+if(@file_exists(THEME_PATH . '/style/admin.css')) {
+    $css_url = THEME_URL . '/style/admin.css';
+} else {
+    $css_url  = RCX_URL . '/include/admin.css';
+}
+
+echo "<link href='$css_url' rel='stylesheet' type='text/css' />";
+
 ?>
 </head>
 <?php

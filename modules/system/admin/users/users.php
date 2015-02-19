@@ -28,11 +28,17 @@ global $db, $rcxConfig, $rcxModule, $_GET;
 $userstart = isset($_GET['userstart']) ? intval($_GET['userstart']) : 0;
 
 rcx_cp_header();
+
+echo '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbund">
+    <tr>
+        <td class="KPindex">';
+
+
 OpenTable();
 
 $usercount   = RcxUser::countAllUsers();
 $nav         = new RcxPageNav($usercount, 500, $userstart, "userstart", "fct=users");
-$editform    = new RcxThemeForm(_AM_EDEUSER, "edituser", "admin.php");
+$editform    = new RcxThemeForm('', "edituser", "admin.php");
 $user_select = new RcxFormSelect('', "uid");
 $user_select->addOptionArray(RcxUser::getAllUsersList(array(), 'uname ASC', 500, $userstart));
 $user_select_tray = new RcxFormElementTray(_AM_NICKNAME, "<br />");
@@ -47,10 +53,10 @@ $editform->addElement($user_select_tray);
 $editform->addElement($op_select);
 $editform->addElement($submit_button);
 $editform->addElement($fct_hidden);
-echo '<div class="KPmellem" />';
+echo '<div class="KPstor" >'._AM_EDEUSER.'</div><br /><br />';
 $editform->display();
 
-echo "<div><br />";
+echo "<br />";
 
 $uid_value        = "";
 $uname_value      = "";
@@ -85,6 +91,12 @@ $form_title       = _AM_ADDUSER;
 
 include_once(RCX_ROOT_PATH."/modules/system/admin/users/userform.php");
 CloseTable();
+
+echo "                        
+        </td>
+    </tr>
+</table>";
+
 rcx_cp_footer();
 }
 
@@ -97,12 +109,13 @@ rcx_cp_footer();
 function modifyUser($user) {
 global $db, $rcxConfig, $rcxModule;
 
-rcx_cp_header();
-OpenTable();
-
 $user = new RcxUser($user);
 
 if ( !$user->isActive() ) {
+    
+  rcx_cp_header();
+  OpenTable();
+
   echo "<h4 style='text-align:left;'>"._AM_NOTACTIVE."</h4>";
   echo "<table><tr><td>";
   echo myTextForm("admin.php?fct=users&amp;op=reactivate&amp;uid=".$user->getVar("uid"), _YES, true);
@@ -113,6 +126,8 @@ if ( !$user->isActive() ) {
   rcx_cp_footer();
   exit();
 }
+
+  rcx_cp_header();
 
 if ($user) {
   $uid_value        = $user->getVar("uid");
@@ -149,10 +164,26 @@ if ($user) {
   $form_title       = _AM_UPDATEUSER.": ".$user->getVar("uname");
   
   $rcx_token = & RcxToken::getInstance();
+  
+  
+
+  
+ echo '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbund">
+    <tr>
+        <td class="KPindex">'; 
+  
+  
+  OpenTable();
 
   include_once(RCX_ROOT_PATH."/modules/system/admin/users/userform.php");
+  
+  
+ echo '<br /><div class="KPstor" >'._AM_USERPOST.'</div>
+            <br />
+            <br />';
+ 
   echo "
-  <br /><b>"._AM_USERPOST."</b><br /><br />
+
   <table border='0'>
   <tr><td>"._AM_COMMENTS."</td><td>".$user->getVar("posts")."</td></tr>
   </table>
@@ -163,15 +194,21 @@ if ($user) {
   <input type='hidden' name='fct' value='users'>
   <input type='hidden' name='op' value='synchronize'>
   " . $rcx_token->getTokenHTML() . "
-  <input type='submit' class='button' value='"._AM_SYNCHRONIZE."'>
+  <br /><br /><input type='submit' class='button' value='"._AM_SYNCHRONIZE."'>
   </form>";
   CloseTable();
   } else {
+    OpenTable();  
     echo "<h4 style='text-align:left;'>";
     echo _AM_USERDONEXIT;
     echo "</h4>";
     CloseTable();
   }
+  
+echo "                        
+        </td>
+    </tr>
+</table>";  
 
 rcx_cp_footer();
 }

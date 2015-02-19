@@ -101,17 +101,25 @@ case "updateUser":
 
 case "delUser":
   rcx_cp_header();
+    
+echo '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbund">
+    <tr>
+        <td class="KPindex">
+            <div class="KPstor" >'.sprintf(_AM_HANDLES).'</div>
+            <br />
+            <br />';    
+    
   OpenTable();
   $userdata = new RcxUser($uid);
-  echo"<h3>".sprintf(_AM_HANDLES)."</h3><br />";
-  echo "<h4>".sprintf(_AM_AYSYWTDU, $userdata->getVar("uname"))."</h4>";
+  //echo"<h3>".sprintf(_AM_HANDLES)."</h3><br />";
+  echo "<h2>".sprintf(_AM_AYSYWTDU, $userdata->getVar("uname"))."</h2>";
   echo _AM_BYTHIS."<br /><br />";
   echo "<table><tr><td>";
   echo myTextForm("admin.php?fct=users&op=delUserConf&del_uid=".$userdata->getVar("uid"),_YES, true);
   echo "</td><td>";
   echo myTextForm("admin.php?op=adminMain", _NO);
- echo "</td></tr></table>";
-  echo "<h4>".sprintf(_AM_BANNED, $userdata->getVar("uname"))."</h4>";
+ echo "</td></tr></table><br /><br />";
+  echo "<h2>".sprintf(_AM_BANNED, $userdata->getVar("uname"))."</h2>";
   echo _AM_BANUSER."<br /><br />";
   echo "<table><tr><td>";
   echo myTextForm("admin.php?fct=users&op=banUserConf&del_uid=".$userdata->getVar("uid"),_YES, true);
@@ -120,6 +128,13 @@ case "delUser":
   echo "</td></tr></table>";
 
   CloseTable();
+  
+  
+  echo "                        
+        </td>
+    </tr>
+</table>";
+  
   rcx_cp_footer();
   break;
 

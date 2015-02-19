@@ -18,11 +18,22 @@ if ( $rcxUser->isAdmin($rcxModule->mid()) ) {
 
 	if ( $op == "form" ) {
 		rcx_cp_header();
+                echo '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbund">
+    <tr>
+        <td class="KPindex">
+            <div class="KPstor" >'._AM_SENDMTOUSERS.'</div>
+            <br />
+            <br />';
 		OpenTable();
 		$display_criteria = 1;
 		include_once(RCX_ROOT_PATH."/modules/system/admin/mailusers/mailform.php");
 		$form->display();
 		CloseTable();
+                echo "                        
+        </td>
+    </tr>
+</table>";
+
 		rcx_cp_footer();
 		exit();
 	}

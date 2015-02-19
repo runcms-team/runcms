@@ -197,11 +197,9 @@ unset($modversion);
 </a><a href="<?php echo RCX_URL;?>/modules/system/admin.php?fct=sysinfo"><img src="<?php echo RCX_URL;?>/images/system/sysinfo.png" alt="<?php echo _MD_AM_SYSINFO;?>"/>
 <br />
 <?php echo _MD_AM_SYSINFO;?></a>
-</td></tr></table><img src="<?php echo RCX_URL;?>/images/rcxversion.gif" alt="" />
+</td></tr></table></div>
 	</td></tr>
   </table>
-</td>
-</tr></table>
 <?php
 CloseTable();
 }

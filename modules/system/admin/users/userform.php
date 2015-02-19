@@ -108,7 +108,7 @@ $fct_hidden    = new RcxFormHidden("fct", "users");
 $op_hidden     = new RcxFormHidden("op", $op_value);
 $submit_button = new RcxFormButton("", "submit", _SUBMIT, "submit");
 
-$form = new RcxThemeForm($form_title, "userinfo", "admin.php", "post", true);
+$form = new RcxThemeForm('', "userinfo", "admin.php", "post", true);
 $form->addElement($uname_text);
 $form->addElement($name_text);
 $form->addElement($address_text);
@@ -146,7 +146,7 @@ if ( !empty($uid_value) ) {
 	} else {
 		$form->setRequired(array("uname", "email", "pass", "pass2"));
 	}
-echo '</div></div><div class="KPmellem" />';
+echo '<div class="KPstor" >'.$form_title.'</div><br /><br />';
 $form->display();
-echo '</div><br><br>';
+//echo '</div><br><br>';
 ?>

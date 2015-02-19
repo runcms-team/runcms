@@ -131,7 +131,7 @@ if ( $rcxUser->isAdmin($rcxModule->mid()) ) {
     $maintenance     = new RcxFormRadioYN(_MD_AM_MAINTENANCE, "maintenance", $rcxConfig['maintenance'], _YES, _NO);
 
 
-        $form = new RcxThemeForm(_MD_AM_SITEPREF, "pref_form", "admin.php?fct=preferences", "post", true);
+        $form = new RcxThemeForm('', "pref_form", "admin.php?fct=preferences", "post", true);
         
         /** FormHeadingRow **/
         $form->addElement(new FormHeadingRow(_MD_AM_MAINTENANCE, 'center', 'bg4'));        
@@ -307,10 +307,24 @@ if ( $rcxUser->isAdmin($rcxModule->mid()) ) {
 
         $form->addElement($op_hidden);
         $form->addElement($submit_button);
-       
+        
+ echo '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbund">
+    <tr>
+        <td class="KPindex">
+            <div class="KPstor" >'._MD_AM_SITEPREF.'</div>
+            <br />
+            <br />';  
+ 
         OpenTable();
+        
         $form->display();
+        
         CloseTable();
+        
+echo "                        
+        </td>
+    </tr>
+</table>";        
 
     }
 

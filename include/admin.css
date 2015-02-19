@@ -1,0 +1,161 @@
+.bg1 {
+    background: #ffffff;
+}
+
+.bg2 {
+    background: #dddddd;
+}
+
+.bg3 {
+    background: #ffffff;
+}
+
+.bg4 {
+    background: #fafafa;
+}
+
+.textarea:focus, .text:focus, .button:focus, .file:focus {
+    background: #fafafa top;
+}
+
+/* sysmenu*/
+.KPstor{
+    font-size: 20px;
+    color: #1E90FF;
+    background-color: White;
+    background: no-repeat left top;
+    font-weight: bold;
+    height: 40px;
+    vertical-align: middle;
+    padding: 10px 0 0 50px;
+    border-bottom: 3px solid #1E90FF;
+}
+
+.KPattention{
+    font-size: 20px;
+    color: #ff0000;
+    background-color: White;
+    background: no-repeat left top;
+    font-weight: bold;
+    height: 40px;
+    vertical-align: middle;
+    padding: 10px 0 0 50px;
+    border-bottom: 3px solid #ff0000;
+}
+
+
+.KPindex{
+    padding: 4px;
+    vertical-align: top;
+    background-color: White;
+}
+.KPmellem{
+    font-weight: bold;
+    font-size: 14px;
+    color: #FF4500;
+    vertical-align: middle;
+    padding: 10px 0 0 50px;
+    background-color: White;
+
+}
+
+div.kpicon{
+    margin: 3px;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    font-weight: normal;
+
+}
+div.kpicon a { 
+    display: block; float: left;
+    height: 80px !important;
+    height: 80px; 
+    width: 90px !important;
+    width: 90px; 
+    vertical-align: middle; 
+    text-decoration : none;
+    border: 1px solid #CCCCCC;
+    padding: 2px 5px 1px 5px;
+    margin: 3px;
+    color: #666666;
+    text-align: center;
+}
+div.kpicon a:hover{
+    background-color: #FFF6C1;
+    border: 1px solid #FF9900;
+    color: #1E90FF;
+
+}
+
+div.kpicon img { margin-top: 8px; margin-bottom: 8px; }
+
+div.kpicon span {
+    font-size: 11px;
+    font-weight: normal;
+    display: block;
+}
+div.kpicon span.uno{
+    font-size: 11px;
+    font-weight: normal;
+    text-decoration: underline;
+    color: Blue;
+}
+div.kpicon span.unor{
+    font-size: 11px;
+    font-weight: normal;
+    text-decoration: underline;
+    color: #CC0000;
+}
+
+.fbund{
+    font-size: 20px;
+    color: #1E90FF;
+    background-color: White;
+    background: no-repeat left top;
+    //font-weight: bold;
+    height: 40px;
+    vertical-align: middle;
+    padding: 10px 0 0 50px;
+    border-bottom: 3px solid #1E90FF;
+}
+
+.ftop{
+    font : bold 12px Verdana, Arial, Helvetica, sans-serif;
+    color: #FF4500;
+    height: 40px;
+
+    vertical-align: middle;
+    padding: 10px 0 0 50px;
+}
+
+.sysbg1{
+    background: #ffffff;
+}
+.sysbg1a{
+    color: white;
+    background-color: white;
+}
+.sysbg2{
+   background: #dddddd;
+
+}
+.sysbg3{
+    background: #ffffff;
+
+}
+.sysbg4{
+    background: #dddddd;
+
+}
+
+#admintop{
+    background-image: url(../images/system/admintopbg.jpg);
+}
+
+
+.sysinf1{
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0px;
+    font-size: 11px;
+}

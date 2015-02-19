@@ -27,11 +27,21 @@ global $rcxUser;
 
 $rcx_token = & RcxToken::getInstance();
 
+?> <table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbund">
+    <tr>
+        <td class="KPindex">
+            <div class="KPstor" ><?php echo _AM_BADMIN;?></div>
+            <br />
+            <br />
+
+<?php
+
 OpenTable();
-echo "<h4 style='text-align:left;'>"._AM_BADMIN."</h4>";
+//echo "<h4 style='text-align:left;'>"._AM_BADMIN."</h4>";
 global $modules;
 $modules->setValue($mid);
 ?>
+
 <br /><div align="right">
 <form action='admin.php' name='blockadmin' id='blockadmin' method='post' style='position:relative;z-index:3'>
 <?php echo _AM_SHOWOMB;?>
@@ -41,6 +51,7 @@ $modules->setValue($mid);
 <input type='submit' name='submit' value='<?php echo _SUBMIT;?>' />
 </form>
 </div>
+<br />
 <?php
 //modified by EsseBe for templates block
 echo "
@@ -100,7 +111,11 @@ CloseTable();
 OpenTable();
 
 echo "
-<h4 style='text-align:left;'>" ._AM_ADDBLOCK."</h4>
+
+<div class='KPstor' >" ._AM_ADDBLOCK."</div>
+                <br />
+            <br />
+
 <form action='admin.php' method='post' enctype='multipart/form-data'>
 <table border='0' cellpadding='0' cellspacing='0' width='100%'><tr><td class='sysbg2'>
 <table width='100%' border='0' cellpadding='4' cellspacing='1'><tr align='left' valign='top'>
@@ -224,7 +239,16 @@ echo "
     </tr></table></td>
     </tr></table>
     </form>";
-CloseTable();
+              
+CloseTable();   
+
+echo "                        
+        </td>
+    </tr>
+</table>
+
+";
+
 }
 
 /**
@@ -456,14 +480,32 @@ $myblock = new RcxBlock($bid);
 
 if (intval($_POST['bid']) != $bid) {
   rcx_cp_header();
+  
+?> <table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbund">
+    <tr>
+        <td class="KPindex">
+            <div class="KPstor" ><?php echo sprintf(_AM_RUSURECOP, $myblock->getVar("name"));?></div>
+            <br />
+            <br />
+
+<?php  
+  
   OpenTable();
-  echo "<h4 style='text-align:left;'>".sprintf(_AM_RUSURECOP, $myblock->getVar("name"))."</h4>";
+  //echo "<h4 style='text-align:left;'>".sprintf(_AM_RUSURECOP, $myblock->getVar("name"))."</h4>";
   echo "<table><tr><td>";
   echo myTextForm("admin.php?fct=blocksadmin&op=copy&bid=".$myblock->getVar("bid") , _YES, true);
   echo "</td><td>";
   echo myTextForm("admin.php?fct=blocksadmin" , _NO);
   echo "</td></tr></table>";
   CloseTable();
+  
+  
+echo "                        
+        </td>
+    </tr>
+</table>
+
+";  
   rcx_cp_footer();
   exit();
 }
@@ -559,12 +601,20 @@ if ($op == 'preview') {
     }
 
 
+?> <table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbund">
+    <tr>
+        <td class="KPindex">
+            <div class="KPstor" ><?php echo _AM_EDITBLOCK;?></div>
+            <br />
+            <br />
+
+<?php
 
 OpenTable();
 
-echo "
-<h4><a href='".RCX_URL."/modules/system/admin.php?fct=blocksadmin'>"._MAIN."</a>: "._AM_EDITBLOCK."</h4>
-<form action='admin.php?fct=blocksadmin' enctype='multipart/form-data' method='post' >
+//echo "<h4><a href='".RCX_URL."/modules/system/admin.php?fct=blocksadmin'>"._MAIN."</a>: "._AM_EDITBLOCK."</h4>";
+
+echo "<form action='admin.php?fct=blocksadmin' enctype='multipart/form-data' method='post' >
 
 <table border='0' cellpadding='0' cellspacing='0' width='100%'><tr><td class='sysbg2'>
 <table width='100%' border='0' cellpadding='4' cellspacing='1'><tr align='left' valign='top'>
@@ -831,6 +881,13 @@ echo "
 </form>";
 
 CloseTable();
+
+echo "                        
+        </td>
+    </tr>
+</table>
+
+";
 }
 
 /**
@@ -987,14 +1044,31 @@ if ( ($myblock->getVar("type") == "S") && ($myblock->getVar('iscopy') == 0) ) {
       exit();
       } else {
         rcx_cp_header();
+        
+?> <table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbund">
+    <tr>
+        <td class="KPindex">
+            <div class="KPattention" ><?php echo sprintf(_AM_RUSUREDEL, $myblock->getVar("title"));?></div>
+            <br />
+            <br />
+
+<?php        
+        
         OpenTable();
-        echo "<h4 style='text-align:left;'>".sprintf(_AM_RUSUREDEL, $myblock->getVar("title"))."</h4>";
+        //echo "<h4 style='text-align:left;'>".sprintf(_AM_RUSUREDEL, $myblock->getVar("title"))."</h4>";
         echo "<table><tr><td>";
         echo myTextForm("admin.php?fct=blocksadmin&op=delete&bid=".$myblock->getVar("bid") , _YES, true);
         echo "</td><td>";
         echo myTextForm("admin.php?fct=blocksadmin" , _NO);
         echo "</td></tr></table>";
         CloseTable();
+        
+echo "                        
+        </td>
+    </tr>
+</table>
+
+";        
         rcx_cp_footer();
         exit();
       }

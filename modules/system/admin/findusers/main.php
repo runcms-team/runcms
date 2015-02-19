@@ -21,6 +21,12 @@ if ( isset($_POST['op']) && $_POST['op'] == "submit" ) {
 }
 
 rcx_cp_header();
+
+
+echo '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbund">
+    <tr>
+        <td class="KPindex">';
+
 OpenTable();
 
 if ( $op == "form" ) {
@@ -127,7 +133,13 @@ if ( $op == "form" ) {
     $form->addElement($group_hidden);
   }
   $form->addElement($submit_button);
-  echo "<h4 style='text-align:left;'>"._AM_FINDUS."</h4>(".sprintf(_AM_ACTUS, "<span style='color:#ff0000;'>$acttotal</span>")." ".sprintf(_AM_INACTUS, "<span style='color:#ff0000;'>$inacttotal</span>").")";
+
+  echo '<div class="KPstor" >'._AM_FINDUS.'</div>
+            <br />
+            <br />';
+  
+ echo "(".sprintf(_AM_ACTUS, "<span style='color:#ff0000;'>$acttotal</span>")." ".sprintf(_AM_INACTUS, "<span style='color:#ff0000;'>$inacttotal</span>").")<br /><br />";
+   
   $form->display();
 }
 
@@ -383,14 +395,13 @@ if ( $op == "submit" ) {
   $start = (!empty($_POST['start'])) ? intval($_POST['start']) : 0;
   $total = RcxUser::countAllUsers($criteria);
 
-  echo "
-  <a href='admin.php?fct=findusers&op=form'>". _AM_FINDUS ."</a>
-  &nbsp;<span style='font-weight:bold;'>&raquo;&raquo;</span>
-  ". _AM_RESULTS.": ".sprintf(_AM_USERSFOUND, $total)."
-  <br /><br />";
+  
+  echo '<div class="KPstor" >'. _AM_RESULTS.': '.sprintf(_AM_USERSFOUND, $total).'</div>
+            <br />
+            <br />';
 
   if ( $total == 0 ) {
-    echo "<h4>"._AM_NOFOUND,"</h4>";
+    echo "<h2>"._AM_NOFOUND,"</h2>";
     } elseif ( $start < $total ) {
     echo "
     <form action='admin.php' method='post' name='memberslist' id='memberslist'>
@@ -456,7 +467,7 @@ if ( $op == "submit" ) {
     }
     echo "
     </table></td>
-    </tr><tr><td><select class='select' name='fct'>
+    </tr><tr><td><br /><select class='select' name='fct'>
     <option value='users'>"._AM_DELUSER."</option>
     <option value='mailusers'>"._AM_SENDMAIL."</option>";
 
@@ -527,6 +538,13 @@ if ( $op == "submit" ) {
 
 }
 CloseTable();
+
+
+echo "                        
+        </td>
+    </tr>
+</table>";
+
 rcx_cp_footer();
 
   } else {

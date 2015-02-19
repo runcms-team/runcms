@@ -56,131 +56,6 @@ body {
 	padding: 3px;
 }
 
-/* sysmenu*/
-.KPstor{
-	font-size: 20px;
-	color: #1E90FF;
-	background-color: White;
-	background: no-repeat left top;
-	font-weight: bold;
-	height: 40px;
-	vertical-align: middle;
-	padding: 10px 0 0 50px;
-	border-bottom: 3px solid #1E90FF;
-}
-
-
-.KPindex{
-	padding: 4px;
-	vertical-align: top;
-	background-color: White;
-}
-.KPmellem{
-	font-weight: bold;
-	font-size: 14px;
-	color: #FF4500;
-	vertical-align: middle;
-		padding: 10px 0 0 50px;
-		background-color: White;
-
-}
-
-div.kpicon{
-	margin: 3px;
-	font-family: Arial, Helvetica, sans-serif;
-	text-align: center;
-	font-weight: normal;
-
-}
-div.kpicon a { 
-	display: block; float: left;
-	height: 80px !important;
-	height: 80px; 
-	width: 90px !important;
-	width: 90px; 
-	vertical-align: middle; 
-	text-decoration : none;
-	border: 1px solid #CCCCCC;
-	padding: 2px 5px 1px 5px;
-	margin: 3px;
-	color: #666666;
-	text-align: center;
-}
-div.kpicon a:hover{
-	background-color: #FFF6C1;
-	border: 1px solid #FF9900;
-	color: #1E90FF;
-
-}
-
-div.kpicon img { margin-top: 8px; margin-bottom: 8px; }
-
-div.kpicon span {
-	font-size: 11px;
-	font-weight: normal;
-	display: block;
-}
-div.kpicon span.uno{
-	font-size: 11px;
-	font-weight: normal;
-	text-decoration: underline;
-	color: Blue;
-}
-div.kpicon span.unor{
-	font-size: 11px;
-	font-weight: normal;
-	text-decoration: underline;
-	color: #CC0000;
-}
-
-
-/*div.kpicon{
-	margin: 20px !important;
-	font-family: Arial, Helvetica, sans-serif;
-	text-align: center;
-	
-}
-div.kpicon a { 
-	display: block; 
-	float: left !important;
-	height: 80px !important;
-	height: 80px; 
-	width: 80px !important;
-	width: 80px; 
-	vertical-align: middle; 
-	text-decoration : none;
-	border: 1px solid white;
-	padding: 2px 5px 1px 5px;
-	margin: 3px;
-	color: #666666;
-}
-div.kpicon a:hover{
-	background-color: #FFF6C1;
-	border: 1px solid #FF9900;
-	color: #1E90FF;
-
-}
-*/
-.fbund{
-	font-size: 20px;
-	color: #1E90FF;
-	background-color: White;
-	background: no-repeat left top;
-	font-weight: bold;
-	height: 40px;
-	vertical-align: middle;
-	padding: 10px 0 0 50px;
-	border-bottom: 3px solid #1E90FF;
-}
-
-.ftop{
-	font : bold 12px Verdana, Arial, Helvetica, sans-serif;
-	color: #FF4500;
-		height: 40px;
-
-	vertical-align: middle;
-	padding: 10px 0 0 50px;
-}
 /* sysmenu slut */
 
 .sysbody {
@@ -191,39 +66,6 @@ div.kpicon a:hover{
 	background: White;
 
 	background-image: url(../images/system/sys_bg.jpg);
-}
-
-.sysbg1{
-		color: #0F0F0F;
-	background-color: White;
-}
-.sysbg1a{
-		color: white;
-	background-color: white;
-}
-.sysbg2{
-		background: #F0F8FF;
-	border: 1px solid #F0FCFF;
-
-}
-.sysbg3{
-		color: #0F0F0F;
-	background-color: #E4F0FE;
-
-}
-.sysbg4{
-		background-color: red;
-	padding: 5px;
-
-}
-#admintop{
-	background-image: url(../images/system/admintopbg.jpg);
-}
-.sysinf1{
-	color: black;
-	font-family: Arial, Helvetica, sans-serif;
-	margin: 0px;
-	font-size: 11px;
 }
 
 /**
@@ -260,4 +102,3 @@ p { font-size:10px; color:#000; margin:5px 5px 5px 80px; }
 .download{border:1px solid #04b5eb;color:#04b5eb;background:#f7f7f7 url('../images/notification/download.png') no-repeat; background-position:30px 20px;}
 .purchase{border:1px solid #426164;color:#426164;background:#c2e1e3 url('../images/notification/purchase.png') no-repeat; background-position:30px 20px;}
 .print{border:1px solid #3c4b5e;color:#3c4b5e;background:#c8d9e3 url('../images/notification/print.png') no-repeat; background-position:30px 20px;}
-

@@ -13,7 +13,7 @@ if ( preg_match("/mailform\.php/i", $_SERVER['PHP_SELF']) ) {
   exit();
   }
 
-$form = new RcxThemeForm(_AM_SENDMTOUSERS, "mailusers", "admin.php?fct=mailusers", "post", true);
+$form = new RcxThemeForm("", "mailusers", "admin.php?fct=mailusers", "post", true);
 $form->setExtra("enctype='multipart/form-data'");
 
 //  from finduser section

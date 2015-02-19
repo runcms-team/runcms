@@ -43,6 +43,15 @@ function get_system_information() {
 $sysinfo = get_system_information();
 
 rcx_cp_header();
+
+
+echo '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbund">
+    <tr>
+        <td class="KPindex">
+            <div class="KPstor" >'._MD_AM_SYSINFO.'</div>
+            <br />
+            <br />';
+
 OpenTable();
 
 function get_php_setting($val) {
@@ -52,125 +61,82 @@ function get_php_setting($val) {
 error_reporting(0); // Ingen error reporting!
 
 ?>
-<style type="text/css">
-.sysa2 {
-	border: 1px solid #CCE6FF;
-	border-collapse: collapse;
-    width: 950px; 
-    height: 352px;
-	}
-.sysa4 {
-	border: 1px solid #CCE6FF;
-}
-.sysa41 {
-	border: 1px solid #CCE6FF;
-	width: 950px; 
-	height: 35px;
-}
-.sysa42 {
-	border: 1px solid #CCE6FF;
-	width: 800px;
-}
-.sysa43 {
-	border: 1px solid #CCE6FF;
-	width: 950px; 
-	height: 191px;
-}
-.sysa6 {
-	font-weight: bold;
-	border: 1px solid #CCE6FF;
-}
-.sysa8 {
-	border: 0 solid #CCE6FF;
-    height: 35px;
-}
-.sysa10 {
-	border: 1px solid #CCE6FF;
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: medium;
-    height: 5px; 
-    width: 600px;
-}
-.sysa12 {
-	border: 1px solid #FFFFFF;
-	background-color: #CCE6FF;
-    width: 182px;
-}
-</style>
 
-<table align="center" class="sysa2">
-<tr>
-<td valign="top" class="sysa10"><strong><?php echo _T_SI_FILP;?></strong></td>
+<h2><?php echo _T_SI_FILP;?></h2>
+
+<table border='0' cellpadding='0' cellspacing='0' width='100%'><tr><td class='sysbg2'>
+<table width='100%' border='0' cellpadding='4' cellspacing='1'><tr valign='middle' class='sysbg3'>
+
+
+
+<td class="sysbg1" ><strong><?php echo _T_SI_FILPAP;?></strong></td>
+<td class="sysbg3" style="width: 800px">&nbsp;<?php echo RCX_ROOT_PATH;?>&nbsp;</td>
 </tr>
 <tr>
-<td valign="top" class="sysa41">
-<div>
-<table cellpadding="0" cellspacing="0" border="0" style="width: 100%; height: 43px"><tr>
-<td class="sysa12" ><strong><?php echo _T_SI_FILPAP;?></strong></td>
-<td class="sysa6" style="width: 800px">&nbsp;<?php echo RCX_ROOT_PATH;?>&nbsp;</td>
+<td class="sysbg1" ><strong><?php echo _T_SI_FILPSAP;?></strong></td>
+<td class="sysbg3" >&nbsp;<?php $sp=ini_get('session.save_path'); if ($sp!="") { echo "<b>".$sp."</b>"; } else { echo "<b>Ikke sat...</b>"; } ?>&nbsp;</td>
+
+    </tr></table></td>
+    </tr></table>
+
+<h2><?php echo _T_SI_SERSI;?></h2>
+
+<table border='0' cellpadding='0' cellspacing='0' width='100%'><tr><td class='sysbg2'>
+<table width='100%' border='0' cellpadding='4' cellspacing='1'><tr valign='middle' class='sysbg3'>
+
+
+        
+<td class="sysbg1" ><?php echo _T_SI_SERSIO;?></td>
+<td class="sysbg3">&nbsp;<?php echo substr(php_uname(),0,7); ?>&nbsp;</td>
 </tr>
 <tr>
-<td class="sysa12" ><strong><?php echo _T_SI_FILPSAP;?></strong></td>
-<td class="sysa42" >&nbsp;<?php $sp=ini_get('session.save_path'); if ($sp!="") { echo "<b>".$sp."</b>"; } else { echo "<b>Ikke sat...</b>"; } ?>&nbsp;</td>
-</tr></table></div></td></tr>
-<tr>
-<td valign="top" class="sysa10"><strong><?php echo _T_SI_SERSI;?></strong></td>
+<td class="sysbg1"><?php echo _T_SI_SERSIW;?></td>
+<td class="sysbg3">&nbsp;<?php if ($_SERVER['SERVER_SOFTWARE'] != null) { echo "<b>". $_SERVER['SERVER_SOFTWARE'] ."</b>"; }else { echo "Server name and version: <b>Disable on server!</b><br />\n"; } ?>&nbsp;</td>
 </tr>
 <tr>
-<td valign="top" class="sysa43">
-<div>	
-<table width="100%" cellpadding="0" cellspacing="0" border="0">
-<tr>
-<td class="sysa12" ><?php echo _T_SI_SERSIO;?></td>
-<td class="sysa6">&nbsp;<?php echo substr(php_uname(),0,7); ?>&nbsp;</td>
+<td class="sysbg1" ><?php echo _T_SI_SERSIPHP;?></td>
+<td class="sysbg3">&nbsp;<?php echo phpversion();?>&nbsp;</td>
 </tr>
 <tr>
-<td class="sysa12"><?php echo _T_SI_SERSIW;?></td>
-<td class="sysa6">&nbsp;<?php if ($_SERVER['SERVER_SOFTWARE'] != null) { echo "<b>". $_SERVER['SERVER_SOFTWARE'] ."</b>"; }else { echo "Server name and version: <b>Disable on server!</b><br />\n"; } ?>&nbsp;</td>
+<td class="sysbg1"><?php echo _T_SI_SERSIMYS;?></td>
+<td class="sysbg3">&nbsp;<?php echo mysql_get_client_info();?>&nbsp;</td>
 </tr>
 <tr>
-<td class="sysa12" ><?php echo _T_SI_SERSIPHP;?></td>
-<td class="sysa6">&nbsp;<?php echo phpversion();?>&nbsp;</td>
+<td class="sysbg1" ><?php echo _T_SI_SERSIDB;?></td>
+<td class="sysbg3">&nbsp;<?php echo $sysinfo['db_server'];?>&nbsp;(<?php echo $sysinfo ['db_ip'];?>)&nbsp;</td>
 </tr>
 <tr>
-<td class="sysa12"><?php echo _T_SI_SERSIMYS;?></td>
-<td class="sysa6">&nbsp;<?php echo mysql_get_client_info();?>&nbsp;</td>
+<td class="sysbg1" ><?php echo _T_SI_SERSIGD;?></td>
+<td class="sysbg3">&nbsp;<?php if (extension_loaded('gd')) { echo "<font color=\"green\">YES</font>"; } else { echo "<font color=\"red\">NO</font>"; } ?>&nbsp;</td>
 </tr>
 <tr>
-<td class="sysa12" ><?php echo _T_SI_SERSIDB;?></td>
-<td class="sysa6">&nbsp;<?php echo $sysinfo['db_server'];?>&nbsp;(<?php echo $sysinfo ['db_ip'];?>)&nbsp;</td>
+<td class="sysbg1" ><?php echo _T_SI_SERSIGZI;?></td>
+<td class="sysbg3">&nbsp;<?php if ($_SERVER['HTTP_ACCEPT_ENCODING'] != null) { echo "<font color=\"green\">YES</font>"; } else { echo "<font color=\"red\">NO</font>"; } ?>&nbsp;</td>
 </tr>
 <tr>
-<td class="sysa12" ><?php echo _T_SI_SERSIGD;?></td>
-<td class="sysa6">&nbsp;<?php if (extension_loaded('gd')) { echo "<font color=\"green\">YES</font>"; } else { echo "<font color=\"red\">NO</font>"; } ?>&nbsp;</td>
+<td class="sysbg1" ><?php echo _T_SI_SERSICGI;?></td>
+<td class="sysbg3">&nbsp;<?php echo $_SERVER['GATEWAY_INTERFACE']; ?>&nbsp;</td>
 </tr>
 <tr>
-<td class="sysa12" ><?php echo _T_SI_SERSIGZI;?></td>
-<td class="sysa6">&nbsp;<?php if ($_SERVER['HTTP_ACCEPT_ENCODING'] != null) { echo "<font color=\"green\">YES</font>"; } else { echo "<font color=\"red\">NO</font>"; } ?>&nbsp;</td>
+<td class="sysbg1"><?php echo _T_SI_SERSIMAXF;?></td>
+<td class="sysbg3">&nbsp;<?php echo ini_get('post_max_size'); ?>&nbsp;</td>
 </tr>
 <tr>
-<td class="sysa12" ><?php echo _T_SI_SERSICGI;?></td>
-<td class="sysa6">&nbsp;<?php echo $_SERVER['GATEWAY_INTERFACE']; ?>&nbsp;</td>
+<td class="sysbg1"><?php echo _T_SI_SERSIKLS;?></td>
+<td class="sysbg3">&nbsp;<?php echo  $sysinfo['date'];?>&nbsp;</td>
 </tr>
 <tr>
-<td class="sysa12"><?php echo _T_SI_SERSIMAXF;?></td>
-<td class="sysa6">&nbsp;<?php echo ini_get('post_max_size'); ?>&nbsp;</td>
-</tr>
-<tr>
-<td class="sysa12"><?php echo _T_SI_SERSIKLS;?></td>
-<td class="sysa6">&nbsp;<?php echo  $sysinfo['date'];?>&nbsp;</td>
-</tr>
-<tr>
-<td class="sysa12" ><?php echo _T_SI_SERSISERV;?></td>
-<td class="sysa6">&nbsp;<?php echo $sysinfo['host'];?>&nbsp;(<?php echo $sysinfo['ip'];?>)&nbsp;</td>
-</tr></table><br /></div></td></tr>
-<tr>
-<td  valign="top" class="sysa10"><strong><?php echo _T_SI_PHPC;?></strong></td>
-</tr>
-<td  valign="top" class="sysa8">
-<div class="form-block">
-<table border="0">
-<tr>
+<td class="sysbg1" ><?php echo _T_SI_SERSISERV;?></td>
+<td class="sysbg3">&nbsp;<?php echo $sysinfo['host'];?>&nbsp;(<?php echo $sysinfo['ip'];?>)&nbsp;</td>
+
+    </tr></table></td>
+    </tr></table>
+
+<h2><?php echo _T_SI_PHPC;?></h2>
+
+<table border='0' cellpadding='0' cellspacing='0' width='100%'><tr><td class='sysbg2'>
+<table width='100%' border='0' cellpadding='4' cellspacing='1'><tr valign='middle' class='sysbg3'>
+
 <td style="width: 182px"><b><?php echo _T_SI_PHPCKON;?></b></td>
 <td style="width: 150px"><b><?php echo _T_SI_PHPCANB;?></b>&nbsp;&nbsp;</td>
 <td style="width: 150px"><b><?php echo _T_SI_PHPCAKT;?></b></td>
@@ -188,9 +154,9 @@ error_reporting(0); // Ingen error reporting!
     foreach ($php_recommended_settings as $phprec) {
 ?>
 <tr>
-<td class="sysa12" style="width: 182px"><?php echo $phprec[0];?></td>
-<td class="sysa6" style="width: 150px"><?php echo $phprec[2];?></td>
-<td class="sysa4" style="width: 150px">
+<td class="sysbg1" style="width: 182px"><?php echo $phprec[0];?></td>
+<td class="sysbg1" style="width: 150px"><?php echo $phprec[2];?></td>
+<td class="sysbg1" style="width: 150px">
 <?php
 	if ( get_php_setting($phprec[1]) == $phprec[2] ) {
 ?>
@@ -203,17 +169,19 @@ error_reporting(0); // Ingen error reporting!
 	}
 	echo get_php_setting($phprec[1]);
 ?>
-</font>
-</b></td>
-</tr>
-<?php } ?>
-</table>
-</div>
-<br /><br />
+</b></font>
 </td>
 </tr>
-</table>
+<?php } ?>
+    </table></td>
+    </tr></table>
 <?php
 CloseTable();
+
+echo "                        
+        </td>
+    </tr>
+</table>";
+
 rcx_cp_footer();
 ?>

@@ -167,7 +167,7 @@ $rcxConfig['user_html'] = "br";
 $rcxConfig['maintenance'] = 0;
 
 // Включить отдельную авторизацию для администратора (1=Да 0=Нет)
-$rcxConfig['use_auth_admin'] = 1;
+$rcxConfig['use_auth_admin'] = 0;
 
 // Включить смену идентификатора сессии.<br /><br /><span style='font-size:x-small;font-weight:normal;'>Идентификатор сесии меняется через указанный ниже интервал времени. Усложняет и делает малоэффективным его перехват.</span> (1=Да 0=Нет)
 $rcxConfig['use_session_regenerate_id'] = 0;

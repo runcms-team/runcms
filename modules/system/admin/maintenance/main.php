@@ -22,6 +22,14 @@ function make_menu() {
   
 global $myts, $rcxConfig, $rcxUser, $rcxModule;
 
+
+echo '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbund">
+    <tr>
+        <td class="KPindex">
+            <div class="KPstor" >'._MI_MAINT_NAME.'</div>
+            <br />
+            <br />';
+
 OpenTable();
 include("./cache/maintenance.php");
 
@@ -35,15 +43,20 @@ $allowed_html = new RcxFormLabel( _ALLOWEDHTML, $ahtml );
 
 $submit_button = new RcxFormButton("", "button", _AM_UPDATE, "submit");
 
-$form = new RcxThemeForm(_MI_MAINT_NAME, "settings", "admin.php?fct=maintenance&op=save", "post", true);
+$form = new RcxThemeForm('', "settings", "admin.php?fct=maintenance&op=save", "post", true);
 $form->addElement($in_block);
 $form->addElement($textarea);
 $form->addElement($allowed_html);
 $form->addElement($submit_button);
 $form->display();
 
-echo _MI_MAINT_NAME . "";
+//echo _MI_MAINT_NAME . "";
 CloseTable();
+
+echo "                        
+        </td>
+    </tr>
+</table>";
 }
 
 function save_maint($content){

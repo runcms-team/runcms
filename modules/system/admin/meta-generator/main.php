@@ -35,14 +35,16 @@ global $myts;
 $rcx_token = & RcxToken::getInstance();
 
 include("./cache/meta.php");
+
+echo '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbund">
+    <tr>
+        <td class="KPindex">
+            <div class="KPstor" >'._MI_MTG_NAME.'</div>
+            <br />
+            <br />';
+
 OpenTable();
 ?>
-
-<div align="center">
-<h3><u><?php echo _MI_MTG_NAME;?></u></h3>
-</div>
-
-<hr size="1" noshade="noshade" />
 
 <form name="settings" action="./admin.php?fct=meta-generator" method="post">
 <table align="center"><tr>
@@ -289,6 +291,12 @@ document.settings.Xmax_depth.value = "<?php echo $meta['max_depth'];?>";
 </script>
 <?php
 CloseTable();
+
+echo "                        
+        </td>
+    </tr>
+</table>";
+
 }
 
 function merge($merge, $which) {

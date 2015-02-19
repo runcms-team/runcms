@@ -26,11 +26,18 @@ if ($rcxUser) {
     exit();
   }
   rcx_cp_header();
+  
+  
+  echo '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbund">
+    <tr>
+        <td class="KPindex">
+            <div class="KPstor" >'._AD_LASTTENUSERS.'</div>
+            <br />
+            <br />';
+  
   OpenTable();
 
-echo"<table><tr><td>
- <h4>"._AD_LASTTENUSERS."</h4>
-</td>";
+echo"<table><tr>";
 
   $sql = "SELECT * FROM ".$db->prefix("users")." WHERE level>0 ORDER BY uid DESC";
   $result = $db->query($sql, 10, 0);
@@ -55,6 +62,13 @@ echo"<table><tr><td>
   echo "</table></td></tr></table><br />";
 
   CloseTable();
+  
+  
+echo "                        
+        </td>
+    </tr>
+</table>";
+
   rcx_cp_footer();
  // break;
   ?>

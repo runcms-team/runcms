@@ -83,7 +83,7 @@ $op_hidden     = new RcxFormHidden("op", $op_value);
 $fct_hidden    = new RcxFormHidden("fct", "groups");
 $submit_button = new RcxFormButton("", "groupsubmit", $submit_value, "submit");
 
-$form = new RcxThemeForm($form_title, "groupform", "admin.php", "post", true);
+$form = new RcxThemeForm('', "groupform", "admin.php", "post", true);
 $form->addElement($name_text);
 $form->addElement($desc_text);
 $form->addElement($a_mod_checkbox);

@@ -23,8 +23,16 @@ if ($_POST['submit'] == _SUBMIT) {
 }
 
 rcx_cp_header();
+
+echo '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbund">
+    <tr>
+        <td class="KPindex">
+            <div class="KPstor" >'._AM_FILTERSETTINGS.'</div>
+            <br />
+            <br />';
+
 OpenTable();
-echo '<a href="admin.php?fct=filter"><h4>'._AM_FILTERSETTINGS.'</h4></a><br />';
+//echo '<a href="admin.php?fct=filter"><h4>'._AM_FILTERSETTINGS.'</h4></a><br />';
 
 include_once(RCX_ROOT_PATH."/class/rcxformloader.php");
 $form = new RcxThemeForm('', "filterform", "admin.php?fct=filter", "post", true);
@@ -251,6 +259,12 @@ default:
 }
 
 CloseTable();
+
+echo "                        
+        </td>
+    </tr>
+</table>";
+
 rcx_cp_footer();
 
 }

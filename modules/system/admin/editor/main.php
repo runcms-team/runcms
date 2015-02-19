@@ -32,6 +32,13 @@ include_once(RCX_ROOT_PATH."/class/rcxformloader.php");
 include_once(RCX_ROOT_PATH.'/class/rcxgroup.php');
 global $myts, $rcxConfig, $rcxUser, $rcxModule;
 
+echo '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbund">
+    <tr>
+        <td class="KPindex">
+            <div class="KPstor" >'._MD_AM_EDITOR_CONFIG.'</div>
+            <br />
+            <br />';
+
 OpenTable();
 include("./cache/editor.php");
 
@@ -43,7 +50,7 @@ $submit_button = new RcxFormButton("", "button", _UPDATE, "submit");
 
 $upload_group = new RcxFormSelectGroup(_MD_AM_GROUP_UPL,"uploadGroup",1,explode(",", $editorConfig['groupstoupload']),5,1);
 
-$form = new RcxThemeForm(_MD_AM_EDITOR_CONFIG, "editor_form", "admin.php?fct=editor", "post", true);
+$form = new RcxThemeForm("", "editor_form", "admin.php?fct=editor", "post", true);
 $form->addElement($allow_editor);
 $form->addElement($allow_for_user);
 $form->addElement($allow_for_mailusers);
@@ -52,6 +59,10 @@ $form->addElement($op_hidden);
 $form->addElement($submit_button);
 $form->display();
 CloseTable();
+echo "                        
+        </td>
+    </tr>
+</table>";
 }
 
 function save_maint($content){

@@ -21,9 +21,17 @@ function displayGroups() {
 global $db, $myts, $rcxConfig, $rcxModule;
 
 rcx_cp_header();
+
+echo '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbund">
+    <tr>
+        <td class="KPindex">
+            <div class="KPstor" >'._AM_EDITADG.'</div>
+            <br />
+            <br />';
+
 OpenTable();
 
-echo "<h4 style='text-align:left'>"._AM_EDITADG."</h4>";
+//echo "<h4 style='text-align:left'>"._AM_EDITADG."</h4>";
 $result = $db->query("SELECT groupid, name, type FROM ".$db->prefix("groups")."");
 echo "
 <table border='0' cellpadding='0' cellspacing='0' width='40%'>
@@ -54,9 +62,20 @@ $g_id_value    = "";
 $type_value    = "";
 $form_title    = _AM_CREATENEWADG;
 
+
+echo '<br /><div class="KPstor" >'.$form_title.'</div>
+            <br />
+            <br />';
+
 include_once(RCX_ROOT_PATH."/modules/system/admin/groups/groupform.php");
 
 CloseTable();
+
+echo "                        
+        </td>
+    </tr>
+</table>";
+
 rcx_cp_footer();
 }
 
@@ -84,9 +103,18 @@ if ( !empty($_POST['adminstart']) ) {
   }
 
 rcx_cp_header();
+
+
+echo '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbund">
+    <tr>
+        <td class="KPindex">
+            <div class="KPstor" >'._AM_MODIFYADG.'</div>
+            <br />
+            <br />';
+
 OpenTable();
 
-echo '<a href="admin.php?fct=groups">'. _AM_GROUPSMAIN .'</a>&nbsp;<span style="font-weight:bold;">&raquo;&raquo;</span>&nbsp;'. _AM_MODIFYADG.'<br /><br />';
+//echo '<a href="admin.php?fct=groups">'. _AM_GROUPSMAIN .'</a>&nbsp;<span style="font-weight:bold;">&raquo;&raquo;</span>&nbsp;'. _AM_MODIFYADG.'<br /><br />';
 
 $thisgroup     = new RcxGroup($g_id);
 $name_value    = $thisgroup->getVar("name", "E");
@@ -101,7 +129,18 @@ $type_value    = $thisgroup->getVar("type", "E");
 $form_title    = _AM_MODIFYADG;
 
 include_once(RCX_ROOT_PATH."/modules/system/admin/groups/groupform.php");
-echo "<br /><h4 style='text-align:left'>"._AM_EDITMEMBER."</h4>";
+
+echo "                        
+        </td>
+    </tr>
+</table>";
+
+echo '<br />
+            <div class="KPstor" >'._AM_EDITMEMBER.'</div>
+            <br />
+            <br />';
+
+//echo "<br /><h4 style='text-align:left'>"._AM_EDITMEMBER."</h4>";
 
 $usercount = RcxUser::countAllUsers('level>0');
 $sql       = "SELECT COUNT(*) FROM ".$db->prefix("groups_users_link")." l, ".$db->prefix("users")." u WHERE l.groupid = ".$g_id." AND l.uid=u.uid";
