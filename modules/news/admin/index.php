@@ -24,8 +24,14 @@ function newSubmissions()
   $storyarray = NewsStory::getAllSubmitted();
   if (count($storyarray) > 0)
   {
+      
+      echo '
+            <div class="KPstor" >'._AM_NEWSUB.'</div>
+            <br />
+            <br />';      
+      
     OpenTable();
-    echo "<div style='text-align: center;'><b>"._AM_NEWSUB."</b><br /><table width='100%' border='1'><tr class='bg2'><td align='center'>"._AM_TITLE."</td><td align='center'>"._AM_POSTED."</td><td align='center'>"._AM_POSTER."</td><td align='center'>"._ACTION."</td></tr>";
+    echo "<div style='text-align: center;'><table width='100%' border='1'><tr class='bg2'><td align='center'>"._AM_TITLE."</td><td align='center'>"._AM_POSTED."</td><td align='center'>"._AM_POSTER."</td><td align='center'>"._ACTION."</td></tr>";
     foreach ($storyarray as $newstory)
     {
       echo "<tr><td>";
@@ -60,9 +66,15 @@ function autoStories()
   $storyarray = NewsStory::getAllAutoStory();
   if (count($storyarray) > 0)
   {
+      
+   echo '
+            <div class="KPstor" >'._AM_AUTOARTICLES.'</div>
+            <br />
+            <br />';    
+      
     OpenTable();
     echo "
-      <div style='text-align: center;'><b>"._AM_AUTOARTICLES."</b><br />
+      <div style='text-align: center;'>
       <table border='1' width='100%'>
       <tr class='bg2'>
         <td align='center'>"._AM_STORYID."</td>
@@ -100,11 +112,16 @@ function autoStories()
 function lastStories()
 {
   global $db, $rcxConfig, $rcxModule;
+  
+echo '
+            <div class="KPstor" >'._AM_LAST10ARTS.'</div>
+            <br />
+            <br />';  
+  
   OpenTable();
 
  echo "
-    <div style='text-align: center;'><b>"._AM_LAST10ARTS."</b>
-    <br />";
+    <div style='text-align: center;'>";
   $storyarray = NewsStory::getAllPublished(10, 0, 0, 1);
   echo "
     <table border='1' width='100%'>
@@ -154,12 +171,17 @@ function topicsmanager()
   rcx_cp_header();
   $xt = new RcxTopic($db->prefix("topics"));
   // Add a New Main Topic
+  
+echo '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbund">
+    <tr>
+        <td class="KPindex">
+            <div class="KPstor" >'._AM_ADDMTOPIC.'</div>
+            <br />
+            <br />';
 
   OpenTable();
   echo "
     <form method='post' action='index.php'>
-      <h4>"._AM_ADDMTOPIC."</h4>
-      <br />
       <b>"._AM_TOPICNAME."</b> "._AM_MAX40CHAR."
       <br />
       <input type='text' class='text' name='topic_title' size='20' maxlength='255' />
@@ -175,11 +197,14 @@ function topicsmanager()
   list($numrows) = $db->fetch_row($result);
   if ($numrows>0)
   {
+      
+echo '<div class="KPstor" >'._AM_ADDSUBTOPIC.'</div>
+            <br />
+            <br />';      
+      
     OpenTable();
     echo "
     <form method='post' action='index.php'>
-      <h4>"._AM_ADDSUBTOPIC."</h4>
-      <br />
       <b>"._AM_TOPICNAME."</b> "._AM_MAX40CHAR."
       <br />
       <input type='text' class='text' name='topic_title' size='20' maxlength='255' /> &nbsp;"._AM_IN." &nbsp;";
@@ -192,11 +217,14 @@ function topicsmanager()
     CloseTable();
     echo "<br />";
   // Modify Topic
+    
+echo '<div class="KPstor" >'._AM_MODIFYTOPIC.'</div>
+            <br />
+            <br />';    
+    
     OpenTable();
     echo "
     <form method='post' action='index.php'>
-      <h4>"._AM_MODIFYTOPIC."</h4>
-      <br />
       <b>"._AM_TOPIC."</b>
       <br />";
       $xt->makeTopicSelBox();
@@ -207,6 +235,11 @@ function topicsmanager()
       <input type='submit' class='button' value='"._MODIFY."' />
     </form></td>";
     CloseTable();
+    
+echo "                        
+        </td>
+    </tr>
+</table>";   
   }
 }
 /**
@@ -221,14 +254,21 @@ function modTopic()
   $topic_id = (int)$_REQUEST['topic_id'];// ? $_POST['topic_id'] : $_GET['topic_id'];
   $xt = new RcxTopic($db->prefix("topics"), $topic_id);
   rcx_cp_header();
+  
+echo '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbund">
+    <tr>
+        <td class="KPindex">
+            <div class="KPstor" >'._AM_MODIFYTOPIC.'</div>
+            <br />
+            <br />';  
+  
   OpenTable();
   ?>
-  <h4><?php echo _AM_MODIFYTOPIC;?></h4>
+
   <?php
   if ($xt->topic_imgurl())
   {
     echo "
-    <br />
     <div style='text-align: right;'>
       <img src='".formatURL(RCX_URL."/modules/news/cache/topics/", $xt->topic_imgurl())."'>
     </div>";
@@ -260,6 +300,11 @@ function modTopic()
     </form>
   <?php
   CloseTable();
+  
+  echo "                        
+        </td>
+    </tr>
+</table>";
 }
 /**
 * Description
@@ -380,12 +425,18 @@ function newsConfig()
 {
   global $rcxConfig, $rcxModule, $rcxOption, $newsConfig;
   rcx_cp_header();
+  
+echo '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbund">
+    <tr>
+        <td class="KPindex">
+            <div class="KPstor" >'._AM_GENERALCONF.'</div>
+            <br />
+            <br />';
 
   OpenTable();
-echo "</tr></table>";
+//echo "</tr></table>";
 ?>
-  <h4><?php echo _AM_GENERALCONF;?></h4>
-  <br />
+
   <form action="index.php" method="post">
     <table width="100%" border="0">
     <tr>
@@ -518,7 +569,6 @@ $chk1 = ""; $chk2 = "";
     <tr>
       <td colspan=2><hr /></td>
     </tr>
-    </tr>
   </table>
   <input type="hidden" name="op" value="newsConfigS" />
   <input type="submit" class="button" value="<?php echo _SAVE;?>" />
@@ -526,6 +576,11 @@ $chk1 = ""; $chk2 = "";
   </form>
   <?php
   CloseTable();
+  
+  echo "                        
+        </td>
+    </tr>
+</table>";
 }
 /**
 * Description
@@ -636,15 +691,29 @@ switch($op)
     break;
   case "newarticle":
     rcx_cp_header();
+      
+ echo '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbund">
+    <tr>
+        <td class="KPindex">';     
+      
     newSubmissions();
     autoStories();
     lastStories();
-    echo "<br />";
+echo '<div class="KPstor" >'._AM_POSTNEWARTICLE.'</div>
+            <br />
+            <br />';
+
     OpenTable();
-    echo "<h4>"._AM_POSTNEWARTICLE."</h4>";
+
     $type = 'admin';
     include_once("storyform.inc.php");
     CloseTable();
+    
+echo "                        
+        </td>
+    </tr>
+</table>";    
+    
     break;
   case "preview":
     rcx_cp_header();
@@ -854,12 +923,17 @@ switch($op)
     break;
   default:
     rcx_cp_header();
+      
+echo '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbund">
+    <tr>
+        <td class="KPindex">
+            <div class="KPstor" >'._MI_NEWS_ADMIN.'</div>
+            <br />
+            <br />';      
+      
     OpenTable();
 ?>
 
-<div class="KPstor" ><?php echo _MI_NEWS_ADMIN;?></div><br />
-
-	<br /><br /><br /><br />
 	<div class="kpicon"><table><tr><td>
 	<a href="index.php?op=newsConfig"><img src="<?php echo RCX_URL;?>/images/system/indstil.png" alt="<?php echo _AM_GENERALCONF;?>">
 	<br /><?php echo _AM_GENERALCONF;?></a>
@@ -875,6 +949,12 @@ switch($op)
 <?php
 echo "</tr></table>";
     CloseTable();
+    
+echo "                        
+        </td>
+    </tr>
+</table>";
+
     break;
 }
 rcx_cp_footer();
