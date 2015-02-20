@@ -166,10 +166,8 @@ OpenTable();
 <table border='0' cellpadding='0' cellspacing='0' width='100%'><tr><td class='sysbg2'>
 <table width='100%' border='0' cellpadding='4' cellspacing='1'><tr valign='middle' class='sysbg3'>
 
-
-
 <td colspan="2">&nbsp;</td>
-<td colspan="2" rowspan="5" align="center" valign="top"><table border="0" align="center" cellspacing="5">
+<td colspan="2" rowspan="6" align="center" valign="top"><table border="0" align="center" cellspacing="5">
 <tr class='sysbg3'>
 
 <td align="center"><?php echo _AM_WANTED;?></td>
@@ -249,6 +247,11 @@ document.write("(<b>" + document.settings.unwanted.options.length + "</b>)");
 <input type="radio" class="radio" name="Xcloaking" value="0" <?php if ($meta["cloaking"] == 0) { echo " checked='checked'"; };?>/></td>
 </tr>
 <tr class='sysbg3'>
+<td><?php echo _AM_AGENTS;?></td>
+<td>
+<input type="text" class="text" name="Xuser_agents" value="<?php echo $meta["user_agents"];?>" size="50" /></td></td>
+</tr>
+<tr class='sysbg3'>
 <td colspan="2">&nbsp;</td>
 </tr>
 <tr class='sysbg3'>
@@ -269,8 +272,16 @@ document.write("(<b>" + document.settings.unwanted.options.length + "</b>)");
 <option value="75">75</option>
 <option value="100">100</option>
 </select></td>
-<td colspan="2"><?php echo _AM_AGENTS;?>:
-<input type="text" class="text" name="Xuser_agents" value="<?php echo $meta["user_agents"];?>" size="50" /></td>
+<td colspan="2"><div align="center">
+
+<h3><?php echo _AM_WTITLE;?>:</h3>
+<?php echo _AM_WANTED;?>: <input type="radio" class="radio" name="which" value="wanted">
+<?php echo _AM_UNWANTED;?>: <input type="radio" class="radio" name="which" value="unwanted"><br /><br />
+<input type="file" class="file" name="merge">
+<?php echo $rcx_token->getTokenHTML();?>
+<input type="submit" class="button" name="submit" value="<?php echo _AM_MERGE;?>">
+
+</div></td>
 </tr>
 <tr class='sysbg3' align="center" valign="middle">
 <td colspan="4"><?php echo $rcx_token->getTokenHTML();?><input type="submit" class="button" name="submit" value="<?php echo _AM_UPDATE;?>" /></td>
@@ -278,16 +289,7 @@ document.write("(<b>" + document.settings.unwanted.options.length + "</b>)");
     </tr></table></td>
     </tr></table></form>
 
-<div align="center">
-<form name="import" method="post" action="./admin.php?fct=meta-generator" enctype="multipart/form-data">
-<h3><?php echo _AM_WTITLE;?>:</h3>
-<?php echo _AM_WANTED;?>: <input type="radio" class="radio" name="which" value="wanted">
-<?php echo _AM_UNWANTED;?>: <input type="radio" class="radio" name="which" value="unwanted"><br />
-<input type="file" class="file" name="merge">
-<?php echo $rcx_token->getTokenHTML();?>
-<input type="submit" class="button" name="submit" value="<?php echo _AM_MERGE;?>">
-</form>
-</div>
+
 
 <script type="text/javascript">
 document.settings.Xrating.value = "<?php echo $meta['rating'];?>";
@@ -301,7 +303,7 @@ document.settings.Xmax_depth.value = "<?php echo $meta['max_depth'];?>";
 <?php
 CloseTable();
 
-echo "                        
+echo "   <br /> <br />                     
         </td>
     </tr>
 </table>";
