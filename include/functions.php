@@ -103,11 +103,17 @@ if ($meta['extractor']) {
 <?php } ?>
 <meta name="rating" content="<?php echo $meta['rating'];?>" />
 <meta name="robots" content="<?php echo $meta['index'];?>, <?php echo $meta['follow'];?>" />
+<?php if (empty($meta['nogenerator'])) { ?>
 <meta name="generator" content="<?php echo RCX_VERSION;?>" />
+<?php } ?>
 <meta name="keywords" content="<?php echo $meta['keywords'];?>" />
 <meta name="description" content="<?php echo $meta['description'];?>" />
+<?php if (!empty($meta['author'])) { ?>
 <meta name="author" content="<?php echo $meta['author'];?>" />
+<?php } ?>
+<?php if (!empty($meta['copyright'])) { ?>
 <meta name="copyright" content="<?php echo $meta['copyright'];?>" />
+<?php } ?>
 <?php readfile(RCX_ROOT_PATH . "/modules/system/cache/header.php");?>
 
 <link rel="shortcut icon" href="<?php echo $meta['icon'];?>" />

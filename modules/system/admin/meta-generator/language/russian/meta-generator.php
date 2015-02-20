@@ -37,8 +37,8 @@ define("_MT_UNWANTED",": Нежелательные слова.");
 define("_MT_WANTED",": Нужные слова. Выключите режим отладки, для того чтобы скрыть это сообщение.");
 define("_AM_MTITLE","Настройки мета-тегов");
 define("_AM_TITLE","Заголовок");
-define("_AM_AUTHOR","Автор");
-define("_AM_COPY","Авторские права");
+define("_AM_AUTHOR","Автор (оставьте пустым, для отключения мета-тега)");
+define("_AM_COPY","Авторские права (оставьте пустым, для отключения мета-тега)");
 define("_AM_SLOGAN","Слоган");
 define("_AM_KEYW","Ключевые слова (Keywords)");
 define("_AM_COMMA","разделять запятой");
@@ -54,7 +54,7 @@ define("_AM_FTITLE","Нижний колонтитул");
 define("_AM_KTITLE","Извлечение ключевых слов");
 define("_AM_EXTRACTOR","Включить динамическое извлечение ключевых слов");
 define("_AM_CLOAKING","Извлекать ключевые слова только для указанных User Agent");
-define("_AM_MDEPTH","Максимальное количество строк, для поиска ключевых слов");
+define("_AM_MDEPTH","Максимальное количество строк страницы, для поиска ключевых слов");
 define("_AM_MWORDS","Количество генерируемых ключевых слов");
 define("_AM_WANTED","Желательные слова");
 define("_AM_UNWANTED","Нежелательные слова");
@@ -74,4 +74,6 @@ define("_AM_ROBIND","index");
 define("_AM_ROBNOI","noindex");
 define("_AM_ROBFOL","follow");
 define("_AM_ROBNOF","nofollow");
+
+define("_AM_NOGENERATOR","Отключить мета-тег generator");
 ?>

@@ -2,6 +2,7 @@
 $meta['title'] = "My Runcms Site";
 $meta['author'] = "Runcms Team";
 $meta['copyright'] = "© 2002-2015 Runcms Team";
+$meta['nogenerator'] = "0";
 $meta['slogan'] = "Simplicity and ease of use";
 $meta['keywords'] = "runcms,e-xoops";
 $meta['rating'] = "general";

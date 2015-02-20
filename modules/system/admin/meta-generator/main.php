@@ -47,43 +47,54 @@ OpenTable();
 ?>
 
 <form name="settings" action="./admin.php?fct=meta-generator" method="post">
-<table align="center"><tr>
+<table border='0' cellpadding='0' cellspacing='0' width='100%'><tr><td class='sysbg2'>
+<table width='100%' border='0' cellpadding='4' cellspacing='1'><tr valign='middle' class='sysbg3'>
+
+
+
 
 <td colspan="2">
 <h3><?php echo _AM_MTITLE;?>:</h3>
 </td>
 
-</tr><tr>
+</tr><tr class='sysbg3'>
 
 <td><?php echo _AM_TITLE;?>:</td>
 <td><input type="text" class="text" name="Xtitle" value="<?php echo $myts->makeTboxData4PreviewInForm($meta['title']);?>" size="32" /></td>
 
-</tr><tr>
+</tr><tr class='sysbg3'>
 
 <td><?php echo _AM_AUTHOR;?>:</td>
 <td><input type="text" class="text" name="Xauthor" value="<?php echo $myts->makeTboxData4PreviewInForm($meta['author']);?>" size="32" /></td>
 
-</tr><tr>
+</tr><tr class='sysbg3'>
 
 <td><?php echo _AM_COPY;?>:</td>
 <td><input type="text" class="text" name="Xcopyright" value="<?php echo $myts->makeTboxData4PreviewInForm($meta['copyright']);?>" size="32" /></td>
 
-</tr><tr>
+</tr><tr class='sysbg3'>
+
+<td><?php echo _AM_NOGENERATOR;?>:</td>
+<td>
+<input type="checkbox" class="checkbox" name="Xnogenerator" value="1" <?php if ($meta['nogenerator'] == 1) { echo " checked='checked'"; }?> />
+</td>
+
+</tr><tr class='sysbg3'>
 
 <td><?php echo _AM_SLOGAN;?>:</td>
 <td><input type="text" class="text" name="Xslogan" value="<?php echo $myts->makeTboxData4PreviewInForm($meta['slogan']);?>" size="65" /></td>
 
-</tr><tr>
+</tr><tr class='sysbg3'>
 
 <td><?php echo _AM_KEYW;?>:<br />(<?php echo _AM_COMMA;?>)</td>
 <td><input type="text" class="text" name="Xkeywords" value="<?php echo $myts->makeTboxData4PreviewInForm($meta['keywords']);?>" size="65" /></td>
 
-</tr><tr>
+</tr><tr class='sysbg3'>
 
 <td><?php echo _AM_DESC;?>:</td>
 <td><input type="text" class="text" name="Xdescription" value="<?php echo $myts->makeTboxData4PreviewInForm($meta['description']);?>" size="65" /></td>
 
-</tr><tr>
+</tr><tr class='sysbg3'>
 
 <td><?php echo _AM_RAT;?>:</td>
 <td>
@@ -95,14 +106,14 @@ OpenTable();
 </select>
 </td>
 
-</tr><tr>
+</tr><tr class='sysbg3'>
 
 <td><?php echo _AM_P3P;?>:</td>
 <td>
 <input type="text" class="text" name="Xp3p" value="<?php echo $myts->makeTboxData4PreviewInForm($meta['p3p']);?>" size="34" />
 </td>
 
-</tr><tr>
+</tr><tr class='sysbg3'>
 
 <td><?php echo _AM_ROB;?>:</td>
 <td>
@@ -117,23 +128,22 @@ OpenTable();
 </select>
 </td>
 
-</tr><tr>
+</tr><tr class='sysbg3'>
 
 <td><?php echo _AM_PRAGMA;?>:</td>
 <td>
 <input type="checkbox" class="checkbox" name="Xpragma" value="1" <?php if ($meta['pragma'] == 1) { echo " checked='checked'"; }?> />
 </td>
 
-</tr><tr>
+</tr><tr class='sysbg3'>
 
 <td><?php echo _AM_BOOK;?>:<br />(<?php echo _AM_REL;?>)</td>
 <td>
 <input type="text" class="text" name="Xicon" value="<?php echo $myts->makeTboxData4PreviewInForm($meta['icon']);?>" size="34" />
 </td>
 
-</tr></table>
-
-<hr size="1" noshade="noshade" />
+</tr>    </table></td>
+    </tr></table>
 
 <div align="center">
 <h3><?php echo _AM_HTITLE;?>:</h3>
@@ -142,8 +152,6 @@ OpenTable();
 </textarea>
 </div>
 
-<hr size="1" noshade="noshade" />
-
 <div align="center">
 <h3><?php echo _AM_FTITLE;?>:</h3>
 <textarea class="textarea" name="footer" rows="6" cols="80">
@@ -151,22 +159,24 @@ OpenTable();
 </textarea>
 </div>
 
-<hr size="1" noshade="noshade" />
 
 <a name="keywords"></a>
 <h3><?php echo _AM_KTITLE;?>:</h3>
 
-<table width="99%" border="0" cellspacing="5" cellpadding="5">
-<tr>
-<td colspan="2"><hr size="1" noshade="noshade" /></td>
+<table border='0' cellpadding='0' cellspacing='0' width='100%'><tr><td class='sysbg2'>
+<table width='100%' border='0' cellpadding='4' cellspacing='1'><tr valign='middle' class='sysbg3'>
+
+
+
+<td colspan="2">&nbsp;</td>
 <td colspan="2" rowspan="5" align="center" valign="top"><table border="0" align="center" cellspacing="5">
-<tr>
+<tr class='sysbg3'>
 
 <td align="center"><?php echo _AM_WANTED;?></td>
 <td colspan="2">&nbsp;</td>
 <td align="center"><?php echo _AM_UNWANTED;?></td>
 </tr>
-<tr>
+<tr class='sysbg3'>
 
 <td align="center" rowspan="3">
 <select class="select" id="wanted" name="Xwanted[]" multiple="multiple" size="10" onfocus="document.settings.Add.value='';">
@@ -204,12 +214,12 @@ document.write("(<b>" + document.settings.unwanted.options.length + "</b>)");
 <br />
 </td>
 </tr>
-<tr>
+<tr class='sysbg3'>
 
 <td align="center" valign="middle">
 <input type="submit" class="button" name="submit" value="<---" />
 </td>
-<td align="center" valign="middle">
+<td class='sysbg3' align="center" valign="middle">
 <input type="submit" class="button" name="submit" value="--->" />
 </td>
 </tr>
@@ -221,7 +231,7 @@ document.write("(<b>" + document.settings.unwanted.options.length + "</b>)");
 </tr>
 </table></td>
 </tr>
-<tr>
+<tr class='sysbg3'>
 <td><?php echo _AM_EXTRACTOR;?></td>
 <td>
 <?php echo _ON;?>:
@@ -230,7 +240,7 @@ document.write("(<b>" + document.settings.unwanted.options.length + "</b>)");
 <input type="radio" class="radio" name="Xextractor" value="0" <?php if ($meta["extractor"] == 0) { echo " checked='checked'"; };?>/>
 </td>
 </tr>
-<tr>
+<tr class='sysbg3'>
 <td><?php echo _AM_CLOAKING;?></td>
 <td>
 <?php echo _ON;?>:
@@ -238,10 +248,10 @@ document.write("(<b>" + document.settings.unwanted.options.length + "</b>)");
 <?php echo _OFF;?>:
 <input type="radio" class="radio" name="Xcloaking" value="0" <?php if ($meta["cloaking"] == 0) { echo " checked='checked'"; };?>/></td>
 </tr>
-<tr>
-<td colspan="2"><hr size="1" noshade="noshade" /></td>
+<tr class='sysbg3'>
+<td colspan="2">&nbsp;</td>
 </tr>
-<tr>
+<tr class='sysbg3'>
 <td><?php echo _AM_MDEPTH;?></td>
 <td><select class="select" name="Xmax_depth">
 <option value="5" selected="selected">5</option>
@@ -250,7 +260,7 @@ document.write("(<b>" + document.settings.unwanted.options.length + "</b>)");
 <option value="20">20</option>
 </select></td>
 </tr>
-<tr>
+<tr class='sysbg3'>
 <td><?php echo _AM_MWORDS;?></td>
 <td><select class="select" name="Xmax_words">
 <option value="15">15</option>
@@ -262,12 +272,11 @@ document.write("(<b>" + document.settings.unwanted.options.length + "</b>)");
 <td colspan="2"><?php echo _AM_AGENTS;?>:
 <input type="text" class="text" name="Xuser_agents" value="<?php echo $meta["user_agents"];?>" size="50" /></td>
 </tr>
-<tr align="center" valign="middle">
+<tr class='sysbg3' align="center" valign="middle">
 <td colspan="4"><?php echo $rcx_token->getTokenHTML();?><input type="submit" class="button" name="submit" value="<?php echo _AM_UPDATE;?>" /></td>
 
-</tr></form></table>
-
-<hr size="1" noshade="noshade" />
+    </tr></table></td>
+    </tr></table></form>
 
 <div align="center">
 <form name="import" method="post" action="./admin.php?fct=meta-generator" enctype="multipart/form-data">
@@ -388,6 +397,7 @@ $content  = "<?php\n";
 $content .= "\$meta['title'] = \"".clean_text($_POST["Xtitle"])."\";\n";
 $content .= "\$meta['author'] = \"".clean_text($_POST["Xauthor"])."\";\n";
 $content .= "\$meta['copyright'] = \"".clean_text($_POST["Xcopyright"])."\";\n";
+$content .= "\$meta['nogenerator'] = \"".(int)$_POST["Xnogenerator"]."\";\n";
 $content .= "\$meta['slogan'] = \"".clean_text($_POST["Xslogan"])."\";\n";
 $content .= "\$meta['keywords'] = \"".clean_text($_POST["Xkeywords"])."\";\n";
 $content .= "\$meta['rating'] = \"".$_POST["Xrating"]."\";\n";
