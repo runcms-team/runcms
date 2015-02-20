@@ -33,7 +33,12 @@ while(list($storyid, $title, $published) = $db->fetch_row($result)) {
                  if ( strlen($title2) > $options[1] ) {
                 $title2 = substr($title2, 0, $options[1])."..";
                 }
-$block['content'] .= "<a href=\"".RCX_URL."/modules/news/article.php?storyid=$storyid&amp;title=$title\">$title2</a> (".formatTimestamp($published, "s").")"."&nbsp;&nbsp;&nbsp;&nbsp;";
+
+    if ($scrolldirection == 'Up' || $scrolldirection == 'Down') {                
+        $block['content'] .= "<a href=\"".RCX_URL."/modules/news/article.php?storyid=$storyid\" title=\"$title\">$title2</a> (".formatTimestamp($published, "s").")"."<br />";
+    } else {
+        $block['content'] .= "<a href=\"".RCX_URL."/modules/news/article.php?storyid=$storyid\" title=\"$title\">$title2</a> (".formatTimestamp($published, "s").")"."&nbsp;&nbsp;&nbsp;&nbsp;";
+    }
                 
 }
 
