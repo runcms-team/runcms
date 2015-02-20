@@ -38,7 +38,7 @@ $rcxConfig['smtp_uname'] = "";
 $rcxConfig['smtp_pass'] = "";
     
 // SMTP ѕорт:
-$rcxConfig['smtp_port'] = "465";
+$rcxConfig['smtp_port'] = "25";
 
 // язык по умолчанию
 $rcxConfig['language'] = "russian";
