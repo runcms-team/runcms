@@ -76,7 +76,7 @@ define("_AM_MODIFYTOPIC","Редактировать раздел");
 define("_AM_PARENTTOPIC","Родительский раздел");
 define("_AM_WAYSYWTDTTAL","ПРЕДУПРЕЖДЕНИЕ: Вы действительно хотите удалить этот раздел и все входящие в него новости и комментарии к ним?");
 define("_AM_TOPICSMNGR","Редактор разделов");
-define("_AM_PEARTICLES","Создать/редактировать новость");
+define("_AM_PEARTICLES","Менеджер новостей");
 define("_AM_NEWSUB","Новые поступления");
 define("_AM_POSTED","Написано");
 define("_AM_NOSUBJECT","Нет раздела");

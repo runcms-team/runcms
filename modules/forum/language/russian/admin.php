@@ -37,7 +37,7 @@ define("_MD_A_LINK2SYNC","При помощи этой опции можно синхронизировать форумы и 
 define("_MD_A_PRUNEFORUM", "Чистка форумов");
 define("_MD_A_LINK2PRUNEFORUM","Удалить старые темы и сообщения с форума.");
 define("_MD_A_FORUM_CONFIG","Конфигурация");
-define("_MD_A_LINK2_FORUM_CONFIG","Основные настройки форума.");
+define("_MD_A_LINK2_FORUM_CONFIG","Основные настройки");
 
 // forum_manager.php
 define("_MD_A_NAME","Название");

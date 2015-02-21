@@ -137,10 +137,10 @@ define("_AM_ADDAFILE", "Выберите изображение из меню или введите полный путь к и
 
 // (Admin)
 define("_MD_GENERALSET","Основные настройки");
-define("_MD_ADDMODDELETE","Добавить, редактировать или удалить раздел/файл");
-define("_MD_DLSWAITING","Файлы, ожидающие проверки");
-define("_MD_BROKENREPORTS","Сообщения о потерянных файлах");
-define("_MD_MODREQUESTS","Сообщения о модифицированных файлах");
+define("_MD_ADDMODDELETE","Разделы и файлы");
+define("_MD_DLSWAITING","Ожидающие проверки");
+define("_MD_BROKENREPORTS","Потерянные файлы");
+define("_MD_MODREQUESTS","Измененные файлы");
 define("_MD_SUBMITTER","Поместил: ");
 define("_MD_DOWNLOAD","Загрузить");
 define("_MD_VISIT","Посетить");

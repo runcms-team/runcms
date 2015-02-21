@@ -30,10 +30,10 @@
 
 // Global
 define("_AM_CONTACT_MAIN", "Основные настройки модуля");
-define("_AM_EDIT_ABOUT", "Редактировать вводную информацию");
-define("_AM_EDIT_POLICY", "Редактировать информацию о сайте");
-define("_AM_EDIT_CONTACT", "Редактировать раздел \"Связь с нами\"");
-define("_AM_EDIT_LINKS", "Редактор баннеров и ссылок");
+define("_AM_EDIT_ABOUT", "Вводная информация");
+define("_AM_EDIT_POLICY", "Информация о сайте");
+define("_AM_EDIT_CONTACT", "Контакты");
+define("_AM_EDIT_LINKS", "Баннеры и ссылки");
 
 // About
 define("_CT_ABOUT", "Текст с описанием");

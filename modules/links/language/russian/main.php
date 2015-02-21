@@ -118,10 +118,10 @@ define("_MD_VOTEONCE2","Голосуйте за выбранную ссылку только один раз.<br />Все 
 
 // (Admin)
 define("_MD_GENERALSET","Основные настройки");
-define("_MD_ADDMODDELETE","Добавить, модифицировать или удалить категорию/ссылку");
-define("_MD_LINKSWAITING","Ссылки ожидающие проверки");
-define("_MD_BROKENREPORTS","Сообщения о потерянных ссылках");
-define("_MD_MODREQUESTS","Сообщения о модифицированных ссылках");
+define("_MD_ADDMODDELETE","Категории и ссылки");
+define("_MD_LINKSWAITING","Ожидающие проверки");
+define("_MD_BROKENREPORTS","Потерянные ссылки");
+define("_MD_MODREQUESTS","Изменненые ссылки");
 define("_MD_SUBMITTER","Отправитель: ");
 define("_MD_VISIT","Посещений");
 define("_MD_SHOT","(Необязательно) Изображение (например: shot.gif) в папке:<br /><b>%s</b> или <b>полный URL</b> к изображению.");
