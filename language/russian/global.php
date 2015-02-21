@@ -250,7 +250,7 @@ define("_ENTERCODE","Введите текст, который появится в виде кода.");
 define("_ENTERTEXTBOX","Введите текст.");
 define("_ALLOWEDCHAR","Максимальное количество символов: ");
 define("_CURRCHAR","Текущее количество символов: ");
-define("_PLZCOMPLETE","Заполните поля тема и сообщение.");
+define("_PLZCOMPLETE","Вы не заполнили поля:");
 define("_MESSAGETOOLONG","Ваше сообщение будет скоро опубликовано.");
 // class/xoopsmailer.php
 define("_XM_MSGBODY","Сообщение не послано.");

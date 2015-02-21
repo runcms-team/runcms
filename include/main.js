@@ -114,7 +114,7 @@ function setRequired(arguments) {
         var id = setRequired.arguments[i];
         var field = rcxGetElementById(id);
         if (field.value == "") {
-            alert(plzcomplete + setRequired.arguments[i]);
+            alert(plzComplete + setRequired.arguments[i]);
             field.focus();
             return false;
         }
