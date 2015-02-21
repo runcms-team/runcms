@@ -21,6 +21,14 @@ function admin_headlines() {
 global $db, $myts;
 
 rcx_cp_header();
+
+echo '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbund">
+    <tr>
+        <td class="KPindex">
+            <div class="KPstor" >'._MI_HEADLINES_NAME.'</div>
+            <br />
+            <br />';
+
 OpenTable();
 ?>
 <form name="order" action="./index.php" method="post">
@@ -74,7 +82,9 @@ while ( list($id, $name, $url, $status, $template, $cache, $items, $type, $weigh
 </tr></table>
 </form>
 <br /><br />
-<h4 style="text-align:left;"><?php echo _AM_ADDHEADL;?></h4>
+            <div class="KPstor" ><?php echo _AM_ADDHEADL;?></div>
+            <br />
+            <br />
 <form name="new" action="./index.php" method="post">
 <table border="0" cellpadding="0" cellspacing="0" valign="top" width="100%"><tr>
 <td class="bg2">
@@ -167,6 +177,12 @@ if ( $handle = opendir($path) ) {
 <?php
 
 CloseTable();
+
+
+echo "                        
+        </td>
+    </tr>
+</table>";
 }
 
 //---------------------------------------------------------------------------------------//
@@ -181,6 +197,13 @@ global $db, $myts;
 
 rcx_cp_header();
 
+echo '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbund">
+    <tr>
+        <td class="KPindex">
+            <div class="KPstor" >'._AM_EDITHEADL.'</div>
+            <br />
+            <br />';
+
 $result = $db->query("SELECT name, url, headlineurl, template, cache, items, type, status FROM ".$db->prefix("headlines")." WHERE id=$id");
 list($name, $url, $headlineurl, $template, $cache, $items, $type, $status) = $db->fetch_row($result);
 $name        = $myts->makeTboxData4Edit($name);
@@ -190,7 +213,7 @@ $headlineurl = $myts->makeTboxData4Edit($headlineurl);
 
 OpenTable();
 ?>
-<h4 style="text-align:left;"><?php echo _AM_EDITHEADL;?></h4>
+
 <form action="./index.php" method="post">
 <input type="hidden" name="id" value="<?php echo $id;?>" />
 <table border="0" cellpadding="0" cellspacing="0" valign="top" width="100%"><tr>
@@ -296,6 +319,11 @@ if ($status > 0) {
 <?php
 
 CloseTable();
+
+echo "                        
+        </td>
+    </tr>
+</table>";
 }
 
 //---------------------------------------------------------------------------------------//
@@ -364,13 +392,25 @@ if ( $ok == 1 ) {
 	exit();
 	} else {
 		rcx_cp_header();
+                echo '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbund">
+    <tr>
+        <td class="KPindex">
+            <div class="KPattention" >'._AM_WANTDEL.'</div>
+            <br />
+            <br />';
 		OpenTable();
-		echo "<b>"._AM_WANTDEL."</b><br /><br /><table><tr><td>";
+		echo "<table><tr><td>";
 		echo myTextForm("./index.php?op=delete_headlines&id=$id&ok=1", _YES);
 		echo "</td><td>";
 		echo myTextForm("./index.php", _NO);
 		echo "</td></tr></table>";
 		CloseTable();
+                
+                echo "                        
+        </td>
+    </tr>
+</table>";
+
 	}
 }
 
