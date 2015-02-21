@@ -218,6 +218,20 @@ switch(strtoupper(PHP_OS)) {
   default:
     define('_OS', 'U');
 }
+
+if (!defined('PHP_EOL')) {
+    switch (strtoupper(substr(PHP_OS, 0, 3))) {
+        case 'WIN':
+            define('PHP_EOL', "\r\n");
+            break;
+        case 'DAR':
+            define('PHP_EOL', "\r");
+            break;
+        default:
+            define('PHP_EOL', "\n");
+    }
+}
+
 // ################# :: Register Globals Compatibility :: #################
 $globals_test = @ini_get('register_globals');
 if (isset($globals_test) && empty($globals_test))

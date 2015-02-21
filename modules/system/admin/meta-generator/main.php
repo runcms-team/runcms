@@ -369,18 +369,18 @@ if ($which == "unwanted") { $keywords = array_diff($keywords, $wanted); }
 natsort($keywords);
 
 $after = "0";
-$content  = "<?php\n";
-$content .= "\${$which} = array(\n";
+$content  = "<?php" . PHP_EOL;
+$content .= "\${$which} = array(" . PHP_EOL;
 
 while (list($key, $value) = @each($keywords)) {
   if ($value) {
-    $content .= '"'.$value.'"'.",\n";
+    $content .= '"'.$value.'"'."," . PHP_EOL;
     $after++;
   }
 }
 
 $content = substr($content, 0, -2);
-$content .= "\n);\n?>";
+$content .=  PHP_EOL . ");" . PHP_EOL . "?>";
 
 write_file($which, $content, 'w');
 
@@ -393,31 +393,31 @@ fwrite($file, trim($content) );
 fclose($file);
 }
 function write_meta() {
-global $_POST, $myts;
+global $myts;
 
-$content  = "<?php\n";
-$content .= "\$meta['title'] = \"".clean_text($_POST["Xtitle"])."\";\n";
-$content .= "\$meta['author'] = \"".clean_text($_POST["Xauthor"])."\";\n";
-$content .= "\$meta['copyright'] = \"".clean_text($_POST["Xcopyright"])."\";\n";
-$content .= "\$meta['nogenerator'] = \"".(int)$_POST["Xnogenerator"]."\";\n";
-$content .= "\$meta['slogan'] = \"".clean_text($_POST["Xslogan"])."\";\n";
-$content .= "\$meta['keywords'] = \"".clean_text($_POST["Xkeywords"])."\";\n";
-$content .= "\$meta['rating'] = \"".$_POST["Xrating"]."\";\n";
+$content  = "<?php" . PHP_EOL;
+$content .= "\$meta['title'] = \"".clean_text($_POST["Xtitle"])."\";" . PHP_EOL;
+$content .= "\$meta['author'] = \"".clean_text($_POST["Xauthor"])."\";" . PHP_EOL;
+$content .= "\$meta['copyright'] = \"".clean_text($_POST["Xcopyright"])."\";" . PHP_EOL;
+$content .= "\$meta['nogenerator'] = \"".(int)$_POST["Xnogenerator"]."\";" . PHP_EOL;
+$content .= "\$meta['slogan'] = \"".clean_text($_POST["Xslogan"])."\";" . PHP_EOL;
+$content .= "\$meta['keywords'] = \"".clean_text($_POST["Xkeywords"])."\";" . PHP_EOL;
+$content .= "\$meta['rating'] = \"".$_POST["Xrating"]."\";" . PHP_EOL;
 
 $p3p = preg_replace("/([^a-z0-9 ]|cp\=|p3p:)/i", "", $_POST["Xp3p"]);
 
-$content .= "\$meta['p3p'] = \"".trim($p3p)."\";\n";
-$content .= "\$meta['index'] = \"".$_POST["Xindex"]."\";\n";
-$content .= "\$meta['follow'] = \"".$_POST["Xfollow"]."\";\n";
-$content .= "\$meta['pragma'] = \"".$_POST["Xpragma"]."\";\n";
-$content .= "\$meta['icon'] = \"".$myts->oopsAddSlashesGPC($_POST["Xicon"])."\";\n";
-$content .= "\$meta['description'] = \"".clean_text($_POST["Xdescription"])."\";\n";
+$content .= "\$meta['p3p'] = \"".trim($p3p)."\";" . PHP_EOL;
+$content .= "\$meta['index'] = \"".$_POST["Xindex"]."\";" . PHP_EOL;
+$content .= "\$meta['follow'] = \"".$_POST["Xfollow"]."\";" . PHP_EOL;
+$content .= "\$meta['pragma'] = \"".$_POST["Xpragma"]."\";" . PHP_EOL;
+$content .= "\$meta['icon'] = \"".$myts->oopsAddSlashesGPC($_POST["Xicon"])."\";" . PHP_EOL;
+$content .= "\$meta['description'] = \"".clean_text($_POST["Xdescription"])."\";" . PHP_EOL;
 
-$content .= "\$meta['extractor'] = \"".$_POST["Xextractor"]."\";\n";
-$content .= "\$meta['cloaking'] = \"".$_POST["Xcloaking"]."\";\n";
-$content .= "\$meta['max_words'] = \"".$_POST["Xmax_words"]."\";\n";
-$content .= "\$meta['max_depth'] = \"".$_POST["Xmax_depth"]."\";\n";
-$content .= "\$meta['user_agents'] = \"".clean_text($_POST["Xuser_agents"])."\";\n";
+$content .= "\$meta['extractor'] = \"".$_POST["Xextractor"]."\";" . PHP_EOL;
+$content .= "\$meta['cloaking'] = \"".$_POST["Xcloaking"]."\";" . PHP_EOL;
+$content .= "\$meta['max_words'] = \"".$_POST["Xmax_words"]."\";" . PHP_EOL;
+$content .= "\$meta['max_depth'] = \"".$_POST["Xmax_depth"]."\";" . PHP_EOL;
+$content .= "\$meta['user_agents'] = \"".clean_text($_POST["Xuser_agents"])."\";" . PHP_EOL;
 $content .= "?>";
 
 write_file("meta", $content, "w");
@@ -441,21 +441,21 @@ return $text;
 function write_words($words, $which) {
 global $myts;
 
-$content  = "<?php\n";
+$content  = "<?php" . PHP_EOL;
 
 if (count($words) == 0) {
-    $content .= "\${$which} = array();\n";
+    $content .= "\${$which} = array();" . PHP_EOL;
 } else {
-    $Acontent = "\${$which} = array(\n";
+    $Acontent = "\${$which} = array(" . PHP_EOL;
     while (list($key, $value) = @each($words)) {
         if ($value) {
             $value = clean_text($value);
-            $Acontent .= "\"".strtolower($value)."\",\n";
+            $Acontent .= "\"".strtolower($value)."\"," . PHP_EOL;
         }
     } // END WHILE
     
     $content .= substr($Acontent, 0, -2);
-    $content .= "\n);\n";
+    $content .=  PHP_EOL . ");" . PHP_EOL;
 }
 
 $content .= "?>";
