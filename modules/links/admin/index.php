@@ -22,6 +22,14 @@ function links() {
 global $db;
 
 rcx_cp_header();
+
+echo '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbund">
+    <tr>
+        <td class="KPindex">
+            <div class="KPstor" >'._MI_LINKS_NAME.'</div>
+            <br />
+            <br />';
+
 OpenTable();
 
 // Temporarily 'homeless' links (to be revised in admin.php breakup)
@@ -45,8 +53,8 @@ if ($totalnewlinks>0) {
 
 ?>
 
-    <h4><?php echo _MI_LINKS_NAME;?></h4>
-	<br /><br /><br /><br />
+ 
+	
 	<div class="kpicon"><table><tr><td>
 	<a href="index.php?op=LinksConfigAdmin"><img src="<?php echo RCX_URL;?>/images/system/indstil.png" alt="<?php echo _MD_GENERALSET;?>">
 	<br /><?php echo _MD_GENERALSET;?></a>
@@ -69,6 +77,12 @@ printf(_MD_THEREARE, $numrows);
 echo "</div>";
 
 CloseTable();
+
+echo "                        
+        </td>
+    </tr>
+</table>";
+
 rcx_cp_footer();
 }
 
