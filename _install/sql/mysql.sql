@@ -5,7 +5,6 @@ CREATE TABLE cpsession (
   `ip` varchar(15) NOT NULL DEFAULT '',
   `mid` mediumint(8) unsigned NOT NULL DEFAULT '0',
   `hash` varchar(40) NOT NULL DEFAULT '',
-  PRIMARY KEY (`time`),
   KEY `idx` (`uid`,`hash`)
 ) ENGINE=MyISAM;
 
@@ -245,7 +244,6 @@ CREATE TABLE session (
   ip varchar(15) NOT NULL default '',
   mid mediumint(8) unsigned NOT NULL default '0',
   `hash` varchar(40) NOT NULL default '',
-  PRIMARY KEY  (`time`),
   KEY idx (uid,`hash`)
 ) ENGINE=MyISAM;
 
