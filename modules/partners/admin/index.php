@@ -19,6 +19,14 @@ function partners_manage() {
 global $db, $myts;
 
 rcx_cp_header();
+
+echo '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbund">
+    <tr>
+        <td class="KPindex">
+            <div class="KPstor" >'._AM_PARTNERADMIN.'</div>
+            <br />
+            <br />';
+
 OpenTable();
 
 		           include_once(RCX_ROOT_PATH."/class/rcxformloader.php");
@@ -29,14 +37,14 @@ OpenTable();
 		 $retur_button = new RcxFormButton(_AM_CONFIG, "button", _MODIFY, "button");
          $retur_button->setExtra("onClick=\"location='index.php?op=configure_partners'\"");
              $form->addElement($retur_button); 
-echo "<br />";
-        $form->display(); 
 
-echo "<h4>"._AM_PARTNERADMIN."</h4>";
+
 
 echo "
-<table width='100%' border='0' align='center'><tr class='bg2'>
 <form action='./index.php' method='post'>
+<table border='0' cellpadding='0' cellspacing='0' width='100%'><tr><td class='sysbg2'>
+<table width='100%' border='0' cellpadding='4' cellspacing='1'><tr valign='middle' class='sysbg1'>
+
 <td width='1%' align='left' nowrap><b>" ._AM_TITLE."</b></td>
 <td><b>" ._AM_DESCRIPTION."</b></td>
 <td width='5' align='left' nowrap><b>" ._AM_IMAGE."</b></td>
@@ -73,44 +81,52 @@ echo "
 }
 
 echo "
-<tr><td colspan='6' align='right'>
+<tr class='sysbg1'><td colspan='6' align='right'>
 <input type='hidden' name='op' value='reorder_partners' />
 <input type='submit' class='button' name='submit' value='"._AM_REORDER."'>
-</td></tr></form></table>";
+</td>    </tr></table></td>
+    </tr></table></form>";
 
 CloseTable();
 OpenTable();
 
+echo '<div class="KPstor" >'._ADD.'</div>
+            <br />
+            <br />';
+
 echo "
 <form action='index.php' method='post' enctype='multipart/form-data'>
-<h4>"._ADD."</h4>
 
-<table><tr>
+
+<table border='0' cellpadding='0' cellspacing='0' width='100%'><tr><td class='sysbg2'>
+<table width='100%' border='0' cellpadding='4' cellspacing='1'><tr valign='middle' class='sysbg1'>
+
+
 
 <td>"._AM_WEIGHT."</td>
 <td><input type='text' class='text' name='weight' size='3' maxlength='3' /></td>
 
-</tr><tr>
+</tr><tr class='sysbg1'>
 
 <td>"._AM_IMAGE."</td>
 <td><input type='text' class='text' name='image' size='35' maxlength='255' /> :: <input type='file' class='file' name='image1' /></td>
 
-</tr><tr>
+</tr><tr class='sysbg1'>
 
 <td>"._AM_URL."</td>
 <td><input type='text' class='text' name='url' size='35' maxlength='255' /></td>
 
-</tr><tr>
+</tr><tr class='sysbg1'>
 
 <td valign='top'>"._AM_TITLE."</td>
 <td><input type='text' class='text' name='title' size='35' maxlength='60' /></td>
 
-</tr><tr>
+</tr><tr class='sysbg1'>
 
 <td valign='top'>"._AM_DESCRIPTION."</td>
 <td><textarea class='textarea' name='description' cols='60' rows='10'></textarea></td>
 
-</tr><tr>
+</tr><tr class='sysbg1'>
 
 <td valign='top'>"._STATUS."</td>
 <td>
@@ -120,17 +136,28 @@ echo "
 </select>
 </td>
 
-</tr><tr>
+</tr><tr class='sysbg1'>
 
 <td colspan='2' align='right'>
 <input type='hidden' name='op' value='add_partner' />
 <input type='submit' class='button' value='"._ADD."' />
-<td>
 
-</tr></table>
+
+    </tr></table></td>
+    </tr></table>
 </form>";
 
+
+echo "<br />";
+        $form->display(); 
+
 CloseTable();
+
+echo "                        
+        </td>
+    </tr>
+</table>";
+
 }
 
 /**
@@ -143,6 +170,12 @@ function edit_partner($id) {
 global $db, $myts;
 
 rcx_cp_header();
+echo '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbund">
+    <tr>
+        <td class="KPindex">
+            <div class="KPstor" >'._EDIT.'</div>
+            <br />
+            <br />';
 OpenTable();
 
 $result = $db->query("SELECT weight, hits, url, image, title, description, status FROM ".$db->prefix("partners")." WHERE id=$id");
@@ -154,45 +187,48 @@ if ( empty($status) ) {
 	$chk = " selected='selected'";
 	}
 
-echo "<h4><a href='index.php'>"._MAIN."</a> :: "._EDIT."</h4>";
 
 if ( !empty($image) ) {
-	echo "<img src='".formatURL(RCX_URL . "/modules/partners/cache/images/", $image)."' border='0' />";
+	echo "<img src='".formatURL(RCX_URL . "/modules/partners/cache/images/", $image)."' border='0' /><br /><br />";
 	}
 
 echo "
 <form action='./index.php' method='post' enctype='multipart/form-data'>
-<table><tr>
+<table border='0' cellpadding='0' cellspacing='0' width='100%'><tr><td class='sysbg2'>
+<table width='100%' border='0' cellpadding='4' cellspacing='1'><tr valign='middle' class='sysbg1'>
+
+
+
 
 <td>"._AM_HITS."</td>
 <td><input type='text' class='text' name='hits' size='3' maxlength='8' value='$hits' /></td>
 
-</tr><tr>
+</tr><tr class='sysbg1'>
 
 <td>"._AM_WEIGHT."</td>
 <td><input type='text' class='text' name='weight' size='3' maxlength='3' value='$weight' /></td>
 
-</tr><tr>
+</tr><tr class='sysbg1'>
 
 <td>"._AM_URL."</td>
 <td><input type='text' class='text' name='url' size='35' maxlength='255' value='$url' /> <a href='$url' target='_blank'>"._VISIT."</a></td>
 
-</tr><tr>
+</tr><tr class='sysbg1'>
 
 <td>"._AM_IMAGE."</td>
 <td><input type='text' class='text' name='image' size='35' maxlength='255' value='$image' /> :: <input type='file' class='file' name='image1' /></td>
 
-</tr><tr>
+</tr><tr class='sysbg1'>
 
 <td>"._AM_TITLE."</td>
 <td><input type='text' class='text' name='title' size='35' maxlength='60' value='$title' /></td>
 
-</tr><tr>
+</tr><tr class='sysbg1'>
 
 <td>"._AM_DESCRIPTION."</td>
 <td><textarea class='textarea' name='description' cols='50' rows='10' />$description</textarea></td>
 
-</tr><tr>
+</tr><tr class='sysbg1'>
 
 <td>"._STATUS.":</td>
 <td>
@@ -202,18 +238,24 @@ echo "
 </select>
 </td>
 
-</tr><tr>
+</tr><tr class='sysbg1'>
 
-<td colspan='2' align='right'>
+<td colspan='2' align='left'>
 <input type='hidden' name='id' value='$id' />
 <input type='hidden' name='op' value='change_partner' />
 <input type='submit' class='button' value='"._EDIT."' />
 </td>
 
-</tr></table>
+    </tr></table></td>
+    </tr></table>
 </form>";
 
 CloseTable();
+
+echo "                        
+        </td>
+    </tr>
+</table>";
 }
 
 /**
@@ -361,14 +403,24 @@ if ($del == 1) {
 
 } else {
 	rcx_cp_header();
+        echo '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbund">
+    <tr>
+        <td class="KPindex">
+            <div class="KPattention" >'._AM_SURETODELETE.'</div>
+            <br />
+            <br />';
 	OpenTable();
-	echo "<b>"._AM_SURETODELETE."</b>";
 	echo "<table><tr><td>";
 	echo myTextForm("index.php?op=delete_partner&amp;id=".$id."&amp;del=1", _YES);
 	echo "</td><td>";
 	echo myTextForm("index.php" , _NO);
 	echo "</td></tr></table>";
 	CloseTable();
+        
+        echo "                        
+        </td>
+    </tr>
+</table>";
 	}
 }
 
@@ -401,13 +453,25 @@ exit();
 function configure_partners() {
 
 rcx_cp_header();
+
+echo '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbund">
+    <tr>
+        <td class="KPindex">
+            <div class="KPstor" >'._AM_CONFIG.'</div>
+            <br />
+            <br />';
+
 OpenTable();
 
-echo "<h4>"._AM_CONFIG."</h4>";
 include_once('../cache/config.php');
 include_once('./settings.inc.php');
 
 CloseTable();
+
+echo "                        
+        </td>
+    </tr>
+</table>";
 }
 
 /**

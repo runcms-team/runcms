@@ -21,25 +21,31 @@ global $db, $myts, $rcxModule, $secid, $title, $content, $allow_html, $allow_smi
 
 rcx_cp_header();
 
-echo "<br />";
+//echo "<br />";
 $result = $db->query("SELECT secid, secname FROM ".$db->prefix(_MI_NSECTIONS_TABLE)." ORDER BY secid");
 if ($db->num_rows($result) > "0") {
 
-OpenTable();
+
 ?>
 <table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbund">
   <tr>
-    <td width="100%" class="KPindex">
-<div class="KPstor" ><?php echo _MI_NSECTIONS_NAME;?>-<?php echo _MI_NSECTIONS_CONFIG;?></div><br />
-	
+    <td class="KPindex">
+        <div class="KPstor" ><?php echo _MI_NSECTIONS_NAME;?>-<?php echo _MI_NSECTIONS_CONFIG;?></div>
+        <br />
 	<br />
+        
+        <?php
+        
+        OpenTable();
+        
+        ?>
 	<div class="kpicon"><table id="table1"><tr><td>
 		<a href="index.php?op=secconfig"><img src="<?php echo RCX_URL;?>/images/system/indstil.png" alt="<?php echo _MI_NSECTIONS_CONFIG;?>">
 	<br /><?php echo _MI_NSECTIONS_CONFIG;?></a>
 	<a href="index.php"><img src="<?php echo RCX_URL;?>/images/system/indstil.png" alt="<?php echo _MI_NSECTIONS_NAME;?>"/>
 	<br /><?php echo _MI_NSECTIONS_NAME;?></a>
 	
-		</td></tr></table><br /><br />
+		</td></tr></table></div><br /><br />
 <?php
 echo "
 <div align='center'>
@@ -78,8 +84,11 @@ echo "
 </tr></table>";
 }
 
+echo '<div class="KPstor" >'._MD_ADDARTICLE.'</div>
+            <br />
+            <br />';
 echo "
-<h4>"._MD_ADDARTICLE."</h4>
+    
 <form name='edit' action='./index.php' method='post'><br />";
 
 echo _MD_GROUPPROMPT."<br />";
@@ -178,9 +187,16 @@ CloseTable();
 echo "<br />";
 OpenTable();
 
+echo '
+            <div class="KPstor" >'._MD_LAST20ART.'</div>
+            <br />
+            <br />';
+
 echo "
-<h4>"._MD_LAST20ART."</h4>
-<table width='100%' cellpadding='0' cellspacing='0'><tr class='bg4'><td>"._MD_EDITARTICLE."</td><td>"._MD_SECNAMEC."</td></tr>
+<table border='0' cellpadding='0' cellspacing='0' width='100%'><tr><td class='sysbg2'>
+<table width='100%' border='0' cellpadding='4' cellspacing='1'><tr valign='middle' class='sysbg1'>
+
+<td>"._MD_EDITARTICLE."</td><td>"._MD_SECNAMEC."</td></tr>
 ";
 
 $result = $db->query("SELECT artid, secid, title FROM ".$db->prefix(_MI_NSECCONT_TABLE)." ORDER BY artid DESC",20,0);
@@ -190,13 +206,16 @@ $result2 = $db->query("SELECT secid, secname FROM ".$db->prefix(_MI_NSECTIONS_TA
 list($secid, $secname) = $db->fetch_row($result2);
 $secname = $myts->makeTboxData4Show($secname);
 echo "
-<tr><td><li>&nbsp;<a href='./index.php?op=secartedit&artid=$artid'>$title</a></li></td><td>$secname</td></tr>";
+<tr class='sysbg1'><td><li>&nbsp;<a href='./index.php?op=secartedit&artid=$artid'>$title</a></li></td><td>$secname</td></tr>";
 }
 
 echo "
-</table>
+    </tr></table></td>
+    </tr></table><br />
 <form action='./index.php' method='post'>
-"._MD_EDITARTICLE."<br />
+<div class='KPstor' >"._MD_EDITARTICLE."</div>
+                <br />
+            <br />
 <input type='hidden' name='op' value='secartedit' />
 
 <select class='select' name='artid'>";
@@ -217,7 +236,10 @@ echo "<br />";
 OpenTable();
 
 echo "
-<h4>"._MD_ADDNEWSEC."</h4>
+    <div class='KPstor' >"._MD_ADDNEWSEC."</div>
+                <br />
+            <br />
+
 <form action='./index.php' method='post' enctype='multipart/form-data'><br />";
 
 echo _MD_GROUPPROMPT."<br />";
@@ -239,6 +261,12 @@ echo "
 </form>";
 
 CloseTable();
+
+echo "                        
+        </td>
+    </tr>
+</table>";
+
 }
 
 /**
@@ -295,7 +323,12 @@ global $db, $myts, $secid, $title, $content, $allow_html, $allow_smileys, $allow
 
 rcx_cp_header();
 
-echo "<br />";
+echo '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbund">
+    <tr>
+        <td class="KPindex">
+            <div class="KPstor" >'._MD_EDITARTICLE.'</div>
+            <br />
+            <br />';
 
 OpenTable();
 
@@ -345,7 +378,6 @@ $byline  = $myts->makeTboxData4Edit($byline);
 
 
 echo "
-<h4>"._MD_EDITARTICLE."</h4>
 <form name='edit' action='./index.php' method='post'><br />";
 
 echo _MD_GROUPPROMPT."<br />";
@@ -458,6 +490,11 @@ echo "
 </tr></table>";
 
 CloseTable();
+
+echo "                        
+        </td>
+    </tr>
+</table>";
 }
 
 /**
@@ -511,7 +548,12 @@ global $db, $myts;
 
 rcx_cp_header();
 
-echo "<br />";
+echo '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbund">
+    <tr>
+        <td class="KPindex">
+            <div class="KPstor" >'._MD_EDITTHISSEC.' ' . $secname . '</div>
+            <br />
+            <br />';
 
 $result = $db->query("SELECT secid, secname, image, secdesc FROM ".$db->prefix(_MI_NSECTIONS_TABLE)." WHERE secid='$secid'");
 list($secid, $secname, $image, $secdesc) = $db->fetch_row($result);
@@ -523,9 +565,6 @@ $result2 = $db->query("SELECT artid FROM ".$db->prefix(_MI_NSECCONT_TABLE)." WHE
 $number  = $db->num_rows($result2);
 
 OpenTable();
-
-echo "
-<h4>"._MD_EDITTHISSEC." $secname </h4>";
 
 if ( !empty($image) ) {
   echo "<img src='".formatURL(RCX_URL."/modules/"._MI_DIR_NAME."/cache/images/", $image)."' border='0'>";
@@ -574,6 +613,11 @@ echo "
 </tr></table>";
 
 CloseTable();
+
+echo "                        
+        </td>
+    </tr>
+</table>";
 }
 
 /**
@@ -741,12 +785,24 @@ function secconfig() {
 global $myts, $sectionsConfig;
 
 rcx_cp_header();
+
+echo '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbund">
+    <tr>
+        <td class="KPindex">
+            <div class="KPstor" >'._AM_GENERALSET.'</div>
+            <br />
+            <br />';
+
 OpenTable();
 ?>
 
-<h4><?php echo _AM_GENERALSET;?></h4><br />
 <form action="index.php" method="post">
-<table width="100%" border="0"><tr>
+<table border='0' cellpadding='0' cellspacing='0' width='100%'><tr><td class='sysbg2'>
+<table width='100%' border='0' cellpadding='4' cellspacing='1'><tr valign='middle' class='sysbg1'>
+
+
+
+
 
 <td nowrap><?php echo _AM_ARTLIMIT;?></td>
 <td width="100%">
@@ -761,7 +817,7 @@ OpenTable();
 </select>
 </td>
 
-</tr><tr>
+</tr><tr class='sysbg1'>
 
 <?php
 $chk1 = ''; $chk0 = '';
@@ -773,7 +829,7 @@ $chk1 = ''; $chk0 = '';
 <input type="radio" class="radio" name="rss_enable" value="0"<?php echo $chk0;?> /> <?php echo _NO;?>
 </td>
 
-</tr><tr>
+</tr><tr class='sysbg1'>
 
 <td nowrap><?php echo _AM_RSS_MAXITEMS;?></td>
 <td width="100%">
@@ -788,7 +844,7 @@ $chk1 = ''; $chk0 = '';
 </select>
 </td>
 
-</tr><tr>
+</tr><tr class='sysbg1'>
 
 <td nowrap><?php echo _AM_RSS_MAXDESCRIPTION;?></td>
 <td width="100%">
@@ -803,9 +859,9 @@ $chk1 = ''; $chk0 = '';
 </select>
 </td>
 
-</tr><tr>
-<td colspan="2"><hr /></td>
-</tr><tr>
+</tr><tr class='sysbg1'>
+    <td colspan="2">&nbsp;</td>
+</tr><tr class='sysbg1'>
 
 <td valign="top" nowrap><?php echo _AM_INTRO;?></td>
 <td width="100%">
@@ -818,9 +874,9 @@ echo $desc->render();
 ?>
 </td>
 
-</tr><tr>
-<td colspan="2"><hr /></td>
-</tr><tr>
+</tr><tr class='sysbg1'>
+    <td colspan="2">&nbsp;</td>
+</tr><tr class='sysbg1'>
 
 <td colspan="2">
 <input type="hidden" name="op" value="configsave">
@@ -828,11 +884,18 @@ echo $desc->render();
 <input type="button" class="button" value="<?php echo _CANCEL;?>" onclick="javascript:history.go(-1)">
 </td>
 
-</tr></table>
+    </tr></table></td>
+    </tr></table>
 </form>
 
 <?php
 CloseTable();
+
+
+echo "                        
+        </td>
+    </tr>
+</table>";
 }
 
 /**

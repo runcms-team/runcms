@@ -438,8 +438,12 @@ echo '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbun
 ?>
 
   <form action="index.php" method="post">
-    <table width="100%" border="0">
-    <tr>
+<table border='0' cellpadding='0' cellspacing='0' width='100%'><tr><td class='sysbg2'>
+<table width='100%' border='0' cellpadding='4' cellspacing='1'><tr valign='middle' class='sysbg1'>
+
+
+
+
       <td nowrap><?php echo _AM_STORYHOME;?></td>
       <td width="100%">
         <select class="select" name="storyhome">
@@ -456,7 +460,7 @@ echo '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbun
         </select>
       </td>
     </tr>
-    <tr>
+    <tr class='sysbg1'>
       <td nowrap><?php echo _AM_ANONSUBMIT;?></td>
       <td>
   <?php
@@ -467,7 +471,7 @@ echo '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbun
         <input type="radio" class="radio" name="anonsubmit" value="0" <?php echo $chk2;?> /><?php echo _NO;?>
       </td>
     </tr>
-    <tr>
+    <tr class='sysbg1'>
       <td nowrap><?php echo _AM_NOTIFYSUBMIT;?></td>
       <td>
   <?php
@@ -478,7 +482,7 @@ echo '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbun
         <input type="radio" class="radio" name="notifysubmit" value="0" <?php echo $chk2;?> /><?php echo _NO;?>
       </td>
     </tr>
-    <tr>
+    <tr class='sysbg1'>
       <td nowrap><?php echo _AM_DISPLAYNAV;?></td>
       <td>
   <?php
@@ -489,7 +493,7 @@ echo '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbun
         <input type="radio" class="radio" name="displaynav" value="0" <?php echo $chk2;?> /><?php echo _NO;?>
       </td>
 </tr>
-<tr>
+<tr class='sysbg1'>
 <td nowrap><?php echo _AM_DISPLAYTWO;?></td>
 <td>
 <?php
@@ -500,7 +504,7 @@ $chk1 = ""; $chk2 = "";
 <input type="radio" class="radio" name="displaytwo" value="0" <?php echo $chk2;?> /><?php echo _NO;?>
 </td>
 </tr>
-<tr>
+<tr class='sysbg1'>
 <td nowrap><?php echo _AM_DISPLAYFIRST;?></td>
 <td>
 <?php
@@ -511,10 +515,10 @@ $chk1 = ""; $chk2 = "";
 <input type="radio" class="radio" name="displayfirst" value="0" <?php echo $chk2;?> /><?php echo _NO;?>
 </td>
     </tr>
-    <tr>
-      <td colspan=2><hr /></td>
+    <tr class='sysbg1'>
+      <td colspan=2>&nbsp;</td>
     </tr>
-    <tr>
+    <tr class='sysbg1'>
   <?php
     $chk1 = ""; $chk2 = "";
     ($newsConfig["rss_enable"] == 1) ? $chk1 = " checked='checked'" : $chk0 = " checked='checked'";
@@ -525,7 +529,7 @@ $chk1 = ""; $chk2 = "";
         <input type="radio" class="radio" name="rss_enable" value="0"<?php echo $chk0;?> /> <?php echo _NO;?>
       </td>
     </tr>
-    <tr>
+    <tr class='sysbg1'>
       <td nowrap><?php echo _AM_RSS_MAXITEMS;?></td>
       <td>
         <select class="select" name="rss_maxitems">
@@ -539,7 +543,7 @@ $chk1 = ""; $chk2 = "";
         </select>
       </td>
     </tr>
-    <tr>
+    <tr class='sysbg1'>
       <td nowrap><?php echo _AM_RSS_MAXDESCRIPTION;?></td>
       <td>
         <select class="select" name="rss_maxdescription">
@@ -552,10 +556,11 @@ $chk1 = ""; $chk2 = "";
           <option value="300">300</option>
         </select>
       </td>
-    <tr>
-      <td colspan=2><hr /></td>
+      </tr>
+    <tr class='sysbg1'>
+      <td colspan=2>&nbsp;</td>
     </tr>
-    <tr>
+    <tr class='sysbg1'>
       <td nowrap><?php echo _ALLOWCAP;?></td>
       <td>
   <?php
@@ -566,13 +571,19 @@ $chk1 = ""; $chk2 = "";
         <input type="radio" class="radio" name="use_captcha" value="0" <?php echo $chk2;?> /><?php echo _NO;?>
       </td>
     </tr>
-    <tr>
-      <td colspan=2><hr /></td>
+        <tr class='sysbg1'>
+      <td colspan=2>&nbsp;</td>
     </tr>
-  </table>
+    <tr class='sysbg1'>
+      <td colspan=2>
+
+
   <input type="hidden" name="op" value="newsConfigS" />
   <input type="submit" class="button" value="<?php echo _SAVE;?>" />
   <input type="button" class="button" value="<?php echo _CANCEL;?>" onclick="javascript:history.go(-1)" />
+  </td>
+      </tr></table></td>
+    </tr></table>
   </form>
   <?php
   CloseTable();
@@ -660,8 +671,13 @@ switch($op)
 {
   case "edit":
     rcx_cp_header();
+      echo '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbund">
+    <tr>
+        <td class="KPindex">
+            <div class="KPstor" >'._AM_EDITARTICLE.'</div>
+            <br />
+            <br />';
     OpenTable();
-    echo "<h4>"._AM_EDITARTICLE."</h4>";
     $story         = new NewsStory($storyid);
     $title         = $story->title("Edit");
     //editor integration
@@ -688,6 +704,10 @@ switch($op)
     $isedit        = 1;
     include_once("storyform.inc.php");
     CloseTable();
+    echo "                        
+        </td>
+    </tr>
+</table>";
     break;
   case "newarticle":
     rcx_cp_header();

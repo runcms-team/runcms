@@ -1411,9 +1411,16 @@ function downloadsConfigAdmin()
    include_once(RCX_ROOT_PATH.'/class/form/formselectgroup.php');
    $gselect = new RcxFormSelectGroup('', 'aa_groups', true, explode(",", $downloadsConfig['autoapp_groups']), 5, true);
    rcx_cp_header();
+   
+   echo '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbund">
+    <tr>
+        <td class="KPindex">
+            <div class="KPstor" >'._MD_GENERALSET.'</div>
+            <br />
+            <br />';
+   
    OpenTable();
 ?>
-<h4><a href="index.php"><?php echo _MAIN;?></a>: <?php echo _MD_GENERALSET;?></h4>
 <form action="index.php" method="post">
 <table border='0' cellpadding='0' cellspacing='0' width='100%'><tr>
 <td class='bg2'><table width='100%' border='0' cellpadding='4' cellspacing='1'>
@@ -1620,6 +1627,11 @@ echo $desc->render();
 </form>
 <?php
 CloseTable();
+
+echo "                        
+        </td>
+    </tr>
+</table>";
 rcx_cp_footer();
 }
 /**

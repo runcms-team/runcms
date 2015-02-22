@@ -100,8 +100,16 @@ $result  = $db->query("SELECT lid, cid, title, description, url, email, logourl,
 $numrows = $db->num_rows($result);
 
 rcx_cp_header();
+
+echo '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbund">
+    <tr>
+        <td class="KPindex">
+            <div class="KPstor" >'._MD_LINKSWAITING.'&nbsp;('.$numrows.')</div>
+            <br />
+            <br />';
+
 OpenTable();
-echo "<h4><a href='index.php'>"._MAIN."</a>: "._MD_LINKSWAITING."&nbsp;($numrows)</h4><br />";
+
 
 if ($numrows > 0) {
         while (list($lid, $cid, $title, $description, $url, $email, $logourl, $submitterid) = $db->fetch_row($result)) {
@@ -158,6 +166,10 @@ echo $desc->render();
         }
 
 CloseTable();
+echo "                        
+        </td>
+    </tr>
+</table>";
 rcx_cp_footer();
 }
 
@@ -171,6 +183,10 @@ function linksConfigMenu() {
 global $db,$rcxConfig, $myts, $eh, $mytree;
 
 rcx_cp_header();
+
+echo '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbund">
+    <tr>
+        <td class="KPindex">';
 
 $result = $db->query("SELECT COUNT(*) FROM ".$db->prefix("links_cat")."");
 list($numrows) = $db->fetch_row($result);
@@ -280,7 +296,10 @@ OpenTable();
 
 ?>
 <form method="post" action="index.php">
-<h4><?php echo _MD_ADDMAIN;?></h4>
+    <div class='KPstor' ><?php echo _MD_ADDMAIN;?></div>
+                <br />
+            <br />
+
 <?php echo _MD_TITLEC;?>
 <input type="text" class="text" name="title" size="30" maxlength="50" />
 <input type="hidden" name="cid" value="0" />
@@ -290,6 +309,11 @@ OpenTable();
 <?php
 
 CloseTable();
+
+echo "                        
+        </td>
+    </tr>
+</table>";
 rcx_cp_footer();
 }
 
@@ -727,9 +751,15 @@ global $db, $myts, $eh, $rcxConfig;
 $result = $db->query("SELECT reportid, lid, sender, ip FROM ".$db->prefix("links_broken")." ORDER BY reportid");
 $totalbrokenlinks = $db->num_rows($result);
 rcx_cp_header();
-OpenTable();
 
-echo "<h4><a href='index.php'>"._MAIN."</a>: "._MD_BROKENREPORTS." ($totalbrokenlinks)</h4><br />";
+echo '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbund">
+    <tr>
+        <td class="KPindex">
+            <div class="KPstor" >'._MD_BROKENREPORTS.' ('.$totalbrokenlinks.')</div>
+            <br />
+            <br />';
+
+OpenTable();
 
 if ($totalbrokenlinks == 0) {
         echo _MD_NOBROKEN;
@@ -792,6 +822,12 @@ while (list($reportid, $lid, $senderid, $ip)=$db->fetch_row($result)) {
 }
 
 CloseTable();
+
+echo "                        
+        </td>
+    </tr>
+</table>";
+
 rcx_cp_footer();
 }
 
@@ -848,12 +884,19 @@ function listModReq() {
 global $db, $myts, $eh, $mytree, $linksConfig;
 
 rcx_cp_header();
-OpenTable();
 
 $sql_mod = $db->query("SELECT requestid, lid, cid, title, url, email, description, modifysubmitter FROM ".$db->prefix("links_mod")." ORDER BY requestid");
 
 $totalmodrequests = $db->num_rows($sql_mod);
-echo "<h4><a href='index.php'>"._MAIN."</a>: "._MD_USERMODREQ." ($totalmodrequests)</h4><br />";
+
+echo '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbund">
+    <tr>
+        <td class="KPindex">
+            <div class="KPstor" >'._MD_USERMODREQ.' ('.$totalmodrequests.')</div>
+            <br />
+            <br />';
+
+OpenTable();
 
 if ($totalmodrequests > 0) {
         while (list($requestid, $lid, $cid, $title, $url, $email, $description, $modifysubmitter) = $db->fetch_row($sql_mod)) {
@@ -935,6 +978,12 @@ if ($totalmodrequests > 0) {
         }
 
 CloseTable();
+
+echo "                        
+        </td>
+    </tr>
+</table>";
+
 rcx_cp_footer();
 }
 
@@ -1243,12 +1292,22 @@ function LinksConfigAdmin() {
 global $myts, $linksConfig;
 
 rcx_cp_header();
+
+echo '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbund">
+    <tr>
+        <td class="KPindex">
+            <div class="KPstor" >'._MD_GENERALSET.'</div>
+            <br />
+            <br />';
+
 OpenTable();
 ?>
 
-<h4><a href="index.php"><?php echo _MAIN;?></a>: <?php echo _MD_GENERALSET;?></h4><br />
+
 <form action="index.php" method="post">
-<table width="100%" border="0"><tr>
+<table border='0' cellpadding='0' cellspacing='0' width='100%'><tr><td class='sysbg2'>
+<table width='100%' border='0' cellpadding='4' cellspacing='1'><tr valign='middle' class='sysbg1'>
+
 
 <td nowrap><?php echo _MD_LINKSPERPAGE;?></td>
 <td width="100%">
@@ -1272,7 +1331,7 @@ OpenTable();
 </select>
 </td>
 
-</tr><tr>
+</tr><tr class='sysbg1'>
 
 <td nowrap><?php echo _MD_HITSPOP;?></td>
 <td width="100%">
@@ -1287,7 +1346,7 @@ OpenTable();
 </select>
 </td>
 
-</tr><tr>
+</tr><tr class='sysbg1'>
 
 <td nowrap><?php echo _MD_LINKSNEW;?></td>
 <td width="100%">
@@ -1311,7 +1370,7 @@ OpenTable();
 </select>
 </td>
 
-</tr><tr>
+</tr><tr class='sysbg1'>
 
 <?php
 $chk1 = ''; $chk0 = '';
@@ -1323,14 +1382,14 @@ $chk1 = ''; $chk0 = '';
 <input type="radio" class="radio" name="useshots" value="0"<?php echo $chk0;?> /> <?php echo _NO;?>
 </td>
 
-</tr><tr>
+</tr><tr class='sysbg1'>
 
 <td nowrap><?php echo _MD_IMGWIDTH;?></td>
 <td width="100%">
 <input type="text" class="text" size="10" name="shotwidth" value="<?php echo $linksConfig['shotwidth'];?>" />
 </td>
 
-</tr><tr>
+</tr><tr class='sysbg1'>
 
 <?php
 $chk1 = ''; $chk0 = '';
@@ -1342,9 +1401,9 @@ $chk1 = ''; $chk0 = '';
 <input type="radio" class="radio" name="anon_add" value="0"<?php echo $chk0;?> /> <?php echo _NO;?>
 </td>
 
-</tr><tr>
-<td colspan="2"><hr /></td>
-</tr><tr>
+</tr><tr class='sysbg1'>
+<td colspan="2">&nbsp;</td>
+</tr><tr class='sysbg1'>
 
 <?php
 $chk1 = ''; $chk0 = '';
@@ -1356,7 +1415,7 @@ $chk1 = ''; $chk0 = '';
 <input type="radio" class="radio" name="rss_enable" value="0"<?php echo $chk0;?> /> <?php echo _NO;?>
 </td>
 
-</tr><tr>
+</tr><tr class='sysbg1'>
 
 <td nowrap><?php echo _AM_RSS_MAXITEMS;?></td>
 <td width="100%">
@@ -1371,7 +1430,7 @@ $chk1 = ''; $chk0 = '';
 </select>
 </td>
 
-</tr><tr>
+</tr><tr class='sysbg1'>
 
 <td nowrap><?php echo _AM_RSS_MAXDESCRIPTION;?></td>
 <td width="100%">
@@ -1386,9 +1445,9 @@ $chk1 = ''; $chk0 = '';
 </select>
 </td>
 
-</tr><tr>
-<td colspan="2"><hr /></td>
-</tr><tr>
+</tr><tr class='sysbg1'>
+<td colspan="2">&nbsp;</td>
+</tr><tr class='sysbg1'>
 
 <td valign="top" nowrap><?php echo _AM_DISCLAIMER;?></td>
 <td width="100%">
@@ -1401,9 +1460,9 @@ echo $desc->render();
 ?>
 </td>
 
-</tr><tr>
-<td colspan="2"><hr /></td>
-</tr><tr>
+</tr><tr class='sysbg1'>
+    <td colspan="2">&nbsp;</td>
+</tr><tr class='sysbg1'>
 
 <td colspan="2">
 <input type="hidden" name="op" value="LinksConfigChange">
@@ -1411,11 +1470,17 @@ echo $desc->render();
 <input type="button" class="button" value="<?php echo _CANCEL;?>" onclick="javascript:history.go(-1)">
 </td>
 
-</tr></table>
+    </tr></table></td>
+    </tr></table>
 </form>
 
 <?php
 CloseTable();
+
+echo "                        
+        </td>
+    </tr>
+</table>";
 rcx_cp_footer();
 }
 

@@ -21,16 +21,26 @@ global $db, $myts;
 
 rcx_cp_header();
 
+echo '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbund">
+    <tr>
+        <td class="KPindex">
+            <div class="KPstor" >'._MD_AM_BANS.'</div>
+            <br />
+            <br />';
+
 // Show Active Banners
 
-echo "<a name='top'>";
+
 OpenTable();
 
 ?>
 
 <div style="text-align:left"><b><?php echo _AM_CURACTBNR;?></b></div><br />
 
-<table width="100%" border="0"><tr>
+<table border='0' cellpadding='0' cellspacing='0' width='100%'><tr><td class='sysbg2'>
+<table width='100%' border='0' cellpadding='4' cellspacing='1'><tr valign='middle' class='sysbg1'>
+
+
 <td><?php echo _AM_BANNERID;?></td>
 <td><?php echo _AM_SHOW;?></td>
 <td><?php echo _AM_IMPRESION;?></td>
@@ -59,7 +69,7 @@ if ( $imptotal == 0 ) {
 		$left = ($imptotal-$impmade);
 	}
 ?>
-<tr>
+<tr class='sysbg1'>
 <td><?php echo $bid;?></td>
 <td><?php echo $display;?></td>
 <td><?php echo $impmade;?></td>
@@ -71,16 +81,19 @@ if ( $imptotal == 0 ) {
 </tr>
 <?php
 }
-echo "</table>";
+echo "   </table></td>
+    </tr></table>";
 CloseTable();
 
 // Show Finished Banners
-echo "<br /><a name='top'>";
+echo "<br />";
 OpenTable();
 
 ?>
 <div style="text-align:left"><b><?php echo _AM_FINISHBNR;?></b></div><br />
-<table width="100%" border="0"><tr>
+<table border='0' cellpadding='0' cellspacing='0' width='100%'><tr><td class='sysbg2'>
+<table width='100%' border='0' cellpadding='4' cellspacing='1'><tr valign='middle' class='sysbg1'>
+
 <td><?php echo _AM_BANNERID;?></td>
 <td><?php echo _AM_SHOW;?></td>
 <td><?php echo _AM_IMPD;?></td>
@@ -103,7 +116,7 @@ while (list($bid, $cid, $impmade, $clicks, $datestart, $dateend, $display) = $db
 			$percent = round(100 * ($clicks/$impmade), 2);
 		}
 	echo "
-	<tr>
+	<tr class='sysbg1'>
 	<td>$bid</td>
 	<td>$display</td>
 	<td>$impmade</td>
@@ -116,7 +129,8 @@ while (list($bid, $cid, $impmade, $clicks, $datestart, $dateend, $display) = $db
 	</tr>";
 	}
 
-echo "</table>";
+echo "    </table></td>
+    </tr></table>";
 
 CloseTable();
 echo "<br />";
@@ -124,7 +138,10 @@ OpenTable();
 
 ?>
 <div style="text-align:left"><b><?php echo _AM_ADVCLI;?></b></div><br />
-<table width="100%" border="0"><tr>
+<table border='0' cellpadding='0' cellspacing='0' width='100%'><tr><td class='sysbg2'>
+<table width='100%' border='0' cellpadding='4' cellspacing='1'><tr valign='middle' class='sysbg1'>
+
+
 <td><?php echo _AM_BANNERID;?></td>
 <td><?php echo _AM_CLINAME;?></td>
 <td><?php echo _AM_ACTIVEBNR;?></td>
@@ -140,7 +157,7 @@ while (list($cid, $name, $contact, $email) = $db->fetch_row($result)) {
 	$result2 = $db->query("SELECT COUNT(*) FROM ".$db->prefix("banner_items")." WHERE cid=$cid AND dateend < 1");
 	list($numrows) = $db->fetch_row($result2);
 	echo "
-	<tr>
+	<tr class='sysbg1'>
 	<td>$cid</td>
 	<td>$name</td>
 	<td>$numrows</td>
@@ -150,7 +167,8 @@ while (list($cid, $name, $contact, $email) = $db->fetch_row($result)) {
 	</tr>";
 }
 
-echo "</table>";
+echo "    </table></td>
+    </tr></table>";
 CloseTable();
 echo "<br />";
 
@@ -160,10 +178,16 @@ list($numrows) = $db->fetch_row($result);
 
 if ( $numrows > 0 ) {
 	OpenTable();
-	echo"<div style='text-align:left'>
-	<h4>"._AM_ADDNWBNR."</h4>
+	echo"
+
+            <div class='KPstor' >"._AM_ADDNWBNR."</div>
+                <br />
+            <br />
 	<form action='index.php' method='post' enctype='multipart/form-data'>
-	<table><tr>
+	<table border='0' cellpadding='0' cellspacing='0' width='100%'><tr><td class='sysbg2'>
+<table width='100%' border='0' cellpadding='4' cellspacing='1'><tr valign='middle' class='sysbg1'>
+
+
 	<td >"._AM_CLINAMET."</td>
 	<td><select class='select' name='cid'>";
 	$result = $db->query("SELECT cid, name FROM ".$db->prefix("banner_clients"));
@@ -175,10 +199,10 @@ if ( $numrows > 0 ) {
 ?>
 </select></td>
 
-</tr><tr>
+</tr><tr class='sysbg1'>
 <td><?php echo _AM_IMPPURCHT;?></td>
 <td><input type="text" class="text" name="imptotal" size="12" maxlength="11" /> 0 = <?php echo _AM_UNLIMIT;?></td>
-</tr><tr>
+</tr><tr class='sysbg1'>
 
 <td><?php echo _AM_SHOW;?></td>
 <td>
@@ -206,28 +230,29 @@ if ( $numrows > 0 ) {
 </select>
  <?php echo _AM_CCODE;?>: <input type="text" class="text" name="ccode" size="11" maxlength="10">
 </td>
-</tr><tr>
+</tr><tr class='sysbg1'>
 <td valign="top"><?php echo _AM_IMGURLT;?></td>
 <td>
 <input type="text" class="text" name="imageurl" size="35" maxlength="255" value="<?php echo $imageurl;?>" /> :: <input type="file" class="file" name="image" />
 <br /><?php printf(_AM_IMGLOCATION, "/modules/banners/cache/banners/");?>
 </td>
-</tr><tr>
+</tr><tr class='sysbg1'>
 <td><?php echo _AM_IMGALT;?></td>
 <td><input type="text" class="text" name="imagealt" size="35" maxlength="255" value="<?php echo $imagealt;?>" /></td>
-</tr><tr>
+</tr><tr class='sysbg1'>
 <td><?php echo _AM_CLICKURLT;?></td>
 <td><input type="text" class="text" name="clickurl" size="35" maxlength="255" value="<?php echo $clickurl;?>" /></td>
-</tr><tr>
+</tr><tr class='sysbg1'>
 <td valign="top"><br /><?php echo _AM_CUSTOM;?> *</td>
 <td><br /><textarea class="textarea" cols="55" rows="7" name="custom"><?php echo $custom;?></textarea></td>
-</tr><tr>
+</tr><tr class='sysbg1'>
 <td colspan="2">
 <br /><?php echo _AM_NCUSTOM;?><br /><br />
 <input type="hidden" name="op" value="banner_add" />
 <input type="submit" class="button" value="<?php echo _AM_ADDBNR;?>" />
 </td>
-</tr></table></form>
+    </tr></table></td>
+    </tr></table></form>
 <?php
 
 CloseTable();
@@ -238,36 +263,47 @@ echo "<br />";
 
 OpenTable();
 
-?><div style='text-align:left'>
-<h4><?php echo _AM_ADDNWCLI;?></h4>
+?>
+            <div class='KPstor' ><?php echo _AM_ADDNWCLI;?></div>
+                <br />
+            <br />
 <form action="index.php" method="post">
-<table><tr>
+<table border='0' cellpadding='0' cellspacing='0' width='100%'><tr><td class='sysbg2'>
+<table width='100%' border='0' cellpadding='4' cellspacing='1'><tr valign='middle' class='sysbg1'>
+
+
 <td><?php echo _AM_CLINAMET;?></td>
 <td><input type="text" class="text" name="name" size="30" maxlength="30" /></td>
-</tr><tr>
+</tr><tr class='sysbg1'>
 <td><?php echo _AM_CONTNAMET;?></td>
 <td><input type="text" class="text" name="contact" size="30" maxlength="30" /></td>
-</tr><tr>
+</tr><tr class='sysbg1'>
 <td><?php echo _AM_CONTMAILT;?></td>
 <td><input type="text" class="text" name="email" size="30" maxlength="60" /></td>
-</tr><tr>
+</tr><tr class='sysbg1'>
 <td><?php echo _AM_CLILOGINT;?></td>
 <td><input type="text" class="text" name="login" size="11" maxlength="10" /></td>
-</tr><tr>
+</tr><tr class='sysbg1'>
 <td><?php echo _AM_CLIPASST;?></td>
 <td><input type="password" class="text" name="passwd" size="11" maxlength="10" /></td>
-</tr><tr>
+</tr><tr class='sysbg1'>
 <td valign="top"><?php echo _AM_EXTINFO;?></td>
 <td><textarea class="textarea" name="extrainfo" cols="50" rows="10" /></textarea></td>
-</tr><tr>
+</tr><tr class='sysbg1'>
 <td colspan="2">
 <input type="hidden" name="op" value="banner_addclient" />
 <input type="submit" class="button" value="<?php echo _AM_ADDCLI;?>" />
 </td>
-</tr></table></form>
+    </tr></table></td>
+    </tr></table></form>
 <?php
 
 CloseTable();
+
+echo "                        
+        </td>
+    </tr>
+</table>";
 rcx_cp_footer();
 }
 
@@ -368,12 +404,20 @@ if ($ok == 1) {
 	exit();
 	} else {
 		rcx_cp_header();
+                
+                echo '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbund">
+    <tr>
+        <td class="KPindex">
+            <div class="KPattention" >'._AM_DELEBNR.'</div>
+            <br />
+            <br />';
+                
 		$result = $db->query("SELECT cid, imptotal, impmade, clicks, imageurl, imagealt, clickurl, custom FROM ".$db->prefix("banner_items")." where bid=$bid");
 		list($cid, $imptotal, $impmade, $clicks, $imageurl, $imagealt, $clickurl, $custom) = $db->fetch_row($result);
 		$imagealt = $myts->makeTboxData4Show($imagealt);
 		$custom   = $myts->makeTboxData4Show($custom);
 		OpenTable();
-		echo "<h4>"._AM_DELEBNR."</h4>";
+		
 		if ($custom) {
 			echo $custom;
 			} else {
@@ -381,13 +425,17 @@ if ($ok == 1) {
 			}
 		echo "
 		<br /><br />
-		<table width='100%' border='0'><tr align='center'>
+		<table border='0' cellpadding='0' cellspacing='0' width='100%'><tr><td class='sysbg2'>
+<table width='100%' border='0' cellpadding='4' cellspacing='1'><tr valign='middle' class='sysbg1'>
+
+
+
 		<td>"._AM_BANNERID."</td>
 		<td>"._AM_IMPRESION."</td>
 		<td>"._AM_IMPLEFT."</td>
 		<td>"._AM_CLICKS."</td>
 		<td>"._AM_NCLICKS."</td>
-		<td>"._AM_CLINAME."</td></tr><tr align='center'>";
+		<td>"._AM_CLINAME."</td></tr><tr class='sysbg1'>";
 		$result2 = $db->query("SELECT cid, name FROM ".$db->prefix("banner_clients")." WHERE cid=$cid");
 		list($cid, $name) = $db->fetch_row($result2);
 		$name = $myts->makeTboxData4Show($name);
@@ -408,14 +456,22 @@ if ($ok == 1) {
 		<td>$clicks</td>
 		<td>$percent%</td>
 		<td>$name</td>
-		</tr></table><br />
+		</tr></table></td>
+    </tr></table><br />
 		"._AM_SUREDELE."<br /><br />
 		<table><tr><td>";
 		echo myTextForm("index.php?op=banner_admin#top", _NO);
 		echo "</td><td>";
 		echo myTextForm("index.php?op=banner_delete&bid=$bid&ok=1", _YES);
-		echo "</td></tr></table><br /><br />";
+		echo "</td>
+    </table><br /><br />";
 		CloseTable();
+                
+                echo "                        
+        </td>
+    </tr>
+</table>";
+                
 		rcx_cp_footer();
 	}
 }
@@ -431,6 +487,13 @@ global $db, $myts;
 
 rcx_cp_header();
 
+echo '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbund">
+    <tr>
+        <td class="KPindex">
+            <div class="KPstor" >'._AM_EDITBNR.'</div>
+            <br />
+            <br />';
+
 $result = $db->query("SELECT cid, imptotal, impmade, clicks, imageurl, imagealt, clickurl, display, custom FROM ".$db->prefix("banner_items")." WHERE bid=$bid");
 list($cid, $imptotal, $impmade, $clicks, $imageurl, $imagealt, $clickurl, $display, $custom) = $db->fetch_row($result);
 $imagealt = $myts->makeTboxData4Show($imagealt);
@@ -438,7 +501,7 @@ $imagealt = $myts->makeTboxData4Show($imagealt);
 OpenTable();
 
 ?>
-<h4><?php echo _AM_EDITBNR;?></h4>
+
 <?php
 if ( !empty($custom) ) {
 	echo $custom;
@@ -448,7 +511,9 @@ if ( !empty($custom) ) {
 ?>
 <br /><br />
 <form name="edit" action="index.php" method="post" enctype="multipart/form-data">
-<table><tr>
+<table border='0' cellpadding='0' cellspacing='0' width='100%'><tr><td class='sysbg2'>
+<table width='100%' border='0' cellpadding='4' cellspacing='1'><tr valign='middle' class='sysbg1'>
+
 <td><?php echo _AM_CLINAMET;?></td>
 <td><select class="select" name="cid">
 <?php
@@ -468,10 +533,10 @@ if ( $imptotal == 0 ) {
 	}
 
 ?>
-</tr><tr>
+</tr><tr class='sysbg1'>
 <td><?php echo _AM_ADDIMPT;?></td>
 <td><input type="text" class="text" name="impadded" size="12" maxlength="11" /> <?php echo _AM_PURCHT;?><b><?php echo $impressions;?></b> <?php echo _AM_MADET;?><b><?php echo $impmade;?></b></td>
-</tr><tr>
+</tr><tr class='sysbg1'>
 
 <td><?php echo _AM_SHOW;?></td>
 <td>
@@ -499,26 +564,26 @@ if ( $imptotal == 0 ) {
 </select>
  <?php echo _AM_CCODE;?>: <input name="ccode" type="text" size="11" maxlength="10" value="<?php if ( !preg_match("/\b(N|A|BA|SL|SR|SLR|CL|CR|CLR|CC|CA)\b/i", $display) ) { echo $display; } ?>">
 </td>
-</tr><tr>
+</tr><tr class='sysbg1'>
 <td valign="top"><?php echo _AM_IMGURLT;?></td>
 <td>
 <input type="text" class="text" name="imageurl" size="35" maxlength="255" value="<?php echo $imageurl;?>" /> :: <input type="file" class="file" name="image" />
 <br /><?php printf(_AM_IMGLOCATION, "/modules/banners/cache/banners/");?>
 </td>
-</tr><tr>
+</tr><tr class='sysbg1'>
 <td><?php echo _AM_IMGALT;?></td>
 <td><input type="text" class="text" name="imagealt" size="35" maxlength="255" value="<?php echo $imagealt;?>" /></td>
-</tr><tr>
+</tr><tr class='sysbg1'>
 <td><?php echo _AM_CLICKURLT;?></td>
 <td><input type="text" class="text" name="clickurl" size="35" maxlength="255" value="<?php echo $clickurl;?>" /></td>
-</tr><tr>
+</tr><tr class='sysbg1'>
 <td valign="top"><br /><?php echo _AM_CUSTOM;?> *</td>
 <td><br /><textarea class="textarea" cols="55" rows="7" name="custom"><?php echo $myts->makeTboxData4Edit($custom);?></textarea></td>
-</tr><tr>
+</tr><tr class='sysbg1'>
 <td colspan="2">
 <br /><?php echo _AM_NCUSTOM;?><br /><br />
 </td>
-</tr><tr>
+</tr><tr class='sysbg1'>
 <td colspan="2">
 <input type="hidden" name="bid" value="<?php echo $bid;?>" />
 <input type="hidden" name="imptotal" value="<?php echo $imptotal;?>" />
@@ -526,11 +591,17 @@ if ( $imptotal == 0 ) {
 <input type="hidden" name="op" value="banner_change" />
 <input type="submit" class="button" value="<?php echo _AM_CHGBNR;?>" />
 </td>
-</tr><tr>
-</table></form>
+</tr>    </tr></table></td>
+    </tr></table>
+</form>
 <?php
 
 CloseTable();
+
+echo "                        
+        </td>
+    </tr>
+</table>";
 rcx_cp_footer();
 }
 
@@ -606,12 +677,17 @@ if ( $ok == 1 ) {
 	exit();
 	} else {
 		rcx_cp_header();
+                echo '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbund">
+    <tr>
+        <td class="KPindex">
+            <div class="KPattention" >'._AM_DELEADC.'</div>
+            <br />
+            <br />';
 		$result = $db->query("SELECT cid, name FROM ".$db->prefix("banner_clients")." WHERE cid=$cid");
 		list($cid, $name) = $db->fetch_row($result);
 		$name = $myts->makeTboxData4Show($name);
 		OpenTable();
 		echo "
-		<h4>"._AM_DELEADC."</h4>
 		".sprintf(_AM_SUREDELCLI, $name)."<br /><br />";
 		$result2 = $db->query("SELECT imageurl, clickurl FROM ".$db->prefix("banner_items")." WHERE cid=$cid");
 		$numrows = $db->num_rows($result2);
@@ -624,7 +700,7 @@ if ( $ok == 1 ) {
 			}
 		while (list($imageurl, $clickurl) = $db->fetch_row($result2)) {
 			echo "
-			<a href='$clickurl'><img src='$imageurl' border='1' /></a><br />
+			<a href='$clickurl'><img src='".formatURL(RCX_URL . "/modules/banners/cache/banners/", $imageurl)."' border='1' /></a><br />
 			<a href='$clickurl'>$clickurl</a><br /><br />";
 		}
 	}
@@ -634,6 +710,12 @@ if ( $ok == 1 ) {
 	echo myTextForm("index.php?op=banner_clientdelete&cid=$cid&ok=1", _YES);
 	echo "</td></tr></table>";
 	CloseTable();
+        
+        echo "                        
+        </td>
+    </tr>
+</table>";
+        
 	rcx_cp_footer();
 }
 
@@ -648,6 +730,13 @@ global $db, $myts;
 
 rcx_cp_header();
 
+echo '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbund">
+    <tr>
+        <td class="KPindex">
+            <div class="KPstor" >'._AM_EDITADVCLI.'</div>
+            <br />
+            <br />';
+
 $result = $db->query("SELECT name, contact, email, login, passwd, extrainfo FROM ".$db->prefix("banner_clients")." WHERE cid=$cid");
 list($name, $contact, $email, $login, $passwd, $extrainfo) = $db->fetch_row($result);
 $name      = $myts->makeTboxData4Edit($name);
@@ -657,36 +746,45 @@ $extrainfo = $myts->makeTboxData4Edit($extrainfo);
 OpenTable();
 
 ?>
-<h4><?php echo _AM_EDITADVCLI;?></h4>
 <form action="index.php" method="post">
-<table><tr>
+<table border='0' cellpadding='0' cellspacing='0' width='100%'><tr><td class='sysbg2'>
+<table width='100%' border='0' cellpadding='4' cellspacing='1'><tr valign='middle' class='sysbg1'>
+
+
 <td><?php echo _AM_CLINAMET;?></td>
 <td><input type="text" class="text" name="name" value="<?php echo $name;?>" size="30" maxlength="60" /></td>
-</tr><tr>
+</tr><tr class='sysbg1'>
 <td><?php echo _AM_CONTNAMET;?></td>
 <td><input type="text" class="text" name="contact" value="<?php echo $contact;?>" size="30" maxlength="60" /></td>
-</tr><tr>
+</tr><tr class='sysbg1'>
 <td><?php echo _AM_CONTMAILT;?></td>
 <td><input type="text" class="text" name="email" size="30" maxlength="60" value="<?php echo $email;?>" /></td>
-</tr><tr>
+</tr><tr class='sysbg1'>
 <td><?php echo _AM_CLILOGINT;?></td>
 <td><input type="text" class="text" name="login" size="11" maxlength="10" value="<?php echo $login;?>" /></td>
-</tr><tr>
+</tr><tr class='sysbg1'>
 <td><?php echo _AM_NEWPASS;?></td>
 <td><input type="password" class="text" name="passwd" size="11" maxlength="10" /></td>
-</tr><tr>
+</tr><tr class='sysbg1'>
 <td><?php echo _AM_EXTINFO;?></td>
 <td><textarea class="textarea" name="extrainfo" cols="60" rows="10" /><?php echo $extrainfo;?></textarea></td>
-</tr><tr>
+</tr><tr class='sysbg1'>
 <td colspan="2">
 <input type="hidden" name="cid" value="<?php echo $cid;?>" />
 <input type="hidden" name="op" value="banner_clientchange" />
 <input type="submit" class="button" value="<?php echo _AM_CHGCLI;?>" />
 </td>
-</tr></table></form>
+    </tr></table></td>
+    </tr></table></form>
 <?php
 
 CloseTable();
+
+
+echo "                        
+        </td>
+    </tr>
+</table>";
 rcx_cp_footer();
 }
 

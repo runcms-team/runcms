@@ -12,10 +12,18 @@ include_once("./admin_header.php");
 function config() {
 include_once("../cache/config.php");
 rcx_cp_header();
+
+echo '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbund">
+    <tr>
+        <td class="KPindex">
+            <div class="KPstor" >'._AM_PM_TEXT.'</div>
+            <br />
+            <br />';
+
 OpenTable();
 $groupid = $pmConfig['allow_group'];
 ?>
-<h4><?php echo _AM_PM_TEXT;?></h4><br />
+
 <?php
             include_once(RCX_ROOT_PATH."/class/rcxformloader.php");
 
@@ -26,11 +34,13 @@ $groupid = $pmConfig['allow_group'];
          $retur_button->setExtra("onClick=\"location='index.php?op=old_pm'\"");
              $form->addElement($retur_button); 
 
-        $form->display(); 
+        
 ?>
 <form action="index.php" method="post">
 
-<table width="100%" border="0"><tr>
+<table border='0' cellpadding='0' cellspacing='0' width='100%'><tr><td class='sysbg2'>
+<table width='100%' border='0' cellpadding='4' cellspacing='1'><tr valign='middle' class='sysbg1'>
+
 <?php
 $chk1 = ''; $chk0 = '';
 ($pmConfig['allow_upload'] == 1) ? $chk1 = " checked='checked'" : $chk0 = " checked='checked'";
@@ -39,7 +49,7 @@ $chk1 = ''; $chk0 = '';
 <td width="100%">
 <input type="radio" class="radio" name="allow_upload" value="1"<?php echo $chk1;?> /> <?php echo _YES;?>
 <input type="radio" class="radio" name="allow_upload" value="0"<?php echo $chk0;?> /> <?php echo _NO;?>
-</td></tr><tr>
+</td></tr><tr class='sysbg1'>
 <td nowrap><?php echo _AM_PM_UPLOAD_GROUP;?></td>
 <td width="100%">
 <?php
@@ -47,21 +57,21 @@ $uploadAccess = new groupAccess('uploadGroup');
 $uploadAccess->loadGroupsOptions($groupid);
 echo $uploadAccess->listGroups();
 ?>
-</td></tr><tr>
+</td></tr><tr class='sysbg1'>
 <td nowrap><?php echo _AM_PM_DATEIGROESSE;?></td>
 <td width="100%">
 <input type="text" class="text" size="20" name="upload_limit" value="<?php echo $pmConfig['upload_limit'];?>" />
-</td></tr><tr>
+</td></tr><tr class='sysbg1'>
 
 <td nowrap><?php echo _AM_PM_DATEIENDUNG;?></td>
 <td width="100%">
 <input type="text" class="text" size="30" name="accepted_files" value="<?php echo $pmConfig['accepted_files'];?>" />
-</td></tr><tr>
+</td></tr><tr class='sysbg1'>
 
 <td nowrap><?php echo _AM_PM_PMS;?></td>
 <td width="100%">
 <input type="text" class="text" size="5" name="max_pms" value="<?php echo $pmConfig['max_pms'];?>" />
-</td></tr><tr>
+</td></tr><tr class='sysbg1'>
 
 <td nowrap><?php echo _AM_PM_MAX_PMS_SEND;?></td>
 <td width="100%">
@@ -71,7 +81,7 @@ echo $uploadAccess->listGroups();
 	<option value='15' <?php if($pmConfig['max_pms_send'] ==15)echo "selected='selected'"; ?> >15</option>
 	<option value='20' <?php if($pmConfig['max_pms_send'] ==20)echo "selected='selected'"; ?> >20</option>
 </select>	
-</td></tr><tr>
+</td></tr><tr class='sysbg1'>
 
 <?php
 $chk1 = ''; $chk0 = '';
@@ -82,15 +92,27 @@ $chk1 = ''; $chk0 = '';
 <input type="radio" class="radio" name="sendmail" value="1"<?php echo $chk1;?> /> <?php echo _YES;?>
 <input type="radio" class="radio" name="sendmail" value="0"<?php echo $chk0;?> /> <?php echo _NO;?>
 </td></tr>
-<tr>
+    <tr class='sysbg1'>
+        <td colspan="2">&nbsp;
+    </td></tr>
+<tr class='sysbg1'>
 <td colspan="2">
 <input type="hidden" name="op" value="save">
 <input type="submit" class="button" name="submit" value="<?php echo _SAVE;?>">
 <input type="button" class="button" value="<?php echo _CANCEL;?>" onclick="javascript:history.go(-1)">
-</td></tr></table>
-</form>
+</td>    </tr></table></td>
+    </tr></table>
+</form><br />
 <?php
+
+
+$form->display(); 
+
 CloseTable();
+echo "                        
+        </td>
+    </tr>
+</table>";
 rcx_cp_footer();
 }
 //*******************************************
@@ -156,11 +178,17 @@ function del_old_pm ()  {
 
 function old_pm() {
 rcx_cp_header();
+echo '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbund">
+    <tr>
+        <td class="KPindex">
+            <div class="KPattention" >'._AM_PM_OLD.'</div>
+            <br />
+            <br />';
 OpenTable();
 global $rcxTheme, $rcxconfig, $_POST, $_GET; 	
 include(RCX_ROOT_PATH."/class/rcxformloader.php");
 
-$my_form = new RcxThemeForm(_AM_PM_OLD,"oldpm","index.php",$method="POST");
+$my_form = new RcxThemeForm("","oldpm","index.php",$method="POST");
 $dateHeure  =  new RcxFormTextDateSelect(_AM_PM_DATE_TIME,"datetime",15,$value = time());
 $my_form->addElement($dateHeure, true);
 
@@ -173,6 +201,8 @@ $my_form->addElement($go, true);
 
 $my_form->display();
 
+echo '<br />';
+
 
                     $form = new RcxThemeForm("", "","");  
 
@@ -183,6 +213,11 @@ $my_form->display();
         $form->display(); 
 
 closetable();
+echo "                        
+        </td>
+    </tr>
+</table>";
+
 rcx_cp_footer();
 
 }

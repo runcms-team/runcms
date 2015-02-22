@@ -73,6 +73,14 @@ function edit_contact()
   $anonChk    = $contactConfig['annon_attachment']  ? " checked='checked'" : "";
 
   rcx_cp_header();
+  
+  echo '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbund">
+    <tr>
+        <td class="KPindex">
+            <div class="KPstor" >'._AM_EDIT_CONTACT.'</div>
+            <br />
+            <br />';
+  
  OpenTable();
             include_once(RCX_ROOT_PATH."/class/rcxformloader.php");
 
@@ -86,36 +94,38 @@ function edit_contact()
         $form->display(); 
   ?><br />
     <form action="index.php" method="POST" enctype="multipart/form-data">
-    <table width="80%">
-    <tr>
+    <table border='0' cellpadding='0' cellspacing='0' width='100%'><tr><td class='sysbg2'>
+<table width='100%' border='0' cellpadding='4' cellspacing='1'><tr valign='middle' class='sysbg1'>
+
+
       <td nowrap><?php echo _CT_CONFIRMATION;?></td>
       <td><input type="checkbox" class="checkbox" name="send_confirmation" value="1"<?php echo $confirmChk;?> /></td>
     </tr>
-    <tr>
+    <tr class='sysbg1'>
       <td nowrap><?php echo _CT_ALLOW_ATTACHMENT;?></td>
       <td><input type="checkbox" class="checkbox" name="allow_attachment" value="1"<?php echo $attachChk;?> /></td>
     </tr>
-    <tr>
+    <tr class='sysbg1'>
       <td nowrap><?php echo _CT_ANNON_ATTACHMENT;?></td>
       <td><input type="checkbox" class="checkbox" name="annon_attachment" value="1"<?php echo $anonChk;?> /></td>
     </tr>
-    <tr>
+    <tr class='sysbg1'>
       <td nowrap><?php echo _CT_MAX_FILE_SIZE;?>:</td>
       <td><input type="text" class="text" size="5" name="max_file_size" value="<?php echo $contactConfig['max_file_size'];?>" /> <?php echo _BYTES;?></td>
     </tr>
-    <tr>
+    <tr class='sysbg1'>
       <td nowrap><?php echo _UPLOADACCEPTED;?></td>
       <td><input type="text" class="text" size="30" name="allowed_extensions" value="<?php echo $myts->makeTboxData4Show($contactConfig['allowed_extensions']);?>" /></td>
     </tr>
-    <tr>
+    <tr class='sysbg1'>
       <td nowrap><?php echo _CT_BCC_TO;?>:</td>
       <td><input type="text" class="text" size="50" name="bcc_to" value="<?php echo $myts->makeTboxData4Show($contactConfig['bcc_to']);?>" /></td>
     </tr>
-    <tr>
+    <tr class='sysbg1'>
       <td nowrap><?php echo _CT_REASONS;?>:</td>
       <td><input type="text" class="text" size="50" name="contact_reasons" value="<?php echo $contact_reasons;?>" /></td>
     </tr>
-    <tr>
+    <tr class='sysbg1'>
       <td valign="top"><?php echo _CT_DISCLAIMER;?>:</td>
       <td>
   <?php
@@ -124,7 +134,7 @@ function edit_contact()
   ?>
       </td>
     </tr>
-    <tr>
+    <tr class='sysbg1'>
       <td colspan="2">
   <?php
   echo 
@@ -168,10 +178,10 @@ function edit_contact()
       </td>
     </tr>
 
-    <tr>
-      <td colspan=2><hr /></td>
+    <tr class='sysbg1'>
+        <td colspan=2>&nbsp;</td>
     </tr>
-    <tr>
+    <tr class='sysbg1'>
       <td nowrap><?php echo _ALLOWCAP;?></td>
       <td>
   <?php
@@ -182,20 +192,27 @@ function edit_contact()
         <input type="radio" class="radio" name="use_captcha" value="0" <?php echo $chk2;?> /><?php echo _NO;?>
       </td>
     </tr>
-    <tr>
-      <td colspan=2><hr /></td>
+    <tr class='sysbg1'>
+        <td colspan=2>&nbsp;</td>
     </tr>
-    <tr>
+    <tr class='sysbg1'>
       <td colspan="2" align="center">
         <input type="hidden" name="op" value="save_contact" />
         <input type="submit" class="button" name="submit" value="<?php echo _SAVE;?>" />
       </td>
     </tr>
-    </table>
+    </tr></table></td>
+    </tr></table>
     </form>
 <?php
 
 CloseTable();
+
+echo "                        
+        </td>
+    </tr>
+</table>";
+
 rcx_cp_footer();
 }
 
@@ -271,6 +288,12 @@ $allow_smileys = $about_options[1];
 $allow_bbcode  = $about_options[2];
 
 rcx_cp_header();
+echo '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbund">
+    <tr>
+        <td class="KPindex">
+            <div class="KPstor" >'._AM_EDIT_ABOUT.'</div>
+            <br />
+            <br />';
 OpenTable();
 
 
@@ -285,7 +308,11 @@ OpenTable();
 
         $form->display(); 
 		?><br />
-<table width="70%"><tr><form action="index.php" method="POST">
+<form action="index.php" method="POST">                
+<table border='0' cellpadding='0' cellspacing='0' width='100%'><tr><td class='sysbg2'>
+<table width='100%' border='0' cellpadding='4' cellspacing='1'><tr valign='middle' class='sysbg1'>
+
+
 
 <td valign="top" nowrap><?php echo _CT_ABOUT;?>:</td>
 <td>
@@ -296,7 +323,7 @@ echo $desc->render();
 ?>
 </td>
 
-</tr><tr>
+</tr><tr class='sysbg1'>
 
 <td colspan="2">
 <?php
@@ -330,15 +357,20 @@ echo " />&nbsp;"._ENABLEBBCODE."<br />";
 ?>
 </td>
 
-</tr><tr>
+</tr><tr class='sysbg1'>
 
 <td colspan="2" align="center">
 <input type="hidden" name="op" value="save_about" />
 <input type="submit" class="button" name="submit" value="<?php echo _SAVE;?>" /></td>
-</form></tr></table>
+   </tr></table></td>
+    </tr></table></form> 
 
 <?php
 CloseTable();
+echo "                        
+        </td>
+    </tr>
+</table>";
 rcx_cp_footer();
 }
 
@@ -383,7 +415,12 @@ $allow_smileys  = $policy_options[1];
 $allow_bbcode   = $policy_options[2];
 
 rcx_cp_header();
-
+echo '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbund">
+    <tr>
+        <td class="KPindex">
+            <div class="KPstor" >'._AM_EDIT_POLICY.'</div>
+            <br />
+            <br />';
 OpenTable();
             include_once(RCX_ROOT_PATH."/class/rcxformloader.php");
 
@@ -396,8 +433,10 @@ OpenTable();
 
         $form->display(); 
 ?>
-<br />
-<table width="70%"><tr><form action="index.php" method="POST">
+<br /><form action="index.php" method="POST">
+<table border='0' cellpadding='0' cellspacing='0' width='100%'><tr><td class='sysbg2'>
+<table width='100%' border='0' cellpadding='4' cellspacing='1'><tr valign='middle' class='sysbg1'>
+
 
 <td valign="top" nowrap><?php echo _CT_POLICY;?>:</td>
 <td>
@@ -408,7 +447,7 @@ echo $desc->render();
 ?>
 </td>
 
-</tr><tr>
+</tr><tr class='sysbg1'>
 
 <td colspan="2">
 <?php
@@ -442,15 +481,21 @@ echo " />&nbsp;"._ENABLEBBCODE."<br />";
 ?>
 </td>
 
-</tr><tr>
+</tr><tr class='sysbg1'>
 
 <td colspan="2" align="center">
 <input type="hidden" name="op" value="save_policy" />
 <input type="submit" class="button" name="submit" value="<?php echo _SAVE;?>" /></td>
-</form></tr></table>
+
+    </tr></table></td>
+    </tr></table></form>
 
 <?php
 CloseTable();
+echo "                        
+        </td>
+    </tr>
+</table>";
 rcx_cp_footer();
 }
 
@@ -532,6 +577,12 @@ $allow_smileys = $intro_options[1];
 $allow_bbcode  = $intro_options[2];
 
 rcx_cp_header();
+echo '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbund">
+    <tr>
+        <td class="KPindex">
+            <div class="KPstor" >'._AM_EDIT_LINKS.'</div>
+            <br />
+            <br />';
  OpenTable();
             include_once(RCX_ROOT_PATH."/class/rcxformloader.php");
 
@@ -543,8 +594,12 @@ rcx_cp_header();
              $form->addElement($retur_button); 
 
         $form->display(); 
-?><br />
-<table width="70%"><tr><form action="index.php" method="POST" enctype="multipart/form-data">
+?><br /><form action="index.php" method="POST" enctype="multipart/form-data">
+<table border='0' cellpadding='0' cellspacing='0' width='100%'><tr><td class='sysbg2'>
+<table width='100%' border='0' cellpadding='4' cellspacing='1'><tr valign='middle' class='sysbg1'>
+
+
+
 
 <td valign="top"><?php echo _CT_INTRO;?>:</td>
 <td>
@@ -555,7 +610,7 @@ echo $desc->render();
 ?>
 </td>
 
-</tr><tr>
+</tr><tr class='sysbg1'>
 
 <td colspan="2">
 <?php
@@ -587,15 +642,21 @@ if ($allow_bbcode == 1) {
 }
 echo " />&nbsp;"._ENABLEBBCODE."<br />";
 ?>
-<hr />
 </td>
 
 
-</tr><tr>
+</tr>
+<tr class='sysbg1'>
 
-<td colspan="2"><h6><?php echo _CT_TEXT;?>:</h6></td>
+    <td colspan="2">&nbsp;</td>
 
-</tr><tr>
+</tr>
+
+<tr class='sysbg1'>
+
+<td colspan="2"><h3><?php echo _CT_TEXT;?>:</h3></td>
+
+</tr><tr class='sysbg1'>
 
 <td valign="top"><?php echo _CT_SAMPLE;?>:</td>
 
@@ -610,26 +671,27 @@ if ($text_custom) {
 ?>
 </td>
 
-</tr><tr>
+</tr><tr class='sysbg1'>
 
 <td><?php echo _CT_ALT;?>:</td><td><input type="text" class="text" name="text_alt" value="<?php echo $text_alt;?>" size="30" maxlength="255" /></td>
 
-</tr><tr>
+</tr><tr class='sysbg1'>
 
 <td><?php echo _CT_CAPTION;?>:</td><td><input type="text" class="text" name="text_caption" value="<?php echo $text_caption;?>" size="30" maxlength="255" /></td>
 
-</tr><tr>
+</tr><tr class='sysbg1'>
 
 <td valign="top"><?php echo _CT_CUSTOM;?>:</td><td><textarea class="textarea" name="text_custom" rows="5" cols="50"><?php echo $text_custom;?></textarea></td>
 
-</tr></table>
-<hr />
+</tr><tr class='sysbg1'>
 
-<table><tr>
+    <td colspan="2">&nbsp;</td>
 
-<td colspan="2"><h6><?php echo _CT_BUTTON;?>:</h6></td>
+</tr><tr class='sysbg1'>
 
-</tr><tr>
+<td colspan="2"><h3><?php echo _CT_BUTTON;?>:</h3></td>
+
+</tr><tr class='sysbg1'>
 
 <td valign="top"><?php echo _CT_SAMPLE;?>:</td>
 
@@ -644,26 +706,27 @@ if ($button_custom) {
 ?>
 </td>
 
-</tr><tr>
+</tr><tr class='sysbg1'>
 
 <td><?php echo _CT_ALT;?>:</td><td><input type="text" class="text" name="button_alt" value="<?php echo $button_alt;?>" size="30" maxlength="255" /></td>
 
-</tr><tr>
+</tr><tr class='sysbg1'>
 
 <td><?php echo _CT_IMG;?>:</td><td><input type="text" class="text" name="button_img" value="<?php echo $button_img;?>" size="30" maxlength="255" /> <input type="file" class="file" name="button_file"></td>
 
-</tr><tr>
+</tr><tr class='sysbg1'>
 
 <td valign="top"><?php echo _CT_CUSTOM;?>:</td><td><textarea class="textarea" name="button_custom" rows="5" cols="50"><?php echo $button_custom;?></textarea></td>
 
-</tr></table>
-<hr />
+</tr><tr class='sysbg1'>
 
-<table><tr>
+    <td colspan="2">&nbsp;</td>
 
-<td colspan="2"><h6><?php echo _CT_LOGO;?>:</h6></td>
+</tr><tr class='sysbg1'>
 
-</tr><tr>
+<td colspan="2"><h3><?php echo _CT_LOGO;?>:</h3></td>
+
+</tr><tr class='sysbg1'>
 
 <td valign="top"><?php echo _CT_SAMPLE;?>:</td>
 
@@ -678,26 +741,27 @@ if ($logo_custom) {
 ?>
 </td>
 
-</tr><tr>
+</tr><tr class='sysbg1'>
 
 <td><?php echo _CT_ALT;?>:</td><td><input type="text" class="text" name="logo_alt" value="<?php echo $logo_alt;?>" size="30" maxlength="255" /></td>
 
-</tr><tr>
+</tr><tr class='sysbg1'>
 
 <td><?php echo _CT_IMG;?>:</td><td><input type="text" class="text" name="logo_img" value="<?php echo $logo_img;?>" size="30" maxlength="255" /> <input type="file" class="file" name="logo_file"></td>
 
-</tr><tr>
+</tr><tr class='sysbg1'>
 
 <td valign="top"><?php echo _CT_CUSTOM;?>:</td><td><textarea class="textarea" name="logo_custom" rows="5" cols="50"><?php echo $logo_custom;?></textarea></td>
 
-</tr></table>
-<hr />
+</tr><tr class='sysbg1'>
 
-<table><tr>
+    <td colspan="2">&nbsp;</td>
 
-<td colspan="2"><h6><?php echo _CT_BANNER;?>:</h6></td>
+</tr><tr class='sysbg1'>
 
-</tr><tr>
+<td colspan="2"><h3><?php echo _CT_BANNER;?>:</h3></td>
+
+</tr><tr class='sysbg1'>
 
 <td valign="top"><?php echo _CT_SAMPLE;?>:</td>
 
@@ -712,31 +776,41 @@ if ($banner_custom) {
 ?>
 </td>
 
-</tr><tr>
+</tr><tr class='sysbg1'>
 
 <td><?php echo _CT_ALT;?>:</td><td><input type="text" class="text" name="banner_alt" value="<?php echo $banner_alt;?>" size="30" maxlength="255" /></td>
 
-</tr><tr>
+</tr><tr class='sysbg1'>
 
 <td><?php echo _CT_IMG;?>:</td><td><input type="text" class="text" name="banner_img" value="<?php echo $banner_img;?>" size="30" maxlength="255" /> <input type="file" class="file" name="banner_file"></td>
 
-</tr><tr>
+</tr><tr class='sysbg1'>
 
 <td valign="top"><?php echo _CT_CUSTOM;?>:</td><td><textarea class="textarea" name="banner_custom" rows="5" cols="50"><?php echo $banner_custom;?></textarea></td>
 
 
-</tr><tr>
+</tr>
+<tr class='sysbg1'>
+
+    <td colspan="2">&nbsp;</td>
+
+</tr>
+<tr class='sysbg1'>
 <td colspan="2" align="center">
-<hr />
 <input type="hidden" name="op" value="save_link" />
 <input type="submit" class="button" name="submit" value="<?php echo _SAVE;?>" />
 </td>
-</tr></table>
+    </tr></table></td>
+    </tr></table>
 
 </form>
 
 <?php
 CloseTable();
+echo "                        
+        </td>
+    </tr>
+</table>";
 rcx_cp_footer();
 }
 

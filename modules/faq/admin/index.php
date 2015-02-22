@@ -69,6 +69,12 @@ if ($op == "faqsave") {
 
 if ($op == "listcat") {
         rcx_cp_header();
+        echo '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbund">
+    <tr>
+        <td class="KPindex">
+            <div class="KPstor" >'._XD_DOCS.'</div>
+            <br />
+            <br />';
         OpenTable();
 
 		           include_once(RCX_ROOT_PATH."/class/rcxformloader.php");
@@ -80,9 +86,8 @@ if ($op == "listcat") {
          $retur_button->setExtra("onClick=\"location='index.php?op=faqconfig'\"");
              $form->addElement($retur_button); 
 
-        $form->display(); 
+        
         echo "
-        <h4 style='text-align:left;'>"._XD_DOCS."</h4>
         <form action='index.php' method='post'>
         <table border='0' cellpadding='0' cellspacing='0' width='100%'><tr><td class='bg2'>
         <table width='100%' border='0' cellpadding='4' cellspacing='1'>
@@ -104,13 +109,24 @@ if ($op == "listcat") {
         }
         echo "</table></td></tr></table></form>
         <br /><br />
-        <h4 style='text-align:left;'>"._XD_ADDCAT."</h4>
+        <div class='KPstor' >"._XD_ADDCAT."</div>
+                <br />
+            <br />
         <form action='index.php' method='post'>
         <table border='0' cellpadding='0' cellspacing='0' width='100%'><tr><td class='bg2'><table width='100%' border='0' cellpadding='4' cellspacing='1'><tr nowrap='nowrap'><td class='bg3'>"._XD_TITLE." </td><td class='bg1'><input type='text' class='text' name='category' size='30' maxlength='255' /></td></tr>
         <tr nowrap='nowrap'><td class='bg3'>"._XD_ORDER." </td><td class='bg1'><input type='text' class='text' name='order' size='4' maxlength='3' /></td></tr>
         <tr><td class='bg3'>&nbsp;</td><td class='bg1'><input type='hidden' name='op' value='addcatgo' /><input type='submit' class='button' value='"._SUBMIT."' /></td></tr>
         </table></td></tr></table></form>";
+        
+        echo '<br /><br />';
+        $form->display(); 
+        
         CloseTable();
+        echo "                        
+        </td>
+    </tr>
+</table>";
+
         rcx_cp_footer();
         exit();
 }
@@ -422,12 +438,21 @@ function faqconfig() {
 global $faqConfig;
 
 rcx_cp_header();
+echo '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbund">
+    <tr>
+        <td class="KPindex">
+            <div class="KPstor" >'._AM_GENERALSET.'</div>
+            <br />
+            <br />';
+
 OpenTable();
 ?>
 
-<h4><?php echo _AM_GENERALSET;?></h4><br />
 <form action="index.php" method="post">
-<table width="100%" border="0"><tr>
+<table border='0' cellpadding='0' cellspacing='0' width='100%'><tr><td class='sysbg2'>
+<table width='100%' border='0' cellpadding='4' cellspacing='1'><tr valign='middle' class='sysbg1'>
+
+
 
 <?php
 $chk1 = ''; $chk0 = '';
@@ -439,7 +464,7 @@ $chk1 = ''; $chk0 = '';
 <input type="radio" class="radio" name="rss_enable" value="0"<?php echo $chk0;?> /> <?php echo _NO;?>
 </td>
 
-</tr><tr>
+</tr><tr class='sysbg1'>
 
 <td nowrap><?php echo _AM_RSS_MAXITEMS;?></td>
 <td width="100%">
@@ -454,7 +479,7 @@ $chk1 = ''; $chk0 = '';
 </select>
 </td>
 
-</tr><tr>
+</tr><tr class='sysbg1'>
 
 <td nowrap><?php echo _AM_RSS_MAXDESCRIPTION;?></td>
 <td width="100%">
@@ -469,9 +494,9 @@ $chk1 = ''; $chk0 = '';
 </select>
 </td>
 
-</tr><tr>
-<td colspan="2"><hr /></td>
-</tr><tr>
+</tr><tr class='sysbg1'>
+    <td colspan="2">&nbsp;</td>
+</tr><tr class='sysbg1'>
 
 <td colspan="2">
 <input type="hidden" name="op" value="faqsave">
@@ -479,11 +504,18 @@ $chk1 = ''; $chk0 = '';
 <input type="button" class="button" value="<?php echo _CANCEL;?>" onclick="javascript:history.go(-1)">
 </td>
 
-</tr></table>
+    </tr></table></td>
+    </tr></table>
 </form>
 
 <?php
 CloseTable();
+
+echo "                        
+        </td>
+    </tr>
+</table>";
+
 rcx_cp_footer();
 }
 
