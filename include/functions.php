@@ -576,6 +576,13 @@ global $rcxConfig;
 */
 function redirect_header($url, $time=4, $message=_TAKINGBACK) {
 global $rcxConfig, $meta;
+
+if ( !headers_sent() ) {
+    
+    header('Content-Type: text/html; charset='._CHARSET);
+    header('Content-language: ' . _LANGCODE );
+}
+
 ?>
 <html><head>
 <title><?php echo $meta['title'];?></title>
