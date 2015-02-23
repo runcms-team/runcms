@@ -40,6 +40,12 @@ $select_files->addOptionArray($files_without_hash);
 function downloads() {
 global $db;
 rcx_cp_header();
+echo '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbund">
+    <tr>
+        <td class="KPindex">
+            <div class="KPstor" >'._MI_DOWNLOADS_NAME.'</div>
+            <br />
+            <br />';
 OpenTable();
 // Temporarily 'homeless' downloads (to be revised in index.php breakup)
 $result = $db->query("SELECT COUNT(*) FROM ".$db->prefix("downloads_broken")."");
@@ -58,8 +64,7 @@ if ($totalnewdownloads > 0) {
   $totalnewdownloads = "<span style='font-weight: bold'>$totalnewdownloads</span>";
 }
 ?>
-    <h4><?php echo _MI_DOWNLOADS_NAME;?></h4>
-	<br /><br /><br /><br />
+
 	<div class="kpicon"><table><tr><td>
 	<a href="index.php?op=downloadsConfigAdmin"><img src="<?php echo RCX_URL;?>/images/system/indstil.png" alt="<?php echo _MD_GENERALSET;?>">
 	<br /><?php echo _MD_GENERALSET;?></a>
@@ -79,6 +84,10 @@ echo "<br /><br /><div align='center'>";
 printf(_MD_THEREARE, $numrows);
 echo "</div>";
 CloseTable();
+echo "                        
+        </td>
+    </tr>
+</table>";
 rcx_cp_footer();
 }
 /**
@@ -93,8 +102,14 @@ global $db, $myts, $eh, $mytree, $rcxConfig;
 $result  = $db->query("SELECT lid, cid, title, description, url, homepage, version, size, platform, logourl, submitter FROM ".$db->prefix("downloads_downloads")." WHERE status=0 ORDER BY date DESC");
 $numrows = $db->num_rows($result);
 rcx_cp_header();
+
+echo '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbund">
+    <tr>
+        <td class="KPindex">
+            <div class="KPstor" >'._MD_DLSWAITING.' ('.$numrows.')</div>
+            <br />
+            <br />';
 OpenTable();
-echo "<h4><a href='index.php'>"._MAIN."</a>: "._MD_DLSWAITING." ($numrows)</h4><br />";
 if ($numrows > 0) {
   while (list($lid, $cid, $title, $description, $url, $homepage, $version, $size, $platform, $logourl, $uid) = $db->fetch_row($result)) {
     $title       = $myts->makeTboxData4Edit($title);
@@ -168,6 +183,10 @@ echo $desc->render();
     echo _MD_NOSUBMITTED;
   }
 CloseTable();
+echo "                        
+        </td>
+    </tr>
+</table>";
 rcx_cp_footer();
 }
 /**
@@ -185,6 +204,12 @@ redirect_header("index.php?op=downloadsConfigMenu", 3, $pad_array['error']);
 exit();
 } 
 rcx_cp_header();
+
+
+echo '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbund">
+    <tr>
+        <td class="KPindex">';
+
 $result=$db->query("SELECT COUNT(*) FROM ".$db->prefix("downloads_cat")."");
 list($numrows) = $db->fetch_row($result);
 if ($numrows > 0) {
@@ -192,7 +217,10 @@ if ($numrows > 0) {
   // If there is a category, add a New Download
 $upload = new fileupload();
 ?>
-<h4><a href="index.php"><?php echo _MAIN;?></a>: <?php echo _MD_ADDWITHPADFILE;?></h4>
+
+<div class='KPstor' ><?php echo _MD_ADDWITHPADFILE;?></div>
+                <br />
+            <br />
 <form method="post" action="index.php">
 <table border='0' cellpadding='0' cellspacing='0' width='100%'><tr>
 <td class='bg2'><table width='100%' border='0' cellpadding='4' cellspacing='1'>
@@ -363,7 +391,10 @@ echo "<br />";
    // Add a New Main Category
    OpenTable();
 ?>
-<h4><?php echo _MD_ADDMAIN;?></h4>
+
+<div class='KPstor' ><?php echo _MD_ADDMAIN;?></div>
+                <br />
+            <br />
 <form method="post" action="index.php">
 <table border='0' cellpadding='0' cellspacing='0' width='100%'><tr>
 <td class='bg2'><table width='100%' border='0' cellpadding='4' cellspacing='1'>
@@ -376,6 +407,10 @@ echo "<br />";
 </form>
 <?php
 CloseTable();
+echo "                        
+        </td>
+    </tr>
+</table>";
 rcx_cp_footer();
 }
 /**
@@ -407,8 +442,13 @@ function listBrokenDownloads()
    $result = $db->query("SELECT reportid, lid, sender, ip FROM ".$db->prefix("downloads_broken")." ORDER BY reportid");
    $totalbrokendownloads = $db->num_rows($result);
    rcx_cp_header();
+   echo '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbund">
+    <tr>
+        <td class="KPindex">
+            <div class="KPstor" >'._MD_BROKENREPORTS.' ('.$totalbrokendownloads.')</div>
+            <br />
+            <br />';
    OpenTable();
-   echo "<h4><a href='index.php'>"._MAIN."</a>: "._MD_BROKENREPORTS." ($totalbrokendownloads)</h4><br />";
 
    if ($totalbrokendownloads == 0) {
       echo _MD_NOBROKEN;
@@ -455,6 +495,10 @@ function listBrokenDownloads()
     echo "</table></td></tr></table>";
    }
    CloseTable();
+   echo "                        
+        </td>
+    </tr>
+</table>";
    rcx_cp_footer();
 }
 /**
@@ -505,10 +549,18 @@ function listModReq()
 {
    global $db, $myts, $eh, $mytree, $downloadsConfig;
    rcx_cp_header();
-   OpenTable();
-   $sql_mod = $db->query("SELECT requestid, lid, cid, title, description, url, homepage, version, size, platform, modifysubmitter, logourl FROM ".$db->prefix("downloads_mod")." ORDER BY requestid");
+   
+      $sql_mod = $db->query("SELECT requestid, lid, cid, title, description, url, homepage, version, size, platform, modifysubmitter, logourl FROM ".$db->prefix("downloads_mod")." ORDER BY requestid");
    $totalmodrequests = $db->num_rows($sql_mod);
-   echo "<h4><a href='index.php'>"._MAIN."</a>: "._MD_USERMODREQ." ($totalmodrequests)</h4><br />";
+   
+   echo '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbund">
+    <tr>
+        <td class="KPindex">
+            <div class="KPstor" >'._MD_USERMODREQ.' ('.$totalmodrequests.')</div>
+            <br />
+            <br />';
+   OpenTable();
+
    if ($totalmodrequests > 0)
    {
       while (list($requestid, $lid, $cid, $title, $description, $url, $homepage, $version, $size, $platform, $modifysubmitter, $logourl) = $db->fetch_row($sql_mod)) {
@@ -611,6 +663,10 @@ function listModReq()
       echo _MD_NOMODREQ;
    }
    CloseTable();
+   echo "                        
+        </td>
+    </tr>
+</table>";
    rcx_cp_footer();
 }
 /**
