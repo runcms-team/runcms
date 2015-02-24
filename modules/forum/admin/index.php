@@ -26,9 +26,9 @@ if ( !isset($mode) ) {
 <table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbund">
 <tr>
 <td width="100%" class="KPindex">
-<div class="KPstor" ><center><?php echo _MD_A_FORUM_INDEX;?></center></div>
+<div class="KPstor" ><?php echo _MD_A_FORUM_INDEX;?></div>
 <br /><br />
-<div class="kpicon"><table id="table1"><tr><td>
+<table id="table1"><tr><td><div class="kpicon">
 <a href="<?php echo $bbPath['admin'];?>/forum_config.php"><img src="<?php echo RCX_URL;?>/images/system/indstil.png" alt="<?php echo _MD_A_LINK2_FORUM_CONFIG;?>"/>
 <br /><?php echo _MD_A_LINK2_FORUM_CONFIG;?></a>
 <a href="<?php echo $bbPath['admin'];?>/forum_manager.php"><img src="<?php echo RCX_URL;?>/images/system/katgoriopret.png" alt="<?php echo _MD_A_LINK2_FORUM_MANAGER;?>"/>
@@ -36,9 +36,11 @@ if ( !isset($mode) ) {
 <a href="<?php echo $bbPath['admin'];?>/sync.php"><img src="<?php echo RCX_URL;?>/images/system/synkron.png" alt="<?php echo _MD_A_LINK2SYNC;?>"/>
 <?php echo _MD_A_SYNCFORUM;?></a>
 <a href="<?php echo $bbPath['admin'];?>/prune.php"><img src="<?php echo RCX_URL;?>/images/system/reducer.png" alt="<?php echo _MD_A_LINK2PRUNEFORUM;?>"/>
-<br /><?php echo _MD_A_PRUNEFORUM;?></a>
+<br /><?php echo _MD_A_PRUNEFORUM;?></a></div>
 </td></tr></table>
-<br /><br />
+</td>
+    </tr>
+</table>
 <?php
 }
 

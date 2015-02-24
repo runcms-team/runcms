@@ -101,16 +101,22 @@ function add_forum($cat_id, $parent_forum = 0)
   }
   else
   {
+      
+echo '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbund">
+    <tr>
+        <td class="KPindex">
+            <div class="KPstor" >'._MD_A_CREATENEWFORUM.'</div>
+            <br />
+            <br />';      
+      
 ?>
 <form action="./forum_manager.php" method="post">
 <input type="hidden" name="op" value="add_subforum">
 <input type="hidden" name="cat_id" value="<?php echo $cat_id; ?>">
 <input type="hidden" name="parent_forum" value="<?php echo $parent_forum; ?>">
-<table border="0" cellpadding="1" cellspacing="0" align="center" valign="top" width="95%"><tr>
+<table border="0" cellpadding="1" cellspacing="0" align="center" valign="top" width="100%"><tr>
 <td class="bg2">
-<table border="0" cellpadding="1" cellspacing="1" width="100%"><tr class="bg3">
-<td align="center" colspan="2"><b><?php echo _MD_A_CREATENEWFORUM;?></b></td>
-</tr><tr class="bg1">
+<table border="0" cellpadding="1" cellspacing="1" width="100%"><tr class="bg1">
 <td><?php echo _MD_A_FORUMNAME;?></td>
 <td><input type="text" class="text" name="name" size="40" maxlength="150"></td>
 </tr><tr class="bg1">
@@ -174,6 +180,11 @@ if ($myrow = $db->fetch_array($result)) {
 </td>
 </tr></table></td></tr></table>
 <?php
+
+echo "                        
+        </td>
+    </tr>
+</table>";
   }
 }
 

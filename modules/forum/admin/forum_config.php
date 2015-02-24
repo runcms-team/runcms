@@ -54,16 +54,15 @@ exit();
 
 
 include_once(RCX_ROOT_PATH.'/class/rcxformloader.php');
-?>
-<div style='padding-left: 150px;' class='KPmellem' />
-<table border="0" cellpadding="0" cellspacing="0" align="center" valign="top" width="75%"><tr><td class="bg2">
-<table border="0" cellpadding="4" cellspacing="1" width="100%">
-<tr class="bg3" align="center"><td colspan=7><div style='padding-left: 10px;' class='KPmellem' /><b><?php echo _MD_A_CONFIGFORUM;?></b></td></tr>
-</table>
-</table>
-<br />
-<table><tr><td width="75%">
-<?php
+
+echo '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbund">
+    <tr>
+        <td class="KPindex">
+            <div class="KPstor" >'._MD_A_CONFIGFORUM.'</div>
+            <br />
+            <br />';
+
+
 $cfg_form = new RcxThemeForm('', 'cfg_form', 'forum_config.php');
 
 // General Options
@@ -110,9 +109,12 @@ $cfg_form->addElement(new RcxFormText(_MD_A_WOL_MOD_COL,'wol_mod_col',10,10,$for
 
 $cfg_form->addElement(new RcxFormButton('','submit',_SAVE, 'submit'));
 echo $cfg_form->render();
-?>
-</td><tr></table><br /><br />
-<?php
+
+
+echo "                        
+        </td>
+    </tr>
+</table>";
 
 CloseTable();
 rcx_cp_footer();

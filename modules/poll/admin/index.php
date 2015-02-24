@@ -200,7 +200,7 @@ if ( $op == "save" ) {
 
 if ( $op == "edit" ) {
   $poll = new RcxPoll($_GET['poll_id']);
-  $poll_form = new RcxThemeForm(_AM_EDITPOLL, "poll_form", "index.php");
+  $poll_form = new RcxThemeForm("", "poll_form", "index.php");
   $author_label = new RcxFormLabel(_AM_AUTHOR, "<a href='".RCX_URL."/userinfo.php?uid=".$poll->getVar("user_id")."'>".RcxUser::getUnameFromId($poll->getVar("user_id"))."</a>");
   $poll_form->addElement($author_label);
   $question_text = new RcxFormText(_AM_POLLQUESTION, "question", 50, 255, $poll->getVar("question", "E"));
@@ -260,9 +260,20 @@ if ( $op == "edit" ) {
   $submit_button = new RcxFormButton("", "poll_submit", _SUBMIT, "submit");
   $poll_form->addElement($submit_button);
   rcx_cp_header();
+  echo '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbund">
+    <tr>
+        <td class="KPindex">
+            <div class="KPstor" >'._AM_EDITPOLL.'</div>
+            <br />
+            <br />';
   OpenTable();
   $poll_form->display();
   CloseTable();
+  echo "                        
+        </td>
+    </tr>
+</table>";
+
   rcx_cp_footer();
   exit();
 }
@@ -316,7 +327,7 @@ if ( $op == "update" ) {
 
 if ( $op == "addmore" ) {
   $poll = new RcxPoll($_GET['poll_id']);
-  $poll_form = new RcxThemeForm(_AM_ADDMORE, "poll_form", "index.php");
+  $poll_form = new RcxThemeForm("", "poll_form", "index.php");
   $question_label = new RcxFormLabel(_AM_POLLQUESTION, $poll->getVar("question"));
   $poll_form->addElement($question_label);
   $option_tray = new RcxFormElementTray(_AM_POLLOPTIONS, "");
@@ -345,9 +356,19 @@ if ( $op == "addmore" ) {
   $poll_id_hidden = new RcxFormHidden("poll_id", $poll->getVar("poll_id"));
   $poll_form->addElement($poll_id_hidden);
   rcx_cp_header();
+  echo '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbund">
+    <tr>
+        <td class="KPindex">
+            <div class="KPstor" >'._AM_ADDMORE.'</div>
+            <br />
+            <br />';
   OpenTable();
   $poll_form->display();
   CloseTable();
+  echo "                        
+        </td>
+    </tr>
+</table>";
   rcx_cp_footer();
   exit();
 }

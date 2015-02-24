@@ -9,14 +9,14 @@
 */
 
 include_once('./admin_header.php');
-?>
-<table border="0" cellpadding="0" cellspacing="0" align="center" valign="top" width="75%"><tr><td class="bg2">
-<table border="0" cellpadding="4" cellspacing="1" width="100%">
-<tr class="bg3" align="center"><td colspan=7><div style='text-align: center;' class='KPmellem' /><b><?php echo _MD_A_SYNCFORUM;?></b></td></tr>
-</table>
-</table>
-<br><br>
-<?php
+
+echo '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbund">
+    <tr>
+        <td class="KPindex">
+            <div class="KPstor" >'._MD_A_SYNCFORUM.'</div>
+            <br />
+            <br />';
+
 if ($_POST['submit'])
 {
 		echo _MD_A_SYNCHING . "<br />";
@@ -30,7 +30,7 @@ if ($_POST['submit'])
 else
 {
 ?>
-		<table border="0" cellpadding="1" cellspacing="0" align="center" valign="top" width="75%"><tr>
+		<table border="0" cellpadding="1" cellspacing="0" align="center" valign="top" width="100%"><tr>
 		<td class="bg2">
 		<table border="0" cellpadding="1" cellspacing="1" width="100%">
 		<tr class="bg3" align="left">
@@ -40,7 +40,7 @@ else
 		<center><br /><form action="./sync.php" method="post">
 		<input type="hidden" name="mode" value="sync">
 		<input type="submit" class="button" name="submit" value="<?php echo _MD_A_START; ?>">
-		</center></form>
+		</form></center>
 		</td>
 		</td></tr></table>
 		</td></tr></table>
@@ -48,11 +48,17 @@ else
 } 
 ?>
 <br><br>
-<table border="0" cellpadding="0" cellspacing="0" align="center" valign="top" width="75%"><tr><td class="bg2">
+<table border="0" cellpadding="0" cellspacing="0" align="center" valign="top" width="100%"><tr><td class="bg2">
 <table border="0" cellpadding="4" cellspacing="1" width="100%">
 <tr class="bg3" align="center"><td><br /><center><input type="button" value="<?php echo _MD_A_BACK_TO_FM;?>" class="button" onclick="javascript:window.location='forum_manager.php'"></center><br /></td></tr>
 </table></table>
 <?php
+
+echo "                        
+        </td>
+    </tr>
+</table>";
+
 CloseTable();
 rcx_cp_footer();
 exit();

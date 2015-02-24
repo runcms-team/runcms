@@ -34,9 +34,16 @@ if ($locked == 1) {
 		$lchk2 = " selected='selected'";
 	}
 
+        echo '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbund">
+    <tr>
+        <td class="KPindex">
+            <div class="KPstor" >'._MD_A_PRUNE.'</div>
+            <br />
+            <br />';
+
+        
 echo "
-<div style='text-align: center;' class='KPmellem' /><h4>"._MD_A_PRUNE."</h4>
-"._MD_A_PLIST.":
+<div style='text-align: center;' class='KPmellem' >"._MD_A_PLIST.":</div>
 <form method='post'>
 <table align='center' cellpadding='0' cellspacing='5' border='0'><tr>
 <td align='right' nowrap>
@@ -202,9 +209,12 @@ if ($num_rows > 0) {
 	$nav = new RcxPageNav($num_rows, $limit, $show, "show", "op=list_topics&amp;sticky=$sticky&amp;private=$private&amp;locked=$locked&amp;days=$days&amp;limit=$limit&amp;access=$access");
 	echo '<br /><div align="center">'.$nav->renderNav().'</div>';
 	} else {
-		echo _MD_A_PNFOUND;
+		echo "<div style='text-align: center;' class='KPmellem' >" . _MD_A_PNFOUND . "</div>";
 	}
-
+echo "                        
+        </td>
+    </tr>
+</table>";
 CloseTable();
 rcx_cp_footer();
 exit();

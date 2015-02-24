@@ -91,17 +91,18 @@ switch($op)
 function show_forum_manager()
 {
   global $db, $bbImage, $bbTable, $bbPath;
+  
+  echo '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbund">
+    <tr>
+        <td class="KPindex">
+            <div class="KPstor" >'._MD_A_FORUM_MANAGER.'</div>
+            <br />
+            <br />';
+  
   ?>
 
-<table border="0" cellpadding="0" cellspacing="0" align="center" valign="top" width="75%"><tr><td class="bg2">
-<table border="0" cellpadding="4" cellspacing="1" width="100%">
-<tr class="bg3" align="center"><td colspan=7><div style='text-align: center;' class='KPmellem' /><b><?php echo _MD_A_FORUM_MANAGER;?></b><br /><br /></td></tr>
-</table>
-</table>
-<br><br>
 
-
-<table border="0" cellpadding="0" cellspacing="0" align="center" valign="top" width="75%"><tr><td class="bg2">
+<table border="0" cellpadding="0" cellspacing="0" align="center" valign="top" width="100%"><tr><td class="bg2">
 <table border="0" cellpadding="4" cellspacing="1" width="100%">
 <tr class="bg3" align="left">
 <td><b><?php echo _MD_A_NAME;?></b></td>
@@ -208,7 +209,7 @@ function show_forum_manager()
   echo "<br>";
 
   // Add Category Box
-  echo '<table border="0" cellpadding="0" cellspacing="0" align="center" valign="top" width="75%"><tr><td class="bg2">';
+  echo '<table border="0" cellpadding="0" cellspacing="0" align="center" valign="top" width="100%"><tr><td class="bg2">';
   echo '<table border="0" cellpadding="4" cellspacing="1" width="100%">';
   echo '<tr class="bg1" align="left">';
   echo '<td><b>'._MD_A_ADD_CATEGORY.'</b></td>';
@@ -220,6 +221,11 @@ function show_forum_manager()
   echo '</tr>';
   echo "</table>";
   echo "</table>";
+  
+  echo "                        
+        </td>
+    </tr>
+</table>";
 
 }
 

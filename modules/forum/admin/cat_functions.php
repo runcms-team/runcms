@@ -136,18 +136,20 @@ function edit_cat($cat_id)
 		$row = $db->fetch_object($result);
 		$current_title = $row->cat_title;
 	}
-	  echo '<table border="0" cellpadding="0" cellspacing="0" align="center" valign="top" width="75%"><tr><td class="bg2">';
-	  echo '<table border="0" cellpadding="4" cellspacing="1" width="100%">';
-	  echo '<tr class="bg3" align="center"><td colspan=7><div style="text-align: center;" class="KPmellem"><b>'._MD_A_EDITCATEGORY.'&nbsp;'.$current_title.'</b></td></tr>';
-	  echo "</table>";
-	  echo "</table>";
-	  echo "<br><br>";
+        
+        echo '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbund">
+    <tr>
+        <td class="KPindex">
+            <div class="KPstor" >'._MD_A_EDITCATEGORY.'&nbsp;'.$current_title.'</div>
+            <br />
+            <br />';
+        
 
 ?>	
 		<form action="./forum_manager.php" method="post">
 		<input type="hidden" name="op" value="edit_cat" />		
 		<input type="hidden" name="cat_id" value="<?php echo $cat_id?>" />
-		<table border="0" cellpadding="1" cellspacing="0" align="center" valign="TOP" width="75%"><tr><td class="bg2">
+		<table border="0" cellpadding="1" cellspacing="0" align="center" valign="TOP" width="100%"><tr><td class="bg2">
 		<table border="0" cellpadding="1" cellspacing="1" width="100%">
 		<tr class="bg1" align="left">
 		<td><?php echo _MD_A_CATEGORYTITLE;?></td>
@@ -155,10 +157,15 @@ function edit_cat($cat_id)
 		</tr></tr></table></td></tr></table></form>
 <?php
 	echo "<br><br>";
-	echo '<table border="0" cellpadding="0" cellspacing="0" align="center" valign="top" width="75%"><tr><td class="bg2">';
+	echo '<table border="0" cellpadding="0" cellspacing="0" align="center" valign="top" width="100%"><tr><td class="bg2">';
 	echo '<table border="0" cellpadding="4" cellspacing="1" width="100%">';
 	echo '<tr class="bg3" align="center"><td><br /><center><input type="button" value="'._MD_A_BACK_TO_FM.'" class="button" onclick="javascript:window.location=\'forum_manager.php\'"></center><br /></td></tr>';
 	echo '</table></table>';
+        
+        echo "                        
+        </td>
+    </tr>
+</table>";
   }
 }
 
