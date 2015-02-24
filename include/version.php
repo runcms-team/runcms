@@ -37,4 +37,4 @@ if (!defined('RCX_ROOT_PATH')) {
     exit();
 }
 
-define('RCX_VERSION', 'RUNCMS 2.2.3.0');
+define('RCX_VERSION', 'RUNCMS 2.2.3.0-rc');
