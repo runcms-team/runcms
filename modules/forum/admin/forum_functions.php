@@ -178,7 +178,7 @@ if ($myrow = $db->fetch_array($result)) {
 <td align="center" colspan="2">
 <input type="submit" class="button" name="submit" value="<?php echo _SAVE;?>" />
 </td>
-</tr></table></td></tr></table>
+</tr></table></td></tr></table></form>
 <?php
 
 echo "                        
