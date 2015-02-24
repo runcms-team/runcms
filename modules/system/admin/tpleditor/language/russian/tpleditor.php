@@ -32,37 +32,37 @@ define("_AM_TPLEDITOR_NAME","Редактор шаблонов");
 define("_AM_TPLEDITOR_DESC","Модуль предназначен для редактирования HTML шаблонов, CSS файлов, языковых файлов и т.д.");
 
 define("_TE_MAIN_LINK","Главная");
-define("_TE_TPL_LINK","Темплейт %s");
+define("_TE_TPL_LINK","Тема %s");
 define("_TE_NO_DATA_ON_TPL","Нет данных о шаблонах модуля: <font color='#339933'>%s</font>");
 
 // tpl_list.php
-define("_TE_LIST_TEMPLATES","Список темплейтов");
-define("_TE_TEMPLATES","Темплейты");
+define("_TE_LIST_TEMPLATES","Список тем");
+define("_TE_TEMPLATES","Темы");
 define("_TE_EDIT","Редактировать");
-define("_TE_NOT_TEMPLATES","Темплейтов нет");
-define("_TE_LOAD_TEMPLATE","Загрузить темплейт");
-define("_TE_LOAD_FILE","<b>Загрузить файл</b><br />Файл в формате <font color='#339933'>.zip</font><br /><font color='#FF0000'>Должна быть соблюдена структура темплейта !</font>");
+define("_TE_NOT_TEMPLATES","Тем нет");
+define("_TE_LOAD_TEMPLATE","Загрузить тему");
+define("_TE_LOAD_FILE","<b>Загрузить файл</b><br />Файл в формате <font color='#339933'>.zip</font><br /><font color='#FF0000'>Должна быть соблюдена структура темы !</font>");
 define("_TE_LOAD","Загрузить");
 
 // tpl_edit.php
 define("_TE_NO_TPL_VERSION","Отсутствует файл template_version.php");
-define("_TE_EDITOR_TEMPLATE","Редактор темплейта: <font color='#339933'>%s</font>");
+define("_TE_EDITOR_TEMPLATE","Тема <font color='#339933'>%s</font>");
 define("_TE_GENERAL_DATA","Общие данные");
-define("_TE_TPL_NAME","Полное имя темплейта");
+define("_TE_TPL_NAME","Полное имя темы");
 define("_TE_TPL_AUTHOR","Автор");
 define("_TE_TPL_AUTHOR_SITE","Сайт автора");
 define("_TE_TPL_LICENSE","Лицензия");
 define("_TE_TPL_DESCRIPTION","Описание");
 define("_TE_TPL_VERSION","Версия");
 define("_TE_TPL_PATTERNS","Базовые шаблоны");
-define("_TE_TPL_CSS","Таблицы стилей темплейта");
-define("_TE_TPL_JAVA_SCRIPT","Файлы JavaScript темплейта");
+define("_TE_TPL_CSS","Таблицы стилей темы");
+define("_TE_TPL_JAVA_SCRIPT","Файлы JavaScript темы");
 define("_TE_CLASSES_MANAGER","Менеджер классов");
 define("_TE_SHOW","Показать");
 define("_TE_NO_FILE","Файл отсутствует");
-define("_TE_LANGUAGE_FILES","Языковые файлы темплейта");
+define("_TE_LANGUAGE_FILES","Языковые файлы темы");
 define("_TE_TPL_BLOCKS","Дополнительные шаблоны блоков");
-define("_TE_GRAPHIC_FILES","Графические файлы темплейта");
+define("_TE_GRAPHIC_FILES","Графические файлы темы");
 define("_TE_HOW_MANY_FILES","<b>Количество файлов: <font color='#ff8100'>%s</font></b>");
 define("_TE_IMAGES_MANAGER","Менеджер изображений");
 define("_TE_HOW_MANY_TPL","(<b>шаблонов: <font color='#ff8100'>%s</font></b>)");
@@ -103,13 +103,13 @@ define("_TE_CONST_DEF","Константы/определения");
 
 // tpl_extract.php
 define("_TE_NO_TPL_VERSION2","В архиве отсутствует файл template_version.php");
-define("_TE_TPL_IS_LOADED","Темплейт загружен и разархивирован в папку \"templates\"");
+define("_TE_TPL_IS_LOADED","Тема загружена и разархивирована в папку \"templates\"");
 
 // tpl_info_save.php
-define("_TE_TPL_INFO_SAVE","Общие данные о темплейте <font color='#339933'>%s</font> успешно сохранены");
+define("_TE_TPL_INFO_SAVE","Общие данные о теме <font color='#339933'>%s</font> успешно сохранены");
 
 // img_edit.php
-define("_TE_IMAGES_MANAGER2","Менеджер изображений темплейта: <font color='#339933'>%s</font>");
+define("_TE_IMAGES_MANAGER2","Менеджер изображений темы: <font color='#339933'>%s</font>");
 define("_TE_PREVIEW_IMG","Предварительный просмотр");
 define("_TE_BYTE","байт");
 define("_TE_FORMATS_FILE","Допустимые форматы файла: <font color='#339933'>%s</font>");
