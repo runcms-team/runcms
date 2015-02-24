@@ -22,6 +22,15 @@ function tpl_list()
     include_once(RCX_ROOT_PATH . "/modules/system/admin/tpleditor/include/formloader.inc.php");
 
     rcx_cp_header();
+    
+
+echo '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbund">
+    <tr>
+        <td class="KPindex">
+            <div class="KPstor" >'._MD_AM_THEMEEDITOR.'</div>
+            <br />
+           ';
+
     OpenTable();
 
     $form = new ThemeForm(_TE_LIST_TEMPLATES, "themeform", "admin.php?fct=tpleditor", true, "post", true);
@@ -51,6 +60,13 @@ function tpl_list()
 
     CloseTable();
     inc_function('show_copyright');
+    
+
+echo "                        
+        </td>
+    </tr>
+</table>";    
+    
 	rcx_cp_footer();
 } 
 

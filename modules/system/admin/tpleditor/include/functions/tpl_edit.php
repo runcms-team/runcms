@@ -41,6 +41,14 @@ function tpl_edit()
     }
 
     rcx_cp_header();
+    
+    echo '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbund">
+    <tr>
+        <td class="KPindex">
+            <div class="KPstor" >'._MD_AM_THEMEEDITOR.'</div>
+            <br />
+            ';
+    
     OpenTable();
 
     $form = new ThemeForm(get_main_link() . sprintf(_TE_EDITOR_TEMPLATE, $tpl), "themeform", "admin.php?fct=tpleditor", true, "post", true);
@@ -159,6 +167,12 @@ function tpl_edit()
 
     CloseTable();
     inc_function('show_copyright');
+    
+    echo "                        
+        </td>
+    </tr>
+</table>";
+    
     rcx_cp_footer();
 }
 

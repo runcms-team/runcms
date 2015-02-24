@@ -85,7 +85,7 @@ $hl = &Text_Highlighter::factory(strtolower($ext), $options);
 $html = $hl->highlight($text);
 
 ?>
-<center><br />
+<div class="bg1"><center><br />
 <font size="2"><?php echo sprintf(_TE_FILE, basename($file));?><b><?php echo $nomdufichier;?></b></font>
 <br /><br /><hr>
 <a href="javascript:window.print()"><img src="<?php echo RCX_URL;?>/modules/system/admin/tpleditor/images/print.png" alt="<?php echo _TE_PRINT_PAGE;?>"  title="<?php echo _TE_PRINT_PAGE;?>" border="0"></a>
@@ -97,5 +97,6 @@ $html = $hl->highlight($text);
 </center><br />
 <?php
 rcx_footer(0);
+echo '</div>';
 }
 ?>

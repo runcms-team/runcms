@@ -35,6 +35,12 @@ function lang_edit()
     include_once(RCX_ROOT_PATH . "/modules/system/admin/tpleditor/include/formloader.inc.php");
 
     rcx_cp_header();
+    echo '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbund">
+    <tr>
+        <td class="KPindex">
+            <div class="KPstor" >'._MD_AM_THEMEEDITOR.'</div>
+            <br />
+            ';
     OpenTable();
     $form = new ThemeForm(get_main_link() . get_tpl_link($_GET['tpl']) . sprintf(_TE_LANGUAGE_EDITOR, $lng_file), "themeform", "admin.php?fct=tpleditor", true, "post", true);
     $form->addElement(new FormHeadingRow(_TE_CONST_DEF));
@@ -72,6 +78,10 @@ function lang_edit()
     $form->display();
     CloseTable();
     inc_function('show_copyright');
+    echo "                        
+        </td>
+    </tr>
+</table>";
     rcx_cp_footer();
 }
 

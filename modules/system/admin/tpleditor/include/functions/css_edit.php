@@ -97,6 +97,12 @@ function css_edit()
         include_once(RCX_ROOT_PATH . "/modules/system/admin/tpleditor/include/formloader.inc.php");
 
         rcx_cp_header();
+        echo '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbund">
+    <tr>
+        <td class="KPindex">
+            <div class="KPstor" >'._MD_AM_THEMEEDITOR.'</div>
+            <br />
+            ';
         OpenTable();
 
         $formname = get_main_link() . get_tpl_link($tpl);
@@ -181,6 +187,10 @@ function css_edit()
         CloseTable();
         inc_function('show_copyright');
         rcx_cp_footer();
+        echo "                        
+        </td>
+    </tr>
+</table>";
     }
 }
 

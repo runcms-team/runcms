@@ -73,14 +73,24 @@ function img_edit()
             }
         } else {
             rcx_cp_header();
+            echo '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbund">
+    <tr>
+        <td class="KPindex">
+            <div class="KPattention" >'.sprintf(_TE_DEL_WARNING, $_GET["delete"]).'</div>
+            <br />
+            <br />';
             OpenTable();
-            echo "<h4>" . sprintf(_TE_DEL_WARNING, $_GET["delete"]) . "</h4><br><table><tr><td>";
+            echo "<table><tr><td>";
             echo myTextForm("admin.php?fct=tpleditor&op=img_edit&tpl=" . $tpl . "&delete=" . $_GET["delete"] . "&ok=1", _YES, true);
             echo "</td><td>";
             echo myTextForm("admin.php?fct=tpleditor&op=img_edit&tpl=" . $tpl, _NO);
             echo "</td></tr></table>";
             CloseTable();
             inc_function('show_copyright');
+            echo "                        
+        </td>
+    </tr>
+</table>";
             rcx_cp_footer();
             exit();
         }
@@ -88,6 +98,12 @@ function img_edit()
 
     include_once(RCX_ROOT_PATH . "/modules/system/admin/tpleditor/include/formloader.inc.php");
     rcx_cp_header();
+    echo '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbund">
+    <tr>
+        <td class="KPindex">
+            <div class="KPstor" >'._MD_AM_THEMEEDITOR.'</div>
+            <br />
+            ';
     OpenTable();
 
     $values = array();
@@ -143,6 +159,11 @@ function img_edit()
 
     CloseTable();
     inc_function('show_copyright');
+    echo "                        
+        </td>
+    </tr>
+</table>";
+
     rcx_cp_footer();
 }
 
