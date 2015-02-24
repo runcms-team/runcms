@@ -212,4 +212,19 @@ function version_check($min, $curr) {
 		return $str;
 	}
 // insert randaom prefix end
+        
+function wizOpenTable($width='100%') {
+?>
+<table width="<?php echo $width;?>" border="0" cellspacing="1" cellpadding="0"><tr>
+<td valign="top">
+<table width="100%" border="0" cellspacing="1" cellpadding="8"><tr class="bg1">
+<td valign="top">
+<?php
+}
+function wizCloseTable() {
+?>
+</td></tr></table></td></tr></table>
+<?php
+}        
+        
 ?>

@@ -102,8 +102,8 @@ define("_INSTALL_F_VISIT"   , "Вы можете перейти на ваш сайт нажав <a href='%s/'
 // Some general stuff
 define("_INSTALL_G_TITLE" , "Установка");
 define("_INSTALL_U_CHOOSE", "Укажите пакет для апдейта:");
-define("_INSTALL_U_NOTE"  , "ЗАМЕЧАНИЕ: старый файл mainfile.php должен быть на месте и содержать правильную информацию");
-define("_INSTALL_U_README", "Нажмите <a href='%s' target='_blank'>сюда</a> для того чтобы посмотреть <b>README</b>.");
+define("_INSTALL_U_NOTE"  , "ЗАМЕЧАНИЕ: файл mainfile.php должен находиться на сервере и содержать корректную информацию");
+define("_INSTALL_U_README", "Список изменеий");
 
 define("_INSTALL_W"    , "Установка ---->:");
 
@@ -127,5 +127,10 @@ define("_MI_DOCHMOD_CONNERROR4","FTP ОШИБКА! Файл mainfile.php не найден!.");
 define("_MI_DOCHMOD_OKTITLE","<b>Поздравляем! Установка <b>RUNCMS</b> закончена.</b><br />"); // <b>Вот и все!</b>
 define("_MI_DOCHMOD_OKDESCRIPTION","НЕ ЗАБУДЬТЕ ДЛЯ БЕЗОПАСНОСТИ ВАШЕГО САЙТА УДАЛИТЬ папку /_install/<br />НЕ ЗАБУДЬТЕ ДЛЯ БЕЗОПАСНОСТИ ВАШЕГО САЙТА установить права доступа <br />к файлу /mainfile.php - только чтение (CHMOD = 444)<br />");
 define("_FILEMISSINGUPLOADTHISAGAIN","Файл отсутствует, загрузите его повторно");
+
+define("_UPGRADE_ERRORS", "Обнаружены следующие ошибки:");
+define("_UPGRADE_MESSAGES", "Следующие действия успешно выполнены:");
+define("_UPGRADE_NOERRORS", "Ошибок нет");
+define("_UPGRADE_MESSAGES2", "Успешно выполненых действий нет");
 
 ?>

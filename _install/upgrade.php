@@ -9,6 +9,7 @@
 */
 ob_start();
 include_once('include/functions.php');
+include_once('class/upgrademessage.php');
 
 if ( !empty($_POST['action']) ) {
 	include_once('../mainfile.php');
@@ -21,15 +22,6 @@ if ( !empty($_POST['action']) ) {
 		}
 
 	wiz_header(_UPGRADE_TITLE);
-	if ( file_exists('upgrade/'.$package.'/language/'.$rcxConfig['language'].'/readme.txt') ) {
-		echo "<div align='center'>";
-		printf(_INSTALL_U_README, 'upgrade/'.$package.'/language/'.$rcxConfig['language'].'/readme.txt');
-		echo "</div><br /><br />";
-		} elseif ( file_exists('upgrade/'.$package.'/language/english/readme.txt') ) {
-			echo "<div align='center'>";
-			printf(_INSTALL_U_README, 'upgrade/'.$package.'/language/english/readme.txt');
-			echo "</div><br /><br />";
-		}
 
 	if ( empty($_POST['upgrade']) ) {
 		if ( file_exists('upgrade/'.$package.'/language/'.$rcxConfig['language'].'/main.html') ) {
@@ -41,6 +33,21 @@ if ( !empty($_POST['action']) ) {
 		?>
 		<div align="center">
 		<form method="post" action="upgrade.php">
+                <?php
+                if (file_exists('upgrade/' . $package . '/language/' . $rcxConfig['language'] . '/readme.txt')) {
+                    $readme = file_get_contents('upgrade/' . $package . '/language/' . $rcxConfig['language'] . '/readme.txt');
+                ?>
+                    <h2><?php echo _INSTALL_U_README;?></h2>
+                    <textarea disabled="disabled" class="textarea" rows="10" cols="130"><?php echo $readme; ?></textarea><br /><br />
+                <?php
+                } elseif (file_exists('upgrade/' . $package . '/language/english/readme.txt')) {
+                    $readme = file_get_contents('upgrade/' . $package . '/language/english/readme.txt');
+                ?>
+                    <h2><?php echo _INSTALL_U_README;?></h2>
+                    <textarea disabled="disabled" class="textarea" rows="10" cols="130"><?php echo $readme; ?></textarea><br /><br />
+                <?php
+                }
+                ?> 
 		<input type="hidden" name="action" value="<?php echo $package;?>">
 		<input type="hidden" name="upgrade" value="1">
 		<input type="submit" class="button" name="submit" value="<?php echo _SUBMIT;?>">
@@ -66,7 +73,7 @@ if ( !empty($_POST['action']) ) {
 		$upgrade_options = RcxLists::getDirListAsArray('upgrade/');
 		?>
 		<div align="center"><br />
-		<?php echo _INSTALL_U_CHOOSE;?><br />
+		<?php echo _INSTALL_U_CHOOSE;?><br /><br />
 		<form method="post" action="upgrade.php">
 		<select class="select" name="action">
 		<?php
@@ -76,7 +83,7 @@ if ( !empty($_POST['action']) ) {
 		?>
 		</select>
 		<input type="submit" class="button" name="submit" value="<?php echo _SUBMIT;?>">
-		</form>
+		</form><br />
 		(<?php echo _INSTALL_U_NOTE;?>)
 		<br /><br />
 		</div>
