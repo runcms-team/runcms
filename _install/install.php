@@ -10,9 +10,10 @@
 
 ob_start();
 include_once('include/functions.php');
-function welcome() {
+function welcome() {   
 
-$lang = $_COOKIE['lang'] ? $_COOKIE['lang'] : 'russian';
+$lang = !empty($GLOBALS['lang']) ? $GLOBALS['lang'] : (!empty($_COOKIE['lang']) ? $_COOKIE['lang'] : 'english');
+
 ?>
 
 <div align="center">
@@ -32,10 +33,10 @@ $lang = $_COOKIE['lang'] ? $_COOKIE['lang'] : 'russian';
 <?php
 include_once("../class/rcxlists.php");
 $langarr = RcxLists::getDirListAsArray("./language/");
-foreach ($langarr as $lang) {
+foreach ($langarr as $_lang) {
 	echo "<option ";
-	if ($lang == 'russian') echo "selected='selected' ";
-	echo "value='".$lang."'>".$lang."</option>";
+	if ($_lang == $lang) echo "selected='selected' ";
+	echo "value='".$_lang."'>".$_lang."</option>";
 	}
 ?>
 </select>
@@ -229,7 +230,7 @@ if ( !empty($_POST['prefix']) && !empty($_POST['dbname']) ) {
 * @return type description
 */
 function write_mainfile() {
-global $_POST, $_COOKIE;
+
 include_once("../class/module.textsanitizer.php");
 $myts = new MyTextSanitizer();
 $base_url = $_POST['rcx_url'];
@@ -242,7 +243,7 @@ $base_path = str_replace('\\', '/', $base_path);
 if ( substr($base_path, -1) == '/') {
 	$base_path = substr($base_path, 0, -1);
 }
-$language = !empty($_COOKIE['lang']) ? $_COOKIE['lang'] : 'russian';
+$language = !empty($_COOKIE['lang']) ? $_COOKIE['lang'] : 'english';
 $content = '<?php
 /**
 *
@@ -295,7 +296,7 @@ echo "
 * @return type description
 */
 function adminsetup() {
-global $_POST;
+
 include_once("../class/module.textsanitizer.php");
 $myts = new MyTextSanitizer();
 ?>
@@ -329,7 +330,7 @@ $myts = new MyTextSanitizer();
 * @return type description
 */
 function admincheck() {
-global $_POST, $rcxConfig;
+global $rcxConfig;
 if (!checkEmail($_POST['email'])) {
 	$errors[] = _INSTALL_AD_BADEMAIL;
 	}
@@ -354,14 +355,17 @@ return true;
 * @return type description
 */
 function install_tables() {
-global $_POST, $db, $myts, $rcxConfig;
+global $db, $myts, $rcxConfig;
+
+$language = !empty($_COOKIE['lang']) ? $_COOKIE['lang'] : 'english';
+
 include_once("../include/sql_parse.php");
 $utf8 = "ALTER DATABASE `".$rcxConfig['dbname']."` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci";
 if (!$db->query($utf8)) {
 	echo "Failed to set utf-8 charset and collation";
 }
 $sql_file = $rcxConfig['database'].'.sql';
-$sql = join('', file('./sql/'.$sql_file));
+$sql = join('', file('./sql/'.$language. '/' . $sql_file));
 $sql = remove_remarks($sql);
 $sql = split_sql_file($sql, ';');
 foreach ($sql as $value) {
@@ -379,7 +383,7 @@ $email    = $myts->makeTboxData4Save($_POST['email']);
 $password = md5($myts->makeTboxData4Save($_POST['password']));
 
 $actkey   = substr(md5(makepass()), 0, 8);
-$language = !empty($_COOKIE['lang']) ? $_COOKIE['lang'] : 'russian';
+
 
 $sql1 = "ALTER TABLE ".$db->prefix("users")." MODIFY language varchar(32) NOT NULL DEFAULT '".$language."'";
 if (!$db->query($sql1)) {
@@ -532,7 +536,6 @@ function checkchmod() {
 * @return type description
 */
 function finish() {
-global $_POST;
 
 $chmoddone = checkchmod();
 $iswindows = strtoupper(PHP_OS);
@@ -587,7 +590,6 @@ $iswindows = strtoupper(PHP_OS);
 * @return type description
 */
 function dochmod() {
-global $_POST;
 // Assign POST_VARS variables.
 $ftp_server = $_POST['ftp_server'];
 $ftp_user_name = $_POST['ftp_user_name'];

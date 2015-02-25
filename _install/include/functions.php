@@ -25,6 +25,8 @@ include_once("../class/core.php");
 */
 function init_wiz() {
 
+  global $lang;
+     
   define('RCX_ENT_ENCODING', 'ISO-8859-1'); // Encoding htmlspecialchars() and htmlentities() in PHP 5.4
   
   if (version_compare(PHP_VERSION, "5.4.0", ">=")) {
@@ -89,30 +91,57 @@ if ( !defined('RCX_URL') && RCX_URL != '' ) {
 	define("RCX_URL", $root_url);
 }
 
-$lang = !empty($_POST['lang']) ? $_POST['lang'] : $_COOKIE['lang'];
+if(!$_COOKIE['lang']){
+    if(empty($_POST['lang'])){
+        
+        $lang_accept = !empty($_SERVER['HTTP_ACCEPT_LANGUAGE']) ? substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2) : "en";
+        
+        $lang_arr = array(
+            "de" => "deutsch", 
+            "en" => "english", 
+            "fr" => "french", 
+            "ru" => "russian",
+            "tr" => "turkish",
+            "sk" => "slovak",
+            "da" => "danish",
+            "it" => "italian",
+            "cs" => "czech",
+            "fi" => "finnish",
+            "sv" => "swedish",
+            "uk" => "ukrainian",
+            "be" => "belarusian"
+            );
+
+        if(!empty($lang_arr[$lang_accept]) && @file_exists(WIZ_PATH . "/language/" . $lang_arr[$lang_accept] . "/main.php")){
+            $_POST['lang'] = $lang_arr[$lang_accept];
+        }
+    }
+}
+
+$lang = !empty($_POST['lang']) ? $_POST['lang'] : (!empty($_COOKIE['lang']) ? $_COOKIE['lang'] : 'english');
 
 if ( @file_exists(WIZ_PATH."/language/".$lang."/main.php") ) {
 	include_once(WIZ_PATH."/language/".$lang."/main.php");
 	} else {
-		include_once(WIZ_PATH."/language/russian/main.php");
+		include_once(WIZ_PATH."/language/english/main.php");
 	}
 
 if ( @file_exists("../language/".$lang."/global.php") ) {
 	include_once("../language/".$lang."/global.php");
 	} else {
-		include_once("../language/russian/global.php");
+		include_once("../language/english/global.php");
 	}
 
 if ( @file_exists("../language/".$lang."/admin.php") ) {
 	include_once("../language/".$lang."/admin.php");
 	} else {
-		include_once("../language/russian/admin.php");
+		include_once("../language/english/admin.php");
 	}
 
 if ( @file_exists("../language/".$lang."/user.php") ) {
 	include_once("../language/".$lang."/user.php");
 	} else {
-		include_once("../language/russian/user.php");
+		include_once("../language/english/user.php");
 	}
 }
 
