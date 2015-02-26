@@ -45,12 +45,12 @@ $sql[6] = "CREATE TABLE `" . $db->prefix("login_log") . "` (
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM;";
 
-$count = count($sql);
-for ($i = 0; $i < $count; $i++) {
-    if ($db->query($sql[$i])) {
-        $um->addMessage($message[$i]['noerror']);
+foreach ($sql as $key => $value) {
+
+    if ($db->query($value)) {
+        $um->addMessage($message[$key]['noerror']);
     } else {
-        $um->addErrors($message[$i]['error'] . ': "' . $db->error() . '"');
+        $um->addErrors($message[$key]['error'] . ': "' . $db->error() . '"');
     }
 }
 
