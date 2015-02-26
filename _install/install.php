@@ -63,10 +63,10 @@ $checks = array();
 @chmod("../mainfile.php", 0666);
 
 @is_writable("../mainfile.php") ? $checks[] = _INSTALL_ST_MAINFILE_OK : $checks[] = _INSTALL_ST_MAINFILE_BAD;
-if ( !function_exists('mysql_get_client_info') ) {
+if ( !function_exists('mysql_get_server_info') ) {
 	$checks[] = sprintf(_INSTALL_ST_MYSQL_BAD2);
 	} else {
-		version_check('4.1.20', mysql_get_client_info()) ? $checks[] = sprintf(_INSTALL_ST_MYSQL_OK, mysql_get_client_info()) : $checks[] = printf(_INSTALL_ST_MYSQL_BAD, mysql_get_client_info());
+		version_check('4.1.20', mysql_get_server_info()) ? $checks[] = sprintf(_INSTALL_ST_MYSQL_OK, mysql_get_server_info()) : $checks[] = printf(_INSTALL_ST_MYSQL_BAD, mysql_get_server_info());
 	}
 version_check('5.1.6', phpversion()) ? $checks[] = sprintf(_INSTALL_ST_PHP_OK, phpversion()) : $checks[] = printf(_INSTALL_ST_PHP_BAD, phpversion());
 ini_get('register_globals') ? $checks[] =  _INSTALL_ST_GLOBALS_OK : $checks[] =  _INSTALL_ST_GLOBALS_BAD;

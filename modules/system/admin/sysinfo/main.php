@@ -99,7 +99,7 @@ error_reporting(0); // Ingen error reporting!
 </tr>
 <tr>
 <td class="sysbg1"><?php echo _T_SI_SERSIMYS;?></td>
-<td class="sysbg3">&nbsp;<?php echo mysql_get_client_info();?>&nbsp;</td>
+<td class="sysbg3">&nbsp;<?php echo mysql_get_server_info();?>&nbsp;</td>
 </tr>
 <tr>
 <td class="sysbg1" ><?php echo _T_SI_SERSIDB;?></td>
