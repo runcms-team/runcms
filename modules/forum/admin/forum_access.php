@@ -237,13 +237,11 @@ $sql = "SELECT * from ".$bbTable['forums']." WHERE forum_id=$forum";
 if($result = $db->query($sql))
 {
 	$row = $db->fetch_object($result);
-?>
-<table border="0" cellpadding="0" cellspacing="0" align="center" valign="top" width="75%"><tr><td class="bg2">
-<table border="0" cellpadding="4" cellspacing="1" width="100%">
-<tr class="bg3" align="center"><td><div class="KPmellem" /><center>
-<b><?php echo _MD_A_PERMISSIONS_FORUM;?> <?php echo $row->forum_name;?></b></center><br /></td></tr>
-</table></table><br><br>
-<?php
+        $forum_name = $row->forum_name;
+
+
+
+
 }
 else
 {
@@ -268,8 +266,17 @@ while ($row = $db->fetch_array($result))
 {
 	$groups_with_access[] = $row[groupid];
 }
+
+
+echo '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fbund">
+    <tr>
+        <td class="KPindex">
+            <div class="KPstor" >'._MD_A_PERMISSIONS_FORUM.' '.$forum_name.'</div>
+            <br />
+            <br />';
+
 ?>
-<table border="0" cellpadding="0" cellspacing="0" align="center" valign="top" width="75%"><tr><td class="bg2">
+<table border="0" cellpadding="0" cellspacing="0" align="center" valign="top" width="100%"><tr><td class="bg2">
 <table border="0" cellpadding="4" cellspacing="1" width="100%">
 <tr class="bg2" align="left"><td colspan=10><b><?php echo _MD_A_PERMISSIONS_GROUP;?></b></td></tr>
 <tr class="bg1" align="left">
@@ -368,7 +375,7 @@ while ($row = $db->fetch_array($result))
 	$users_with_access[] = $row[uid];
 }
 ?>
-<table border="0" cellpadding="0" cellspacing="0" align="center" valign="top" width="75%"><tr><td class="bg2">
+<table border="0" cellpadding="0" cellspacing="0" align="center" valign="top" width="100%"><tr><td class="bg2">
 <table border="0" cellpadding="4" cellspacing="1" width="100%">
 <tr class="bg2" align="left"><td colspan=10><b><?php echo _MD_A_PERMISSIONS_USER;?></b></td></tr>
 <tr class="bg1" align="left">
@@ -455,7 +462,7 @@ if ($result = $db->query($sql))
 </table>
 </table><br><br>
 
-<table border="0" cellpadding="0" cellspacing="0" align="center" valign="top" width="75%"><tr><td class="bg2">
+<table border="0" cellpadding="0" cellspacing="0" align="center" valign="top" width="100%"><tr><td class="bg2">
 <table border="0" cellpadding="4" cellspacing="1" width="100%">
 <tr class="bg1" align="left">
 <td width="30%"><b><?php echo _MD_A_COPY_PERMISSIONS;?></b></td>
@@ -481,11 +488,17 @@ if($result = $db->query($sql))
 </table><br><br>
 
 
-<table border="0" cellpadding="0" cellspacing="0" align="center" valign="top" width="75%"><tr><td class="bg2">
+<table border="0" cellpadding="0" cellspacing="0" align="center" valign="top" width="100%"><tr><td class="bg2">
 <table border="0" cellpadding="4" cellspacing="1" width="100%">
 <tr class="bg3" align="center"><td><br /><center><input type="button" value="<?php echo _MD_A_BACK_TO_FM;?>" class="button" onclick="javascript:window.location='forum_manager.php'"></center><br /></td></tr>
 </table></table>
 <?php
+
+echo "                        
+        </td>
+    </tr>
+</table>";
+
 CloseTable();
 rcx_cp_footer();
 ?>
