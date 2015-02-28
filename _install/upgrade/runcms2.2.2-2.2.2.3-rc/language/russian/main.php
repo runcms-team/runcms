@@ -78,4 +78,7 @@ $message[5]['error'] = "Таблица cpsession не создана";
 $message[6]['noerror'] = "Таблица login_log создана";
 $message[6]['error'] = "Таблица login_log не создана";
 
+$message[7]['noerror'] = "Тип поля version в таблице modules был изменен на VARCHAR( 16 ) NOT NULL DEFAULT '1.0.0'";
+$message[7]['error'] = "Тип поля version в таблице modules не был изменен на VARCHAR( 16 ) NOT NULL DEFAULT '1.0.0'";
+
 ?>

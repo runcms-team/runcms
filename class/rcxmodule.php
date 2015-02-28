@@ -417,7 +417,7 @@ function install($create_tbl=true) {
       mid=$newmid,
       name='".addslashes($this->modinfo['name'])."',
       dirname='".addslashes($this->modinfo['dirname'])."',
-      version='".$this->modinfo['version']."',
+      version='".$myts->makeTboxData4Save($this->modinfo['version'])."',
       last_update=".time().",
       weight=".intval($this->weight).",
       isactive=1,
@@ -634,7 +634,7 @@ function update() {
     UPDATE ".RC_MODULES_TBL." SET
     name='".addslashes($this->modinfo['name'])."',
     dirname='".addslashes($this->modinfo['dirname'])."',
-    version='".$this->modinfo['version']."',
+    version='".$myts->makeTboxData4Save($this->modinfo['version'])."',
     last_update=".time().",
     weight=".intval($this->weight).",
     config='$settings',
@@ -823,7 +823,7 @@ function currentVersion() {
   }
   else
   {
-    return 1.00;
+    return '1.0.0';
   }
 }
 

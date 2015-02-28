@@ -45,6 +45,8 @@ $sql[6] = "CREATE TABLE `" . $db->prefix("login_log") . "` (
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM;";
 
+$sql[7] = "ALTER TABLE `" . $db->prefix("modules") . "` CHANGE `version` `version` VARCHAR( 16 ) NOT NULL DEFAULT '1.0.0'";
+
 foreach ($sql as $key => $value) {
 
     if ($db->query($value)) {
