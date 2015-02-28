@@ -9,10 +9,10 @@
 */
 // Info
 $modversion['name']        = _MI_WHOSONLINE_NAME;
-$modversion['version']     = 2.02;
+$modversion['version']     = '2.0.2';
 $modversion['description'] = _MI_WHOSONLINE_DESC;
-$modversion['credits']     = '';
-$modversion['license']     = '';
+$modversion['credits']     = 'The XOOPS Project';
+$modversion['license']     = 'GNU GPLv2';
 $modversion['official']    = 1;
 
 // Base Info

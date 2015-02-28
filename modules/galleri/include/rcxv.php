@@ -8,12 +8,12 @@
 *
 */
 $modversion['name'] = _MI_GALLI_NAME;
-$modversion['version'] = 2.03;
+$modversion['version'] = '2.0.4';
 $modversion['description'] = _MI_GALLI_DESC;
-$modversion['author'] = "";
+$modversion['author'] = "Hans Marx";
 $modversion['credits'] = "Module for E-XOOPS/Runcms create:<br>Marx Hans (http://www.bama-webdesign.de)<br />Remake for RUNCMS by SVL:(www.propan-sochi.ru)<br>(xtro.onego.ru) Video mod for RUNCMS - source (www.slo-source.com)<br />Administration and other part makeover and opdatet to RunCms Serie 2 by Farsus (http://www.farsus.dk)";
-$modversion['license'] = "GPL";
-$modversion['official'] = 0;
+$modversion['license'] = "GNU GPLv2";
+$modversion['official'] = 1;
 $modversion['image'] = "images/galleri_slogo.png";
 $modversion['dirname'] = "galleri";
 

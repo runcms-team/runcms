@@ -12,9 +12,9 @@
 $modversion['name']        = _MI_NSECTIONS_NAME;
 $modversion['version']     = 2.01;
 $modversion['description'] = _MI_NSECTIONS_DESC;
-$modversion['credits']     = '';
-$modversion['author']      = '';
-$modversion['license']     = '';
+$modversion['credits']     = 'Adapted & Modified by:<br /><br />Half-Dead<br />http://www.topsite-toplist.com<br /><br />Xoops Project<br />http://www.xoops.org<br /><br />Leonard Teo<br />http://www.dinerminor.com';
+$modversion['author']      = 'Francisco Burzi<br />http://www.phpnuke.org';
+$modversion['license']     = 'GNU GPLv2';
 $modversion['official']    = 1;
 
 // Base Info

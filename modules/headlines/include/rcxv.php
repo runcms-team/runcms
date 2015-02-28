@@ -11,11 +11,11 @@
 
 // Info
 $modversion['name']        = _MI_HEADLINES_NAME;
-$modversion['version']     = '2.1';
+$modversion['version']     = '2.1.0';
 $modversion['description'] = _MI_HEADLINES_DESC;
-$modversion['author']      = '';
-$modversion['credits']     = '';
-$modversion['license']     = '';
+$modversion['author']      = 'Half-Dead';
+$modversion['credits']     = 'E-Xoops.com, SimplePie (http://simplepie.org) ';
+$modversion['license']     = 'GNU GPLv2';
 $modversion['official']    = 1;
 // Base Info
 $modversion['image']       = 'images/headlines_slogo.png';

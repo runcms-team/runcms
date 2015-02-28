@@ -9,12 +9,12 @@
 */
 //main
 $modversion['name'] = _WHATISNEW_NAME;
-$modversion['version'] = 2;
+$modversion['version'] = '2.0.1';
 $modversion['description'] = _WHATISNEW_DESC;
-$modversion['author'] = '';
-$modversion['credits'] = '';
-$modversion['license'] = '';
-$modversion['official'] = 0;
+$modversion['author'] = 'Modifying: Michael XIII Neradkov<br>cassiuss <br>http://runcms.pocket4um.com<br>based on module by inconnueteam <br>http://www.inconnueteam.net';
+$modversion['credits'] = 'Graphics - Pnooka';
+$modversion['license'] = 'GNU GPLv2';
+$modversion['official'] = 1;
 $modversion['image'] = 'images/whatisnew_slogo.png';
 $modversion['dirname'] = 'whatnews';
 

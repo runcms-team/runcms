@@ -9,10 +9,10 @@
 */
 // Info
 $modversion['name']        = _MI_LINKS_NAME;
-$modversion['version']     = 2.01;
+$modversion['version']     = '2.0.2';
 $modversion['description'] = _MI_LINKS_DESC;
-$modversion['credits']     = '';
-$modversion['license']     = '';
+$modversion['credits']     = 'Kazumi Ono<br />( http://www.mywebaddons.com/ )<br />The XOOPS Project';
+$modversion['license']     = 'GNU GPLv2';
 $modversion['official']    = 1;
 
 

@@ -10,12 +10,12 @@
 
 // Info
 $modversion['name']        = _MI_FORUM_NAME;
-$modversion['version']     = 2.02;
+$modversion['version']     = '2.3.0';
 $modversion['description'] = _MI_FORUM_DESC;
-$modversion['credits']     = '';
-$modversion['author']      = '';
-$modversion['license']     = '';
-$modversion['official']    = 0;
+$modversion['credits']     = 'Enhanced and Modularized into XOOPS by<br />Kazumi Ono<br />( http://www.mywebaddons.com/ ';
+$modversion['author']      = 'Original phpBB 1.4.4 by<br />The phpBB Group<br />( http://www.phpbb.com/ )<br />';
+$modversion['license']     = 'GNU GPLv2';
+$modversion['official']    = 1;
 
 // Base Info
 $modversion['image']       = 'images/forum_slogo.png';

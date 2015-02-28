@@ -9,11 +9,11 @@
 */
 // Info
 $modversion['name']        = _MI_FAQ_NAME;
-$modversion['version']     = 2;
+$modversion['version']     = '2.0.1';
 $modversion['description'] = _MI_FAQ_DESC;
-$modversion['credits']     = '';
-$modversion['author']      = '';
-$modversion['license']     = '';
+$modversion['credits']     = 'The XOOPS Project';
+$modversion['author']      = 'Kazumi Ono http://www.myweb.ne.jp/';
+$modversion['license']     = 'GNU GPLv2';
 $modversion['official']    = 1;
 
 // Base Info

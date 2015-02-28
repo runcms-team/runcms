@@ -10,10 +10,10 @@
 
 // Info
 $modversion['name']        = _MI_NEWS_NAME;
-$modversion['version']     = 2.02;
+$modversion['version']     = '2.0.3';
 $modversion['description'] = _MI_NEWS_DESC;
-$modversion['credits']     = '';
-$modversion['license']     = '';
+$modversion['credits']     = 'The XOOPS Project';
+$modversion['license']     = 'GNU GPLv2';
 $modversion['official']    = 1;
 
 // Base Info
@@ -76,9 +76,6 @@ $modversion['blocks'][7]['description'] = _MI_DESCBLOCK;
 $modversion['blocks'][7]['show_func'] = 'b_LysAvis_show';
 $modversion['blocks'][7]['edit_func'] = 'b_LysAvis_edit';
 $modversion['blocks'][7]['options'] = '15|25|50';
-
-
-
 
 // Menu
 $modversion['hasMain'] = 1;

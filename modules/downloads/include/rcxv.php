@@ -10,10 +10,10 @@
 
 // Info
 $modversion['name']        = _MI_DOWNLOADS_NAME;
-$modversion['version']     = 2.03;
+$modversion['version']     = '2.0.4';
 $modversion['description'] = _MI_DOWNLOADS_DESC;
-$modversion['credits']     = '';
-$modversion['license']     = '';
+$modversion['credits']     = "Modified by wanderer<br />( http://www.mpn-tw.com/ ) <br />Based on MyLinks by Kazumi Ono<br />( http://www.mywebaddons.com/ )<br />The XOOPS Project";
+$modversion['license']     = 'GNU GPLv2';
 $modversion['official']    = 1;
 
 // Base Info

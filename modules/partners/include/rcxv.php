@@ -10,11 +10,11 @@
 
 // Info
 $modversion['name']        = _MI_PARTNERS_NAME;
-$modversion['version']     = 2.01;
+$modversion['version']     = '2.0.2';
 $modversion['description'] = _MI_PARTNERS_DESC;
-$modversion['author']      = '';
-$modversion['credits']     = '';
-$modversion['license']     = '';
+$modversion['author']      = 'Half-Dead';
+$modversion['credits']     = 'E-Xoops.com';
+$modversion['license']     = 'GNU GPLv2';
 $modversion['official']    = 1;
 
 // Base Info

@@ -8,12 +8,12 @@
 *
 */
 $modversion['name'] = _DB_BACKUP_NAME;
-$modversion['version'] = 2;
+$modversion['version'] = '2.0.1';
 $modversion['description'] = _DB_BACKUP_DESC;
-$modversion['author'] = "";
+$modversion['author'] = "Zormax (http://sitefree.ru)";
 $modversion['help'] = "";
-$modversion['license'] = "";
-$modversion['official'] = 0;
+$modversion['license'] = "GNU GPLv2";
+$modversion['official'] = 1;
 $modversion['image'] = "images/backup_slogo.png";
 $modversion['dirname'] = "backup";
 

@@ -10,10 +10,11 @@
 // Info
 $modversion['name']        = _MI_CONTACT_NAME;
 $modversion['description'] = _MI_CONTACT_DESC;
-$modversion['license']     = '';
-$modversion['author']      = '';
+$modversion['license']     = 'GNU GPLv2';
+$modversion['author']      = 'Half-Dead';
+$modversion['credits']     = 'E-Xoops.com';
 $modversion['official']    = 1;
-$modversion['version']     = 2.01;
+$modversion['version']     = '2.0.2';
 
 // Base Info
 $modversion['dirname'] = 'contact';

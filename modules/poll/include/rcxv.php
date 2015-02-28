@@ -9,11 +9,11 @@
 */
 // Info
 $modversion['name']        = _MI_POLLS_NAME;
-$modversion['version']     = 2.01;
+$modversion['version']     = '2.0.2';
 $modversion['description'] = _MI_POLLS_DESC;
-$modversion['author']      = '';
-$modversion['credits']     = '';
-$modversion['license']     = '';
+$modversion['author']      = 'Kazumi Ono<br />( http://www.myweb.ne.jp/ )';
+$modversion['credits']     = 'The XOOPS Project';
+$modversion['license']     = 'GNU GPLv2';
 $modversion['official']    = 1;
 
 // Base Info

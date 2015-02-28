@@ -9,10 +9,10 @@
 */
 // Info
 $modversion['name']        = _MI_SYSTEM_NAME;
-$modversion['version']     = 2.01;
+$modversion['version']     = '2.2.0';
 $modversion['description'] = _MI_SYSTEM_DESC;
-$modversion['credits']     = '';
-$modversion['license']     = '';
+$modversion['credits']     = 'The XOOPS Project';
+$modversion['license']     = 'GNU GPLv2';
 $modversion['official']    = 1;
 // Base Info
 $modversion['image']       = 'images/system_slogo.png';

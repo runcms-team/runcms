@@ -10,10 +10,10 @@
 // Module Info
 $modversion['name']        = _MI_PMS_NAME;
 $modversion['description'] = _MI_PMS_DESC;
-$modversion['author']      = '';
-$modversion['credits']     = '';
-$modversion['license']     = '';
-$modversion['version']     = 2.02;
+$modversion['author']      = 'Half-Dead';
+$modversion['credits']     = 'E-Xoops.com';
+$modversion['license']     = 'GNU GPLv2';
+$modversion['version']     = '2.0.3';
 $modversion['official']    = 1;
 
 // Base Info

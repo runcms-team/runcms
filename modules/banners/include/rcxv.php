@@ -9,11 +9,11 @@
 */
 // Info
 $modversion['name']        = _MD_AM_BANS;
-$modversion['version']     = 2.01;
+$modversion['version']     = '2.0.2';
 $modversion['description'] = 'Banners Administration';
-$modversion['author']      = '';
-$modversion['credits']     = '';
-$modversion['license']     = '';
+$modversion['author']      = 'Francisco Burzi ( http://phpnuke.org/ ), Half-Dead';
+$modversion['credits']     = 'The MPN SE Project, E-Xoops.com, runcms.org';
+$modversion['license']     = 'GNU GPLv2';
 $modversion['official']    = 1;
 
 // Base Info
