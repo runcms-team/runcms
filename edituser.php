@@ -211,7 +211,7 @@ $attachsig = $_POST['attachsig'];
 $timezone_offset = $_POST['timezone_offset'];
 $theme = $_POST['theme'];
 $uorder = $_POST['uorder'];
-$umode = $_POST['umode'];
+$umode = (isset($_POST['umode']) && $_POST['umode'] == '0') ? '0' : ((isset($_POST['umode']) && $_POST['umode'] == 'thread') ? 'thread' : 'flat');
 $bio = $_POST['bio'];
 $user_occ = $_POST['user_occ'];
 $user_intrest = $_POST['user_intrest'];
