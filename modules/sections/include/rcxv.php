@@ -10,7 +10,7 @@
 
 // Info
 $modversion['name']        = _MI_NSECTIONS_NAME;
-$modversion['version']     = 2.01;
+$modversion['version']     = '2.0.2';
 $modversion['description'] = _MI_NSECTIONS_DESC;
 $modversion['credits']     = 'Adapted & Modified by:<br /><br />Half-Dead<br />http://www.topsite-toplist.com<br /><br />Xoops Project<br />http://www.xoops.org<br /><br />Leonard Teo<br />http://www.dinerminor.com';
 $modversion['author']      = 'Francisco Burzi<br />http://www.phpnuke.org';
