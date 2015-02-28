@@ -480,4 +480,10 @@ define("_AD_MA_COMENT_ANON","Guests can write comments ?");
 define("_AD_MA_IMG_BACK","Pictures behind transparent blank.gif indicate ?");
 define("_AD_MA_GALLI_HOVEDADMIN","Galleri Administration");
 define("TIL_HOVEDMENU","To Gallerie Main Menu");
+
+/**
+ * @since 2.2.3.0
+ */
+define("_AD_MA_ANON_VOTUM", "Guests can evaluate images?");
+
 ?>

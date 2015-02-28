@@ -408,4 +408,16 @@ define("_ALLOWCAP","Use CAPTCHA Spamsecuring");
 define("_WRONGCAPKEY","Sorry, Wrong CAPTCHA key. Try again.");
 define("_INTERCAPKEY","Please enter the code below before trying to send message:");
 
+/**
+ * @since 2.2.3.0
+ */
+
+define("_REDIRECT_LINK_ATTENTION", "Warning! You'll be redirected to another site.");
+define("_NOTIFY_WARNING", "Warning");
+define("_NOTIFY_ERROR", "Error");
+define("_NOTIFY_INFO", "Info");
+define("_404_PAGE_TITLE", "Object not found!");
+define("_404_PAGE_H1", "Error 404");
+define("_404_PAGE_DESCRIPTION", "The requested URL was not found on this server. If you entered the URL manually please check your spelling and try again. If you think this is a server error, please contact the webmaster.");
+
 ?>

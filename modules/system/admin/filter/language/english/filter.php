@@ -22,4 +22,11 @@ define("_AM_ENTERAGENTS","Agents that are not allowed to access your site, such 
 define("_AM_BADAGENTSSTART", "^aaa\.bbb\.ccc will match Agents that start with aaa.bbb.ccc");
 define("_AM_BADAGENTSEND", "aaa\.bbb\.ccc$ will match Agents that end with aaa.bbb.ccc");
 define("_AM_BADAGENTSCONTAIN", "aaa\.bbb\.ccc will match Agents that contain aaa.bbb.ccc");
+
+/**
+ * @since 2.2.3.0
+ */
+
+define("_AM_GOODURL", "Friendly URL");
+define("_AM_GOODURL_DESC", "Websites-exclusion (friendly sites) which are not placed redirect when converting the BB-Code [url] [/url] in the HTML link");
 ?>

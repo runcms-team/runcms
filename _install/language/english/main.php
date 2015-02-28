@@ -107,4 +107,11 @@ define("_MI_DOCHMOD_OKTITLE","<b>That's all!</b>");
 define("_MI_DOCHMOD_OKDESCRIPTION","REMEMBER TO ENSURE YOUR SITE TO DELETE  _install director.");
 define("_FILEMISSINGUPLOADTHISAGAIN","Missing a file, upload this again.");
 
+/**
+ * @since 2.2.3.0
+ */
+define("_UPGRADE_ERRORS", "Detected the following errors:");
+define("_UPGRADE_MESSAGES", "The following actions are successfully completed:");
+define("_UPGRADE_NOERRORS", "There are no errors");
+define("_UPGRADE_MESSAGES2", "The successful implementation of actions not");
 ?>

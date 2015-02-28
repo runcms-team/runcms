@@ -149,4 +149,15 @@ define("_US_LOCATION","Country");
 define("_US_OLDPASSWORD","Current Password:");
 define("_US_NEWPASSWORD","New Password:");
 define("_US_WRONGPASSWORD", "Old password is wrong");
+
+/**
+ * @since 2.2.3.0
+ */
+
+define("_US_INCORRECTLOGIN2", "<br /> <br /> You have %s time(s) in a row entering incorrect data. After the 5th unsuccessful attempt you will be blocked for 15 minutes.");
+define("_US_WRONGTCANSWER", "You correctly answered the screening question. Please change your answer, or reload the page to generate another question. If you are not able to answer the test questions, please contact the site administrator.");
+define("_US_ANSWERTHEQUESTION", "Please answer the following question:");
+define("_US_DETECT_BRUTEFORCE", "You have used 5 failed login attempts on the site! Try to enter the next time you can not earlier than 15 minutes after the last unsuccessful login.");
+define("_US_BRUTEFORCE_NOTIFY", "Trying to guess passwords for logging into the site \"%s\"");
+        
 ?>

@@ -48,4 +48,11 @@ define("_AM_ROBNOI","noindex");
 define("_AM_ROBFOL","follow");
 define("_AM_ROBNOF","nofollow");
 
+/**
+ * @since 2.2.3.0
+ */
+
+define("_AM_NOGENERATOR", "Disable meta tag \"generator\"");
+
+
 ?>

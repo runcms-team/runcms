@@ -51,7 +51,7 @@ define("_UPGRADE_NO_SAVE_META", "Не удалось перезаписать файл настроек мета-тего
 define("_UPGRADE_MODULE_UPDATE", "Модуль \"%s\" обновлен");
 define("_UPGRADE_NO_MODULE_UPDATE", "Не удалось обновить модуль \"%s\"");
 
-define("_UPGRADE_CONGRAT" , "Обновление завершено! Обязательно удалите папку ");
+define("_UPGRADE_CONGRAT", "Обновление завершено! Обязательно удалите папку ");
 
 define("_UPGRADE_RMDIR", "Директория \"%s\" удалена");
 define("_UPGRADE_NO_RMDIR", "Не удалось удалить директорию \"%s\"");
