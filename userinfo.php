@@ -13,7 +13,7 @@ $rcxOption['page_style'] = 8;
 
 include_once("./mainfile.php");
 
-if ($rcxConfig['ban_profile_viewer']) {
+if ($rcxConfig['ban_profile_viewer'] && !$rcxUser) {
     redirect_header("whyregister.php", 2, _NOPERM);
     exit();
 }
