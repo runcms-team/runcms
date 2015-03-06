@@ -423,26 +423,7 @@ for ($i=0; $i<$size; $i++) {
 		}
 	}
 }
-/**
-* Description
-*
-* @param type $var description
-* @return type description
-*/
-function do_chmod($file, $value, $type='chmod') {
-switch ($type) {
-	case 'ftp':
-		break;
-	default:
-		@chmod($file, $value);
-}
-if ($value == 0666 || $value == 0777) {
-	if ( !is_writable($file) ) {
-		return false;
-	}
-}
-return true;
-}
+
 /**
 * Description
 *

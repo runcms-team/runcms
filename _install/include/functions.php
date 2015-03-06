@@ -17,6 +17,33 @@ include_once("../modules/system/cache/config.php");
 include_once("../class/core.php");
 
 //---------------------------------------------------------------------------------------//
+
+/**
+* Description
+*
+* @param type $var description
+* @return type description
+*/
+function do_chmod($file, $value, $type='chmod') {
+    
+ if (!file_exists($file)) {
+     return false;
+ }    
+    
+switch ($type) {
+	case 'ftp':
+		break;
+	default:
+		@chmod($file, $value);
+}
+if ($value == 0666 || $value == 0777) {
+	if ( !is_writable($file) ) {
+		return false;
+	}
+}
+return true;
+}
+
 /**
 * Description
 *
@@ -95,6 +122,10 @@ if(!$_COOKIE['lang']){
     if(empty($_POST['lang'])){
         
         $lang_accept = !empty($_SERVER['HTTP_ACCEPT_LANGUAGE']) ? substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2) : "en";
+               
+        /**
+         * ISO 639-1
+         */
         
         $lang_arr = array(
             "de" => "deutsch", 
@@ -109,7 +140,14 @@ if(!$_COOKIE['lang']){
             "fi" => "finnish",
             "sv" => "swedish",
             "uk" => "ukrainian",
-            "be" => "belarusian"
+            "be" => "belarusian",
+            "ar" => "arabic",
+            "bg" => "bulgarian",
+            "lt" => "lithuanian",
+            "nl" => "dutch",
+            "pl" => "polish",
+            "pt" => "portuguese",
+            "es" => "spanish"
             );
 
         if(!empty($lang_arr[$lang_accept]) && @file_exists(WIZ_PATH . "/language/" . $lang_arr[$lang_accept] . "/main.php")){

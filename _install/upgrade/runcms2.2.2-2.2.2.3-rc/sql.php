@@ -86,6 +86,20 @@ foreach ($modules as $module) {
     }
 }
 
+$new_files_arr = array(
+    'modules/system/cache/goodurl.php',
+    'modules/system/cache/kcaptcha.php',
+    'modules/system/cache/tcaptcha.php'
+);
+
+foreach ($new_files_arr as $value) {
+    if (do_chmod(RCX_ROOT_PATH . '/' . $value, 0666) === false) {
+        $um->addErrors(sprintf(_INSTALL_CHMOD_NOT_CHANGED, $value));
+    } else {
+        $um->addMessage(sprintf(_INSTALL_CHMOD_CHANGED, $value));
+    }
+}
+
 echo "<h2>" . _UPGRADE_CONGRAT . "<font color='#FF0000'> \"_install\" </font></h2>";
 wizOpenTable();
 echo $um->getErrors();

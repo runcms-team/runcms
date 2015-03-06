@@ -133,4 +133,7 @@ define("_UPGRADE_MESSAGES", "Следующие действия успешно выполнены:");
 define("_UPGRADE_NOERRORS", "Ошибок нет");
 define("_UPGRADE_MESSAGES2", "Успешно выполненых действий нет");
 
+define("_INSTALL_CHMOD_CHANGED", "Права доступа (CHMOD) к файлу \"%s\" успешно изменены");
+define("_INSTALL_CHMOD_NOT_CHANGED", "Не удалось изменить права доступа (CHMOD) к файлу \"%s\"");
+
 ?>

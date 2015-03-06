@@ -114,4 +114,7 @@ define("_UPGRADE_ERRORS", "Detected the following errors:");
 define("_UPGRADE_MESSAGES", "The following actions are successfully completed:");
 define("_UPGRADE_NOERRORS", "There are no errors");
 define("_UPGRADE_MESSAGES2", "The successful implementation of actions not");
+
+define("_INSTALL_CHMOD_CHANGED", "File permissions \"%s\" changed");
+define("_INSTALL_CHMOD_NOT_CHANGED", "File permissions \"%s\" is not changed");
 ?>
