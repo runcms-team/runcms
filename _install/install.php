@@ -360,10 +360,10 @@ global $db, $myts, $rcxConfig;
 $language = !empty($_COOKIE['lang']) ? $_COOKIE['lang'] : 'english';
 
 include_once("../include/sql_parse.php");
-$utf8 = "ALTER DATABASE `".$rcxConfig['dbname']."` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci";
+/*$utf8 = "ALTER DATABASE `".$rcxConfig['dbname']."` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci";
 if (!$db->query($utf8)) {
 	echo "Failed to set utf-8 charset and collation";
-}
+}*/
 $sql_file = $rcxConfig['database'].'.sql';
 $sql = join('', file('./sql/'.$language. '/' . $sql_file));
 $sql = remove_remarks($sql);
