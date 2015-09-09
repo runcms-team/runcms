@@ -154,7 +154,7 @@ if ( $usercount < 1000 && $admincount < 1000 ) {
     $admins[$myrow['uid']] = $myts->makeTboxData4Show($myrow['uname']);
   }
   $userslist =& RcxUser::getAllUsersList('level>0', 'uname ASC');
-  $users     =& array_diff($userslist, $admins);
+  $users     = array_diff($userslist, $admins);
 
 ?>
 <table align=center border="0"><tr>

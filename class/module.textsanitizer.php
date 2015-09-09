@@ -146,6 +146,82 @@ return trim($text);
 }
 
 /**
+ * 
+ * @param type $matches
+ */
+function rcxCodeDecodeCallback01($matches) {
+    return _CODEC . '<div class="rcxCode">' . htmlspecialchars(base64_decode($matches[1]), ENT_QUOTES, RCX_ENT_ENCODING) . '</div>';
+}
+
+/**
+ * 
+ * @param type $matches
+ */
+function rcxCodeDecodeCallback02($matches) {
+    return _CODEC . '<div class="rcxCode">' . base64_decode($matches[1]) . '</div>';
+}
+
+/**
+ * 
+ * @param type $matches
+ */
+function rcxCodeDecodeCallback03($matches) {
+    return $this->checkGoodUrl($matches[2], basename($matches[3]));
+}
+
+/**
+ * 
+ * @param type $matches
+ */
+function rcxCodeDecodeCallback04($matches) {
+    return $this->checkGoodUrl('http://' . $matches[2], basename($matches[3]));
+}
+
+/**
+ * 
+ * @param type $matches
+ */
+function rcxCodeDecodeCallback05($matches) {
+     global $rcxConfig;
+
+     if ($rcxConfig['hide_external_links']) {
+        return $this->checkGoodUrl($matches[3], basename($matches[3]));
+    } else {
+        return '<a href="' . $matches[3] . '" target="_blank">' . basename($matches[3]) . '</a>';
+    }    
+}
+
+/**
+ * 
+ * @param type $matches
+ */
+function rcxCodeDecodeCallback06($matches) {
+    global $rcxConfig;
+    
+    if ($rcxConfig['hide_external_links']) {
+        return $this->checkGoodUrl($matches[1], basename($matches[1]));
+    } else {
+        return '<a href="' . $matches[1] . '" target="_blank">' . basename($matches[1]) . '</a>';
+    }    
+}
+
+/**
+ * 
+ * @param type $matches
+ */
+function rcxCodeDecodeCallback07($matches) {
+    return '<img src="' . formatURL(RCX_URL . '/images/library/', $matches[3]) . '" align="' . $matches[2] . '" alt="" border="0" />';
+}
+
+/**
+ * 
+ * @param type $matches
+ */
+function rcxCodeDecodeCallback08($matches) {
+    return '<img src="' . formatURL(RCX_URL . '/images/library/', $matches[1]) . '" alt="" border="0" />';
+}
+
+/**
 * Description
 *
 * @param type $var description
@@ -161,30 +237,36 @@ $replacements = array();
 
 $replacement  = "'"._CODEC."<div class=\"rcxCode\">'.";
 
-if ($allow_html == 1) {
-        $patterns[]     = "/\[enc_code](.*)\[\/enc_code\]/esU";
-        $replacement   .= "htmlspecialchars(base64_decode('\\1'), ENT_QUOTES)";
-        } else {
-                $patterns[]     = "/\[enc_code](.*)\[\/enc_code\]/esU";
-                $replacement   .= "base64_decode('\\1')";
-        }
+//if ($allow_html == 1) {
+//        $patterns[]     = "/\[enc_code](.*)\[\/enc_code\]/esU";
+//        $replacement   .= "htmlspecialchars(base64_decode('\\1'), ENT_QUOTES)";
+//        } else {
+//                $patterns[]     = "/\[enc_code](.*)\[\/enc_code\]/esU";
+//                $replacement   .= "base64_decode('\\1')";
+//        }
+//
+//$replacement   .= ".'</div>'";
+//$replacements[] = $replacement;
 
-$replacement   .= ".'</div>'";
-$replacements[] = $replacement;
+$text = preg_replace_callback("/\[enc_code](.*)\[\/enc_code\]/sU", (($allow_html == 1) ? array($this, 'rcxCodeDecodeCallback01') : array($this, 'rcxCodeDecodeCallback02')), $text);
 
 
-$patterns[]     = "/\[quote]/sU";
+            $patterns[]     = "/\[quote]/sU";
 $replacements[] = '<b>'._QUOTEC.'</b><div class="rcxQuote"><br>';
 
 $patterns[]     = "/\[\/quote\]/sU";
 $replacements[] = '<br></div>';
 
 if ($rcxConfig['hide_external_links']) {
-	$patterns[]     = "/\[url=(['\"]?)(http[s]?:\/\/[^\"']*)\\1](.*)\[\/url\]/esU";
-	$replacements[] = "\$this->checkGoodUrl('$2', '$3')";
-	
-    $patterns[]     = "/\[url=(['\"]?)([^\"']*)\\1](.*)\[\/url\]/esU";
-    $replacements[] = "\$this->checkGoodUrl('http://$2', '$3')";
+//	$patterns[]     = "/\[url=(['\"]?)(http[s]?:\/\/[^\"']*)\\1](.*)\[\/url\]/esU";
+//	$replacements[] = "\$this->checkGoodUrl('$2', '$3')";
+//	
+//    $patterns[]     = "/\[url=(['\"]?)([^\"']*)\\1](.*)\[\/url\]/esU";
+//    $replacements[] = "\$this->checkGoodUrl('http://$2', '$3')";
+    
+$text = preg_replace_callback("/\[url=(['\"]?)(http[s]?:\/\/[^\"']*)\\1](.*)\[\/url\]/sU", array($this, 'rcxCodeDecodeCallback03'), $text);
+$text = preg_replace_callback("/\[url=(['\"]?)([^\"']*)\\1](.*)\[\/url\]/sU", array($this, 'rcxCodeDecodeCallback04'), $text);
+    
 } else {
 	$patterns[]     = "/\[url=(['\"]?)(http[s]?:\/\/[^\"']*)\\1](.*)\[\/url\]/sU";
 	$replacements[] = '<a href="\\2" target="_blank">\\3</a>';
@@ -266,29 +348,37 @@ if ( $this->allowImage == true || ($this->type == 'admin') ) {
         $patterns[] = "/\[img]([^\"\(\)\?\&']*)\[\/img\]/sU";
         $replacements[] = '<img src="\\1" alt="" />';
         } else {
-                $patterns[]     = "/\[img align=(['\"]?)(left|right)\\1]([^\"\(\)\?\&']*)\[\/img\]/esU";
+//                $patterns[]     = "/\[img align=(['\"]?)(left|right)\\1]([^\"\(\)\?\&']*)\[\/img\]/esU";
+//                
+//                if ($rcxConfig['hide_external_links']) {
+//                    $replacements[] = "\$this->checkGoodUrl('$3', basename('$3'))";
+//                } else {
+//                	$replacements[] = "'<a href=\"\\3\" target=\"_blank\">'.basename('\\3').'</a>'";
+//                }
                 
-                if ($rcxConfig['hide_external_links']) {
-                    $replacements[] = "\$this->checkGoodUrl('$3', basename('$3'))";
-                } else {
-                	$replacements[] = "'<a href=\"\\3\" target=\"_blank\">'.basename('\\3').'</a>'";
-                }
+                $text = preg_replace_callback("/\[img align=(['\"]?)(left|right)\\1]([^\"\(\)\?\&']*)\[\/img\]/sU", array($this, 'rcxCodeDecodeCallback05'), $text);
 
-                $patterns[]     = "/\[img]([^\"\(\)\?\&']*)\[\/img\]/esU";
+//                $patterns[]     = "/\[img]([^\"\(\)\?\&']*)\[\/img\]/esU";
+//                
+//                if ($rcxConfig['hide_external_links']) {
+//                    $replacements[] = "\$this->checkGoodUrl('$1', basename('$1'))";
+//                } else {
+//                	$replacements[] = "'<a href=\"\\1\" target=\"_blank\">'.basename('\\1').'</a>'";
+//                }
                 
-                if ($rcxConfig['hide_external_links']) {
-                    $replacements[] = "\$this->checkGoodUrl('$1', basename('$1'))";
-                } else {
-                	$replacements[] = "'<a href=\"\\1\" target=\"_blank\">'.basename('\\1').'</a>'";
-                }            
+                $text = preg_replace_callback("/\[img]([^\"\(\)\?\&']*)\[\/img\]/sU", array($this, 'rcxCodeDecodeCallback06'), $text);
         }
 
 if ( ($this->allowLibrary == true) || ($this->type == 'admin') ) {
-        $patterns[]     = "/\[lib align=(['\"]?)(left|right)\\1]([^\"\(\)\?\&']*)\[\/lib\]/esU";
-        $replacements[] = "'<img src=\"'.formatURL(RCX_URL.'/images/library/', '\\3').'\" align=\"\\2\" alt=\"\" border=\"0\" />'";
+//        $patterns[]     = "/\[lib align=(['\"]?)(left|right)\\1]([^\"\(\)\?\&']*)\[\/lib\]/esU";
+//        $replacements[] = "'<img src=\"'.formatURL(RCX_URL.'/images/library/', '\\3').'\" align=\"\\2\" alt=\"\" border=\"0\" />'";
+        
+        $text = preg_replace_callback("/\[lib align=(['\"]?)(left|right)\\1]([^\"\(\)\?\&']*)\[\/lib\]/sU", array($this, 'rcxCodeDecodeCallback07'), $text);
 
-        $patterns[]     = "/\[lib]([^\"\(\)\?\&']*)\[\/lib\]/esU";
-        $replacements[] = "'<img src=\"'.formatURL(RCX_URL.'/images/library/', '\\1').'\" alt=\"\" border=\"0\" />'";
+//        $patterns[]     = "/\[lib]([^\"\(\)\?\&']*)\[\/lib\]/esU";
+//        $replacements[] = "'<img src=\"'.formatURL(RCX_URL.'/images/library/', '\\1').'\" alt=\"\" border=\"0\" />'";
+        
+        $text = preg_replace_callback("/\[lib]([^\"\(\)\?\&']*)\[\/lib\]/sU", array($this, 'rcxCodeDecodeCallback08'), $text);
 }
 
 $text = preg_replace($patterns, $replacements, $text);
@@ -348,6 +438,14 @@ return $text;
 }
 
 /**
+ * 
+ * @param type $matches
+ */
+function sanitizeCallback($matches) {
+    return '[enc_code]' . base64_encode(stripslashes($matches[1])) . '[/enc_code]';
+}
+
+/**
 * Filters both textbox and textarea form data before display
 * For internal use
 */
@@ -358,17 +456,21 @@ $text = $this->oopsStripSlashesRT($text);
 if ($allow_html == 0) {
         $text = $this->oopsHtmlSpecialChars($text);
         if ($allow_bbcode == 1) {
-                $search[]  = "/\[code](.*)\[\/code\]/esU";
-                $replace[] = "'[enc_code]'.base64_encode(stripslashes('\\1')).'[/enc_code]'";
+//                $search[]  = "/\[code](.*)\[\/code\]/esU";
+//                $replace[] = "'[enc_code]'.base64_encode(stripslashes('\\1')).'[/enc_code]'";
+                
+                $text = preg_replace_callback("/\[code](.*)\[\/code\]/sU", array($this, 'sanitizeCallback'), $text);
         }
         $search[]  = "/&amp;/i";
         $replace[] = "&";
         $text      = preg_replace($search, $replace, $text);
         } else {
                 if ($allow_bbcode == 1) {
-                        $search[]  = "/\[code](.*)\[\/code\]/esU";
-                        $replace[] = "'[enc_code]'.base64_encode(stripslashes('\\1')).'[/enc_code]'";
-                        $text      = preg_replace($search, $replace, $text);
+//                        $search[]  = "/\[code](.*)\[\/code\]/esU";
+//                        $replace[] = "'[enc_code]'.base64_encode(stripslashes('\\1')).'[/enc_code]'";
+//                        $text      = preg_replace($search, $replace, $text);
+                        
+                        $text = preg_replace_callback("/\[code](.*)\[\/code\]/sU", array($this, 'sanitizeCallback'), $text);
                 }
                 $text = $this->escapeTags($text, $this->type);
         }
@@ -407,17 +509,21 @@ $text = $this->oopsStripSlashesGPC($text);
 if ($allow_html == 0) {
         $text = $this->oopsHtmlSpecialChars($text);
         if ($allow_bbcode == 1) {
-                $search[]  = "/\[code](.*)\[\/code\]/esU";
-                $replace[] = "'[enc_code]'.base64_encode(stripslashes('\\1')).'[/enc_code]'";
+//                $search[]  = "/\[code](.*)\[\/code\]/esU";
+//                $replace[] = "'[enc_code]'.base64_encode(stripslashes('\\1')).'[/enc_code]'";
+                
+                $text = preg_replace_callback("/\[code](.*)\[\/code\]/sU", array($this, 'sanitizeCallback'), $text);
         }
         $search[]  = "/&amp;/i";
         $replace[] = "&";
         $text      = preg_replace($search, $replace, $text);
         } else {
                 if ($allow_bbcode == 1) {
-                        $search[]  = "/\[code](.*)\[\/code\]/esU";
-                        $replace[] = "'[enc_code]'.base64_encode(stripslashes('\\1')).'[/enc_code]'";
-                        $text      = preg_replace($search, $replace, $text);
+//                        $search[]  = "/\[code](.*)\[\/code\]/esU";
+//                        $replace[] = "'[enc_code]'.base64_encode(stripslashes('\\1')).'[/enc_code]'";
+//                        $text      = preg_replace($search, $replace, $text);
+                        
+                        $text = preg_replace_callback("/\[code](.*)\[\/code\]/sU", array($this, 'sanitizeCallback'), $text);
                 }
                 $text      = $this->escapeTags($text, $this->type);
         }

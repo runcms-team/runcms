@@ -18,6 +18,11 @@ defined( 'RCX_ROOT_PATH' ) or exit( '<h1>Forbidden</h1> You don\'t have permissi
 
 include_once(RCX_ROOT_PATH . '/modules/system/admin/tpleditor/class/csshandler.php');
 
+function cssEditCallback($matches)
+{
+    return ucfirst($matches[2]);; 
+}
+
 function css_edit()
 {
     global $db;
@@ -151,7 +156,10 @@ function css_edit()
                         $p_value = trim($p_value);
                         $element_name = 'css[' . $selector_name . '][' . $p_name . ']';
 
-                        $class_name = 'Rcx' . preg_replace('/(([a-z]+)-*)/e', "ucfirst('$2');", $p_name) . 'Css';
+                        //$class_name = 'Rcx' . preg_replace('/(([a-z]+)-*)/e', "ucfirst('$2');", $p_name) . 'Css';
+                        
+                        $class_name = 'Rcx' . preg_replace_callback('/(([a-z]+)-*)/', 'cssEditCallback', $p_name) . 'Css';
+                        
                         $class_file_path = RCX_ROOT_PATH . '/modules/system/admin/tpleditor/class/csshandlers/' . $p_name . '.php';
 
                         if (file_exists($class_file_path)) {

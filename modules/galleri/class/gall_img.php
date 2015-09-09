@@ -141,7 +141,7 @@
             return $ret;
           }
         
-          function getAllImgList($criteria=array(), $orderby="cid ASC", $limit=0, $start=0){
+          static function getAllImgList($criteria=array(), $orderby="cid ASC", $limit=0, $start=0){
             global $db, $myts;
             $ret = array();
             $where_query = "";
@@ -160,7 +160,7 @@
             return $ret;
           }
         
-          function countAllImg($criteria=array()){
+          static function countAllImg($criteria=array()){
             global $db;
             $where_query = "";
             if ( is_array($criteria) && count($criteria) > 0 ) {

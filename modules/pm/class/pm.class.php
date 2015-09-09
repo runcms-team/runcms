@@ -148,7 +148,7 @@ return true;
 * @param type $var description
 * @return type description
 */
-function &getAllPM($criteria=array(), $asobject=false, $sort='msg_time', $order='ASC', $limit=0, $start=0) {
+static function &getAllPM($criteria=array(), $asobject=false, $sort='msg_time', $order='ASC', $limit=0, $start=0) {
 global $db;
 
 $ret = array();

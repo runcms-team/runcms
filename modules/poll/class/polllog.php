@@ -107,7 +107,7 @@ return true;
 * @param type $var description
 * @return type description
 */
-function &getAllByPollId($poll_id, $orderby="time ASC") {
+static function &getAllByPollId($poll_id, $orderby="time ASC") {
 global $db;
 
   $ret = array();
@@ -129,7 +129,7 @@ return $ret;
 * @param type $var description
 * @return type description
 */
-function hasVoted($poll_id, $ip, $user_id=NULL) {
+static function hasVoted($poll_id, $ip, $user_id=NULL) {
 global $db;
 
 $sql = "SELECT COUNT(*) FROM ".$db->prefix("poll_log")." WHERE poll_id=".intval($poll_id)." AND";
@@ -153,7 +153,7 @@ return false;
 * @param type $var description
 * @return type description
 */
-function deleteByPollId($poll_id) {
+static function deleteByPollId($poll_id) {
 global $db;
 
 $sql = "DELETE FROM ".$db->prefix("poll_log")." WHERE poll_id=".intval($poll_id);
@@ -170,7 +170,7 @@ return true;
 * @param type $var description
 * @return type description
 */
-function deleteByOptionId($option_id) {
+static function deleteByOptionId($option_id) {
 global $db;
 
 $sql = "DELETE FROM ".$db->prefix("poll_log")." WHERE option_id=".intval($option_id);
@@ -187,7 +187,7 @@ return true;
 * @param type $var description
 * @return type description
 */
-function getTotalVotersByPollId($poll_id) {
+static function getTotalVotersByPollId($poll_id) {
 global $db;
 
 $sql   = "SELECT DISTINCT user_id FROM ".$db->prefix("poll_log")." WHERE poll_id=".intval($poll_id)." AND user_id > 0";
@@ -205,7 +205,7 @@ return $users+$anons;
 * @param type $var description
 * @return type description
 */
-function getTotalVotesByPollId($poll_id) {
+static function getTotalVotesByPollId($poll_id) {
 global $db;
 
 $sql = "SELECT COUNT(*) FROM ".$db->prefix("poll_log")." WHERE poll_id = ".intval($poll_id);
@@ -220,7 +220,7 @@ return $votes;
 * @param type $var description
 * @return type description
 */
-function getTotalVotesByOptionId($option_id) {
+static function getTotalVotesByOptionId($option_id) {
 global $db;
 
 $sql = "SELECT COUNT(*) FROM ".$db->prefix("poll_log")." WHERE option_id = ".intval($option_id);

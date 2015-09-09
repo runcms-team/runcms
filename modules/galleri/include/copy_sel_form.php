@@ -7,7 +7,7 @@
 * @ License: http://www.gnu.org/copyleft/gpl.html GNU/GPL
 *
 */
-    if ( !eregi("gall_page", $galerieConfig['page_type']) ) {
+    if ( !preg_match ("/gall_page/", $galerieConfig['page_type']) ) {
       include("../../../mainfile.php");
       redirect_header(RCX_URL."/index.php",3,"Access Denied");
       exit();

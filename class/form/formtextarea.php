@@ -65,7 +65,7 @@ function getValue() {
 * @param type $var description
 * @return type description
 */
-function render($value="") {
+function render() {
 	return "<textarea class='textarea' name='".$this->getName()."' id='".$this->getName()."' rows='".$this->getRows()."' cols='".$this->getCols()."'".$this->getExtra().">".$this->getValue()."</textarea>";
 }
 } // END CLASS

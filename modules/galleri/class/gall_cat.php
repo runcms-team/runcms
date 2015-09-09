@@ -87,7 +87,7 @@ Class GallCat extends RcxObject{
     return true;
   }
 
-  function getAllCat($criteria=array(), $asobject=false, $orderby="scid ASC", $limit=0, $start=0){
+  static function getAllCat($criteria=array(), $asobject=false, $orderby="scid ASC", $limit=0, $start=0){
     global $db;
     $ret = array();
     $where_query = "";
@@ -134,7 +134,7 @@ Class GallCat extends RcxObject{
     return $ret;
   }
 
-  function countAllCat($criteria=array()){
+  static function countAllCat($criteria=array()){
     global $db;
     $where_query = "";
     if ( is_array($criteria) && count($criteria) > 0 ) {

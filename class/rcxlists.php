@@ -25,7 +25,7 @@ class RcxLists {
 * @param type $var description
 * @return type description
 */
-function &getTimeZoneList() {
+static function &getTimeZoneList() {
 $time_zone_list = array ("-12" => _GMTM12, "-11" => _GMTM11, "-10" => _GMTM10, "-9" => _GMTM9, "-8" => _GMTM8, "-7" => _GMTM7, "-6" => _GMTM6, "-5" => _GMTM5, "-4" => _GMTM4, "-3.5" => _GMTM35, "-3" => _GMTM3, "-2" => _GMTM2, "-1" => _GMTM1, "0" => _GMT0, "1" => _GMTP1, "2" => _GMTP2, "3" => _GMTP3, "3.5" => _GMTP35, "4" => _GMTP4, "4.5" => _GMTP45, "5" => _GMTP5, "5.5" => _GMTP55, "6" => _GMTP6, "7" => _GMTP7, "8" => _GMTP8, "9" => _GMTP9, "9.5" => _GMTP95, "10" => _GMTP10, "11" => _GMTP11, "12" => _GMTP12);
 
 return $time_zone_list;
@@ -34,7 +34,7 @@ return $time_zone_list;
 /**
 * gets list of themes folder from themes directory
 */
-function &getThemesList() {
+static function &getThemesList() {
 $themes_list = array();
 $themes_list =& RcxLists::getDirListAsArray(RCX_ROOT_PATH."/themes/");
 
@@ -47,7 +47,7 @@ return $themes_list;
 * @param type $var description
 * @return type description
 */
-function &getDirListAsArray($dirname) {
+static function &getDirListAsArray($dirname) {
 $dirlist = array();
 if ($handle = @opendir($dirname)) {
 	while (false !== ($file = readdir($handle))) {
@@ -70,7 +70,7 @@ return $dirlist;
 * @param type $var description
 * @return type description
 */
-function &getImgListAsArray($dirname, $prefix="") {
+static function &getImgListAsArray($dirname, $prefix="") {
 
 $filelist = array();
 
@@ -97,7 +97,7 @@ return $filelist;
 * @param type $var description
 * @return type description
 */
-function &getAvatarsList($avatar_dir="") {
+static function &getAvatarsList($avatar_dir="") {
 
 $avatars = array();
 
@@ -113,7 +113,7 @@ return $avatars;
 /**
 * gets list of all avatar image files inside default avatars directory
 */
-function &getAllAvatarsList() {
+static function &getAllAvatarsList() {
 
 $avatars = array();
 $dirlist = array();
@@ -153,7 +153,7 @@ return $subjects;
 /**
 * gets list of language folders inside default language directory
 */
-function &getLangList() {
+static function &getLangList() {
 
 $lang_list = array();
 $lang_list =& RcxLists::getDirListAsArray(RCX_ROOT_PATH."/language/");
@@ -167,7 +167,7 @@ return $lang_list;
 * @param type $var description
 * @return type description
 */
-function &getCountryList() {
+static function &getCountryList() {
 
 $country_list = array (
 	""   => "-",
@@ -428,7 +428,7 @@ return $country_list;
 * @param type $var description
 * @return type description
 */
-function &getHtmlList() {
+static function &getHtmlList() {
 
 $html_list = array (
 	"a"          => "&lt;a&gt;",
@@ -537,7 +537,7 @@ return $html_list;
 * @param type $var description
 * @return type description
 */
-function &getUserRankList() {
+static function &getUserRankList() {
 global $myts, $db;
 
 $sql    = "SELECT rank_id, rank_title FROM ".$db->prefix("ranks")." WHERE rank_special = 1";
@@ -552,7 +552,7 @@ return $ret;
 }
 
 // To retrieve each file in the given dir...
-function &getFilesListAsArray($dirname, $prefix="", $include_indexhtml=false) {
+static function &getFilesListAsArray($dirname, $prefix="", $include_indexhtml=false) {
 
 $filelist = array();
 

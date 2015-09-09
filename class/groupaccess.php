@@ -234,7 +234,7 @@ function userGroups($style=1) {
 }
 } // END CLASS
 class RcxDownload {
-  function isAccessible($lid)
+     static function isAccessible($lid)
   {
     global $db,$rcxUser;
     
@@ -265,7 +265,7 @@ class RcxDownload {
       return false;
   }
 
-  function countDownloadsByCategory($cid)
+  static function countDownloadsByCategory($cid)
   {
     global $db,$rcxUser;
     if ($rcxUser)
@@ -295,7 +295,7 @@ class RcxDownload {
   }
 
 
-  function countDownloads()
+  static function countDownloads()
   {
     global $db,$rcxUser;
     if ($rcxUser)
@@ -323,7 +323,7 @@ class RcxDownload {
     return $ret;
   }
 
-  function printGroups($selected="")
+  static function printGroups($selected="")
   {
     global $db;
 
@@ -350,7 +350,7 @@ class RcxDownload {
   }
 
 
-  function makeTboxData4SaveGroups($groups)
+  static function makeTboxData4SaveGroups($groups)
   {
     if (!empty($groups) && @is_array($groups))
       return implode(",",$groups);

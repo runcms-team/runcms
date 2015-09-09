@@ -29,7 +29,7 @@ $block['content'] .= "<Marquee Behavior=\"Scroll\" Direction=\"$scrolldirection\
 $result = $db->query("select storyid, title, published from ".$db->prefix("stories")." Where published > 0 order by published DESC ",$newstoshow,0);
 
 while(list($storyid, $title, $published) = $db->fetch_row($result)) {
-                $title2 = ereg_replace("_", " ", $title);
+                $title2 = str_replace("_", " ", $title);
                  if ( strlen($title2) > $options[1] ) {
                 $title2 = substr($title2, 0, $options[1])."..";
                 }

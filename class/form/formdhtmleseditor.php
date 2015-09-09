@@ -97,7 +97,7 @@ function getCaption() {
 * @param type $var description
 * @return type description
 */
-function getName() {
+function getName($encode=true) {
 	return $this->name;
 }
 
@@ -154,7 +154,7 @@ function getCols() {
 * @param type $var description
 * @return type description
 */
-function render($value="") {
+function render() {
 	
 	$caption = $this->getCaption();
 	$name = $this->getName();

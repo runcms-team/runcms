@@ -24,7 +24,7 @@ class GallTextSanitizer {
   function GallTextSanitizer(){
   }
 
-  function &getInstance(){
+  static function &getInstance(){
     if ( isset($GLOBALS['gallMyts']) && get_class($GLOBALS['gallMyts']) == "galltextsanitizer" ) {
       return $GLOBALS['gallMyts'];
     }

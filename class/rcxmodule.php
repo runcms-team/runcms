@@ -169,7 +169,7 @@ function getModule($mid) {
 * @param type $var description
 * @return type description
 */
-function &getAllModulesList($criteria=array(), $sort="name", $order="ASC") {
+static function &getAllModulesList($criteria=array(), $sort="name", $order="ASC") {
   global $db;
 
   $ret = array();
@@ -224,7 +224,7 @@ function makeModule($array) {
 * @param type $var description
 * @return type description
 */
-function &getByDirname($dirname) {
+static function &getByDirname($dirname) {
   global $db, $myts;
 
   $ret = false;
@@ -790,7 +790,7 @@ return true;
 * @param type $var description
 * @return type description
 */
-function moduleExists($dirname) {
+static function moduleExists($dirname) {
   global $db;
 
   $sql    = "SELECT COUNT(*) FROM ".RC_MODULES_TBL." WHERE dirname='$dirname'";
@@ -1301,7 +1301,7 @@ function errors() {
 * @param type $var description
 * @return type description
 */
-function &getHasMainModulesList($dirname=false) {
+static function &getHasMainModulesList($dirname=false) {
   global $db;
 
   $ret    = array();
@@ -1328,7 +1328,7 @@ return $ret;
 * @param type $var description
 * @return type description
 */
-function &getHasSearchModulesList($aslist = true) {
+static function &getHasSearchModulesList($aslist = true) {
   global $db;
 
   $ret    = array();
@@ -1355,7 +1355,7 @@ return $ret;
 * @param type $var description
 * @return type description
 */
-function &getHasAdminModulesList($aslist = true) {
+static function &getHasAdminModulesList($aslist = true) {
   global $db;
 
   $ret    = array();
@@ -1382,7 +1382,7 @@ return $ret;
 * @param type $var description
 * @return type description
 */
-function &getSystemModulesList($aslist = true) {
+static function &getSystemModulesList($aslist = true) {
   global $db;
 
   $ret    = array();
@@ -1413,7 +1413,7 @@ return $ret;
 *  set $aslist to true for ease of use with class RcxLists
 *  $exclude is an array of module ids that you dont want to get
 */
-function &getInstalledModules($asobject=true) {
+static function &getInstalledModules($asobject=true) {
   global $db;
 
   $ret = array();
@@ -1441,7 +1441,7 @@ return $ret;
 * @param type $var description
 * @return type description
 */
-function &getByRight($groupid, $right="R") {
+static function &getByRight($groupid, $right="R") {
   global $db;
 
   $sql = "SELECT DISTINCT mid FROM ".RC_GRP_MOD_LINK_TBL." WHERE type='".$right."'";

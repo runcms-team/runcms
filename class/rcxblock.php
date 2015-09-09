@@ -523,7 +523,7 @@ function getOptions() {
 * @param $orderby   order of the blocks
 * @returns array of block objects
 */
-function &getAllBlocksByGroup(
+static function &getAllBlocksByGroup(
         $groupid, $asobject=true, $side=NULL, $visible=NULL,
         $orderby="b.weight, b.bid", $isactive=1, $show_mid=0, $page_style=0) {
 
@@ -650,7 +650,7 @@ return $ret;
 * @param type $var description
 * @return type description
 */
-function &getAllBlocks($rettype="object", $side=NULL, $visible=NULL, $orderby="side, weight, bid", $isactive=1, $mid=NULL) {
+static function &getAllBlocks($rettype="object", $side=NULL, $visible=NULL, $orderby="side, weight, bid", $isactive=1, $mid=NULL) {
   global $db;
 
   $ret = array();
@@ -731,7 +731,7 @@ return $ret;
 * @param type $var description
 * @return type description
 */
-function &getByModule($moduleid, $asobject=true){
+static function &getByModule($moduleid, $asobject=true){
 global $db;
 
   if ($asobject == true)

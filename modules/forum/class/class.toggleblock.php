@@ -13,19 +13,19 @@ if (!defined('RCX_ROOT_PATH')) {
 }
 class ToggleBlockRenderer
 {
-	function render($id, $title, $link, $content)
+        static function render($id, $title, $link, $content)
 	{
 		echo ToggleBlockRenderer::renderHTML($id, $title, $link, $content);
 	}
 
-	function renderHTML($id, $title, $link, $content)
+	static function renderHTML($id, $title, $link, $content)
 	{
 		global $_COOKIE;
 		
 		$bShow = true;
 		if (isset($_COOKIE['forum_collapse']))
 		{
-			$arrCollapse = split(',',$_COOKIE['forum_collapse']);
+			$arrCollapse = explode(',',$_COOKIE['forum_collapse']);
 			$bShow = (in_array($id, $arrCollapse)) ? true : false;
 		}
 

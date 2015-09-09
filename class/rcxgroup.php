@@ -221,7 +221,7 @@ return true;
 * @param type $var description
 * @return type description
 */
-function checkRight($which, $id, $groupid=0, $type="R") {
+static function checkRight($which, $id, $groupid=0, $type="R") {
   global $db;
 
   if ($which == "module")
@@ -282,7 +282,7 @@ return false;
 * @param type $var description
 * @return type description
 */
-function &getByUser(&$user, $asobject=false) {
+static function &getByUser(&$user, $asobject=false) {
   global $db;
 
   $ret = array();
@@ -329,7 +329,7 @@ return $ret;
 * @param type $var description
 * @return type description
 */
-function &getByType($type="", $asobject=false, $sort="groupid", $order="ASC") {
+static function &getByType($type="", $asobject=false, $sort="groupid", $order="ASC") {
   global $db;
 
   $ret = array();
@@ -368,7 +368,7 @@ return $ret;
 * @param type $var description
 * @return type description
 */
-function &getAllGroupsList($criteria=array(), $sort="groupid", $order="ASC") {
+static function &getAllGroupsList($criteria=array(), $sort="groupid", $order="ASC") {
   global $db;
 
   $ret = array();

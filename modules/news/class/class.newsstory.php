@@ -35,7 +35,7 @@ class NewsStory extends RcxStory {
 * @param type $var description
 * @return type description
 */
-function getAllPublished($limit=0, $start=0, $topic=0, $ihome=0, $asobject=true) {
+static function getAllPublished($limit=0, $start=0, $topic=0, $ihome=0, $asobject=true) {
 global $db, $myts;
 
 $ret = array();
@@ -66,7 +66,7 @@ return $ret;
 * @param type $var description
 * @return type description
 */
-function getAllAutoStory($limit=0, $asobject=true) {
+static function getAllAutoStory($limit=0, $asobject=true) {
 global $db, $myts;
 
 $ret    = array();
@@ -88,7 +88,7 @@ return $ret;
 * @param type $var description
 * @return type description
 */
-function getAllSubmitted($limit=0, $asobject=true) {
+static function getAllSubmitted($limit=0, $asobject=true) {
 global $db, $myts;
 $ret    = array();
 $sql    = "SELECT * FROM ".$db->prefix("stories")." WHERE published=0 ORDER BY created DESC";
@@ -108,7 +108,7 @@ return $ret;
 * @param type $var description
 * @return type description
 */
-function getByTopic($topicid) {
+static function getByTopic($topicid) {
 global $db;
 $ret    = array();
 $result = $db->query("SELECT * FROM ".$db->prefix("stories")." WHERE topicid=".intval($topicid)."");
@@ -123,7 +123,7 @@ return $ret;
 * @param type $var description
 * @return type description
 */
-function countByTopic($topicid=0, $published = true) {
+static function countByTopic($topicid=0, $published = true) {
 global $db;
 
 $sql = "SELECT COUNT(*) FROM ".$db->prefix("stories")."";

@@ -93,7 +93,7 @@ Class RcxUser extends RcxObject {
 * @param type $var description
 * @return type description
 */
-function login($uname, $pass) {
+static function login($uname, $pass) {
 global $myts, $db;
 
 $uname  = $myts->makeTboxData4Save($uname);
@@ -423,7 +423,7 @@ return true;
 */
 function isAdmin($moduleid=0) {
 
-  if ($this->admin_groups[$moduleid] == TRUE)
+  if (isset($this->admin_groups[$moduleid]) && $this->admin_groups[$moduleid] == TRUE)
   {
     return true;
   }
@@ -520,10 +520,10 @@ return $this->groups;
 * @param type $var description
 * @return type description
 */
-function getUnameFromId($userid) {
+static function getUnameFromId($userid) {
   global $rcxConfig, $myts, $db, $objCache;
 
-  if ($objCache->RcxUser['uname'][$userid])
+  if (isset($objCache->RcxUser['uname'][$userid]))
   {
     return $objCache->RcxUser['uname'][$userid];
   }
@@ -552,7 +552,7 @@ return $uname;
 * @param type $var description
 * @return type description
 */
-function incrementPost($uid) {
+static function incrementPost($uid) {
   global $db;
 
   $sql    = "UPDATE ".RC_USERS_TBL." SET posts=posts+1 WHERE uid=".$uid."";
@@ -599,7 +599,7 @@ return false;
 * @param type $var description
 * @return type description
 */
-function &getAllUsers($criteria=array(), $asobject=false, $orderby="uid ASC", $limit=0, $start=0){
+static function &getAllUsers($criteria=array(), $asobject=false, $orderby="uid ASC", $limit=0, $start=0){
   global $db;
 
   $ret = array();
@@ -644,7 +644,7 @@ return $ret;
 * @param type $var description
 * @return type description
 */
-function &getAllUsersList($criteria=array(), $orderby="uid ASC", $limit=0, $start=0) {
+static function &getAllUsersList($criteria=array(), $orderby="uid ASC", $limit=0, $start=0) {
   global $myts, $db;
 
   $ret = array();
@@ -678,7 +678,7 @@ return $ret;
 * @param type $var description
 * @return type description
 */
-function countAllUsers($criteria=array()) {
+static function countAllUsers($criteria=array()) {
   global $db;
 
   $where_query = "";

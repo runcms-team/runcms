@@ -100,7 +100,9 @@ function set(&$arr) {
 function getVar($key, $format="S") {
 global $myts;
 
-$myts->setType($this->vars['type']['value']); // Fix LARK (28.06.2010)
+if (!empty($this->vars['type'])) {
+    $myts->setType($this->vars['type']['value']); // Fix LARK (28.06.2010)
+}
 
 if ( $this->vars[$key]['type'] == "textbox" ) {
   switch ($format) {

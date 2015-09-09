@@ -265,17 +265,17 @@ if ( !defined("SQL_LAYER") )
         return count($this->cache) ? array_shift($this->cache) : false;
       }
       
-      $this->row[$resource] = @mysql_fetch_array($resource);
+      $this->row[(int) $resource] = @mysql_fetch_array($resource);
       
       if($this->caching)
       {
-        if($this->row[$resource] === false)
+        if($this->row[(int) $resource] === false)
         {
           $this->write_cache();
         }
-        $this->cache[] = $this->row[$resource];
+        $this->cache[] = $this->row[(int) $resource];
       }
-      return $this->row[$resource];
+      return $this->row[(int) $resource];
     }
     /**
     * Fetch a result row as an object
@@ -336,17 +336,17 @@ if ( !defined("SQL_LAYER") )
       {
         return $this->cache;
       }
-      while($this->rowset[$resource] = @mysql_fetch_array($resource))
+      while($this->rowset[(int) $resource] = @mysql_fetch_array($resource))
       {
         if($this->caching)
         {
-          if($this->row[$resource] === false)
+          if($this->row[(int) $resource] === false)
           {
             $this->write_cache();
           }
-          $this->cache[] = $this->row[$resource];
+          $this->cache[] = $this->row[(int) $resource];
         }
-        $result[] = $this->rowset[$resource];
+        $result[] = $this->rowset[(int) $resource];
       }
       if($this->caching)
       {
@@ -379,8 +379,8 @@ if ( !defined("SQL_LAYER") )
       }
       if ($resource)
       {
-        unset($this->row[$resource]);
-        unset($this->rowset[$resource]);
+        unset($this->row[(int) $resource]);
+        unset($this->rowset[(int) $resource]);
         @mysql_free_result($resource);
         return true;
       }
@@ -402,17 +402,17 @@ if ( !defined("SQL_LAYER") )
         return count($this->cache) ? array_shift($this->cache) : false;
       }
       
-      $this->row[$resource] = @mysql_fetch_assoc($resource);
+      $this->row[(int) $resource] = @mysql_fetch_assoc($resource);
       
       if($this->caching)
       {
-        if($this->row[$resource] === false)
+        if($this->row[(int) $resource] === false)
         {
           $this->write_cache();
         }
-        $this->cache[] = $this->row[$resource];
+        $this->cache[] = $this->row[(int) $resource];
       }
-      return $this->row[$resource];
+      return $this->row[(int) $resource];
 //      return @mysql_fetch_assoc($resource);
     }
     /**

@@ -156,7 +156,7 @@ return true;
 * @param type $var description
 * @return type description
 */
-function &getAll($criteria=array(), $asobject=true, $orderby="end_time DESC", $limit=0, $start=0) {
+static function &getAll($criteria=array(), $asobject=true, $orderby="end_time DESC", $limit=0, $start=0) {
   global $db;
 
   $ret = array();
@@ -263,7 +263,7 @@ $db->query($sql);
 * @param type $var description
 * @return type description
 */
-function comment_count($poll_id) {
+static function comment_count($poll_id) {
 global $db;
 
 $sql    = "SELECT COUNT(*) FROM ".$db->prefix("pollcomments")." WHERE item_id=".intval($poll_id)."";

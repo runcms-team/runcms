@@ -466,7 +466,7 @@ return "<div align='center'>".sprintf(_MD_AM_OKBARUPD, "<b>".$mymodule->name()."
 function module_edit($mid) {
 global $db;
 
-$module =& new RcxModule($mid);
+$module = new RcxModule($mid);
 
 include_once(RCX_ROOT_PATH . "/class/rcxformloader.php");
 $form = new RcxThemeForm("", "moduleedit", "admin.php", "post", true);

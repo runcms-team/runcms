@@ -807,7 +807,6 @@ $time ? header("Set-Cookie: $name=$value; expires=$expire GMT; path=$path") : he
 function make_sidebar($side) {
 global $rcxUser, $rcxModule, $rcxOption;
 
-$rcxblock = new RcxBlock();
 $arr        = array();
 //$mid        = $rcxModule ? $rcxModule->mid() : 0;
 $page_style = intval($rcxOption['page_style']);
@@ -850,11 +849,11 @@ $page_style
 
 if ($rcxUser)
 {
-  $arr =& $rcxblock->getAllBlocksByGroup($rcxUser->groups(), true, $side, RCX_BLOCK_VISIBLE, "b.weight, b.bid", 1, $mid, $page_style);
+  $arr =& RcxBlock::getAllBlocksByGroup($rcxUser->groups(), true, $side, RCX_BLOCK_VISIBLE, "b.weight, b.bid", 1, $mid, $page_style);
 }
 else
 {
-  $arr =& $rcxblock->getAllBlocksByGroup(RcxGroup::getByType("Anonymous"), true, $side, RCX_BLOCK_VISIBLE, "b.weight, b.bid", 1, $mid, $page_style);
+  $arr =& RcxBlock::getAllBlocksByGroup(RcxGroup::getByType("Anonymous"), true, $side, RCX_BLOCK_VISIBLE, "b.weight, b.bid", 1, $mid, $page_style);
 }
 $myblock='';
 foreach ($arr as $myblock)
@@ -893,7 +892,6 @@ if (!defined('CENTERBLOCKS_'.$side.'_INCLUDED')) {
     return;
   }
 
-$rcxblock = new RcxBlock();
 $cc_block   = $cl_block = $cr_block = "";
 $arr        = array();
 $side       = ($side == RCX_CENTERBLOCK_TOPALL) ? RCX_CENTERBLOCK_TOPALL : RCX_CENTERBLOCK_BOTTOMALL;
@@ -910,9 +908,9 @@ $page_style
 */
 
 if ($rcxUser) {
-  $arr =& $rcxblock->getAllBlocksByGroup($rcxUser->groups(), true, $side, RCX_BLOCK_VISIBLE, "b.weight, b.bid", 1, $mid, $page_style);
+  $arr =& RcxBlock::getAllBlocksByGroup($rcxUser->groups(), true, $side, RCX_BLOCK_VISIBLE, "b.weight, b.bid", 1, $mid, $page_style);
   } else {
-    $arr =& $rcxblock->getAllBlocksByGroup(RcxGroup::getByType("Anonymous"), true, $side, RCX_BLOCK_VISIBLE, "b.weight, b.bid", 1, $mid, $page_style);
+    $arr =& RcxBlock::getAllBlocksByGroup(RcxGroup::getByType("Anonymous"), true, $side, RCX_BLOCK_VISIBLE, "b.weight, b.bid", 1, $mid, $page_style);
   }
 
 if (!empty($arr)) {

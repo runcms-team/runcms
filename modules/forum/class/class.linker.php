@@ -16,7 +16,7 @@ $g_userlink_cache = array();
 
 class Linker
 {
-        function user_link($uid, $anon_uname='')
+    static function user_link($uid, $anon_uname='')
         {
                 global $rcxConfig, $g_userlink_cache;
 
@@ -44,7 +44,7 @@ class Linker
                 return $userlink;
         }
 
-        function topic_link($topic_id, $forum_id, $topic_title)
+        static function topic_link($topic_id, $forum_id, $topic_title)
         {
                 global $myts;
 
@@ -57,18 +57,18 @@ class Linker
                 return $topiclink;
         }
 
-                function forum_link_href($forum_id)
+        static function forum_link_href($forum_id)
                 {
                         return "viewforum.php?forum=".$forum_id;
                 }
 
-                function post_link_href($post_id, $topic_id, $forum_id)
+                static function post_link_href($post_id, $topic_id, $forum_id)
                 {
                         $postlink = "viewtopic.php?post_id=".$post_id."&amp;topic_id=".$topic_id."&amp;forum=".$forum_id."#".$post_id;
                         return $postlink;
                 }
 
-                function mailto_topic_href($topic_id, $forum_id)
+                static function mailto_topic_href($topic_id, $forum_id)
                 {
                         global $meta;
 

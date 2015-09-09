@@ -127,7 +127,7 @@ $db->query($sql);
 * @param type $var description
 * @return type description
 */
-function &getAllByPollId($poll_id) {
+static function &getAllByPollId($poll_id) {
 global $db;
 
 $poll_id = intval($poll_id);
@@ -158,7 +158,7 @@ return $ret;
 * @param type $var description
 * @return type description
 */
-function deleteByPollId($poll_id) {
+static function deleteByPollId($poll_id) {
 global $db;
 
 $sql = "DELETE FROM ".$db->prefix("poll_option")." WHERE poll_id=".intval($poll_id);
@@ -175,7 +175,7 @@ return true;
 * @param type $var description
 * @return type description
 */
-function resetCountByPollId($poll_id) {
+static function resetCountByPollId($poll_id) {
 global $db;
 
 $sql = "UPDATE ".$db->prefix("poll_option")." SET option_count=0 WHERE poll_id=".intval($poll_id);

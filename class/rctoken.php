@@ -54,7 +54,7 @@ class RcxToken
      *
      * @return unknown
      */
-    function &getInstance()
+    static function &getInstance()
     {
         static $instance;
         if (!isset($instance)) {
